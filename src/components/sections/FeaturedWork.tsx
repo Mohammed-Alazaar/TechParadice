@@ -2,9 +2,10 @@ import Link from 'next/link'
 import { ArrowUpRight } from 'lucide-react'
 import { Section, SectionHeading } from '@/components/ui/Section'
 import { Badge } from '@/components/ui/Badge'
-import { portfolio } from '@/lib/portfolio'
+import { getPortfolio } from '@/lib/portfolio'
 
-export function FeaturedWork() {
+export async function FeaturedWork() {
+  const portfolio = await getPortfolio()
   const featured = portfolio.slice(0, 3)
 
   return (
@@ -37,19 +38,21 @@ export function FeaturedWork() {
               className="group block overflow-hidden rounded-2xl border border-border-dark bg-surface transition-all duration-300 hover:-translate-y-1 hover:border-teal/40"
             >
               <div className="relative aspect-[16/10] overflow-hidden bg-gradient-to-br from-teal/20 via-surface to-void">
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <span className="font-display text-[48px] font-extrabold tracking-tight text-white/10">
-                    {item.client}
-                  </span>
-                </div>
+                {item.cover ? (
+                  <img src={item.cover} alt={item.client} className="h-full w-full object-cover" />
+                ) : (
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <span className="font-display text-[48px] font-extrabold tracking-tight text-white/10">
+                      {item.client}
+                    </span>
+                  </div>
+                )}
                 <div className="absolute right-4 top-4">
                   <Badge tone="teal">{item.outcome}</Badge>
                 </div>
               </div>
               <div className="p-6">
-                <p className="text-caption uppercase text-muted">
-                  {item.industry}
-                </p>
+                <p className="text-caption uppercase text-muted">{item.industry}</p>
                 <h3 className="mt-2 font-display text-[20px] font-semibold text-white">
                   {item.title}
                 </h3>

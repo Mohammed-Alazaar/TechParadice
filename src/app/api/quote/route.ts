@@ -2,6 +2,8 @@ import { NextResponse } from 'next/server'
 import { z } from 'zod'
 import { resend, hasEmailTransport } from '@/lib/email'
 import { BRAND } from '@/lib/utils'
+import dbConnect from '@/lib/mongodb'
+import InquiryModel from '@/lib/models/Inquiry'
 
 export const runtime = 'nodejs'
 
@@ -33,6 +35,14 @@ export async function POST(req: Request) {
   }
 
   const data = parsed.data
+
+  try {
+    await dbConnect()
+    await InquiryModel.create({ type: 'quote', ...data })
+  } catch (err) {
+    console.error('[quote] db save error', err)
+  }
+
   const destination = process.env.CONTACT_EMAIL ?? BRAND.email
 
   if (!hasEmailTransport() || !resend) {

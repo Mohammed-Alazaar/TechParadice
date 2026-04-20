@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install *)",
+      "Bash(mkdir -p \"src/app/\\(public\\)/about\" \"src/app/\\(public\\)/blog/[slug]\" \"src/app/\\(public\\)/contact\" \"src/app/\\(public\\)/portfolio/[slug]\" \"src/app/\\(public\\)/pricing\" \"src/app/\\(public\\)/privacy-policy\" \"src/app/\\(public\\)/process\" \"src/app/\\(public\\)/services/[slug]\" \"src/app/\\(public\\)/terms\")",
+      "Bash(git mv *)",
+      "Bash(rmdir \"src/app/about\" \"src/app/contact\" \"src/app/pricing\" \"src/app/privacy-policy\" \"src/app/process\" \"src/app/terms\")",
+      "Bash(rmdir \"src/app/blog/[slug]\" \"src/app/blog\" \"src/app/portfolio/[slug]\" \"src/app/portfolio\" \"src/app/services/[slug]\" \"src/app/services\")",
+      "Bash(npm run *)",
+      "Bash(grep -v \"^$\")",
+      "Bash(npx tsx *)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000/admin/login)"
+    ]
+  }
+}

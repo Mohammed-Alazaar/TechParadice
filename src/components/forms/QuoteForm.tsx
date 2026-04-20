@@ -7,7 +7,17 @@ import { useState } from 'react'
 import { CheckCircle2, Loader2 } from 'lucide-react'
 import { Input, Textarea, Select } from '@/components/ui/Input'
 import { Button } from '@/components/ui/Button'
-import { services } from '@/lib/services'
+const services = [
+  { slug: 'web-development', name: 'Website Development' },
+  { slug: 'mobile-app-development', name: 'Mobile App Development' },
+  { slug: 'ui-ux-design', name: 'Custom UI/UX Design' },
+  { slug: 'seo', name: 'SEO' },
+  { slug: 'social-media-management', name: 'Social Media Management' },
+  { slug: 'content-creation', name: 'Content Creation' },
+  { slug: 'community-management', name: 'Community Management' },
+  { slug: 'analytics-reporting', name: 'Analytics & Reporting' },
+  { slug: 'paid-advertising', name: 'Paid Advertising' },
+]
 
 const quoteSchema = z.object({
   name: z.string().min(2, 'Please share your name'),

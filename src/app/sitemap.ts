@@ -1,11 +1,17 @@
 import type { MetadataRoute } from 'next'
 import { SITE_URL } from '@/lib/utils'
-import { services } from '@/lib/services'
-import { portfolio } from '@/lib/portfolio'
-import { posts } from '@/lib/blog'
+import { getAllServiceSlugs } from '@/lib/services'
+import { getAllCaseStudySlugs } from '@/lib/portfolio'
+import { getAllPostSlugs } from '@/lib/blog'
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const now = new Date()
+
+  const [serviceSlugs, portfolioSlugs, blogSlugs] = await Promise.all([
+    getAllServiceSlugs(),
+    getAllCaseStudySlugs(),
+    getAllPostSlugs(),
+  ])
 
   const staticRoutes: MetadataRoute.Sitemap = [
     { url: `${SITE_URL}/`, priority: 1.0, changeFrequency: 'weekly', lastModified: now },
@@ -20,25 +26,25 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${SITE_URL}/terms`, priority: 0.3, changeFrequency: 'yearly', lastModified: now },
   ]
 
-  const serviceRoutes: MetadataRoute.Sitemap = services.map((s) => ({
-    url: `${SITE_URL}/services/${s.slug}`,
+  const serviceRoutes: MetadataRoute.Sitemap = serviceSlugs.map((slug) => ({
+    url: `${SITE_URL}/services/${slug}`,
     priority: 0.8,
     changeFrequency: 'monthly',
     lastModified: now,
   }))
 
-  const portfolioRoutes: MetadataRoute.Sitemap = portfolio.map((p) => ({
-    url: `${SITE_URL}/portfolio/${p.slug}`,
+  const portfolioRoutes: MetadataRoute.Sitemap = portfolioSlugs.map((slug) => ({
+    url: `${SITE_URL}/portfolio/${slug}`,
     priority: 0.7,
     changeFrequency: 'monthly',
     lastModified: now,
   }))
 
-  const blogRoutes: MetadataRoute.Sitemap = posts.map((p) => ({
-    url: `${SITE_URL}/blog/${p.slug}`,
+  const blogRoutes: MetadataRoute.Sitemap = blogSlugs.map((slug) => ({
+    url: `${SITE_URL}/blog/${slug}`,
     priority: 0.5,
     changeFrequency: 'monthly',
-    lastModified: new Date(p.date),
+    lastModified: now,
   }))
 
   return [...staticRoutes, ...serviceRoutes, ...portfolioRoutes, ...blogRoutes]

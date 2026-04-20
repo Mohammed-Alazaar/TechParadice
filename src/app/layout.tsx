@@ -1,9 +1,6 @@
 import type { Metadata, Viewport } from 'next'
 import { Figtree, Plus_Jakarta_Sans } from 'next/font/google'
 import Script from 'next/script'
-import { Header } from '@/components/layout/Header'
-import { Footer } from '@/components/layout/Footer'
-import { SkipLink } from '@/components/layout/SkipLink'
 import { BRAND, SITE_URL } from '@/lib/utils'
 import './globals.css'
 
@@ -44,9 +41,7 @@ export const metadata: Metadata = {
   creator: BRAND.name,
   publisher: BRAND.name,
   icons: {
-    icon: [
-      { url: '/favicon.svg', type: 'image/svg+xml' },
-    ],
+    icon: [{ url: '/favicon.svg', type: 'image/svg+xml' }],
   },
   openGraph: {
     type: 'website',
@@ -80,18 +75,11 @@ export const viewport: Viewport = {
 
 const gaId = process.env.NEXT_PUBLIC_GA_ID
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${figtree.variable} ${jakarta.variable}`}>
       <body className="bg-void font-body text-white antialiased">
-        <SkipLink />
-        <Header />
-        <main id="main">{children}</main>
-        <Footer />
+        {children}
         {gaId ? (
           <>
             <Script

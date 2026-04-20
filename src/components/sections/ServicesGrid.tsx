@@ -1,9 +1,11 @@
 import Link from 'next/link'
 import { ArrowUpRight } from 'lucide-react'
 import { Section, SectionHeading } from '@/components/ui/Section'
-import { services } from '@/lib/services'
+import { getServices } from '@/lib/services'
 
-export function ServicesGrid() {
+export async function ServicesGrid() {
+  const services = await getServices()
+
   return (
     <Section tone="void">
       <SectionHeading
@@ -42,9 +44,7 @@ export function ServicesGrid() {
                 <h3 className="mt-6 font-display text-h4 font-semibold text-white">
                   {service.name}
                 </h3>
-                <p className="mt-2 text-[14px] text-white/60">
-                  {service.short}
-                </p>
+                <p className="mt-2 text-[14px] text-white/60">{service.short}</p>
               </Link>
             </li>
           )
