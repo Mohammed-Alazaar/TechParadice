@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic'
+
 import dbConnect from '@/lib/mongodb'
 import InquiryModel from '@/lib/models/Inquiry'
 import { InquiryActions } from './InquiryActions'

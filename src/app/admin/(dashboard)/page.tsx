@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic'
+
 import dbConnect from '@/lib/mongodb'
 import BlogPostModel from '@/lib/models/BlogPost'
 import CaseStudyModel from '@/lib/models/CaseStudy'

@@ -3,6 +3,7 @@ import dbConnect from '@/lib/mongodb'
 import InquiryModel from '@/lib/models/Inquiry'
 
 export const runtime = 'nodejs'
+export const dynamic = 'force-dynamic'
 
 export async function GET(req: Request) {
   await dbConnect()
