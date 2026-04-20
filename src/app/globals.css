@@ -1,0 +1,119 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    background-color: #0d0d0d;
+    color: #ffffff;
+  }
+
+  ::selection {
+    background: #5eead4;
+    color: #0d0d0d;
+  }
+
+  :focus-visible {
+    outline: 2px solid #5eead4;
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-figtree), sans-serif;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer components {
+  .container-content {
+    @apply mx-auto w-full max-w-content px-6 sm:px-8 lg:px-12;
+  }
+
+  .eyebrow {
+    @apply text-caption uppercase text-muted;
+  }
+
+  .eyebrow-teal {
+    @apply text-caption uppercase text-teal;
+  }
+
+  .heading-display {
+    @apply font-display font-extrabold tracking-tight;
+    font-size: clamp(40px, 6vw + 8px, 72px);
+    line-height: 1.05;
+    letter-spacing: -2px;
+  }
+
+  .heading-h1 {
+    @apply font-display font-extrabold tracking-tight;
+    font-size: clamp(32px, 4vw + 8px, 48px);
+    line-height: 1.1;
+    letter-spacing: -1.5px;
+  }
+
+  .heading-h2 {
+    @apply font-display font-bold tracking-tight;
+    font-size: clamp(28px, 2.5vw + 14px, 36px);
+    line-height: 1.15;
+    letter-spacing: -1px;
+  }
+
+  .heading-h3 {
+    @apply font-display font-semibold;
+    font-size: 24px;
+    line-height: 1.25;
+    letter-spacing: -0.5px;
+  }
+
+  .heading-h4 {
+    @apply font-display font-semibold;
+    font-size: 20px;
+    line-height: 1.35;
+    letter-spacing: -0.25px;
+  }
+
+  .slash-accent {
+    @apply inline-block h-[1.5px] w-8 bg-teal align-middle;
+  }
+
+  .dark-card {
+    @apply rounded-xl border border-border-dark bg-surface p-6 transition-all duration-300;
+  }
+
+  .dark-card:hover {
+    @apply -translate-y-1 border-teal/40;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .text-pretty {
+    text-wrap: pretty;
+  }
+
+  .grid-auto-fit-cards {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  }
+}

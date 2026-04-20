@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#0D0D0D"/>
+  <g font-family="Figtree, 'Helvetica Neue', Arial, sans-serif">
+    <text x="80" y="350" font-weight="800" font-size="120" fill="#FFFFFF" letter-spacing="-4">Tech</text>
+    <text x="395" y="350" font-weight="800" font-size="120" fill="#5EEAD4" letter-spacing="-4">/</text>
+    <text x="440" y="350" font-weight="300" font-size="120" fill="#FFFFFF" fill-opacity="0.38" letter-spacing="-4">Paradice</text>
+    <text x="80" y="450" font-weight="500" font-size="34" fill="#FFFFFF" fill-opacity="0.7">Your digital world, built.</text>
+    <text x="80" y="550" font-weight="600" font-size="18" fill="#5EEAD4" letter-spacing="3">WEBSITE · APP · SEO · SOCIAL · DONE</text>
+  </g>
+</svg>
