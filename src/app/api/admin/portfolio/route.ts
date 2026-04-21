@@ -13,6 +13,12 @@ export async function GET() {
 export async function POST(req: Request) {
   await dbConnect()
   const body = await req.json()
+  if (!body.slug && body.title) {
+    body.slug = body.title.toLowerCase().trim().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
+  }
+  if (!body.slug) {
+    return NextResponse.json({ error: 'Slug is required' }, { status: 400 })
+  }
   const study = await CaseStudyModel.create(body)
   return NextResponse.json(study, { status: 201 })
 }

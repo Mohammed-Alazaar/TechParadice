@@ -21,6 +21,12 @@ interface BlogFormProps {
   }
 }
 
+function slugify(str: string) {
+  return str.toLowerCase().trim().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
+}
+
+const REQUIRED = ['slug', 'title', 'excerpt', 'author', 'date', 'readingTime'] as const
+
 export function BlogForm({ initialData }: BlogFormProps) {
   const router = useRouter()
   const isEdit = Boolean(initialData?.slug)
@@ -38,16 +44,36 @@ export function BlogForm({ initialData }: BlogFormProps) {
     published: initialData?.published ?? true,
   })
 
+  const [errors, setErrors] = useState<Record<string, string>>({})
   const [saving, setSaving] = useState(false)
-  const [error, setError] = useState('')
+  const [submitError, setSubmitError] = useState('')
 
   function set(key: string, value: unknown) {
-    setForm((f) => ({ ...f, [key]: value }))
+    setErrors((e) => { const next = { ...e }; delete next[key]; return next })
+    setForm((f) => {
+      const next = { ...f, [key]: value }
+      if (key === 'title' && !isEdit && (f.slug === '' || f.slug === slugify(f.title))) {
+        next.slug = slugify(value as string)
+      }
+      return next
+    })
+  }
+
+  function validate() {
+    const next: Record<string, string> = {}
+    for (const field of REQUIRED) {
+      const val = form[field]
+      if (!val.trim()) next[field] = 'This field is required'
+    }
+    setErrors(next)
+    return Object.keys(next).length === 0
   }
 
   async function handleSave() {
+    if (!validate()) return
     setSaving(true)
-    setError('')
+    setSubmitError('')
+
     const payload = {
       ...form,
       body: form.body.split('\n\n').map((p) => p.trim()).filter(Boolean),
@@ -67,7 +93,7 @@ export function BlogForm({ initialData }: BlogFormProps) {
       router.refresh()
     } else {
       const data = await res.json()
-      setError(data.error ?? 'Failed to save')
+      setSubmitError(data.error ?? 'Failed to save')
       setSaving(false)
     }
   }
@@ -81,62 +107,55 @@ export function BlogForm({ initialData }: BlogFormProps) {
 
   return (
     <div className="max-w-2xl space-y-5">
-      <Field label="Title">
-        <input value={form.title} onChange={(e) => set('title', e.target.value)} className={input} />
+      <Field label="Title" error={errors.title}>
+        <input value={form.title} onChange={(e) => set('title', e.target.value)} className={inp(errors.title)} />
       </Field>
 
-      <Field label="Slug">
-        <input value={form.slug} onChange={(e) => set('slug', e.target.value)} className={input} />
+      <Field label="Slug" error={errors.slug}>
+        <input value={form.slug} onChange={(e) => set('slug', e.target.value)} className={inp(errors.slug)} />
       </Field>
 
-      <Field label="Excerpt">
-        <textarea
-          value={form.excerpt}
-          onChange={(e) => set('excerpt', e.target.value)}
-          rows={3}
-          className={input}
-        />
+      <Field label="Excerpt" error={errors.excerpt}>
+        <textarea value={form.excerpt} onChange={(e) => set('excerpt', e.target.value)} rows={3} className={inp(errors.excerpt)} />
       </Field>
 
       <div className="grid grid-cols-2 gap-4">
         <Field label="Category">
-          <select value={form.category} onChange={(e) => set('category', e.target.value)} className={input}>
+          <select value={form.category} onChange={(e) => set('category', e.target.value)} className={inp()}>
             {CATEGORIES.map((c) => <option key={c}>{c}</option>)}
           </select>
         </Field>
-        <Field label="Author">
-          <input value={form.author} onChange={(e) => set('author', e.target.value)} className={input} />
+        <Field label="Author" error={errors.author}>
+          <input value={form.author} onChange={(e) => set('author', e.target.value)} className={inp(errors.author)} />
         </Field>
-        <Field label="Date">
-          <input type="date" value={form.date} onChange={(e) => set('date', e.target.value)} className={input} />
+        <Field label="Date" error={errors.date}>
+          <input type="date" value={form.date} onChange={(e) => set('date', e.target.value)} className={inp(errors.date)} />
         </Field>
-        <Field label="Reading time">
-          <input value={form.readingTime} onChange={(e) => set('readingTime', e.target.value)} className={input} placeholder="5 min" />
+        <Field label="Reading time" error={errors.readingTime}>
+          <input value={form.readingTime} onChange={(e) => set('readingTime', e.target.value)} className={inp(errors.readingTime)} placeholder="5 min" />
         </Field>
       </div>
 
       <Field label="Body (separate paragraphs with a blank line)">
-        <textarea
-          value={form.body}
-          onChange={(e) => set('body', e.target.value)}
-          rows={12}
-          className={input}
-        />
+        <textarea value={form.body} onChange={(e) => set('body', e.target.value)} rows={12} className={inp()} />
       </Field>
 
       <ImageUpload value={form.cover} onChange={(url) => set('cover', url)} />
 
       <label className="flex items-center gap-2 text-[13px] text-white/70">
-        <input
-          type="checkbox"
-          checked={form.published}
-          onChange={(e) => set('published', e.target.checked)}
-          className="accent-teal"
-        />
+        <input type="checkbox" checked={form.published} onChange={(e) => set('published', e.target.checked)} className="accent-teal" />
         Published
       </label>
 
-      {error ? <p className="text-[13px] text-red-400">{error}</p> : null}
+      {submitError ? (
+        <p className="rounded-lg border border-red-500/30 bg-red-500/10 px-3 py-2 text-[13px] text-red-400">
+          {submitError}
+        </p>
+      ) : null}
+
+      {Object.keys(errors).length > 0 ? (
+        <p className="text-[13px] text-red-400">Please fill in all required fields before saving.</p>
+      ) : null}
 
       <div className="flex gap-3 pt-2">
         <button
@@ -168,14 +187,21 @@ export function BlogForm({ initialData }: BlogFormProps) {
   )
 }
 
-function Field({ label, children }: { label: string; children: React.ReactNode }) {
+function Field({ label, error, children }: { label: string; error?: string; children: React.ReactNode }) {
   return (
     <div>
       <label className="mb-1.5 block text-[13px] font-medium text-white/70">{label}</label>
       {children}
+      {error ? <p className="mt-1 text-[11px] text-red-400">{error}</p> : null}
     </div>
   )
 }
 
-const input =
-  'w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-[13px] text-white placeholder-white/30 outline-none focus:border-teal/50 focus:ring-1 focus:ring-teal/30'
+function inp(error?: string) {
+  return [
+    'w-full rounded-lg border bg-white/5 px-3 py-2 text-[13px] text-white placeholder-white/30 outline-none',
+    error
+      ? 'border-red-500/60 focus:border-red-500 focus:ring-1 focus:ring-red-500/30'
+      : 'border-white/10 focus:border-teal/50 focus:ring-1 focus:ring-teal/30',
+  ].join(' ')
+}
