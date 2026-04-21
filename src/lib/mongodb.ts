@@ -1,11 +1,5 @@
 import mongoose from 'mongoose'
 
-const MONGODB_URI = process.env.MONGODB_URI!
-
-if (!MONGODB_URI) {
-  throw new Error('MONGODB_URI environment variable is not defined')
-}
-
 declare global {
   // eslint-disable-next-line no-var
   var _mongooseCache: { conn: typeof mongoose | null; promise: Promise<typeof mongoose> | null }
@@ -17,8 +11,13 @@ global._mongooseCache = cache
 export default async function dbConnect(): Promise<typeof mongoose> {
   if (cache.conn) return cache.conn
 
+  const uri = process.env.MONGODB_URI
+  if (!uri) {
+    throw new Error('MONGODB_URI environment variable is not defined')
+  }
+
   if (!cache.promise) {
-    cache.promise = mongoose.connect(MONGODB_URI, { bufferCommands: false })
+    cache.promise = mongoose.connect(uri, { bufferCommands: false })
   }
 
   cache.conn = await cache.promise
