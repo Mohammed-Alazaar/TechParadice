@@ -14,16 +14,30 @@ export default function AdminLoginPage() {
     setLoading(true)
     setError('')
 
-    const res = await fetch('/api/admin/auth/login', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ password }),
-    })
+    try {
+      const res = await fetch('/api/admin/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ password }),
+      })
 
-    if (res.ok) {
-      router.push('/admin')
-    } else {
-      setError('Invalid password')
+      if (res.ok) {
+        router.push('/admin')
+        router.refresh()
+        return
+      }
+
+      let message = 'Invalid password'
+      try {
+        const data = await res.json()
+        if (data?.error) message = data.error
+      } catch {
+        // ignore JSON parse errors, keep default message
+      }
+      setError(message)
+    } catch {
+      setError('Network error. Please try again.')
+    } finally {
       setLoading(false)
     }
   }
