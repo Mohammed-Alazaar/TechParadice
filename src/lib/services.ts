@@ -39,6 +39,12 @@ export type Service = {
   faqs: { q: string; a: string }[]
   pairsWith: string[]
   order: number
+  nameAr?: string
+  shortAr?: string
+  valueAr?: string
+  deliverablesAr?: string[]
+  processAr?: { step: string; detail: string }[]
+  faqsAr?: { q: string; a: string }[]
 }
 
 function toService(doc: any): Service {

@@ -10,9 +10,9 @@ type SectionProps = {
 }
 
 const toneClasses = {
-  void: 'bg-void text-white',
-  surface: 'bg-surface text-white',
-  light: 'bg-white text-void',
+  void: 'bg-white text-void dark:bg-void dark:text-white',
+  surface: 'bg-neutral-50 text-void dark:bg-surface dark:text-white',
+  light: 'bg-neutral-100 text-void dark:bg-surface dark:text-white',
 }
 
 export function Section({
@@ -67,8 +67,7 @@ export function SectionHeading({
       {eyebrow ? (
         <p
           className={cn(
-            'mb-4 font-body text-[11px] font-semibold uppercase tracking-[1.5px]',
-            tone === 'dark' ? 'text-teal' : 'text-muted',
+            'mb-4 font-body text-[11px] font-semibold uppercase tracking-[1.5px] text-teal',
             align === 'center' && 'flex items-center justify-center gap-3',
           )}
         >
@@ -81,8 +80,7 @@ export function SectionHeading({
       {description ? (
         <p
           className={cn(
-            'mt-4 max-w-2xl text-body-lg',
-            tone === 'dark' ? 'text-white/70' : 'text-void/70',
+            'mt-4 max-w-2xl text-body-lg text-void/70 dark:text-white/70',
             align === 'center' && 'mx-auto',
           )}
         >

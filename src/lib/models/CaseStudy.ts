@@ -16,6 +16,14 @@ export interface ICaseStudy extends Document {
   results: { value: string; label: string }[]
   testimonial?: { quote: string; author: string; role: string }
   published: boolean
+  titleAr?: string
+  outcomeAr?: string
+  challengeAr?: string
+  approachAr?: string[]
+  solutionAr?: string[]
+  resultsAr?: { value: string; label: string }[]
+  testimonialAr?: { quote: string; author: string; role: string }
+  publishedAr: boolean
 }
 
 const CaseStudySchema = new Schema<ICaseStudy>(
@@ -33,12 +41,16 @@ const CaseStudySchema = new Schema<ICaseStudy>(
     approach: [{ type: String }],
     solution: [{ type: String }],
     results: [{ value: String, label: String }],
-    testimonial: {
-      quote: String,
-      author: String,
-      role: String,
-    },
+    testimonial: { quote: String, author: String, role: String },
     published: { type: Boolean, default: true },
+    titleAr: { type: String },
+    outcomeAr: { type: String },
+    challengeAr: { type: String },
+    approachAr: [{ type: String }],
+    solutionAr: [{ type: String }],
+    resultsAr: [{ value: String, label: String }],
+    testimonialAr: { quote: String, author: String, role: String },
+    publishedAr: { type: Boolean, default: false },
   },
   { timestamps: true },
 )

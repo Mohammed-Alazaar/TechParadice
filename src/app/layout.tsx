@@ -1,7 +1,10 @@
 import type { Metadata, Viewport } from 'next'
-import { Figtree, Plus_Jakarta_Sans } from 'next/font/google'
+import { Figtree, Plus_Jakarta_Sans, Noto_Sans_Arabic } from 'next/font/google'
+import { headers } from 'next/headers'
 import Script from 'next/script'
 import { BRAND, SITE_URL } from '@/lib/utils'
+import { LocaleSync } from '@/components/layout/LocaleSync'
+import { ThemeProvider } from '@/components/layout/ThemeProvider'
 import './globals.css'
 
 const figtree = Figtree({
@@ -15,6 +18,13 @@ const jakarta = Plus_Jakarta_Sans({
   subsets: ['latin'],
   variable: '--font-plus-jakarta',
   weight: ['400', '500', '600'],
+  display: 'swap',
+})
+
+const notoArabic = Noto_Sans_Arabic({
+  subsets: ['arabic'],
+  variable: '--font-arabic',
+  weight: ['400', '500', '600', '700'],
   display: 'swap',
 })
 
@@ -67,8 +77,11 @@ export const metadata: Metadata = {
 }
 
 export const viewport: Viewport = {
-  themeColor: '#0D0D0D',
-  colorScheme: 'dark',
+  themeColor: [
+    { media: '(prefers-color-scheme: dark)', color: '#0D0D0D' },
+    { media: '(prefers-color-scheme: light)', color: '#FFFFFF' },
+  ],
+  colorScheme: 'dark light',
   width: 'device-width',
   initialScale: 1,
 }
@@ -76,10 +89,27 @@ export const viewport: Viewport = {
 const gaId = process.env.NEXT_PUBLIC_GA_ID
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
+  const locale = headers().get('x-locale') ?? 'en'
+  const dir = locale === 'ar' ? 'rtl' : 'ltr'
+  const fontClass = locale === 'ar'
+    ? `${figtree.variable} ${jakarta.variable} ${notoArabic.variable}`
+    : `${figtree.variable} ${jakarta.variable}`
+
   return (
-    <html lang="en" className={`${figtree.variable} ${jakarta.variable}`}>
-      <body className="bg-void font-body text-white antialiased">
+    <html lang={locale} dir={dir} className={`${fontClass} dark`} suppressHydrationWarning>
+      <head>
+        {/* Anti-FOUC: set theme class before first paint */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var t=localStorage.getItem('theme');if(t==='light'){document.documentElement.classList.remove('dark')}else{document.documentElement.classList.add('dark')}}catch(e){}})()`,
+          }}
+        />
+      </head>
+      <body className={`bg-white text-void antialiased dark:bg-void dark:text-white ${locale === 'ar' ? 'font-arabic' : 'font-body'}`}>
+        <ThemeProvider>
+        <LocaleSync />
         {children}
+        </ThemeProvider>
         {gaId ? (
           <>
             <Script

@@ -35,14 +35,14 @@ export async function FeaturedWork() {
           <li key={item.slug}>
             <Link
               href={`/portfolio/${item.slug}`}
-              className="group block overflow-hidden rounded-2xl border border-border-dark bg-surface transition-all duration-300 hover:-translate-y-1 hover:border-teal/40"
+              className="group block overflow-hidden rounded-2xl border border-border-light bg-white transition-all duration-300 hover:-translate-y-1 hover:border-teal/40 dark:border-border-dark dark:bg-surface"
             >
-              <div className="relative aspect-[16/10] overflow-hidden bg-gradient-to-br from-teal/20 via-surface to-void">
+              <div className="relative aspect-[16/10] overflow-hidden bg-gradient-to-br from-teal/20 via-neutral-100 to-white dark:via-surface dark:to-void">
                 {item.cover ? (
                   <img src={item.cover} alt={item.client} className="h-full w-full object-cover" />
                 ) : (
                   <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="font-display text-[48px] font-extrabold tracking-tight text-white/10">
+                    <span className="font-display text-[48px] font-extrabold tracking-tight text-void/10 dark:text-white/10">
                       {item.client}
                     </span>
                   </div>
@@ -53,7 +53,7 @@ export async function FeaturedWork() {
               </div>
               <div className="p-6">
                 <p className="text-caption uppercase text-muted">{item.industry}</p>
-                <h3 className="mt-2 font-display text-[20px] font-semibold text-white">
+                <h3 className="mt-2 font-display text-[20px] font-semibold text-void dark:text-white">
                   {item.title}
                 </h3>
                 <div className="mt-4 flex flex-wrap gap-2">

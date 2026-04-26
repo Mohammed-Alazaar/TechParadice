@@ -11,6 +11,10 @@ export interface IBlogPost extends Document {
   body: string[]
   cover?: string
   published: boolean
+  titleAr?: string
+  excerptAr?: string
+  bodyAr?: string[]
+  publishedAr: boolean
 }
 
 const BlogPostSchema = new Schema<IBlogPost>(
@@ -25,6 +29,10 @@ const BlogPostSchema = new Schema<IBlogPost>(
     body: [{ type: String }],
     cover: { type: String },
     published: { type: Boolean, default: true },
+    titleAr: { type: String },
+    excerptAr: { type: String },
+    bodyAr: [{ type: String }],
+    publishedAr: { type: Boolean, default: false },
   },
   { timestamps: true },
 )

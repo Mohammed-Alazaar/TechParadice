@@ -15,12 +15,7 @@ export function Faq({ items, tone = 'dark' }: Props) {
   const [open, setOpen] = useState<number | null>(0)
 
   return (
-    <ul
-      className={cn(
-        'divide-y',
-        tone === 'dark' ? 'divide-border-dark' : 'divide-border-light',
-      )}
-    >
+    <ul className="divide-y divide-border-light dark:divide-border-dark">
       {items.map((item, i) => {
         const isOpen = open === i
         return (
@@ -29,19 +24,14 @@ export function Faq({ items, tone = 'dark' }: Props) {
               type="button"
               onClick={() => setOpen(isOpen ? null : i)}
               aria-expanded={isOpen}
-              className={cn(
-                'flex w-full items-center justify-between gap-6 py-5 text-left transition-colors',
-                tone === 'dark'
-                  ? 'text-white hover:text-teal'
-                  : 'text-void hover:text-teal-dark',
-              )}
+              className="flex w-full items-center justify-between gap-6 py-5 text-left text-void transition-colors hover:text-teal dark:text-white"
             >
               <span className="flex items-start gap-3 font-display text-[17px] font-semibold">
                 <span
                   aria-hidden
                   className={cn(
                     'mt-1 inline-block h-[1px] w-6 shrink-0 transition-all',
-                    isOpen ? 'bg-teal' : tone === 'dark' ? 'bg-white/30' : 'bg-void/30',
+                    isOpen ? 'bg-teal' : 'bg-void/30 dark:bg-white/30',
                   )}
                 />
                 {item.q}
@@ -61,12 +51,7 @@ export function Faq({ items, tone = 'dark' }: Props) {
               )}
             >
               <div className="overflow-hidden">
-                <p
-                  className={cn(
-                    'max-w-3xl pl-9 text-[15px] leading-relaxed',
-                    tone === 'dark' ? 'text-white/70' : 'text-void/70',
-                  )}
-                >
+                <p className="max-w-3xl pl-9 text-[15px] leading-relaxed text-void/70 dark:text-white/70">
                   {item.a}
                 </p>
               </div>

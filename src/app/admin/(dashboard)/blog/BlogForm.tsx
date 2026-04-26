@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { ImageUpload } from '@/components/admin/ImageUpload'
+import { RichTextEditor } from '@/components/admin/RichTextEditor'
 
 const CATEGORIES = ['Web', 'Design', 'Growth', 'Engineering'] as const
 
@@ -18,6 +19,10 @@ interface BlogFormProps {
     body: string[]
     cover?: string
     published: boolean
+    titleAr?: string
+    excerptAr?: string
+    bodyAr?: string[]
+    publishedAr?: boolean
   }
 }
 
@@ -25,11 +30,18 @@ function slugify(str: string) {
   return str.toLowerCase().trim().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
 }
 
+function toEditorContent(body: string[] | undefined): string {
+  if (!body || body.length === 0) return ''
+  if (body.length === 1 && /<[a-z][\s\S]*>/i.test(body[0])) return body[0]
+  return body.map((p) => `<p>${p}</p>`).join('')
+}
+
 const REQUIRED = ['slug', 'title', 'excerpt', 'author', 'date', 'readingTime'] as const
 
 export function BlogForm({ initialData }: BlogFormProps) {
   const router = useRouter()
   const isEdit = Boolean(initialData?.slug)
+  const [tab, setTab] = useState<'en' | 'ar'>('en')
 
   const [form, setForm] = useState({
     slug: initialData?.slug ?? '',
@@ -39,9 +51,13 @@ export function BlogForm({ initialData }: BlogFormProps) {
     author: initialData?.author ?? 'Mohammed',
     date: initialData?.date ?? new Date().toISOString().split('T')[0],
     readingTime: initialData?.readingTime ?? '5 min',
-    body: initialData?.body?.join('\n\n') ?? '',
+    body: toEditorContent(initialData?.body),
     cover: initialData?.cover ?? '',
     published: initialData?.published ?? true,
+    titleAr: initialData?.titleAr ?? '',
+    excerptAr: initialData?.excerptAr ?? '',
+    bodyAr: toEditorContent(initialData?.bodyAr),
+    publishedAr: initialData?.publishedAr ?? false,
   })
 
   const [errors, setErrors] = useState<Record<string, string>>({})
@@ -76,7 +92,8 @@ export function BlogForm({ initialData }: BlogFormProps) {
 
     const payload = {
       ...form,
-      body: form.body.split('\n\n').map((p) => p.trim()).filter(Boolean),
+      body: form.body ? [form.body] : [],
+      bodyAr: form.bodyAr ? [form.bodyAr] : [],
     }
 
     const url = isEdit ? `/api/admin/blog/${initialData!.slug}` : '/api/admin/blog'
@@ -106,53 +123,123 @@ export function BlogForm({ initialData }: BlogFormProps) {
   }
 
   return (
-    <div className="max-w-2xl space-y-5">
-      <Field label="Title" error={errors.title}>
-        <input value={form.title} onChange={(e) => set('title', e.target.value)} className={inp(errors.title)} />
-      </Field>
-
-      <Field label="Slug" error={errors.slug}>
-        <input value={form.slug} onChange={(e) => set('slug', e.target.value)} className={inp(errors.slug)} />
-      </Field>
-
-      <Field label="Excerpt" error={errors.excerpt}>
-        <textarea value={form.excerpt} onChange={(e) => set('excerpt', e.target.value)} rows={3} className={inp(errors.excerpt)} />
-      </Field>
-
-      <div className="grid grid-cols-2 gap-4">
-        <Field label="Category">
-          <select value={form.category} onChange={(e) => set('category', e.target.value)} className={inp()}>
-            {CATEGORIES.map((c) => <option key={c}>{c}</option>)}
-          </select>
-        </Field>
-        <Field label="Author" error={errors.author}>
-          <input value={form.author} onChange={(e) => set('author', e.target.value)} className={inp(errors.author)} />
-        </Field>
-        <Field label="Date" error={errors.date}>
-          <input type="date" value={form.date} onChange={(e) => set('date', e.target.value)} className={inp(errors.date)} />
-        </Field>
-        <Field label="Reading time" error={errors.readingTime}>
-          <input value={form.readingTime} onChange={(e) => set('readingTime', e.target.value)} className={inp(errors.readingTime)} placeholder="5 min" />
-        </Field>
+    <div className="max-w-3xl space-y-5">
+      <div className="flex gap-2 rounded-lg border border-white/10 bg-white/5 p-1 w-fit">
+        <button
+          type="button"
+          onClick={() => setTab('en')}
+          className={`rounded-md px-4 py-1.5 text-[13px] font-semibold transition-colors ${
+            tab === 'en' ? 'bg-teal text-void' : 'text-white/60 hover:text-white'
+          }`}
+        >
+          English
+        </button>
+        <button
+          type="button"
+          onClick={() => setTab('ar')}
+          className={`rounded-md px-4 py-1.5 text-[13px] font-semibold transition-colors ${
+            tab === 'ar' ? 'bg-teal text-void' : 'text-white/60 hover:text-white'
+          }`}
+        >
+          العربية
+        </button>
       </div>
 
-      <Field label="Body (separate paragraphs with a blank line)">
-        <textarea value={form.body} onChange={(e) => set('body', e.target.value)} rows={12} className={inp()} />
-      </Field>
+      {tab === 'en' ? (
+        <>
+          <Field label="Title" error={errors.title}>
+            <input value={form.title} onChange={(e) => set('title', e.target.value)} className={inp(errors.title)} />
+          </Field>
 
-      <ImageUpload value={form.cover} onChange={(url) => set('cover', url)} />
+          <Field label="Slug" error={errors.slug}>
+            <input value={form.slug} onChange={(e) => set('slug', e.target.value)} className={inp(errors.slug)} />
+          </Field>
 
-      <label className="flex items-center gap-2 text-[13px] text-white/70">
-        <input type="checkbox" checked={form.published} onChange={(e) => set('published', e.target.checked)} className="accent-teal" />
-        Published
-      </label>
+          <Field label="Excerpt" error={errors.excerpt}>
+            <textarea value={form.excerpt} onChange={(e) => set('excerpt', e.target.value)} rows={3} className={inp(errors.excerpt)} />
+          </Field>
+
+          <div className="grid grid-cols-2 gap-4">
+            <Field label="Category">
+              <select value={form.category} onChange={(e) => set('category', e.target.value)} className={inp()}>
+                {CATEGORIES.map((c) => <option key={c}>{c}</option>)}
+              </select>
+            </Field>
+            <Field label="Author" error={errors.author}>
+              <input value={form.author} onChange={(e) => set('author', e.target.value)} className={inp(errors.author)} />
+            </Field>
+            <Field label="Date" error={errors.date}>
+              <input type="date" value={form.date} onChange={(e) => set('date', e.target.value)} className={inp(errors.date)} />
+            </Field>
+            <Field label="Reading time" error={errors.readingTime}>
+              <input value={form.readingTime} onChange={(e) => set('readingTime', e.target.value)} className={inp(errors.readingTime)} placeholder="5 min" />
+            </Field>
+          </div>
+
+          <Field label="Body">
+            <RichTextEditor
+              value={form.body}
+              onChange={(html) => set('body', html)}
+              dir="ltr"
+              placeholder="Write your post here…"
+            />
+          </Field>
+
+          <ImageUpload value={form.cover} onChange={(url) => set('cover', url)} />
+
+          <label className="flex items-center gap-2 text-[13px] text-white/70">
+            <input type="checkbox" checked={form.published} onChange={(e) => set('published', e.target.checked)} className="accent-teal" />
+            Published (English)
+          </label>
+        </>
+      ) : (
+        <>
+          <div className="rounded-lg border border-amber-500/20 bg-amber-500/5 px-3 py-2 text-[12px] text-amber-400">
+            Arabic content served at <code dir="ltr">/ar/blog/{form.slug || '[slug]'}</code>. Cover image is shared.
+          </div>
+
+          <Field label="عنوان المقال (Title in Arabic)">
+            <input
+              dir="rtl"
+              value={form.titleAr}
+              onChange={(e) => set('titleAr', e.target.value)}
+              className={`${inp()} text-right`}
+              placeholder="اكتب العنوان بالعربية..."
+            />
+          </Field>
+
+          <Field label="مقتطف (Excerpt in Arabic)">
+            <textarea
+              dir="rtl"
+              value={form.excerptAr}
+              onChange={(e) => set('excerptAr', e.target.value)}
+              rows={3}
+              className={`${inp()} text-right`}
+              placeholder="اكتب المقتطف بالعربية..."
+            />
+          </Field>
+
+          <Field label="المحتوى (Body in Arabic)">
+            <RichTextEditor
+              value={form.bodyAr}
+              onChange={(html) => set('bodyAr', html)}
+              dir="rtl"
+              placeholder="اكتب محتوى المقال بالعربية..."
+            />
+          </Field>
+
+          <label className="flex items-center gap-2 text-[13px] text-white/70">
+            <input type="checkbox" checked={form.publishedAr} onChange={(e) => set('publishedAr', e.target.checked)} className="accent-teal" />
+            Published (Arabic) — منشور بالعربية
+          </label>
+        </>
+      )}
 
       {submitError ? (
         <p className="rounded-lg border border-red-500/30 bg-red-500/10 px-3 py-2 text-[13px] text-red-400">
           {submitError}
         </p>
       ) : null}
-
       {Object.keys(errors).length > 0 ? (
         <p className="text-[13px] text-red-400">Please fill in all required fields before saving.</p>
       ) : null}

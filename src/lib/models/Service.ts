@@ -12,6 +12,12 @@ export interface IService extends Document {
   faqs: { q: string; a: string }[]
   pairsWith: string[]
   order: number
+  nameAr?: string
+  shortAr?: string
+  valueAr?: string
+  deliverablesAr?: string[]
+  processAr?: { step: string; detail: string }[]
+  faqsAr?: { q: string; a: string }[]
 }
 
 const ServiceSchema = new Schema<IService>(
@@ -27,6 +33,12 @@ const ServiceSchema = new Schema<IService>(
     faqs: [{ q: String, a: String }],
     pairsWith: [{ type: String }],
     order: { type: Number, default: 0 },
+    nameAr: { type: String },
+    shortAr: { type: String },
+    valueAr: { type: String },
+    deliverablesAr: [{ type: String }],
+    processAr: [{ step: String, detail: String }],
+    faqsAr: [{ q: String, a: String }],
   },
   { timestamps: true },
 )

@@ -2,6 +2,7 @@ import type { Config } from 'tailwindcss'
 
 const config: Config = {
   content: ['./src/**/*.{js,ts,jsx,tsx,mdx}'],
+  darkMode: 'class',
   theme: {
     extend: {
       colors: {
@@ -20,6 +21,7 @@ const config: Config = {
       fontFamily: {
         display: ['var(--font-figtree)', 'sans-serif'],
         body: ['var(--font-plus-jakarta)', 'sans-serif'],
+        arabic: ['var(--font-arabic)', 'sans-serif'],
       },
       fontSize: {
         display: ['72px', { lineHeight: '1.05', letterSpacing: '-2px', fontWeight: '800' }],

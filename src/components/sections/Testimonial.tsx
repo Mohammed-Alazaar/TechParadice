@@ -10,12 +10,12 @@ export function Testimonial() {
         >
           “
         </span>
-        <blockquote className="relative font-display text-[28px] font-semibold leading-tight text-white sm:text-[36px]">
+        <blockquote className="relative font-display text-[28px] font-semibold leading-tight text-void dark:text-white sm:text-[36px]">
           We went from shipping once a quarter to shipping every week.
           The difference is night and day.
         </blockquote>
         <figcaption className="mt-8 flex items-center justify-center gap-3 text-[14px] text-muted">
-          <span className="font-semibold text-white">Lena Kovač</span>
+          <span className="font-semibold text-void dark:text-white">Lena Kovač</span>
           <span className="text-teal">/</span>
           <span>VP Digital, Northwind</span>
         </figcaption>

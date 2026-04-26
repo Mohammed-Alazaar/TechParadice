@@ -33,9 +33,31 @@ export default async function BlogPostPage({ params }: Params) {
 
   const related = all.filter((p) => p.slug !== post.slug).slice(0, 2)
 
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: post.title,
+    description: post.excerpt,
+    author: { '@type': 'Person', name: post.author },
+    datePublished: post.date,
+    dateModified: post.date,
+    publisher: {
+      '@type': 'Organization',
+      name: 'TechParadice',
+      logo: { '@type': 'ImageObject', url: 'https://techparadice.com/og-image.png' },
+    },
+    mainEntityOfPage: { '@type': 'WebPage', '@id': `https://techparadice.com/blog/${post.slug}` },
+    ...(post.cover ? { image: post.cover } : {}),
+    articleSection: post.category,
+  }
+
   return (
     <>
-      <article className="bg-void pt-32 sm:pt-40 lg:pt-48">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <article className="bg-white pt-32 dark:bg-void sm:pt-40 lg:pt-48">
         <div className="container-content max-w-reading">
           <Link
             href="/blog"
@@ -47,40 +69,42 @@ export default async function BlogPostPage({ params }: Params) {
           <Badge tone="teal" className="mt-6">
             {post.category}
           </Badge>
-          <h1 className="mt-4 heading-h1 text-balance text-white">{post.title}</h1>
+          <h1 className="mt-4 heading-h1 text-balance text-void dark:text-white">{post.title}</h1>
           <p className="mt-6 text-[14px] text-muted">
             {post.author} · {post.date} · {post.readingTime}
           </p>
 
-          <div className="relative mt-12 aspect-[16/8] overflow-hidden rounded-2xl bg-gradient-to-br from-teal/20 via-void to-surface">
+          <div className="relative mt-12 aspect-[16/8] overflow-hidden rounded-2xl bg-gradient-to-br from-teal/20 via-neutral-100 to-white dark:via-void dark:to-surface">
             {post.cover ? (
               <img src={post.cover} alt={post.title} className="h-full w-full object-cover" />
             ) : (
-              <div className="absolute inset-0 flex items-center justify-center font-display text-[180px] font-extrabold text-white/10">
+              <div className="absolute inset-0 flex items-center justify-center font-display text-[180px] font-extrabold text-void/10 dark:text-white/10">
                 /
               </div>
             )}
           </div>
 
-          <div className="mt-12 space-y-6 text-body-lg leading-relaxed text-white/80">
-            {post.body.map((para, i) => (
-              <p key={i} className="text-pretty">
-                {para}
-              </p>
-            ))}
-          </div>
+          <div
+            className="blog-content mt-12"
+            dangerouslySetInnerHTML={{
+              __html:
+                post.body.length === 1 && /<[a-z][\s\S]*>/i.test(post.body[0])
+                  ? post.body[0]
+                  : post.body.map((p) => `<p>${p}</p>`).join(''),
+            }}
+          />
 
-          <div className="mt-16 border-t border-border-dark pt-8">
+          <div className="mt-16 border-t border-border-light pt-8 dark:border-border-dark">
             <p className="text-caption uppercase text-teal">Keep reading</p>
             <ul className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
               {related.map((r) => (
                 <li key={r.slug}>
                   <Link
                     href={`/blog/${r.slug}`}
-                    className="block rounded-xl border border-border-dark bg-surface p-5 transition-all hover:-translate-y-1 hover:border-teal/40"
+                    className="block rounded-xl border border-border-light bg-neutral-50 p-5 transition-all hover:-translate-y-1 hover:border-teal/40 dark:border-border-dark dark:bg-surface"
                   >
                     <Badge>{r.category}</Badge>
-                    <p className="mt-3 font-display text-[17px] font-semibold text-white">
+                    <p className="mt-3 font-display text-[17px] font-semibold text-void dark:text-white">
                       {r.title}
                     </p>
                   </Link>

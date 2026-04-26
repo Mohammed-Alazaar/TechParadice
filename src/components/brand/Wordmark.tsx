@@ -25,14 +25,14 @@ export function Wordmark({
       ? 'text-void'
       : tone === 'on-teal'
         ? 'text-void'
-        : 'text-white'
+        : 'text-void dark:text-white'
 
   const paradiceColor =
     tone === 'on-light'
       ? 'text-void/40'
       : tone === 'on-teal'
         ? 'text-void/50'
-        : 'text-white/40'
+        : 'text-void/40 dark:text-white/40'
 
   const slashColor = tone === 'on-teal' ? 'text-void/50' : 'text-teal'
 

@@ -18,7 +18,7 @@ const variantClasses: Record<Variant, string> = {
   secondary:
     'border border-teal text-teal hover:bg-teal hover:text-void',
   ghost:
-    'text-white/90 hover:text-teal',
+    'text-void/80 hover:text-teal dark:text-white/90',
 }
 
 const sizeClasses: Record<Size, string> = {
@@ -29,7 +29,7 @@ const sizeClasses: Record<Size, string> = {
 }
 
 const base =
-  'inline-flex select-none items-center justify-center gap-2 rounded-lg font-body font-semibold transition-all duration-200 disabled:cursor-not-allowed disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal focus-visible:ring-offset-2 focus-visible:ring-offset-void'
+  'inline-flex select-none items-center justify-center gap-2 rounded-lg font-body font-semibold transition-all duration-200 disabled:cursor-not-allowed disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-void'
 
 type ButtonProps = BaseProps &
   React.ButtonHTMLAttributes<HTMLButtonElement>

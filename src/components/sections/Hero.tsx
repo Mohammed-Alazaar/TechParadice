@@ -3,15 +3,15 @@ import { ButtonLink } from '@/components/ui/Button'
 
 export function Hero() {
   return (
-    <section className="relative isolate overflow-hidden bg-void pt-32 sm:pt-40 lg:pt-48">
+    <section className="relative isolate overflow-hidden bg-white pt-32 dark:bg-void sm:pt-40 lg:pt-48">
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0 -z-10 select-none"
       >
-        <span className="absolute -right-10 top-10 font-display text-[260px] font-extrabold leading-none text-white/[0.04] sm:text-[400px] lg:top-20 lg:text-[520px]">
+        <span className="absolute -right-10 top-10 font-display text-[260px] font-extrabold leading-none text-void/[0.04] dark:text-white/[0.04] sm:text-[400px] lg:top-20 lg:text-[520px]">
           T<span className="text-teal/30">/</span>
         </span>
-        <span className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-border-dark to-transparent" />
+        <span className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-border-light to-transparent dark:via-border-dark" />
       </div>
 
       <div className="container-content pb-24 lg:pb-32">
@@ -19,7 +19,7 @@ export function Hero() {
           <span className="h-px w-8 bg-teal" />
           A full-stack digital agency
         </p>
-        <h1 className="heading-display max-w-4xl text-balance text-white">
+        <h1 className="heading-display max-w-4xl text-balance text-void dark:text-white">
           Your digital world,{' '}
           <span className="relative inline-block">
             built
@@ -27,7 +27,7 @@ export function Hero() {
           </span>
           .
         </h1>
-        <p className="mt-6 max-w-2xl text-body-lg text-white/70">
+        <p className="mt-6 max-w-2xl text-body-lg text-void/70 dark:text-white/70">
           One senior team. Websites, apps, SEO, social, and ads —
           engineered to ship and designed to compound. Flexible budgets,
           transparent scope, direct line to the founder.

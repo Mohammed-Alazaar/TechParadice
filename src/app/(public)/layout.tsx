@@ -6,9 +6,9 @@ export default function PublicLayout({ children }: { children: React.ReactNode }
   return (
     <>
       <SkipLink />
-      <Header />
+      <Header locale="en" />
       <main id="main">{children}</main>
-      <Footer />
+      <Footer locale="en" />
     </>
   )
 }

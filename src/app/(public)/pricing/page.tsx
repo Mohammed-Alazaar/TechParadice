@@ -15,17 +15,27 @@ export const metadata: Metadata = buildMetadata({
 const ranges = [
   {
     tier: 'Starter',
-    price: '$5k – $15k',
-    body: 'Landing pages, small marketing sites, one-off campaigns, or discrete design engagements.',
+    price: '$0 – $500',
+    body: 'Simple landing pages, small fixes, one-off content updates, or basic design tasks.',
+  },
+  {
+    tier: 'Basic',
+    price: '$500 – $1,000',
+    body: 'Small marketing pages, minor redesigns, or focused feature additions.',
+  },
+  {
+    tier: 'Standard',
+    price: '$1,000 – $2,000',
+    body: 'Full landing sites, campaign builds, branding packages, or small web apps.',
   },
   {
     tier: 'Growth',
-    price: '$15k – $60k',
-    body: 'Full marketing sites, product launches, ongoing SEO/social retainers, MVP mobile builds.',
+    price: '$2,000 – $5,000',
+    body: 'Multi-page sites, product launches, ongoing retainers, or MVP mobile builds.',
   },
   {
     tier: 'Scale',
-    price: '$60k+',
+    price: 'Above $5,000',
     body: 'Complex product work, multi-surface launches, full-funnel programs with paid + content + analytics.',
   },
 ]
@@ -74,15 +84,15 @@ export default function PricingPage() {
           {steps.map((s) => (
             <li
               key={s.n}
-              className="rounded-2xl border border-border-dark bg-surface p-8"
+              className="rounded-2xl border border-border-light bg-neutral-50 p-8 dark:border-border-dark dark:bg-surface"
             >
               <span className="font-display text-[40px] font-extrabold text-teal">
                 {s.n}
               </span>
-              <h3 className="mt-4 font-display text-h4 font-semibold text-white">
+              <h3 className="mt-4 font-display text-h4 font-semibold text-void dark:text-white">
                 {s.t}
               </h3>
-              <p className="mt-2 text-[15px] text-white/70">{s.b}</p>
+              <p className="mt-2 text-[15px] text-void/70 dark:text-white/70">{s.b}</p>
             </li>
           ))}
         </ol>
@@ -98,13 +108,13 @@ export default function PricingPage() {
           {ranges.map((r) => (
             <li
               key={r.tier}
-              className="rounded-2xl border border-border-dark bg-void p-8"
+              className="rounded-2xl border border-border-light bg-white p-8 dark:border-border-dark dark:bg-void"
             >
               <p className="text-caption uppercase text-teal">{r.tier}</p>
-              <p className="mt-3 font-display text-h2 font-extrabold text-white">
+              <p className="mt-3 font-display text-h2 font-extrabold text-void dark:text-white">
                 {r.price}
               </p>
-              <p className="mt-3 text-[15px] text-white/70">{r.body}</p>
+              <p className="mt-3 text-[15px] text-void/70 dark:text-white/70">{r.body}</p>
             </li>
           ))}
         </ul>
@@ -117,7 +127,7 @@ export default function PricingPage() {
             title="Tell us about your project"
             description="We read every submission. You’ll hear back within 24 hours with next steps."
           />
-          <div className="rounded-2xl border border-border-dark bg-surface p-6 sm:p-8">
+          <div className="rounded-2xl border border-border-light bg-neutral-50 p-6 dark:border-border-dark dark:bg-surface sm:p-8">
             <QuoteForm />
           </div>
         </div>

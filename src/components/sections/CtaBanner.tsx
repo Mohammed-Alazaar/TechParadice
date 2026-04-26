@@ -19,9 +19,9 @@ export function CtaBanner({
   secondaryLabel = 'See how pricing works',
 }: Props) {
   return (
-    <section className="bg-void py-20 lg:py-28">
+    <section className="bg-white py-20 dark:bg-void lg:py-28">
       <div className="container-content">
-        <div className="relative overflow-hidden rounded-3xl border border-border-dark bg-gradient-to-br from-surface via-void to-void p-10 sm:p-14 lg:p-20">
+        <div className="relative overflow-hidden rounded-3xl border border-border-light bg-gradient-to-br from-neutral-50 via-white to-white p-10 dark:border-border-dark dark:from-surface dark:via-void dark:to-void sm:p-14 lg:p-20">
           <span
             aria-hidden
             className="pointer-events-none absolute -right-12 -top-12 font-display text-[280px] font-extrabold leading-none text-teal/10"
@@ -30,8 +30,8 @@ export function CtaBanner({
           </span>
           <div className="relative flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
             <div className="max-w-2xl">
-              <h2 className="heading-h2 text-balance text-white">{heading}</h2>
-              <p className="mt-4 text-body-lg text-white/70">{body}</p>
+              <h2 className="heading-h2 text-balance text-void dark:text-white">{heading}</h2>
+              <p className="mt-4 text-body-lg text-void/70 dark:text-white/70">{body}</p>
             </div>
             <div className="flex flex-wrap gap-3">
               <ButtonLink href={ctaHref} size="lg">

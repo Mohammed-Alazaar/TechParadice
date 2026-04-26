@@ -12,7 +12,7 @@ export function PageHero({ eyebrow, title, description, children, className }: P
   return (
     <section
       className={cn(
-        'relative overflow-hidden bg-void pb-16 pt-32 sm:pb-20 sm:pt-40 lg:pb-24 lg:pt-48',
+        'relative overflow-hidden bg-white pb-16 pt-32 dark:bg-void sm:pb-20 sm:pt-40 lg:pb-24 lg:pt-48',
         className,
       )}
     >
@@ -27,11 +27,11 @@ export function PageHero({ eyebrow, title, description, children, className }: P
             {eyebrow}
           </p>
         ) : null}
-        <h1 className="heading-h1 max-w-4xl text-balance text-white">
+        <h1 className="heading-h1 max-w-4xl text-balance text-void dark:text-white">
           {title}
         </h1>
         {description ? (
-          <p className="mt-5 max-w-2xl text-body-lg text-white/70">
+          <p className="mt-5 max-w-2xl text-body-lg text-void/70 dark:text-white/70">
             {description}
           </p>
         ) : null}

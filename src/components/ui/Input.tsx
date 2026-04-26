@@ -24,7 +24,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           ref={ref}
           id={inputId}
           className={cn(
-            'h-12 rounded-md border border-border-dark bg-void px-4 font-body text-[15px] text-white placeholder:text-white/40 focus:border-teal focus:outline-none focus:ring-2 focus:ring-teal/40',
+            'h-12 rounded-md border border-border-light bg-white px-4 font-body text-[15px] text-void placeholder:text-void/40 focus:border-teal focus:outline-none focus:ring-2 focus:ring-teal/40 dark:border-border-dark dark:bg-void dark:text-white dark:placeholder:text-white/40',
             error && 'border-danger focus:border-danger focus:ring-danger/40',
             className,
           )}
@@ -65,7 +65,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
           ref={ref}
           id={tid}
           className={cn(
-            'min-h-[140px] rounded-md border border-border-dark bg-void px-4 py-3 font-body text-[15px] text-white placeholder:text-white/40 focus:border-teal focus:outline-none focus:ring-2 focus:ring-teal/40',
+            'min-h-[140px] rounded-md border border-border-light bg-white px-4 py-3 font-body text-[15px] text-void placeholder:text-void/40 focus:border-teal focus:outline-none focus:ring-2 focus:ring-teal/40 dark:border-border-dark dark:bg-void dark:text-white dark:placeholder:text-white/40',
             error && 'border-danger',
             className,
           )}
@@ -104,7 +104,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
           ref={ref}
           id={sid}
           className={cn(
-            'h-12 rounded-md border border-border-dark bg-void px-4 font-body text-[15px] text-white focus:border-teal focus:outline-none focus:ring-2 focus:ring-teal/40',
+            'h-12 rounded-md border border-border-light bg-white px-4 font-body text-[15px] text-void focus:border-teal focus:outline-none focus:ring-2 focus:ring-teal/40 dark:border-border-dark dark:bg-void dark:text-white',
             error && 'border-danger',
             className,
           )}

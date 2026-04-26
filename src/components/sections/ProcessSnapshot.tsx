@@ -29,13 +29,13 @@ export function ProcessSnapshot() {
                 {s.n}
               </span>
               {i < steps.length - 1 ? (
-                <span aria-hidden className="hidden h-px flex-1 bg-border-dark lg:block" />
+                <span aria-hidden className="hidden h-px flex-1 bg-border-light dark:bg-border-dark lg:block" />
               ) : null}
             </div>
-            <h3 className="mt-4 font-display text-h4 font-semibold text-white">
+            <h3 className="mt-4 font-display text-h4 font-semibold text-void dark:text-white">
               {s.label}
             </h3>
-            <p className="mt-1 text-[14px] text-white/60">{s.body}</p>
+            <p className="mt-1 text-[14px] text-void/60 dark:text-white/60">{s.body}</p>
           </li>
         ))}
       </ol>

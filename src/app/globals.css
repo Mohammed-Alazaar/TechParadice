@@ -4,7 +4,7 @@
 
 @layer base {
   :root {
-    color-scheme: dark;
+    color-scheme: light dark;
   }
 
   html {
@@ -14,6 +14,11 @@
   }
 
   body {
+    background-color: #ffffff;
+    color: #0d0d0d;
+  }
+
+  html.dark body {
     background-color: #0d0d0d;
     color: #ffffff;
   }
@@ -96,7 +101,7 @@
   }
 
   .dark-card {
-    @apply rounded-xl border border-border-dark bg-surface p-6 transition-all duration-300;
+    @apply rounded-xl border border-border-light bg-white p-6 transition-all duration-300 dark:border-border-dark dark:bg-surface;
   }
 
   .dark-card:hover {
@@ -116,4 +121,218 @@
   .grid-auto-fit-cards {
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   }
+}
+
+/* Blog rich-text body (TinyMCE HTML output) */
+.blog-content {
+  font-size: 16px;
+  line-height: 1.8;
+  color: rgba(13, 13, 13, 0.82);
+}
+
+html.dark .blog-content {
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.blog-content p {
+  margin-bottom: 1.4em;
+  text-wrap: pretty;
+}
+
+.blog-content h2 {
+  font-family: var(--font-figtree), sans-serif;
+  font-size: clamp(22px, 2.5vw + 8px, 28px);
+  font-weight: 700;
+  color: #0d0d0d;
+  margin: 2em 0 0.6em;
+  letter-spacing: -0.5px;
+}
+
+html.dark .blog-content h2 {
+  color: #ffffff;
+}
+
+.blog-content h3 {
+  font-family: var(--font-figtree), sans-serif;
+  font-size: clamp(18px, 2vw + 6px, 22px);
+  font-weight: 600;
+  color: #0d0d0d;
+  margin: 1.6em 0 0.5em;
+}
+
+html.dark .blog-content h3 {
+  color: #ffffff;
+}
+
+.blog-content h4 {
+  font-family: var(--font-figtree), sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: rgba(13, 13, 13, 0.9);
+  margin: 1.4em 0 0.4em;
+}
+
+html.dark .blog-content h4 {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.blog-content ul,
+.blog-content ol {
+  padding-left: 1.5em;
+  margin-bottom: 1.4em;
+}
+
+[dir="rtl"] .blog-content ul,
+[dir="rtl"] .blog-content ol {
+  padding-left: 0;
+  padding-right: 1.5em;
+}
+
+.blog-content li {
+  margin-bottom: 0.4em;
+}
+
+.blog-content a {
+  color: #2acdaa;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+html.dark .blog-content a {
+  color: #5eead4;
+}
+
+.blog-content a:hover {
+  color: #5eead4;
+}
+
+html.dark .blog-content a:hover {
+  color: #99f6e4;
+}
+
+.blog-content strong,
+.blog-content b {
+  font-weight: 700;
+  color: rgba(13, 13, 13, 0.95);
+}
+
+html.dark .blog-content strong,
+html.dark .blog-content b {
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.blog-content em,
+.blog-content i {
+  font-style: italic;
+}
+
+.blog-content blockquote {
+  border-left: 3px solid #5eead4;
+  margin: 1.6em 0;
+  padding: 0.8em 1.2em;
+  background: rgba(94, 234, 212, 0.08);
+  border-radius: 0 8px 8px 0;
+  color: rgba(13, 13, 13, 0.7);
+  font-style: italic;
+}
+
+html.dark .blog-content blockquote {
+  background: rgba(94, 234, 212, 0.05);
+  color: rgba(255, 255, 255, 0.7);
+}
+
+[dir="rtl"] .blog-content blockquote {
+  border-left: none;
+  border-right: 3px solid #5eead4;
+  border-radius: 8px 0 0 8px;
+}
+
+.blog-content code {
+  background: rgba(13, 13, 13, 0.06);
+  border-radius: 4px;
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  font-size: 0.875em;
+  padding: 0.15em 0.4em;
+  color: #2acdaa;
+}
+
+html.dark .blog-content code {
+  background: rgba(255, 255, 255, 0.08);
+  color: #5eead4;
+}
+
+.blog-content pre {
+  background: rgba(13, 13, 13, 0.04);
+  border: 1px solid rgba(13, 13, 13, 0.08);
+  border-radius: 10px;
+  overflow-x: auto;
+  padding: 1.2em 1.4em;
+  margin: 1.4em 0;
+}
+
+html.dark .blog-content pre {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.blog-content pre code {
+  background: transparent;
+  padding: 0;
+  color: rgba(13, 13, 13, 0.8);
+}
+
+html.dark .blog-content pre code {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.blog-content img {
+  border-radius: 10px;
+  max-width: 100%;
+  height: auto;
+  margin: 1.6em 0;
+}
+
+.blog-content hr {
+  border: none;
+  border-top: 1px solid rgba(13, 13, 13, 0.1);
+  margin: 2em 0;
+}
+
+html.dark .blog-content hr {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.blog-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.4em 0;
+  font-size: 14px;
+}
+
+.blog-content th,
+.blog-content td {
+  border: 1px solid rgba(13, 13, 13, 0.1);
+  padding: 0.6em 0.9em;
+  text-align: left;
+}
+
+html.dark .blog-content th,
+html.dark .blog-content td {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+[dir="rtl"] .blog-content th,
+[dir="rtl"] .blog-content td {
+  text-align: right;
+}
+
+.blog-content th {
+  background: rgba(13, 13, 13, 0.04);
+  color: #0d0d0d;
+  font-weight: 600;
+}
+
+html.dark .blog-content th {
+  background: rgba(255, 255, 255, 0.05);
+  color: #fff;
 }

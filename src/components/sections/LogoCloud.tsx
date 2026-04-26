@@ -11,7 +11,7 @@ export function LogoCloud() {
   ]
 
   return (
-    <section className="border-y border-border-dark bg-void py-14">
+    <section className="border-y border-border-light bg-white py-14 dark:border-border-dark dark:bg-void">
       <div className="container-content">
         <p className="text-center text-caption uppercase text-muted">
           Built with the best
@@ -20,7 +20,7 @@ export function LogoCloud() {
           {stack.map((name) => (
             <li
               key={name}
-              className="text-center font-display text-[18px] font-semibold tracking-tight text-white/50 transition-colors hover:text-white/80"
+              className="text-center font-display text-[18px] font-semibold tracking-tight text-void/40 transition-colors hover:text-void/70 dark:text-white/50 dark:hover:text-white/80"
             >
               {name}
             </li>

@@ -26,7 +26,7 @@ export async function ServicesGrid() {
             <li key={service.slug}>
               <Link
                 href={`/services/${service.slug}`}
-                className="group relative block h-full overflow-hidden rounded-xl border border-border-dark bg-surface p-6 transition-all duration-300 hover:-translate-y-1 hover:border-teal/50"
+                className="group relative block h-full overflow-hidden rounded-xl border border-border-light bg-neutral-50 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-teal/50 dark:border-border-dark dark:bg-surface"
               >
                 <span
                   aria-hidden
@@ -41,10 +41,10 @@ export async function ServicesGrid() {
                     className="text-muted transition-colors group-hover:text-teal"
                   />
                 </div>
-                <h3 className="mt-6 font-display text-h4 font-semibold text-white">
+                <h3 className="mt-6 font-display text-h4 font-semibold text-void dark:text-white">
                   {service.name}
                 </h3>
-                <p className="mt-2 text-[14px] text-white/60">{service.short}</p>
+                <p className="mt-2 text-[14px] text-void/60 dark:text-white/60">{service.short}</p>
               </Link>
             </li>
           )
