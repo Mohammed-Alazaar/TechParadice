@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { ArrowRight } from 'lucide-react'
@@ -69,7 +70,7 @@ export default async function CaseStudyPage({ params }: Params) {
       <Section tone="void" className="pt-0">
         <div className="relative aspect-[16/8] overflow-hidden rounded-2xl border border-border-dark bg-gradient-to-br from-teal/20 via-surface to-void">
           {study.cover ? (
-            <img src={study.cover} alt={study.client} className="h-full w-full object-cover" />
+            <Image src={study.cover} alt={study.client} fill className="object-cover" sizes="100vw" priority />
           ) : (
             <div className="absolute inset-0 flex items-center justify-center">
               <span className="font-display text-[120px] font-extrabold tracking-tight text-white/10 sm:text-[180px]">

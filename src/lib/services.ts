@@ -56,7 +56,7 @@ const getRawServices = unstable_cache(
     try {
       await dbConnect()
       const docs = await ServiceModel.find({}).sort({ order: 1 }).lean()
-      return docs.map((doc: any) => ({ ...doc, _id: doc._id?.toString() }))
+      return docs.map(toRaw)
     } catch {
       return []
     }
@@ -70,7 +70,7 @@ const getRawService = unstable_cache(
     try {
       await dbConnect()
       const doc = await ServiceModel.findOne({ slug }).lean()
-      return doc ? { ...doc, _id: doc._id?.toString() } : null
+      return doc ? toRaw(doc) : null
     } catch {
       return null
     }
@@ -92,6 +92,10 @@ export const getAllServiceSlugs = unstable_cache(
   ['service-slugs'],
   { revalidate: 300, tags: ['services'] },
 )
+
+function toRaw(doc: any): RawService {
+  return { ...doc, _id: doc._id?.toString() }
+}
 
 function addIcon(raw: RawService): Service {
   return { ...raw, icon: ICON_MAP[raw.iconName] ?? Code2 }

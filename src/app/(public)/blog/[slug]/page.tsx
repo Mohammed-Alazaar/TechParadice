@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { ArrowLeft } from 'lucide-react'
@@ -76,7 +77,7 @@ export default async function BlogPostPage({ params }: Params) {
 
           <div className="relative mt-12 aspect-[16/8] overflow-hidden rounded-2xl bg-gradient-to-br from-teal/20 via-neutral-100 to-white dark:via-void dark:to-surface">
             {post.cover ? (
-              <img src={post.cover} alt={post.title} className="h-full w-full object-cover" />
+              <Image src={post.cover} alt={post.title} fill className="object-cover" sizes="(min-width: 1024px) 75vw, 100vw" priority />
             ) : (
               <div className="absolute inset-0 flex items-center justify-center font-display text-[180px] font-extrabold text-void/10 dark:text-white/10">
                 /
