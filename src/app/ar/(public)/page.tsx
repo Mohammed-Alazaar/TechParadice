@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowUpRight } from 'lucide-react'
 import { PageHero } from '@/components/sections/PageHero'
@@ -8,7 +9,7 @@ import { getServices } from '@/lib/services'
 import { getArPortfolio } from '@/lib/portfolio'
 import { BRAND, SITE_URL } from '@/lib/utils'
 
-export const dynamic = 'force-dynamic'
+export const revalidate = 300
 
 export const metadata: Metadata = {
   title: `${BRAND.name} — عالمك الرقمي، مبني.`,
@@ -101,7 +102,7 @@ export default async function ArHomePage() {
                 >
                   <div className="relative aspect-[16/10] overflow-hidden bg-gradient-to-br from-teal/20 via-surface to-void">
                     {c.cover ? (
-                      <img src={c.cover} alt={c.client} className="h-full w-full object-cover" />
+                      <Image src={c.cover} alt={c.client} fill className="object-cover" sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" />
                     ) : (
                       <div className="absolute inset-0 flex items-center justify-center font-display text-[48px] font-extrabold text-white/10">
                         {c.client}

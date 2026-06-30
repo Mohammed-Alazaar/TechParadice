@@ -1,4 +1,6 @@
 import type { Metadata } from 'next'
+
+export const revalidate = 300
 import { Hero } from '@/components/sections/Hero'
 import { LogoCloud } from '@/components/sections/LogoCloud'
 import { ServicesGrid } from '@/components/sections/ServicesGrid'

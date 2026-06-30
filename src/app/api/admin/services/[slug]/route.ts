@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server'
+import { revalidateTag } from 'next/cache'
 import dbConnect from '@/lib/mongodb'
 import ServiceModel from '@/lib/models/Service'
 
@@ -22,5 +23,6 @@ export async function PUT(req: Request, { params }: Params) {
     { new: true, runValidators: true },
   )
   if (!service) return NextResponse.json({ error: 'Not found' }, { status: 404 })
+  revalidateTag('services')
   return NextResponse.json(service)
 }

@@ -8,7 +8,7 @@ import { CtaBanner } from '@/components/sections/CtaBanner'
 import { getServices } from '@/lib/services'
 import { buildMetadata } from '@/lib/seo'
 
-export const dynamic = 'force-dynamic'
+export const revalidate = 300
 
 export const metadata: Metadata = buildMetadata({
   title: 'Services',

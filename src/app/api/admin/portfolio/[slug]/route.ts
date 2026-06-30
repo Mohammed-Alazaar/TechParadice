@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server'
+import { revalidateTag } from 'next/cache'
 import dbConnect from '@/lib/mongodb'
 import CaseStudyModel from '@/lib/models/CaseStudy'
 
@@ -22,11 +23,13 @@ export async function PUT(req: Request, { params }: Params) {
     { new: true, runValidators: true },
   )
   if (!study) return NextResponse.json({ error: 'Not found' }, { status: 404 })
+  revalidateTag('portfolio')
   return NextResponse.json(study)
 }
 
 export async function DELETE(_req: Request, { params }: Params) {
   await dbConnect()
   await CaseStudyModel.findOneAndDelete({ slug: params.slug })
+  revalidateTag('portfolio')
   return NextResponse.json({ ok: true })
 }

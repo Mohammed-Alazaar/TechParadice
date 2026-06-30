@@ -1,3 +1,4 @@
+import { unstable_cache } from 'next/cache'
 import dbConnect from './mongodb'
 import CaseStudyModel from './models/CaseStudy'
 
@@ -49,62 +50,86 @@ function toArStudy(doc: any): CaseStudyAr {
   return { ...doc, _id: doc._id?.toString() }
 }
 
-export async function getPortfolio(): Promise<CaseStudy[]> {
-  try {
-    await dbConnect()
-    const docs = await CaseStudyModel.find({ published: true }).sort({ year: -1 }).lean()
-    return docs.map(toStudy)
-  } catch {
-    return []
-  }
-}
+export const getPortfolio = unstable_cache(
+  async (): Promise<CaseStudy[]> => {
+    try {
+      await dbConnect()
+      const docs = await CaseStudyModel.find({ published: true }).sort({ year: -1 }).lean()
+      return docs.map(toStudy)
+    } catch {
+      return []
+    }
+  },
+  ['portfolio'],
+  { revalidate: 300, tags: ['portfolio'] },
+)
 
-export async function getCaseStudy(slug: string): Promise<CaseStudy | null> {
-  try {
-    await dbConnect()
-    const doc = await CaseStudyModel.findOne({ slug }).lean()
-    return doc ? toStudy(doc) : null
-  } catch {
-    return null
-  }
-}
+export const getCaseStudy = unstable_cache(
+  async (slug: string): Promise<CaseStudy | null> => {
+    try {
+      await dbConnect()
+      const doc = await CaseStudyModel.findOne({ slug }).lean()
+      return doc ? toStudy(doc) : null
+    } catch {
+      return null
+    }
+  },
+  ['case-study'],
+  { revalidate: 300, tags: ['portfolio'] },
+)
 
-export async function getAllCaseStudySlugs(): Promise<string[]> {
-  try {
-    await dbConnect()
-    const docs = await CaseStudyModel.find({ published: true }, { slug: 1 }).lean()
-    return docs.map((d) => d.slug)
-  } catch {
-    return []
-  }
-}
+export const getAllCaseStudySlugs = unstable_cache(
+  async (): Promise<string[]> => {
+    try {
+      await dbConnect()
+      const docs = await CaseStudyModel.find({ published: true }, { slug: 1 }).lean()
+      return docs.map((d) => d.slug)
+    } catch {
+      return []
+    }
+  },
+  ['case-study-slugs'],
+  { revalidate: 300, tags: ['portfolio'] },
+)
 
-export async function getArPortfolio(): Promise<CaseStudyAr[]> {
-  try {
-    await dbConnect()
-    const docs = await CaseStudyModel.find({ publishedAr: true }).sort({ year: -1 }).lean()
-    return docs.map(toArStudy)
-  } catch {
-    return []
-  }
-}
+export const getArPortfolio = unstable_cache(
+  async (): Promise<CaseStudyAr[]> => {
+    try {
+      await dbConnect()
+      const docs = await CaseStudyModel.find({ publishedAr: true }).sort({ year: -1 }).lean()
+      return docs.map(toArStudy)
+    } catch {
+      return []
+    }
+  },
+  ['portfolio-ar'],
+  { revalidate: 300, tags: ['portfolio'] },
+)
 
-export async function getArCaseStudy(slug: string): Promise<CaseStudyAr | null> {
-  try {
-    await dbConnect()
-    const doc = await CaseStudyModel.findOne({ slug, publishedAr: true }).lean()
-    return doc ? toArStudy(doc) : null
-  } catch {
-    return null
-  }
-}
+export const getArCaseStudy = unstable_cache(
+  async (slug: string): Promise<CaseStudyAr | null> => {
+    try {
+      await dbConnect()
+      const doc = await CaseStudyModel.findOne({ slug, publishedAr: true }).lean()
+      return doc ? toArStudy(doc) : null
+    } catch {
+      return null
+    }
+  },
+  ['case-study-ar'],
+  { revalidate: 300, tags: ['portfolio'] },
+)
 
-export async function getAllArCaseStudySlugs(): Promise<string[]> {
-  try {
-    await dbConnect()
-    const docs = await CaseStudyModel.find({ publishedAr: true }, { slug: 1 }).lean()
-    return docs.map((d) => d.slug)
-  } catch {
-    return []
-  }
-}
+export const getAllArCaseStudySlugs = unstable_cache(
+  async (): Promise<string[]> => {
+    try {
+      await dbConnect()
+      const docs = await CaseStudyModel.find({ publishedAr: true }, { slug: 1 }).lean()
+      return docs.map((d) => d.slug)
+    } catch {
+      return []
+    }
+  },
+  ['case-study-slugs-ar'],
+  { revalidate: 300, tags: ['portfolio'] },
+)

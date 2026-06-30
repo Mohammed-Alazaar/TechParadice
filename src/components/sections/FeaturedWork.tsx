@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowUpRight } from 'lucide-react'
 import { Section, SectionHeading } from '@/components/ui/Section'
@@ -39,7 +40,7 @@ export async function FeaturedWork() {
             >
               <div className="relative aspect-[16/10] overflow-hidden bg-gradient-to-br from-teal/20 via-neutral-100 to-white dark:via-surface dark:to-void">
                 {item.cover ? (
-                  <img src={item.cover} alt={item.client} className="h-full w-full object-cover" />
+                  <Image src={item.cover} alt={item.client} fill className="object-cover" sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw" />
                 ) : (
                   <div className="absolute inset-0 flex items-center justify-center">
                     <span className="font-display text-[48px] font-extrabold tracking-tight text-void/10 dark:text-white/10">

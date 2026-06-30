@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server'
+import { revalidateTag } from 'next/cache'
 import dbConnect from '@/lib/mongodb'
 import CaseStudyModel from '@/lib/models/CaseStudy'
 
@@ -20,5 +21,6 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: 'Slug is required' }, { status: 400 })
   }
   const study = await CaseStudyModel.create(body)
+  revalidateTag('portfolio')
   return NextResponse.json(study, { status: 201 })
 }

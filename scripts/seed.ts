@@ -2,7 +2,9 @@
  * Seed MongoDB with the initial hardcoded content.
  * Run once: npx tsx scripts/seed.ts
  */
-import "dotenv/config"
+import dotenv from "dotenv"
+dotenv.config({ path: ".env.local" })
+dotenv.config()
 import mongoose from "mongoose"
 import BlogPostModel from "../src/lib/models/BlogPost"
 import CaseStudyModel from "../src/lib/models/CaseStudy"
@@ -147,6 +149,58 @@ const portfolio = [
       { value: "+112%", label: "organic sessions" },
       { value: "-28%", label: "CAC" },
     ],
+  },
+  {
+    slug: "draglab-germany",
+    client: "DragLab Germany",
+    title: "Production-grade B2B platform for a laboratory equipment manufacturer",
+    industry: "B2B / Lab Equipment",
+    services: ["Web Development", "UI/UX Design", "SEO", "Analytics & Reporting"],
+    timeline: "20 weeks",
+    year: "2025",
+    outcome: "5 languages, zero dev dependency",
+    published: true,
+    challenge: "DragLab needed a global digital presence that their non-technical team could operate independently. Their previous setup forced every content change through a developer, had no multilingual workflow, and lacked a structured lead pipeline for distributor applications, warranty claims, and technical service requests.",
+    approach: [
+      "Mapped every content type — products, models, articles, case studies, FAQs, glossary — into a unified multilingual data architecture.",
+      "Designed a full admin CMS so the sales and marketing team could publish, update, and manage leads without touching code.",
+      "Built a modular lead pipeline with distinct statuses, PDF generation, and SendGrid email automation for each form type.",
+      "Implemented a nonce-based CSP, CSRF tokens, and Google reCAPTCHA Enterprise on every public-facing form.",
+    ],
+    solution: [
+      "Node.js + Express MVC platform with EJS server-side rendering for fast, SEO-friendly page loads.",
+      "18 Mongoose models covering products, nested model variants, accessories, 6 lead types, articles, case studies, FAQs, glossary, testimonials, and industry landing pages.",
+      "Full 5-language system (EN, DE, ES, TR, FR) with per-language publish status on every content piece and hreflang tags across all routes.",
+      "Cloudinary CDN + Sharp image pipeline, PDF generation via pdf-lib and pdfkit, and Excel subscriber exports via ExcelJS.",
+      "Weighted MongoDB full-text search index spanning product names, descriptions, and keyword tags across all 5 languages simultaneously.",
+    ],
+    results: [
+      { value: "5", label: "languages shipped" },
+      { value: "18", label: "data models" },
+      { value: "6", label: "lead capture workflows" },
+    ],
+    titleAr: "منصة B2B متكاملة لمصنّع معدات مختبرات",
+    outcomeAr: "5 لغات، استقلالية تامة عن المطورين",
+    challengeAr: "احتاجت DragLab إلى حضور رقمي عالمي يستطيع فريقها غير التقني إدارته باستقلالية. كان الإعداد السابق يُلزم كل تعديل في المحتوى بالمرور عبر مطوّر، دون دعم متعدد اللغات أو خط أنابيب منظم للعملاء المحتملين.",
+    approachAr: [
+      "رسم خريطة لكل نوع محتوى — منتجات، موديلات، مقالات، دراسات حالة، أسئلة شائعة، معجم مصطلحات — ضمن بنية بيانات متعددة اللغات موحّدة.",
+      "تصميم لوحة إدارة CMS متكاملة تُمكّن فريقَي المبيعات والتسويق من النشر والتحديث وإدارة العملاء المحتملين دون لمس الكود.",
+      "بناء خط أنابيب معياري للعملاء المحتملين مع حالات مميزة لكل نوع وتوليد PDF وأتمتة بريد إلكتروني عبر SendGrid.",
+      "تطبيق CSP مبني على النونس وحماية CSRF و Google reCAPTCHA Enterprise على كل نموذج موجّه للعموم.",
+    ],
+    solutionAr: [
+      "منصة Node.js + Express بنمط MVC مع تصيير EJS من جانب الخادم لتحميل صفحات سريع وصديق لمحركات البحث.",
+      "18 نموذج Mongoose تشمل المنتجات والموديلات المتداخلة والإكسسوارات و6 أنواع عملاء محتملين ومقالات ودراسات حالة وأسئلة شائعة ومعجمًا وشهادات عملاء وصفحات صناعية.",
+      "نظام متكامل لخمس لغات (EN, DE, ES, TR, FR) مع حالة نشر مستقلة لكل قطعة محتوى وعلامات hreflang عبر جميع المسارات.",
+      "خط معالجة صور Cloudinary CDN + Sharp، وتوليد PDF عبر pdf-lib وpdfkit، وتصدير Excel للمشتركين عبر ExcelJS.",
+      "فهرس بحث نصي MongoDB مرجّح يغطي أسماء المنتجات والأوصاف وكلمات البحث الدلالية عبر اللغات الخمس في آنٍ واحد.",
+    ],
+    resultsAr: [
+      { value: "5", label: "لغات مُطلقة" },
+      { value: "18", label: "نموذج بيانات" },
+      { value: "6", label: "مسارات استقطاب عملاء" },
+    ],
+    publishedAr: true,
   },
 ]
 

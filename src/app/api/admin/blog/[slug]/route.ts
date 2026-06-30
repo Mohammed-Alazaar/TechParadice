@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server'
+import { revalidateTag } from 'next/cache'
 import dbConnect from '@/lib/mongodb'
 import BlogPostModel from '@/lib/models/BlogPost'
 
@@ -22,11 +23,13 @@ export async function PUT(req: Request, { params }: Params) {
     { new: true, runValidators: true },
   )
   if (!post) return NextResponse.json({ error: 'Not found' }, { status: 404 })
+  revalidateTag('blog')
   return NextResponse.json(post)
 }
 
 export async function DELETE(_req: Request, { params }: Params) {
   await dbConnect()
   await BlogPostModel.findOneAndDelete({ slug: params.slug })
+  revalidateTag('blog')
   return NextResponse.json({ ok: true })
 }

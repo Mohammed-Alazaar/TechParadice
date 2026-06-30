@@ -7,7 +7,7 @@ import { CtaBanner } from '@/components/sections/CtaBanner'
 import { getServices } from '@/lib/services'
 import { SITE_URL } from '@/lib/utils'
 
-export const dynamic = 'force-dynamic'
+export const revalidate = 300
 
 export const metadata: Metadata = {
   title: 'الخدمات | TechParadice',

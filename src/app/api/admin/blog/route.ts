@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server'
+import { revalidateTag } from 'next/cache'
 import dbConnect from '@/lib/mongodb'
 import BlogPostModel from '@/lib/models/BlogPost'
 
@@ -14,5 +15,6 @@ export async function POST(req: Request) {
   await dbConnect()
   const body = await req.json()
   const post = await BlogPostModel.create(body)
+  revalidateTag('blog')
   return NextResponse.json(post, { status: 201 })
 }
