@@ -8,7 +8,8 @@ import { CtaBanner } from '@/components/sections/CtaBanner'
 import { ButtonLink } from '@/components/ui/Button'
 import { getService, getAllServiceSlugs } from '@/lib/services'
 import { getArPortfolio } from '@/lib/portfolio'
-import { SITE_URL } from '@/lib/utils'
+import { SITE_URL, BRAND } from '@/lib/utils'
+import { buildMetadata } from '@/lib/seo'
 
 export const dynamicParams = true
 
@@ -22,12 +23,13 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const service = await getService(params.slug)
   if (!service) return {}
-  return {
-    title: `${service.nameAr ?? service.name} | TechParadice`,
+  return buildMetadata({
+    title: service.nameAr ?? service.name,
     description: service.valueAr ?? service.value,
-    alternates: { canonical: `${SITE_URL}/ar/services/${service.slug}` },
-    openGraph: { locale: 'ar_SA' },
-  }
+    path: `/ar/services/${service.slug}`,
+    alternatePath: `/services/${service.slug}`,
+    locale: 'ar',
+  })
 }
 
 export default async function ArServiceDetailPage({ params }: Params) {
@@ -58,8 +60,51 @@ export default async function ArServiceDetailPage({ params }: Params) {
     ),
   )
 
+  const jsonLd: object[] = [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'Service',
+      name,
+      description: value,
+      provider: {
+        '@type': 'Organization',
+        name: BRAND.name,
+        url: SITE_URL,
+      },
+      url: `${SITE_URL}/ar/services/${service.slug}`,
+      serviceType: name,
+      areaServed: 'Worldwide',
+      inLanguage: 'ar',
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'الرئيسية', item: `${SITE_URL}/ar` },
+        { '@type': 'ListItem', position: 2, name: 'الخدمات', item: `${SITE_URL}/ar/services` },
+        { '@type': 'ListItem', position: 3, name, item: `${SITE_URL}/ar/services/${service.slug}` },
+      ],
+    },
+  ]
+
+  if (faqs.length) {
+    jsonLd.push({
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: faqs.map((faq: { q: string; a: string }) => ({
+        '@type': 'Question',
+        name: faq.q,
+        acceptedAnswer: { '@type': 'Answer', text: faq.a },
+      })),
+    })
+  }
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <PageHero eyebrow={name} title={value} description={short}>
         <div className="flex flex-wrap gap-3">
           <ButtonLink href="/ar/contact" size="lg">ابدأ مشروعاً</ButtonLink>

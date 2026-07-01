@@ -5,16 +5,18 @@ import { PageHero } from '@/components/sections/PageHero'
 import { Section, SectionHeading } from '@/components/ui/Section'
 import { CtaBanner } from '@/components/sections/CtaBanner'
 import { getServices } from '@/lib/services'
-import { SITE_URL } from '@/lib/utils'
+import { buildMetadata } from '@/lib/seo'
+import { SITE_URL, BRAND } from '@/lib/utils'
 
 export const revalidate = 300
 
-export const metadata: Metadata = {
-  title: 'الخدمات | TechParadice',
+export const metadata: Metadata = buildMetadata({
+  title: 'الخدمات',
   description: 'مواقع، تطبيقات، تصميم، SEO، سوشيال ومحتوى — فريق واحد متكامل.',
-  alternates: { canonical: `${SITE_URL}/ar/services` },
-  openGraph: { locale: 'ar_SA' },
-}
+  path: '/ar/services',
+  alternatePath: '/services',
+  locale: 'ar',
+})
 
 const overviewFaqs = [
   {
@@ -38,8 +40,40 @@ const overviewFaqs = [
 export default async function ArServicesPage() {
   const services = await getServices()
 
+  const jsonLd = [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'ItemList',
+      itemListElement: services.map((service, i) => ({
+        '@type': 'ListItem',
+        position: i + 1,
+        item: {
+          '@type': 'Service',
+          name: service.nameAr ?? service.name,
+          description: service.shortAr ?? service.short,
+          url: `${SITE_URL}/ar/services/${service.slug}`,
+          provider: { '@type': 'Organization', name: BRAND.name, url: SITE_URL },
+          inLanguage: 'ar',
+        },
+      })),
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: overviewFaqs.map((faq) => ({
+        '@type': 'Question',
+        name: faq.q,
+        acceptedAnswer: { '@type': 'Answer', text: faq.a },
+      })),
+    },
+  ]
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <PageHero
         eyebrow="الخدمات"
         title={

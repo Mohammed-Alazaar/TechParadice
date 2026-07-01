@@ -8,21 +8,67 @@ import { CtaBanner } from '@/components/sections/CtaBanner'
 import { getServices } from '@/lib/services'
 import { getArPortfolio } from '@/lib/portfolio'
 import { BRAND, SITE_URL } from '@/lib/utils'
+import { buildMetadata } from '@/lib/seo'
 
 export const revalidate = 300
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildMetadata({
   title: `${BRAND.name} — عالمك الرقمي، مبني.`,
   description: 'تك باراديس وكالة رقمية متكاملة. مواقع، تطبيقات، تصميم، SEO، سوشيال ومحتوى — فريق واحد متكامل.',
-  alternates: { canonical: `${SITE_URL}/ar` },
-  openGraph: { locale: 'ar_SA' },
-}
+  path: '/ar',
+  alternatePath: '/',
+  locale: 'ar',
+})
 
 export default async function ArHomePage() {
   const [services, portfolio] = await Promise.all([getServices(), getArPortfolio()])
 
+  const jsonLd = [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'Organization',
+      name: BRAND.name,
+      url: `${SITE_URL}/ar`,
+      logo: `${SITE_URL}/og-image.png`,
+      email: BRAND.email,
+      address: { '@type': 'PostalAddress', addressLocality: 'Ankara', addressCountry: 'TR' },
+      sameAs: [],
+      description:
+        'وكالة رقمية متكاملة تقدّم مواقع، تطبيقات موبايل، تصميم UI/UX، SEO، سوشيال ميديا، إنتاج محتوى، وإعلانات مدفوعة.',
+      serviceArea: { '@type': 'AdministrativeArea', name: 'Worldwide' },
+      inLanguage: 'ar',
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'WebSite',
+      url: `${SITE_URL}/ar`,
+      name: BRAND.name,
+      inLanguage: 'ar',
+      potentialAction: {
+        '@type': 'SearchAction',
+        target: `${SITE_URL}/ar/blog?q={search_term_string}`,
+        'query-input': 'required name=search_term_string',
+      },
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'LocalBusiness',
+      name: BRAND.name,
+      url: `${SITE_URL}/ar`,
+      email: BRAND.email,
+      address: { '@type': 'PostalAddress', addressLocality: 'Ankara', addressCountry: 'TR' },
+      priceRange: '$0 – $5,000+',
+      description: 'وكالة رقمية: تطوير مواقع، تطبيقات موبايل، SEO، سوشيال ميديا، وتصميم.',
+      inLanguage: 'ar',
+    },
+  ]
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <PageHero
         eyebrow="تك باراديس"
         title={

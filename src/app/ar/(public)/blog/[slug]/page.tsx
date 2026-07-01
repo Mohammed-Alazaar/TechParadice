@@ -7,7 +7,7 @@ import { Section } from '@/components/ui/Section'
 import { Badge } from '@/components/ui/Badge'
 import { CtaBanner } from '@/components/sections/CtaBanner'
 import { getArPost, getArPosts, getAllArPostSlugs } from '@/lib/blog'
-import { SITE_URL } from '@/lib/utils'
+import { buildMetadata } from '@/lib/seo'
 
 export const dynamicParams = true
 
@@ -21,12 +21,13 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const post = await getArPost(params.slug)
   if (!post) return {}
-  return {
-    title: `${post.titleAr} | TechParadice`,
+  return buildMetadata({
+    title: post.titleAr,
     description: post.excerptAr,
-    alternates: { canonical: `${SITE_URL}/ar/blog/${post.slug}` },
-    openGraph: { locale: 'ar_SA' },
-  }
+    path: `/ar/blog/${post.slug}`,
+    alternatePath: `/blog/${post.slug}`,
+    locale: 'ar',
+  })
 }
 
 const categoryLabels: Record<string, string> = {

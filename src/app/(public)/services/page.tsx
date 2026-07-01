@@ -7,6 +7,7 @@ import { Faq } from '@/components/sections/Faq'
 import { CtaBanner } from '@/components/sections/CtaBanner'
 import { getServices } from '@/lib/services'
 import { buildMetadata } from '@/lib/seo'
+import { SITE_URL, BRAND } from '@/lib/utils'
 
 export const revalidate = 300
 
@@ -39,8 +40,39 @@ const overviewFaqs = [
 export default async function ServicesPage() {
   const services = await getServices()
 
+  const jsonLd = [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'ItemList',
+      itemListElement: services.map((service, i) => ({
+        '@type': 'ListItem',
+        position: i + 1,
+        item: {
+          '@type': 'Service',
+          name: service.name,
+          description: service.short,
+          url: `${SITE_URL}/services/${service.slug}`,
+          provider: { '@type': 'Organization', name: BRAND.name, url: SITE_URL },
+        },
+      })),
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: overviewFaqs.map((faq) => ({
+        '@type': 'Question',
+        name: faq.q,
+        acceptedAnswer: { '@type': 'Answer', text: faq.a },
+      })),
+    },
+  ]
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <PageHero
         eyebrow="Services"
         title={

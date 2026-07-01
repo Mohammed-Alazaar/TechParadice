@@ -6,16 +6,17 @@ import { Section } from '@/components/ui/Section'
 import { Badge } from '@/components/ui/Badge'
 import { CtaBanner } from '@/components/sections/CtaBanner'
 import { getArPortfolio } from '@/lib/portfolio'
-import { SITE_URL } from '@/lib/utils'
+import { buildMetadata } from '@/lib/seo'
 
 export const revalidate = 300
 
-export const metadata: Metadata = {
-  title: 'أعمالنا | TechParadice',
+export const metadata: Metadata = buildMetadata({
+  title: 'أعمالنا',
   description: 'مشاريع تك باراديس الحديثة — مواقع وتطبيقات وبرامج نمو رقمي متكاملة.',
-  alternates: { canonical: `${SITE_URL}/ar/portfolio` },
-  openGraph: { locale: 'ar_SA' },
-}
+  path: '/ar/portfolio',
+  alternatePath: '/portfolio',
+  locale: 'ar',
+})
 
 export default async function ArPortfolioPage() {
   const portfolio = await getArPortfolio()

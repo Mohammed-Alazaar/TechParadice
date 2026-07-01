@@ -3,14 +3,16 @@ import { Mail, MapPin } from 'lucide-react'
 import { PageHero } from '@/components/sections/PageHero'
 import { Section } from '@/components/ui/Section'
 import { ContactForm } from '@/components/forms/ContactForm'
-import { BRAND, SITE_URL } from '@/lib/utils'
+import { BRAND } from '@/lib/utils'
+import { buildMetadata } from '@/lib/seo'
 
-export const metadata: Metadata = {
-  title: 'تواصل | TechParadice',
+export const metadata: Metadata = buildMetadata({
+  title: 'تواصل',
   description: 'أخبرنا ما تبني. سنرد خلال يوم عمل واحد.',
-  alternates: { canonical: `${SITE_URL}/ar/contact` },
-  openGraph: { locale: 'ar_SA' },
-}
+  path: '/ar/contact',
+  alternatePath: '/contact',
+  locale: 'ar',
+})
 
 export default function ArContactPage() {
   return (

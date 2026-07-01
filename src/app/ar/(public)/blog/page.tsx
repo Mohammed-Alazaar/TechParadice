@@ -6,16 +6,17 @@ import { Section } from '@/components/ui/Section'
 import { Badge } from '@/components/ui/Badge'
 import { CtaBanner } from '@/components/sections/CtaBanner'
 import { getArPosts } from '@/lib/blog'
-import { SITE_URL } from '@/lib/utils'
+import { buildMetadata } from '@/lib/seo'
 
 export const revalidate = 300
 
-export const metadata: Metadata = {
-  title: 'المدونة | TechParadice',
+export const metadata: Metadata = buildMetadata({
+  title: 'المدونة',
   description: 'مقالات قصيرة ومفيدة حول الهندسة والتصميم والنمو — من فريق تك باراديس.',
-  alternates: { canonical: `${SITE_URL}/ar/blog` },
-  openGraph: { locale: 'ar_SA' },
-}
+  path: '/ar/blog',
+  alternatePath: '/blog',
+  locale: 'ar',
+})
 
 const categoryLabels: Record<string, string> = {
   All: 'الكل',

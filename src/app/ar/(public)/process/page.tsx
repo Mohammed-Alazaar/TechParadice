@@ -2,14 +2,15 @@ import type { Metadata } from 'next'
 import { PageHero } from '@/components/sections/PageHero'
 import { Section, SectionHeading } from '@/components/ui/Section'
 import { CtaBanner } from '@/components/sections/CtaBanner'
-import { SITE_URL } from '@/lib/utils'
+import { buildMetadata } from '@/lib/seo'
 
-export const metadata: Metadata = {
-  title: 'العملية | TechParadice',
+export const metadata: Metadata = buildMetadata({
+  title: 'العملية',
   description: 'سبع مراحل من الاكتشاف إلى النمو. نفس الإطار الذي نطبقه على كل مشاركة.',
-  alternates: { canonical: `${SITE_URL}/ar/process` },
-  openGraph: { locale: 'ar_SA' },
-}
+  path: '/ar/process',
+  alternatePath: '/process',
+  locale: 'ar',
+})
 
 const phases = [
   {

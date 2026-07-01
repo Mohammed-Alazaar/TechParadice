@@ -62,6 +62,15 @@ export default async function ServiceDetailPage({ params }: Params) {
       serviceType: service.name,
       areaServed: 'Worldwide',
     },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://techparadice.com/' },
+        { '@type': 'ListItem', position: 2, name: 'Services', item: 'https://techparadice.com/services' },
+        { '@type': 'ListItem', position: 3, name: service.name, item: `https://techparadice.com/services/${service.slug}` },
+      ],
+    },
   ]
 
   if (service.faqs?.length) {

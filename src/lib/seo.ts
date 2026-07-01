@@ -24,10 +24,15 @@ export function buildMetadata({
 
   const isAr = locale === 'ar'
 
+  const enUrl = alternatePath ? `${SITE_URL}${isAr ? alternatePath : path}` : `${SITE_URL}${path}`
+  const arUrl = alternatePath ? `${SITE_URL}${isAr ? path : alternatePath}` : `${SITE_URL}/ar${path}`
+
+  // English is the site's default language, so x-default should resolve to
+  // the English version of this specific page (not always the homepage).
   const languages: Record<string, string> = {
-    'x-default': `${SITE_URL}/`,
-    en: alternatePath ? `${SITE_URL}${isAr ? alternatePath : path}` : `${SITE_URL}${path}`,
-    ar: alternatePath ? `${SITE_URL}${isAr ? path : alternatePath}` : `${SITE_URL}/ar${path}`,
+    'x-default': enUrl,
+    en: enUrl,
+    ar: arUrl,
   }
 
   return {

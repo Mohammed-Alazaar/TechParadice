@@ -2,14 +2,16 @@ import type { Metadata } from 'next'
 import { PageHero } from '@/components/sections/PageHero'
 import { Section, SectionHeading } from '@/components/ui/Section'
 import { CtaBanner } from '@/components/sections/CtaBanner'
-import { BRAND, SITE_URL } from '@/lib/utils'
+import { BRAND } from '@/lib/utils'
+import { buildMetadata } from '@/lib/seo'
 
-export const metadata: Metadata = {
-  title: 'من نحن | TechParadice',
+export const metadata: Metadata = buildMetadata({
+  title: 'من نحن',
   description: `تك باراديس وكالة رقمية متكاملة بقيادة مؤسسها ${BRAND.owner}. فريق واحد، كفاءات متعددة.`,
-  alternates: { canonical: `${SITE_URL}/ar/about` },
-  openGraph: { locale: 'ar_SA' },
-}
+  path: '/ar/about',
+  alternatePath: '/about',
+  locale: 'ar',
+})
 
 const values = [
   { title: 'بلا حشو', body: 'نطاقات واضحة وأرقام واضحة وتواصل واضح. نحترم وقتك.' },

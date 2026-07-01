@@ -8,7 +8,7 @@ import { Section } from '@/components/ui/Section'
 import { Badge } from '@/components/ui/Badge'
 import { CtaBanner } from '@/components/sections/CtaBanner'
 import { getArCaseStudy, getAllArCaseStudySlugs, getArPortfolio } from '@/lib/portfolio'
-import { SITE_URL } from '@/lib/utils'
+import { buildMetadata } from '@/lib/seo'
 
 export const dynamicParams = true
 
@@ -22,12 +22,13 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const study = await getArCaseStudy(params.slug)
   if (!study) return {}
-  return {
-    title: `${study.client} — ${study.titleAr ?? study.title} | TechParadice`,
+  return buildMetadata({
+    title: `${study.client} — ${study.titleAr ?? study.title}`,
     description: (study.challengeAr ?? '').slice(0, 150),
-    alternates: { canonical: `${SITE_URL}/ar/portfolio/${study.slug}` },
-    openGraph: { locale: 'ar_SA' },
-  }
+    path: `/ar/portfolio/${study.slug}`,
+    alternatePath: `/portfolio/${study.slug}`,
+    locale: 'ar',
+  })
 }
 
 export default async function ArCaseStudyPage({ params }: Params) {
