@@ -3,18 +3,38 @@ import { Mail, MapPin } from 'lucide-react'
 import { PageHero } from '@/components/sections/PageHero'
 import { Section } from '@/components/ui/Section'
 import { ContactForm } from '@/components/forms/ContactForm'
-import { BRAND, SITE_URL } from '@/lib/utils'
+import { BRAND } from '@/lib/utils'
+import { buildMetadata } from '@/lib/seo'
 
-export const metadata: Metadata = {
-  title: 'تواصل | TechParadice',
-  description: 'أخبرنا ما تبني. سنرد خلال يوم عمل واحد.',
-  alternates: { canonical: `${SITE_URL}/ar/contact` },
-  openGraph: { locale: 'ar_SA' },
-}
+export const metadata: Metadata = buildMetadata({
+  title: 'تواصل معنا',
+  description: 'أخبرنا ما تبني. نقرأ كل رسالة ونرد خلال يوم عمل واحد.',
+  path: '/ar/contact',
+  alternatePath: '/contact',
+  locale: 'ar',
+})
 
 export default function ArContactPage() {
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'ContactPage',
+    name: `تواصل مع ${BRAND.name}`,
+    description: 'ابدأ مشروعك مع تك باراديس. نرد خلال يوم عمل واحد.',
+    inLanguage: 'ar',
+    mainEntity: {
+      '@type': 'Organization',
+      name: BRAND.name,
+      email: BRAND.email,
+      address: { '@type': 'PostalAddress', addressLocality: 'Ankara', addressCountry: 'TR' },
+    },
+  }
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <PageHero
         eyebrow="تواصل"
         title={<>ابدأ <span className="text-teal">محادثة.</span></>}

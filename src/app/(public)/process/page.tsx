@@ -3,7 +3,7 @@ import { PageHero } from '@/components/sections/PageHero'
 import { Section, SectionHeading } from '@/components/ui/Section'
 import { Faq } from '@/components/sections/Faq'
 import { CtaBanner } from '@/components/sections/CtaBanner'
-import { buildMetadata } from '@/lib/seo'
+import { buildMetadata, faqJsonLd } from '@/lib/seo'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Our Process',
@@ -93,6 +93,10 @@ const processFaqs = [
 export default function ProcessPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd(processFaqs)) }}
+      />
       <PageHero
         eyebrow="How we work"
         title={

@@ -9,7 +9,7 @@ import { CtaBanner } from '@/components/sections/CtaBanner'
 import { ButtonLink } from '@/components/ui/Button'
 import { Badge } from '@/components/ui/Badge'
 import { getService, getAllServiceSlugs } from '@/lib/services'
-import { buildMetadata } from '@/lib/seo'
+import { buildMetadata, breadcrumbJsonLd } from '@/lib/seo'
 import { getPortfolio } from '@/lib/portfolio'
 
 export const dynamicParams = true
@@ -28,6 +28,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
     title: service.name,
     description: service.value,
     path: `/services/${service.slug}`,
+    alternatePath: `/ar/services/${service.slug}`,
   })
 }
 
@@ -48,6 +49,11 @@ export default async function ServiceDetailPage({ params }: Params) {
   )
 
   const jsonLd: object[] = [
+    breadcrumbJsonLd([
+      { name: 'Home', path: '/' },
+      { name: 'Services', path: '/services' },
+      { name: service.name, path: `/services/${service.slug}` },
+    ]),
     {
       '@context': 'https://schema.org',
       '@type': 'Service',

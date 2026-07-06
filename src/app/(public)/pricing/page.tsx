@@ -3,7 +3,7 @@ import { PageHero } from '@/components/sections/PageHero'
 import { Section, SectionHeading } from '@/components/ui/Section'
 import { Faq } from '@/components/sections/Faq'
 import { QuoteForm } from '@/components/forms/QuoteForm'
-import { buildMetadata } from '@/lib/seo'
+import { buildMetadata, faqJsonLd } from '@/lib/seo'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Pricing',
@@ -68,6 +68,10 @@ const pricingFaqs = [
 export default function PricingPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd(pricingFaqs)) }}
+      />
       <PageHero
         eyebrow="Pricing"
         title={

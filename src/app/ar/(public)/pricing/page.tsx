@@ -3,14 +3,15 @@ import { PageHero } from '@/components/sections/PageHero'
 import { Section, SectionHeading } from '@/components/ui/Section'
 import { CtaBanner } from '@/components/sections/CtaBanner'
 import { QuoteForm } from '@/components/forms/QuoteForm'
-import { SITE_URL } from '@/lib/utils'
+import { buildMetadata, faqJsonLd } from '@/lib/seo'
 
-export const metadata: Metadata = {
-  title: 'الأسعار | TechParadice',
+export const metadata: Metadata = buildMetadata({
+  title: 'الأسعار',
   description: 'تسعير يناسب ميزانيتك. شارك أهدافك ونحدد المسار الصحيح. عروض شفافة.',
-  alternates: { canonical: `${SITE_URL}/ar/pricing` },
-  openGraph: { locale: 'ar_SA' },
-}
+  path: '/ar/pricing',
+  alternatePath: '/pricing',
+  locale: 'ar',
+})
 
 const ranges = [
   {
@@ -64,6 +65,10 @@ const pricingFaqs = [
 export default function ArPricingPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd(pricingFaqs)) }}
+      />
       <PageHero
         eyebrow="الأسعار"
         title={<>تسعير يناسب <span className="text-teal">ميزانيتك.</span></>}

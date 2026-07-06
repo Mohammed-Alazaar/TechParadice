@@ -6,8 +6,8 @@ import { ArrowLeft } from 'lucide-react'
 import { Section } from '@/components/ui/Section'
 import { Badge } from '@/components/ui/Badge'
 import { CtaBanner } from '@/components/sections/CtaBanner'
-import { getPost, getAllPostSlugs, getPosts } from '@/lib/blog'
-import { buildMetadata } from '@/lib/seo'
+import { getPost, getAllPostSlugs, getPosts, getArPost } from '@/lib/blog'
+import { buildMetadata, breadcrumbJsonLd } from '@/lib/seo'
 
 export const dynamicParams = true
 
@@ -19,12 +19,19 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: Params): Promise<Metadata> {
-  const post = await getPost(params.slug)
+  const [post, arPost] = await Promise.all([
+    getPost(params.slug),
+    getArPost(params.slug),
+  ])
   if (!post) return {}
   return buildMetadata({
     title: post.title,
     description: post.excerpt,
     path: `/blog/${post.slug}`,
+    image: post.cover,
+    type: 'article',
+    arAvailable: Boolean(arPost),
+    alternatePath: arPost ? `/ar/blog/${post.slug}` : undefined,
   })
 }
 
@@ -34,7 +41,13 @@ export default async function BlogPostPage({ params }: Params) {
 
   const related = all.filter((p) => p.slug !== post.slug).slice(0, 2)
 
-  const jsonLd = {
+  const jsonLd = [
+    breadcrumbJsonLd([
+      { name: 'Home', path: '/' },
+      { name: 'Blog', path: '/blog' },
+      { name: post.title, path: `/blog/${post.slug}` },
+    ]),
+    {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
     headline: post.title,
@@ -50,7 +63,8 @@ export default async function BlogPostPage({ params }: Params) {
     mainEntityOfPage: { '@type': 'WebPage', '@id': `https://techparadice.com/blog/${post.slug}` },
     ...(post.cover ? { image: post.cover } : {}),
     articleSection: post.category,
-  }
+    },
+  ]
 
   return (
     <>

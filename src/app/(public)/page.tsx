@@ -19,20 +19,8 @@ export const metadata: Metadata = buildMetadata({
 })
 
 export default function HomePage() {
+  // Organization JSON-LD is emitted site-wide from the root layout.
   const jsonLd = [
-    {
-      '@context': 'https://schema.org',
-      '@type': 'Organization',
-      name: 'TechParadice',
-      url: 'https://techparadice.com',
-      logo: 'https://techparadice.com/og-image.png',
-      email: 'hello@techparadice.com',
-      address: { '@type': 'PostalAddress', addressLocality: 'Ankara', addressCountry: 'TR' },
-      sameAs: [],
-      description:
-        'Full-stack digital agency offering websites, mobile apps, UI/UX design, SEO, social media, content creation, and paid advertising.',
-      serviceArea: { '@type': 'AdministrativeArea', name: 'Worldwide' },
-    },
     {
       '@context': 'https://schema.org',
       '@type': 'WebSite',

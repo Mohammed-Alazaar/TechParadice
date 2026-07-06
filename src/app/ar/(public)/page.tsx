@@ -7,16 +7,18 @@ import { Section, SectionHeading } from '@/components/ui/Section'
 import { CtaBanner } from '@/components/sections/CtaBanner'
 import { getServices } from '@/lib/services'
 import { getArPortfolio } from '@/lib/portfolio'
-import { BRAND, SITE_URL } from '@/lib/utils'
+import { BRAND } from '@/lib/utils'
+import { buildMetadata } from '@/lib/seo'
 
 export const revalidate = 300
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildMetadata({
   title: `${BRAND.name} — عالمك الرقمي، مبني.`,
   description: 'تك باراديس وكالة رقمية متكاملة. مواقع، تطبيقات، تصميم، SEO، سوشيال ومحتوى — فريق واحد متكامل.',
-  alternates: { canonical: `${SITE_URL}/ar` },
-  openGraph: { locale: 'ar_SA' },
-}
+  path: '/ar',
+  alternatePath: '/',
+  locale: 'ar',
+})
 
 export default async function ArHomePage() {
   const [services, portfolio] = await Promise.all([getServices(), getArPortfolio()])
@@ -102,7 +104,7 @@ export default async function ArHomePage() {
                 >
                   <div className="relative aspect-[16/10] overflow-hidden bg-gradient-to-br from-teal/20 via-surface to-void">
                     {c.cover ? (
-                      <Image src={c.cover} alt={c.client} fill className="object-cover" sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" />
+                      <Image src={c.cover} alt={`${c.client} — ${c.titleAr ?? c.title}`} fill className="object-cover" sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" />
                     ) : (
                       <div className="absolute inset-0 flex items-center justify-center font-display text-[48px] font-extrabold text-white/10">
                         {c.client}

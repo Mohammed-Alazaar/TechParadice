@@ -136,12 +136,23 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               url: SITE_URL,
               logo: `${SITE_URL}/og-image.png`,
               email: BRAND.email,
+              slogan: BRAND.tagline,
+              description:
+                'Full-stack digital agency offering websites, mobile apps, UI/UX design, SEO, social media, content creation, and paid advertising.',
               address: {
                 '@type': 'PostalAddress',
                 addressLocality: 'Ankara',
                 addressCountry: 'TR',
               },
               founder: { '@type': 'Person', name: BRAND.owner },
+              areaServed: { '@type': 'AdministrativeArea', name: 'Worldwide' },
+              knowsLanguage: ['en', 'ar'],
+              contactPoint: {
+                '@type': 'ContactPoint',
+                contactType: 'sales',
+                email: BRAND.email,
+                availableLanguage: ['English', 'Arabic'],
+              },
             }),
           }}
         />

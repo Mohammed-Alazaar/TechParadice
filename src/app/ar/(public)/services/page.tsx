@@ -5,16 +5,17 @@ import { PageHero } from '@/components/sections/PageHero'
 import { Section, SectionHeading } from '@/components/ui/Section'
 import { CtaBanner } from '@/components/sections/CtaBanner'
 import { getServices } from '@/lib/services'
-import { SITE_URL } from '@/lib/utils'
+import { buildMetadata, faqJsonLd } from '@/lib/seo'
 
 export const revalidate = 300
 
-export const metadata: Metadata = {
-  title: 'الخدمات | TechParadice',
+export const metadata: Metadata = buildMetadata({
+  title: 'الخدمات',
   description: 'مواقع، تطبيقات، تصميم، SEO، سوشيال ومحتوى — فريق واحد متكامل.',
-  alternates: { canonical: `${SITE_URL}/ar/services` },
-  openGraph: { locale: 'ar_SA' },
-}
+  path: '/ar/services',
+  alternatePath: '/services',
+  locale: 'ar',
+})
 
 const overviewFaqs = [
   {
@@ -40,6 +41,10 @@ export default async function ArServicesPage() {
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd(overviewFaqs)) }}
+      />
       <PageHero
         eyebrow="الخدمات"
         title={

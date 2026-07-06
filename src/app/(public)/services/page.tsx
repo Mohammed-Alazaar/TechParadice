@@ -6,7 +6,7 @@ import { Section, SectionHeading } from '@/components/ui/Section'
 import { Faq } from '@/components/sections/Faq'
 import { CtaBanner } from '@/components/sections/CtaBanner'
 import { getServices } from '@/lib/services'
-import { buildMetadata } from '@/lib/seo'
+import { buildMetadata, faqJsonLd } from '@/lib/seo'
 
 export const revalidate = 300
 
@@ -41,6 +41,10 @@ export default async function ServicesPage() {
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd(overviewFaqs)) }}
+      />
       <PageHero
         eyebrow="Services"
         title={

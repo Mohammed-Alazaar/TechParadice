@@ -14,8 +14,25 @@ export const metadata: Metadata = buildMetadata({
 })
 
 export default function ContactPage() {
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'ContactPage',
+    name: `Contact ${BRAND.name}`,
+    description: 'Start a project with TechParadice. We reply within 24 hours.',
+    mainEntity: {
+      '@type': 'Organization',
+      name: BRAND.name,
+      email: BRAND.email,
+      address: { '@type': 'PostalAddress', addressLocality: 'Ankara', addressCountry: 'TR' },
+    },
+  }
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <PageHero
         eyebrow="Contact"
         title={
