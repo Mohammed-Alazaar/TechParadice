@@ -2,13 +2,14 @@ import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import { ArrowLeft } from 'lucide-react'
+import { ArrowLeft, ArrowRight } from 'lucide-react'
 import { PageHero } from '@/components/sections/PageHero'
 import { Section } from '@/components/ui/Section'
 import { Badge } from '@/components/ui/Badge'
 import { CtaBanner } from '@/components/sections/CtaBanner'
 import { getArCaseStudy, getAllArCaseStudySlugs, getArPortfolio } from '@/lib/portfolio'
-import { SITE_URL } from '@/lib/utils'
+import { buildMetadata, breadcrumbJsonLd, firstSentence, truncateAtWord } from '@/lib/seo'
+import { SITE_URL, BRAND } from '@/lib/utils'
 
 export const dynamicParams = true
 
@@ -22,12 +23,18 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const study = await getArCaseStudy(params.slug)
   if (!study) return {}
-  return {
-    title: `${study.client} — ${study.titleAr ?? study.title} | TechParadice`,
-    description: (study.challengeAr ?? '').slice(0, 150),
-    alternates: { canonical: `${SITE_URL}/ar/portfolio/${study.slug}` },
-    openGraph: { locale: 'ar_SA' },
-  }
+  const outcome = study.outcomeAr ?? study.outcome
+  return buildMetadata({
+    title: `دراسة حالة ${study.client} — ${study.titleAr ?? study.title}`,
+    description: truncateAtWord(
+      `${outcome} — ${study.client} (${study.industry}). ${study.challengeAr ? firstSentence(study.challengeAr) : ''}`,
+    ),
+    path: `/ar/portfolio/${study.slug}`,
+    alternatePath: `/portfolio/${study.slug}`,
+    locale: 'ar',
+    image: study.cover,
+    type: 'article',
+  })
 }
 
 export default async function ArCaseStudyPage({ params }: Params) {
@@ -39,13 +46,50 @@ export default async function ArCaseStudyPage({ params }: Params) {
 
   const index = portfolio.findIndex((p) => p.slug === study.slug)
   const next = portfolio[(index + 1) % portfolio.length] ?? portfolio[0]
+  const outcome = study.outcomeAr ?? study.outcome
+
+  const jsonLd = [
+    breadcrumbJsonLd([
+      { name: 'الرئيسية', path: '/ar' },
+      { name: 'أعمالنا', path: '/ar/portfolio' },
+      { name: study.client, path: `/ar/portfolio/${study.slug}` },
+    ]),
+    {
+      '@context': 'https://schema.org',
+      '@type': 'Article',
+      headline: `${study.client} — ${study.titleAr ?? study.title}`,
+      description: truncateAtWord(
+        `${outcome}. ${study.challengeAr ? firstSentence(study.challengeAr) : ''}`,
+      ),
+      url: `${SITE_URL}/ar/portfolio/${study.slug}`,
+      inLanguage: 'ar',
+      mainEntityOfPage: {
+        '@type': 'WebPage',
+        '@id': `${SITE_URL}/ar/portfolio/${study.slug}`,
+      },
+      author: { '@type': 'Organization', name: BRAND.name, url: SITE_URL },
+      publisher: {
+        '@type': 'Organization',
+        name: BRAND.name,
+        logo: { '@type': 'ImageObject', url: `${SITE_URL}/og-image.png` },
+      },
+      about: study.services.map((s) => ({ '@type': 'Thing', name: s })),
+      keywords: [study.industry, ...study.services].join(', '),
+      ...(study.cover ? { image: study.cover } : {}),
+      ...(study.year ? { datePublished: `${study.year}-01-01` } : {}),
+    },
+  ]
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <PageHero
-        eyebrow={study.industry}
+        eyebrow={`${study.industry} · دراسة حالة`}
         title={study.titleAr ?? study.title}
-        description={study.challengeAr ? study.challengeAr.split('.')[0] + '.' : ''}
+        description={study.challengeAr ? firstSentence(study.challengeAr) : ''}
       >
         <ul className="flex flex-wrap items-center gap-x-5 gap-y-2 text-[14px] text-white/70">
           <li>
@@ -65,13 +109,29 @@ export default async function ArCaseStudyPage({ params }: Params) {
           <li>
             <span className="text-caption text-muted">السنة</span> {study.year}
           </li>
+          {outcome ? (
+            <>
+              <li className="text-teal">/</li>
+              <li>
+                <span className="text-caption text-muted">النتيجة</span>{' '}
+                <span className="font-semibold text-teal">{outcome}</span>
+              </li>
+            </>
+          ) : null}
         </ul>
       </PageHero>
 
       <Section tone="void" className="pt-0">
         <div className="relative aspect-[16/8] overflow-hidden rounded-2xl border border-border-dark bg-gradient-to-br from-teal/20 via-surface to-void">
           {study.cover ? (
-            <Image src={study.cover} alt={study.client} fill className="object-cover" sizes="100vw" priority />
+            <Image
+              src={study.cover}
+              alt={`${study.client} — ${study.titleAr ?? study.title}`}
+              fill
+              className="object-cover"
+              sizes="100vw"
+              priority
+            />
           ) : (
             <div className="absolute inset-0 flex items-center justify-center">
               <span className="font-display text-[120px] font-extrabold tracking-tight text-white/10 sm:text-[180px]">
@@ -79,9 +139,9 @@ export default async function ArCaseStudyPage({ params }: Params) {
               </span>
             </div>
           )}
-          {(study.outcomeAr ?? study.outcome) ? (
+          {outcome ? (
             <div className="absolute right-6 top-6">
-              <Badge tone="teal">{study.outcomeAr ?? study.outcome}</Badge>
+              <Badge tone="teal">{outcome}</Badge>
             </div>
           ) : null}
         </div>
@@ -152,25 +212,40 @@ export default async function ArCaseStudyPage({ params }: Params) {
         </Section>
       ) : null}
 
-      {next && next.slug !== study.slug ? (
-        <Section tone="void">
+      <Section tone="void">
+        <div className="grid gap-4 sm:grid-cols-[auto_1fr] sm:items-stretch">
           <Link
-            href={`/ar/portfolio/${next.slug}`}
-            className="group flex items-center justify-between rounded-2xl border border-border-dark bg-surface p-8 transition-all hover:border-teal/40"
+            href="/ar/portfolio"
+            className="group flex items-center gap-3 rounded-2xl border border-border-dark bg-surface p-8 text-[14px] font-semibold text-white/70 transition-all hover:border-teal/40 hover:text-white"
           >
-            <div>
-              <p className="text-caption uppercase text-muted">الدراسة التالية</p>
-              <p className="mt-2 font-display text-h3 font-semibold text-white">
-                {next.titleAr ?? next.title}
-              </p>
-            </div>
-            <ArrowLeft
-              size={28}
-              className="text-teal transition-transform group-hover:-translate-x-1"
+            <ArrowRight
+              size={20}
+              className="text-teal transition-transform group-hover:translate-x-1"
             />
+            كل الأعمال
           </Link>
-        </Section>
-      ) : null}
+          {next && next.slug !== study.slug ? (
+            <Link
+              href={`/ar/portfolio/${next.slug}`}
+              className="group flex items-center justify-between rounded-2xl border border-border-dark bg-surface p-8 transition-all hover:border-teal/40"
+            >
+              <div>
+                <p className="text-caption uppercase text-muted">
+                  الدراسة التالية · {next.client}
+                  {next.outcomeAr ?? next.outcome ? ` · ${next.outcomeAr ?? next.outcome}` : ''}
+                </p>
+                <p className="mt-2 font-display text-h3 font-semibold text-white">
+                  {next.titleAr ?? next.title}
+                </p>
+              </div>
+              <ArrowLeft
+                size={28}
+                className="shrink-0 text-teal transition-transform group-hover:-translate-x-1"
+              />
+            </Link>
+          ) : null}
+        </div>
+      </Section>
 
       <CtaBanner
         heading="هل أنت مستعد للبدء؟"

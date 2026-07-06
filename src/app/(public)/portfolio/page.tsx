@@ -1,29 +1,68 @@
 import type { Metadata } from 'next'
-import Image from 'next/image'
-import Link from 'next/link'
 import { PageHero } from '@/components/sections/PageHero'
 import { Section } from '@/components/ui/Section'
-import { Badge } from '@/components/ui/Badge'
 import { CtaBanner } from '@/components/sections/CtaBanner'
+import { PortfolioGrid, type PortfolioCardData } from '@/components/sections/PortfolioGrid'
 import { getPortfolio } from '@/lib/portfolio'
-import { buildMetadata } from '@/lib/seo'
+import { buildMetadata, breadcrumbJsonLd, firstSentence } from '@/lib/seo'
+import { SITE_URL } from '@/lib/utils'
 
 export const revalidate = 300
 
 export const metadata: Metadata = buildMetadata({
-  title: 'Portfolio',
+  title: 'Portfolio & Case Studies',
   description:
-    'Recent TechParadice engagements — websites, mobile apps, and full-funnel growth programs.',
+    'Real client results from TechParadice — websites, mobile apps, and full-funnel growth programs, each with the challenge, approach, and measurable outcomes.',
   path: '/portfolio',
 })
-
-const filters = ['All', 'Web', 'Mobile', 'Design', 'Marketing']
 
 export default async function PortfolioPage() {
   const portfolio = await getPortfolio()
 
+  const cards: PortfolioCardData[] = portfolio.map((c) => ({
+    slug: c.slug,
+    href: `/portfolio/${c.slug}`,
+    client: c.client,
+    title: c.title,
+    industry: c.industry,
+    year: c.year,
+    services: c.services,
+    outcome: c.outcome,
+    cover: c.cover,
+    excerpt: firstSentence(c.challenge),
+    keyResult: c.results?.[0],
+  }))
+
+  const jsonLd = [
+    breadcrumbJsonLd([
+      { name: 'Home', path: '/' },
+      { name: 'Portfolio', path: '/portfolio' },
+    ]),
+    {
+      '@context': 'https://schema.org',
+      '@type': 'CollectionPage',
+      name: 'TechParadice Portfolio & Case Studies',
+      url: `${SITE_URL}/portfolio`,
+      description:
+        'Case studies from TechParadice client engagements — each with the challenge, approach, and measurable results.',
+      mainEntity: {
+        '@type': 'ItemList',
+        itemListElement: portfolio.map((c, i) => ({
+          '@type': 'ListItem',
+          position: i + 1,
+          name: `${c.client} — ${c.title}`,
+          url: `${SITE_URL}/portfolio/${c.slug}`,
+        })),
+      },
+    },
+  ]
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <PageHero
         eyebrow="Selected work"
         title={
@@ -33,62 +72,28 @@ export default async function PortfolioPage() {
           </>
         }
         description="Each case study includes the challenge, the approach, and the numbers that came out the other side."
-      >
-        <ul className="flex flex-wrap gap-2" aria-label="Filter">
-          {filters.map((f, i) => (
-            <li key={f}>
-              <button
-                type="button"
-                className={
-                  i === 0
-                    ? 'rounded-full border border-teal bg-teal/10 px-4 py-1.5 text-[13px] font-semibold text-teal'
-                    : 'rounded-full border border-border-dark bg-surface px-4 py-1.5 text-[13px] font-semibold text-white/70 hover:border-teal/40 hover:text-white'
-                }
-              >
-                {f}
-              </button>
-            </li>
-          ))}
-        </ul>
-      </PageHero>
+      />
 
       <Section tone="void" className="pt-0">
-        <ul className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {portfolio.map((c) => (
-            <li key={c.slug}>
-              <Link
-                href={`/portfolio/${c.slug}`}
-                className="group block overflow-hidden rounded-2xl border border-border-dark bg-surface transition-all hover:-translate-y-1 hover:border-teal/40"
-              >
-                <div className="relative aspect-[16/10] overflow-hidden bg-gradient-to-br from-teal/20 via-surface to-void">
-                  {c.cover ? (
-                    <Image src={c.cover} alt={c.client} fill className="object-cover" sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" />
-                  ) : (
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <span className="font-display text-[48px] font-extrabold tracking-tight text-white/10">
-                        {c.client}
-                      </span>
-                    </div>
-                  )}
-                  <div className="absolute right-4 top-4">
-                    <Badge tone="teal">{c.outcome}</Badge>
-                  </div>
-                </div>
-                <div className="p-6">
-                  <p className="text-caption uppercase text-muted">
-                    {c.industry} · {c.year}
-                  </p>
-                  <h2 className="mt-2 font-display text-h4 font-semibold text-white">{c.title}</h2>
-                  <div className="mt-4 flex flex-wrap gap-2">
-                    {c.services.map((s) => (
-                      <Badge key={s}>{s}</Badge>
-                    ))}
-                  </div>
-                </div>
-              </Link>
-            </li>
-          ))}
-        </ul>
+        {cards.length === 0 ? (
+          <p className="text-muted">Case studies are on the way. Check back soon.</p>
+        ) : (
+          <PortfolioGrid
+            items={cards}
+            labels={{
+              filterAria: 'Filter case studies',
+              filters: {
+                All: 'All',
+                Web: 'Web',
+                Mobile: 'Mobile',
+                Design: 'Design',
+                Marketing: 'Marketing',
+              },
+              empty: 'No case studies match this filter yet.',
+              showing: (n) => (n === 1 ? '1 project' : `${n} projects`),
+            }}
+          />
+        )}
       </Section>
 
       <CtaBanner />

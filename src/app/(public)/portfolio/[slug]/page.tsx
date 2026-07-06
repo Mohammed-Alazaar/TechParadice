@@ -2,13 +2,19 @@ import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import { ArrowRight } from 'lucide-react'
+import { ArrowLeft, ArrowRight } from 'lucide-react'
 import { PageHero } from '@/components/sections/PageHero'
 import { Section } from '@/components/ui/Section'
 import { Badge } from '@/components/ui/Badge'
 import { CtaBanner } from '@/components/sections/CtaBanner'
-import { getCaseStudy, getAllCaseStudySlugs, getPortfolio } from '@/lib/portfolio'
-import { buildMetadata } from '@/lib/seo'
+import {
+  getCaseStudy,
+  getAllCaseStudySlugs,
+  getPortfolio,
+  getArCaseStudy,
+} from '@/lib/portfolio'
+import { buildMetadata, breadcrumbJsonLd, firstSentence, truncateAtWord } from '@/lib/seo'
+import { SITE_URL, BRAND } from '@/lib/utils'
 
 export const dynamicParams = true
 
@@ -20,12 +26,21 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: Params): Promise<Metadata> {
-  const study = await getCaseStudy(params.slug)
+  const [study, arStudy] = await Promise.all([
+    getCaseStudy(params.slug),
+    getArCaseStudy(params.slug),
+  ])
   if (!study) return {}
   return buildMetadata({
-    title: `${study.client} — ${study.title}`,
-    description: study.challenge.slice(0, 150),
+    title: `${study.client} Case Study — ${study.title}`,
+    description: truncateAtWord(
+      `${study.outcome} for ${study.client} (${study.industry}). ${firstSentence(study.challenge)}`,
+    ),
     path: `/portfolio/${study.slug}`,
+    image: study.cover,
+    type: 'article',
+    arAvailable: Boolean(arStudy),
+    alternatePath: arStudy ? `/ar/portfolio/${study.slug}` : undefined,
   })
 }
 
@@ -39,12 +54,47 @@ export default async function CaseStudyPage({ params }: Params) {
   const index = portfolio.findIndex((p) => p.slug === study.slug)
   const next = portfolio[(index + 1) % portfolio.length] ?? portfolio[0]
 
+  const jsonLd = [
+    breadcrumbJsonLd([
+      { name: 'Home', path: '/' },
+      { name: 'Portfolio', path: '/portfolio' },
+      { name: study.client, path: `/portfolio/${study.slug}` },
+    ]),
+    {
+      '@context': 'https://schema.org',
+      '@type': 'Article',
+      headline: `${study.client} — ${study.title}`,
+      description: truncateAtWord(
+        `${study.outcome}. ${firstSentence(study.challenge)}`,
+      ),
+      url: `${SITE_URL}/portfolio/${study.slug}`,
+      mainEntityOfPage: {
+        '@type': 'WebPage',
+        '@id': `${SITE_URL}/portfolio/${study.slug}`,
+      },
+      author: { '@type': 'Organization', name: BRAND.name, url: SITE_URL },
+      publisher: {
+        '@type': 'Organization',
+        name: BRAND.name,
+        logo: { '@type': 'ImageObject', url: `${SITE_URL}/og-image.png` },
+      },
+      about: study.services.map((s) => ({ '@type': 'Thing', name: s })),
+      keywords: [study.industry, ...study.services].join(', '),
+      ...(study.cover ? { image: study.cover } : {}),
+      ...(study.year ? { datePublished: `${study.year}-01-01` } : {}),
+    },
+  ]
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <PageHero
-        eyebrow={study.industry}
+        eyebrow={`${study.industry} · Case study`}
         title={study.title}
-        description={study.challenge.split('.')[0] + '.'}
+        description={firstSentence(study.challenge)}
       >
         <ul className="flex flex-wrap items-center gap-x-5 gap-y-2 text-[14px] text-white/70">
           <li>
@@ -64,13 +114,25 @@ export default async function CaseStudyPage({ params }: Params) {
           <li>
             <span className="text-caption text-muted">Year</span> {study.year}
           </li>
+          <li className="text-teal">/</li>
+          <li>
+            <span className="text-caption text-muted">Outcome</span>{' '}
+            <span className="font-semibold text-teal">{study.outcome}</span>
+          </li>
         </ul>
       </PageHero>
 
       <Section tone="void" className="pt-0">
         <div className="relative aspect-[16/8] overflow-hidden rounded-2xl border border-border-dark bg-gradient-to-br from-teal/20 via-surface to-void">
           {study.cover ? (
-            <Image src={study.cover} alt={study.client} fill className="object-cover" sizes="100vw" priority />
+            <Image
+              src={study.cover}
+              alt={`${study.client} — ${study.title}`}
+              fill
+              className="object-cover"
+              sizes="100vw"
+              priority
+            />
           ) : (
             <div className="absolute inset-0 flex items-center justify-center">
               <span className="font-display text-[120px] font-extrabold tracking-tight text-white/10 sm:text-[180px]">
@@ -141,23 +203,37 @@ export default async function CaseStudyPage({ params }: Params) {
         ) : null}
       </Section>
 
-      {next ? (
-        <Section tone="void">
+      <Section tone="void">
+        <div className="grid gap-4 sm:grid-cols-[auto_1fr] sm:items-stretch">
           <Link
-            href={`/portfolio/${next.slug}`}
-            className="group flex items-center justify-between rounded-2xl border border-border-dark bg-surface p-8 transition-all hover:border-teal/40"
+            href="/portfolio"
+            className="group flex items-center gap-3 rounded-2xl border border-border-dark bg-surface p-8 text-[14px] font-semibold text-white/70 transition-all hover:border-teal/40 hover:text-white"
           >
-            <div>
-              <p className="text-caption uppercase text-muted">Next case study</p>
-              <p className="mt-2 font-display text-h3 font-semibold text-white">{next.title}</p>
-            </div>
-            <ArrowRight
-              size={28}
-              className="text-teal transition-transform group-hover:translate-x-1"
+            <ArrowLeft
+              size={20}
+              className="text-teal transition-transform group-hover:-translate-x-1"
             />
+            All work
           </Link>
-        </Section>
-      ) : null}
+          {next && next.slug !== study.slug ? (
+            <Link
+              href={`/portfolio/${next.slug}`}
+              className="group flex items-center justify-between rounded-2xl border border-border-dark bg-surface p-8 transition-all hover:border-teal/40"
+            >
+              <div>
+                <p className="text-caption uppercase text-muted">
+                  Next case study · {next.client} · {next.outcome}
+                </p>
+                <p className="mt-2 font-display text-h3 font-semibold text-white">{next.title}</p>
+              </div>
+              <ArrowRight
+                size={28}
+                className="shrink-0 text-teal transition-transform group-hover:translate-x-1"
+              />
+            </Link>
+          ) : null}
+        </div>
+      </Section>
 
       <CtaBanner />
     </>
