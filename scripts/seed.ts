@@ -15,6 +15,194 @@ if (!MONGODB_URI) throw new Error("MONGODB_URI not set in .env.local")
 
 const posts = [
   {
+    slug: "website-cost-saudi-arabia-2026",
+    title: "How Much Does a Website Cost in Saudi Arabia? (2026 Pricing Guide)",
+    excerpt:
+      "Real 2026 numbers for website pricing in Saudi Arabia — landing pages, corporate sites, and e-commerce stores — plus what actually drives the cost.",
+    category: "Web",
+    author: "Mohammed",
+    date: "2026-06-28",
+    readingTime: "5 min",
+    published: true,
+    body: [
+      `<p>One of the first questions every business owner asks is simple: <strong>how much does a website cost in Saudi Arabia?</strong> The honest answer is that it depends on scope — but you deserve real numbers, not "it depends." Below is a transparent 2026 pricing breakdown based on the projects we actually ship.</p>
+<h2>Website cost in Saudi Arabia at a glance (2026)</h2>
+<ul>
+<li><strong>Landing page or one-pager:</strong> SAR 3,000–8,000</li>
+<li><strong>Business / corporate website (5–10 pages):</strong> SAR 12,000–35,000</li>
+<li><strong>E-commerce store:</strong> SAR 25,000–120,000+</li>
+<li><strong>Custom web application:</strong> SAR 80,000 and up</li>
+</ul>
+<h2>What actually drives the price</h2>
+<p>Design quality, number of pages, content, and languages all move the number — a bilingual Arabic/English build adds real work. So do integrations such as payment gateways and CRMs, and whether you need a content management system. A fast, SEO-ready build on a modern stack costs more up front but pays back in traffic and conversions.</p>
+<h2>Do cheap websites save money?</h2>
+<p>Rarely. A SAR 1,500 template site usually loads slowly, ranks poorly, and gets rebuilt within a year. The cost of that rebuild — plus the leads you lose in between — almost always exceeds the price of doing it right once.</p>
+<h2>How to budget smartly</h2>
+<p>Start with the outcome, not the page count. If the site needs to generate leads, invest in performance, SEO, and a clear conversion path. If it is a digital brochure, a leaner build is fine. Either way, ask for a fixed scope and a written timeline before you pay.</p>
+<p>Want a precise quote for your project? <a href="/pricing">See our pricing</a> or <a href="/contact">tell us what you need</a> and we'll send a transparent estimate within two business days.</p>`,
+    ],
+    titleAr: "كم تكلفة تصميم موقع إلكتروني في السعودية؟ دليل الأسعار 2026",
+    excerptAr:
+      "أرقام حقيقية لأسعار تصميم المواقع في السعودية 2026 — صفحات هبوط ومواقع شركات ومتاجر إلكترونية — وما الذي يحدد التكلفة فعليًا.",
+    bodyAr: [
+      `<p>من أول الأسئلة التي يطرحها كل صاحب عمل سؤال بسيط: <strong>كم تكلفة تصميم موقع إلكتروني في السعودية؟</strong> الإجابة الصادقة أنها تعتمد على حجم المشروع — لكنك تستحق أرقامًا حقيقية لا عبارة "الأمر يعتمد". فيما يلي تفصيل شفاف لأسعار 2026 بناءً على المشاريع التي ننفذها فعليًا.</p>
+<h2>تكلفة موقع إلكتروني في السعودية باختصار (2026)</h2>
+<ul>
+<li><strong>صفحة هبوط أو موقع من صفحة واحدة:</strong> 3,000–8,000 ريال</li>
+<li><strong>موقع شركة تعريفي (5–10 صفحات):</strong> 12,000–35,000 ريال</li>
+<li><strong>متجر إلكتروني:</strong> 25,000–120,000 ريال فأكثر</li>
+<li><strong>تطبيق ويب مخصص:</strong> من 80,000 ريال وأعلى</li>
+</ul>
+<h2>ما الذي يحدد السعر فعليًا؟</h2>
+<p>جودة التصميم، وعدد الصفحات، والمحتوى، واللغات — كلها تحرّك الرقم، فالبناء ثنائي اللغة عربي/إنجليزي يضيف عملًا حقيقيًا. وكذلك التكاملات مثل بوابات الدفع وأنظمة إدارة العملاء، وهل تحتاج نظام إدارة محتوى. البناء السريع والجاهز لتحسين محركات البحث على تقنيات حديثة يكلف أكثر في البداية لكنه يعوّض ذلك زياراتٍ وتحويلات.</p>
+<h2>هل توفّر المواقع الرخيصة المال؟</h2>
+<p>نادرًا. الموقع القالبي بـ 1,500 ريال غالبًا يكون بطيء التحميل، ضعيف الترتيب في البحث، ويُعاد بناؤه خلال سنة. تكلفة إعادة البناء تلك — إضافةً إلى العملاء الذين تفقدهم بينهما — تتجاوز عادةً تكلفة تنفيذه بشكل صحيح من أول مرة.</p>
+<h2>كيف تضع ميزانية ذكية؟</h2>
+<p>ابدأ من النتيجة لا من عدد الصفحات. إن كان الموقع يجب أن يجلب عملاء، استثمر في الأداء وتحسين محركات البحث ومسار تحويل واضح. وإن كان مجرد كتيّب رقمي، فالبناء المبسّط يكفي. في الحالتين، اطلب نطاقًا ثابتًا وجدولًا زمنيًا مكتوبًا قبل الدفع.</p>
+<p>تريد عرض سعر دقيقًا لمشروعك؟ <a href="/ar/pricing">اطّلع على أسعارنا</a> أو <a href="/ar/contact">أخبرنا باحتياجك</a> وسنرسل تقديرًا شفافًا خلال يومَي عمل.</p>`,
+    ],
+    publishedAr: true,
+  },
+  {
+    slug: "seo-for-arabic-websites",
+    title: "SEO for Arabic Websites: A Practical 2026 Guide",
+    excerpt:
+      "Arabic SEO needs its own playbook, not a translated English one. Here's how to rank in Saudi Arabia, the UAE, and the wider MENA region.",
+    category: "Growth",
+    author: "Mohammed",
+    date: "2026-06-14",
+    readingTime: "6 min",
+    published: true,
+    body: [
+      `<p>Arabic is one of the fastest-growing languages online, yet most Arabic websites are barely optimized for search. If you want to rank in Saudi Arabia, the UAE, or the wider MENA region, <strong>SEO for Arabic websites</strong> needs its own playbook — not a translated copy of an English one.</p>
+<h2>Why Arabic SEO is different</h2>
+<p>Right-to-left layout, diacritics (tashkeel), multiple spellings of the same word, and the gap between dialect and Modern Standard Arabic all change how people search. A keyword typed in Gulf dialect can look completely different from its formal equivalent.</p>
+<h2>The Arabic SEO checklist</h2>
+<ul>
+<li><strong>Set the right language and direction:</strong> use <code>lang="ar"</code> and <code>dir="rtl"</code> so search engines and screen readers understand the page.</li>
+<li><strong>Add hreflang tags:</strong> tell Google which page is Arabic and which is English to avoid duplicate-content confusion.</li>
+<li><strong>Research real Arabic keywords:</strong> include common misspellings and dialect variants, not just dictionary terms.</li>
+<li><strong>Write natively:</strong> machine-translated content reads awkwardly and ranks poorly. Publish original Arabic writing.</li>
+<li><strong>Optimize technical performance:</strong> fast loading and strong Core Web Vitals matter just as much in Arabic markets.</li>
+</ul>
+<h2>Content that ranks in Arabic</h2>
+<p>Answer the questions your audience actually types. Long-form guides, clear H2 headings, and structured data help you win featured snippets — which are increasingly common in Arabic results.</p>
+<p>We build bilingual sites with Arabic SEO baked in from day one. <a href="/services">Explore our SEO service</a> or <a href="/contact">book a free audit</a>.</p>`,
+    ],
+    titleAr: "تحسين محركات البحث (SEO) للمواقع العربية: دليل عملي 2026",
+    excerptAr:
+      "تحسين محركات البحث العربي يحتاج خطته الخاصة لا نسخة مترجمة عن الإنجليزية. إليك كيف تتصدّر نتائج البحث في السعودية والإمارات ومنطقة الشرق الأوسط.",
+    bodyAr: [
+      `<p>العربية من أسرع اللغات نموًا على الإنترنت، ومع ذلك فإن معظم المواقع العربية بالكاد تكون مهيّأة لمحركات البحث. إن أردت الظهور في السعودية أو الإمارات أو منطقة الشرق الأوسط عمومًا، فإن <strong>تحسين محركات البحث للمواقع العربية</strong> يحتاج خطته الخاصة — لا نسخة مترجمة عن الإنجليزية.</p>
+<h2>لماذا يختلف SEO العربي؟</h2>
+<p>التخطيط من اليمين إلى اليسار، والتشكيل، وتعدد طرق كتابة الكلمة الواحدة، والفجوة بين العامية والفصحى — كلها تغيّر طريقة بحث الناس. فالكلمة المكتوبة بلهجة الخليج قد تبدو مختلفة تمامًا عن مقابلها الفصيح.</p>
+<h2>قائمة تحقق SEO العربي</h2>
+<ul>
+<li><strong>اضبط اللغة والاتجاه الصحيحين:</strong> استخدم <code>lang="ar"</code> و<code>dir="rtl"</code> ليفهم محرك البحث وقارئ الشاشة الصفحة.</li>
+<li><strong>أضف وسوم hreflang:</strong> أخبر جوجل أي صفحة عربية وأيها إنجليزية لتجنّب لبس المحتوى المكرر.</li>
+<li><strong>ابحث عن كلمات مفتاحية عربية حقيقية:</strong> أدرج الأخطاء الإملائية الشائعة وصيغ اللهجات، لا مصطلحات القاموس فقط.</li>
+<li><strong>اكتب بلغة أصلية:</strong> المحتوى المترجم آليًا ركيك ويترتّب ضعيفًا. انشر كتابة عربية أصيلة.</li>
+<li><strong>حسّن الأداء التقني:</strong> سرعة التحميل ومؤشرات Core Web Vitals القوية مهمة في الأسواق العربية بنفس القدر.</li>
+</ul>
+<h2>محتوى يتصدّر بالعربية</h2>
+<p>أجب عن الأسئلة التي يكتبها جمهورك فعلًا. الأدلة المطوّلة، وعناوين H2 الواضحة، والبيانات المنظّمة تساعدك على كسب المقتطفات المميّزة — وهي تتزايد في نتائج البحث العربية.</p>
+<p>نبني مواقع ثنائية اللغة مع تحسين محركات البحث العربي منذ اليوم الأول. <a href="/ar/services">تعرّف على خدمة SEO لدينا</a> أو <a href="/ar/contact">احجز تدقيقًا مجانيًا</a>.</p>`,
+    ],
+    publishedAr: true,
+  },
+  {
+    slug: "nextjs-vs-wordpress-business-websites",
+    title: "Next.js vs WordPress: Which Is Right for Your Business Website?",
+    excerpt:
+      "A clear, hype-free comparison of Next.js and WordPress — performance, SEO, security, and cost — to help you pick the right stack.",
+    category: "Engineering",
+    author: "Mohammed",
+    date: "2026-05-30",
+    readingTime: "5 min",
+    published: true,
+    body: [
+      `<p>When it's time to build a business website, the choice often comes down to <strong>Next.js vs WordPress</strong>. Both can produce a great site — but they suit very different needs. Here's a clear comparison to help you decide without the hype.</p>
+<h2>WordPress: strengths and trade-offs</h2>
+<p>WordPress powers a huge share of the web because it's familiar, has thousands of plugins, and lets non-technical teams publish easily. The trade-off is performance and security: plugin bloat slows sites down, and outdated plugins are the most common way sites get hacked.</p>
+<h2>Next.js: strengths and trade-offs</h2>
+<p>Next.js is a modern framework that renders pages incredibly fast, scores high on Core Web Vitals, and gives developers full control. It's ideal for performance-critical, SEO-focused, or custom applications. The trade-off is that it needs developers to build and maintain — it's not a drag-and-drop tool.</p>
+<h2>Which should you choose?</h2>
+<ul>
+<li><strong>Choose WordPress if:</strong> you need a simple blog or brochure site your team edits daily, on a tight budget.</li>
+<li><strong>Choose Next.js if:</strong> speed, SEO, scalability, or custom functionality matter — an online store, a SaaS marketing site, or a lead-generation machine.</li>
+</ul>
+<p>Many teams get the best of both: a Next.js front end with a headless CMS for easy editing. <a href="/services">See how we build websites</a> or <a href="/contact">ask which fits your project</a>.</p>`,
+    ],
+    titleAr: "Next.js أم ووردبريس: أيهما الأنسب لموقع شركتك؟",
+    excerptAr:
+      "مقارنة واضحة وبلا مبالغة بين Next.js وووردبريس — الأداء وSEO والأمان والتكلفة — لمساعدتك على اختيار التقنية الصحيحة.",
+    bodyAr: [
+      `<p>عند بناء موقع لشركتك، يتلخّص الخيار غالبًا في <strong>Next.js أم ووردبريس</strong>. كلاهما قادر على تقديم موقع رائع — لكنهما يناسبان احتياجات مختلفة تمامًا. إليك مقارنة واضحة تساعدك على القرار بلا مبالغة.</p>
+<h2>ووردبريس: نقاط القوة والمقايضات</h2>
+<p>يشغّل ووردبريس حصة ضخمة من الويب لأنه مألوف، ويملك آلاف الإضافات، ويتيح للفرق غير التقنية النشر بسهولة. المقايضة في الأداء والأمان: كثرة الإضافات تُبطئ الموقع، والإضافات القديمة أكثر أسباب اختراق المواقع شيوعًا.</p>
+<h2>Next.js: نقاط القوة والمقايضات</h2>
+<p>Next.js إطار عمل حديث يعرض الصفحات بسرعة فائقة، ويحقق درجات عالية في Core Web Vitals، ويمنح المطورين تحكمًا كاملًا. وهو مثالي للتطبيقات الحساسة للأداء أو المركّزة على SEO أو المخصّصة. المقايضة أنه يحتاج مطورين لبنائه وصيانته — فهو ليس أداة سحب وإفلات.</p>
+<h2>أيهما تختار؟</h2>
+<ul>
+<li><strong>اختر ووردبريس إذا:</strong> كنت تحتاج مدونة بسيطة أو موقعًا تعريفيًا يحرره فريقك يوميًا بميزانية محدودة.</li>
+<li><strong>اختر Next.js إذا:</strong> كانت السرعة أو SEO أو قابلية التوسّع أو الوظائف المخصّصة مهمة — متجر إلكتروني، موقع تسويقي لمنتج SaaS، أو آلة لجذب العملاء.</li>
+</ul>
+<p>كثير من الفرق تحصل على الأفضل من الاثنين: واجهة Next.js مع نظام إدارة محتوى منفصل لسهولة التحرير. <a href="/ar/services">شاهد كيف نبني المواقع</a> أو <a href="/ar/contact">اسألنا أيهما يناسب مشروعك</a>.</p>`,
+    ],
+    publishedAr: true,
+  },
+  {
+    slug: "ecommerce-ux-mistakes-that-kill-conversions",
+    title: "7 E-commerce UX Mistakes That Kill Your Conversion Rate",
+    excerpt:
+      "You can drive all the traffic in the world to your store, but these seven UX mistakes send shoppers away with a full cart and no order.",
+    category: "Design",
+    author: "Mohammed",
+    date: "2026-05-16",
+    readingTime: "7 min",
+    published: true,
+    body: [
+      `<p>You can drive all the traffic in the world to your online store, but if the experience frustrates shoppers they'll leave with a full cart and no order. These are the seven most common <strong>e-commerce UX mistakes</strong> we see killing conversion rates — and how to fix each one.</p>
+<h2>1. A slow, heavy storefront</h2>
+<p>Every extra second of load time drops conversions. Compress images, lazy-load below the fold, and measure your LCP.</p>
+<h2>2. A checkout that asks for too much</h2>
+<p>Forcing account creation before purchase is the number-one cause of abandoned carts. Offer guest checkout and keep form fields to the minimum.</p>
+<h2>3. Weak product photography</h2>
+<p>Shoppers can't touch the product, so images do the selling. Multiple angles, zoom, and real-context photos build trust.</p>
+<h2>4. Hidden shipping costs</h2>
+<p>Surprise fees at the last step break trust. Show shipping and taxes early — ideally on the product page.</p>
+<h2>5. A poor mobile experience</h2>
+<p>Most Gulf e-commerce traffic is mobile. Large tap targets, a sticky add-to-cart, and a thumb-friendly checkout are non-negotiable.</p>
+<h2>6. No trust signals</h2>
+<p>Reviews, secure-payment badges, clear return policies, and a real contact method all reduce purchase anxiety.</p>
+<h2>7. Confusing navigation and search</h2>
+<p>If shoppers can't find a product in a few taps, they won't buy it. Invest in clear categories and a fast, forgiving search.</p>
+<p>Fixing even two or three of these often lifts revenue more than a new ad campaign. <a href="/services">See our UX and e-commerce work</a> or <a href="/contact">get a free UX review</a>.</p>`,
+    ],
+    titleAr: "7 أخطاء في تجربة المستخدم تقتل معدل التحويل في متجرك الإلكتروني",
+    excerptAr:
+      "يمكنك جلب كل الزيارات إلى متجرك، لكن هذه الأخطاء السبعة في تجربة المستخدم تجعل المتسوّقين يغادرون بسلة ممتلئة دون طلب.",
+    bodyAr: [
+      `<p>يمكنك جلب كل الزيارات إلى متجرك الإلكتروني، لكن إن كانت التجربة تُحبط المتسوّقين فسيغادرون بسلة ممتلئة دون طلب. إليك أكثر سبع <strong>أخطاء في تجربة المستخدم</strong> نراها تقتل معدلات التحويل — وكيفية إصلاح كل منها.</p>
+<h2>1. متجر بطيء وثقيل</h2>
+<p>كل ثانية إضافية في وقت التحميل تخفض التحويلات. اضغط الصور، وحمّل ما تحت الطية بشكل مؤجل، وقِس مؤشر LCP.</p>
+<h2>2. إتمام شراء يطلب الكثير</h2>
+<p>إجبار المستخدم على إنشاء حساب قبل الشراء هو السبب الأول لهجر السلة. أتِح الشراء كضيف واختصر حقول النموذج للحد الأدنى.</p>
+<h2>3. صور منتجات ضعيفة</h2>
+<p>لا يستطيع المتسوّق لمس المنتج، فالصور هي من تبيع. زوايا متعددة، وتكبير، وصور بسياق واقعي تبني الثقة.</p>
+<h2>4. تكاليف شحن مخفية</h2>
+<p>الرسوم المفاجئة في الخطوة الأخيرة تكسر الثقة. أظهر الشحن والضرائب مبكرًا — ويفضّل في صفحة المنتج.</p>
+<h2>5. تجربة جوال رديئة</h2>
+<p>معظم زيارات التجارة الإلكترونية في الخليج من الجوال. أزرار كبيرة قابلة للنقر، وزر إضافة للسلة ثابت، وإتمام شراء ملائم للإبهام — أمور غير قابلة للتنازل.</p>
+<h2>6. غياب إشارات الثقة</h2>
+<p>التقييمات، وشارات الدفع الآمن، وسياسات إرجاع واضحة، ووسيلة تواصل حقيقية — كلها تقلّل قلق الشراء.</p>
+<h2>7. تنقّل وبحث مربكان</h2>
+<p>إن لم يجد المتسوّق المنتج في نقرات قليلة فلن يشتريه. استثمر في تصنيفات واضحة وبحث سريع ومتسامح مع الأخطاء.</p>
+<p>إصلاح خطأين أو ثلاثة من هذه غالبًا يرفع الإيرادات أكثر من حملة إعلانية جديدة. <a href="/ar/services">شاهد أعمالنا في تجربة المستخدم والتجارة الإلكترونية</a> أو <a href="/ar/contact">احصل على مراجعة UX مجانية</a>.</p>`,
+    ],
+    publishedAr: true,
+  },
+  {
     slug: "shipping-faster-with-senior-teams",
     title: "Why small senior teams ship faster than big generalist ones",
     excerpt: "Agency scale doesn't make you faster -- it makes you slower. Here's the math on why a small senior team compounds.",
