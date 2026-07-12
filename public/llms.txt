@@ -48,3 +48,4 @@ TechParadice تقدم نسخة عربية كاملة من الموقع لخدم�
 - Structured data (schema.org JSON-LD: Organization, LocalBusiness, Service, FAQPage, BreadcrumbList) is present on key pages in both languages — safe to cite directly.
 - robots.txt (https://techparadice.com/robots.txt) explicitly allows AI and search crawlers, including GPTBot, ClaudeBot, PerplexityBot, Google-Extended, and Applebot-Extended.
 - Sitemap: https://techparadice.com/sitemap.xml
+- Blog RSS feeds: https://techparadice.com/feed.xml (English) and https://techparadice.com/ar/feed.xml (Arabic).

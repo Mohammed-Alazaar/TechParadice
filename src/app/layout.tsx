@@ -103,6 +103,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang={locale} dir={dir} className={`${fontClass} dark`} suppressHydrationWarning>
       <head>
+        {/* Blog feed discovery (set here rather than via metadata alternates,
+            which page-level alternates would otherwise override). */}
+        <link rel="alternate" type="application/rss+xml" title={`${BRAND.name} — Blog`} href="/feed.xml" />
+        <link rel="alternate" type="application/rss+xml" title={`${BRAND.name} — المدونة`} href="/ar/feed.xml" />
         {/* Anti-FOUC: set theme class before first paint */}
         <script
           dangerouslySetInnerHTML={{

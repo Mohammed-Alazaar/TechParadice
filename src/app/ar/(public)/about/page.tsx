@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import { PageHero } from '@/components/sections/PageHero'
 import { Section, SectionHeading } from '@/components/ui/Section'
 import { CtaBanner } from '@/components/sections/CtaBanner'
-import { BRAND } from '@/lib/utils'
+import { BRAND, SITE_URL, SOCIAL_LINKS } from '@/lib/utils'
 import { buildMetadata } from '@/lib/seo'
 
 export const metadata: Metadata = buildMetadata({
@@ -32,8 +32,43 @@ const disciplines = [
 ]
 
 export default function ArAboutPage() {
+  const jsonLd = [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'AboutPage',
+      name: `من نحن — ${BRAND.name}`,
+      url: `${SITE_URL}/ar/about`,
+      inLanguage: 'ar',
+      mainEntity: {
+        '@type': 'Organization',
+        name: BRAND.name,
+        url: `${SITE_URL}/ar`,
+        sameAs: SOCIAL_LINKS,
+        founder: {
+          '@type': 'Person',
+          name: BRAND.owner,
+          jobTitle: 'Founder',
+          worksFor: { '@type': 'Organization', name: BRAND.name, url: SITE_URL },
+          homeLocation: { '@type': 'Place', name: BRAND.location },
+        },
+      },
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'الرئيسية', item: `${SITE_URL}/ar` },
+        { '@type': 'ListItem', position: 2, name: 'من نحن', item: `${SITE_URL}/ar/about` },
+      ],
+    },
+  ]
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <PageHero
         eyebrow="من نحن"
         title={

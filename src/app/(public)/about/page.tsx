@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import { PageHero } from '@/components/sections/PageHero'
 import { Section, SectionHeading } from '@/components/ui/Section'
 import { CtaBanner } from '@/components/sections/CtaBanner'
-import { BRAND } from '@/lib/utils'
+import { BRAND, SITE_URL, SOCIAL_LINKS } from '@/lib/utils'
 import { buildMetadata } from '@/lib/seo'
 
 export const metadata: Metadata = buildMetadata({
@@ -30,8 +30,42 @@ const disciplines = [
 ]
 
 export default function AboutPage() {
+  const jsonLd = [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'AboutPage',
+      name: `About ${BRAND.name}`,
+      url: `${SITE_URL}/about`,
+      mainEntity: {
+        '@type': 'Organization',
+        name: BRAND.name,
+        url: SITE_URL,
+        sameAs: SOCIAL_LINKS,
+        founder: {
+          '@type': 'Person',
+          name: BRAND.owner,
+          jobTitle: 'Founder',
+          worksFor: { '@type': 'Organization', name: BRAND.name, url: SITE_URL },
+          homeLocation: { '@type': 'Place', name: BRAND.location },
+        },
+      },
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE_URL}/` },
+        { '@type': 'ListItem', position: 2, name: 'About', item: `${SITE_URL}/about` },
+      ],
+    },
+  ]
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <PageHero
         eyebrow="About"
         title={
