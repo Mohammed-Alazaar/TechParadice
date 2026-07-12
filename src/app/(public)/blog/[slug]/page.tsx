@@ -36,23 +36,34 @@ export default async function BlogPostPage({ params }: Params) {
 
   const related = all.filter((p) => p.slug !== post.slug).slice(0, 2)
 
-  const jsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'BlogPosting',
-    headline: post.title,
-    description: post.excerpt,
-    author: { '@type': 'Person', name: post.author },
-    datePublished: post.date,
-    dateModified: post.date,
-    publisher: {
-      '@type': 'Organization',
-      name: 'TechParadice',
-      logo: { '@type': 'ImageObject', url: 'https://techparadice.com/og-image.png' },
+  const jsonLd = [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'BlogPosting',
+      headline: post.title,
+      description: post.excerpt,
+      author: { '@type': 'Person', name: post.author },
+      datePublished: post.date,
+      dateModified: post.date,
+      publisher: {
+        '@type': 'Organization',
+        name: 'TechParadice',
+        logo: { '@type': 'ImageObject', url: 'https://techparadice.com/og-image.png' },
+      },
+      mainEntityOfPage: { '@type': 'WebPage', '@id': `https://techparadice.com/blog/${post.slug}` },
+      ...(post.cover ? { image: post.cover } : {}),
+      articleSection: post.category,
     },
-    mainEntityOfPage: { '@type': 'WebPage', '@id': `https://techparadice.com/blog/${post.slug}` },
-    ...(post.cover ? { image: post.cover } : {}),
-    articleSection: post.category,
-  }
+    {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://techparadice.com/' },
+        { '@type': 'ListItem', position: 2, name: 'Blog', item: 'https://techparadice.com/blog' },
+        { '@type': 'ListItem', position: 3, name: post.title, item: `https://techparadice.com/blog/${post.slug}` },
+      ],
+    },
+  ]
 
   return (
     <>

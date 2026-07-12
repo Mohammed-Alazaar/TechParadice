@@ -51,7 +51,12 @@ export const metadata: Metadata = {
   creator: BRAND.name,
   publisher: BRAND.name,
   icons: {
-    icon: [{ url: '/favicon.svg', type: 'image/svg+xml' }],
+    icon: [
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+      { url: '/icon-192.png', type: 'image/png', sizes: '192x192' },
+      { url: '/icon-512.png', type: 'image/png', sizes: '512x512' },
+    ],
+    apple: [{ url: '/apple-touch-icon.png', sizes: '180x180' }],
   },
   openGraph: {
     type: 'website',
@@ -135,11 +140,23 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               name: BRAND.name,
               url: SITE_URL,
               logo: `${SITE_URL}/og-image.png`,
+              image: `${SITE_URL}/og-image.png`,
               email: BRAND.email,
+              description:
+                'Full-stack digital agency delivering websites, mobile apps, UI/UX design, SEO, social media, content, and paid advertising with one senior team.',
               address: {
                 '@type': 'PostalAddress',
                 addressLocality: 'Ankara',
                 addressCountry: 'TR',
+              },
+              areaServed: { '@type': 'AdministrativeArea', name: 'Worldwide' },
+              knowsLanguage: ['en', 'ar'],
+              contactPoint: {
+                '@type': 'ContactPoint',
+                email: BRAND.email,
+                contactType: 'customer service',
+                areaServed: 'Worldwide',
+                availableLanguage: ['English', 'Arabic'],
               },
               founder: { '@type': 'Person', name: BRAND.owner },
             }),

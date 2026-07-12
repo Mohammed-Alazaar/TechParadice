@@ -26,12 +26,22 @@ export default function HomePage() {
       name: 'TechParadice',
       url: 'https://techparadice.com',
       logo: 'https://techparadice.com/og-image.png',
+      image: 'https://techparadice.com/og-image.png',
       email: 'hello@techparadice.com',
       address: { '@type': 'PostalAddress', addressLocality: 'Ankara', addressCountry: 'TR' },
       sameAs: [],
       description:
         'Full-stack digital agency offering websites, mobile apps, UI/UX design, SEO, social media, content creation, and paid advertising.',
       serviceArea: { '@type': 'AdministrativeArea', name: 'Worldwide' },
+      areaServed: { '@type': 'AdministrativeArea', name: 'Worldwide' },
+      knowsLanguage: ['en', 'ar'],
+      contactPoint: {
+        '@type': 'ContactPoint',
+        email: 'hello@techparadice.com',
+        contactType: 'customer service',
+        areaServed: 'Worldwide',
+        availableLanguage: ['English', 'Arabic'],
+      },
     },
     {
       '@context': 'https://schema.org',

@@ -30,12 +30,22 @@ export default async function ArHomePage() {
       name: BRAND.name,
       url: `${SITE_URL}/ar`,
       logo: `${SITE_URL}/og-image.png`,
+      image: `${SITE_URL}/og-image.png`,
       email: BRAND.email,
       address: { '@type': 'PostalAddress', addressLocality: 'Ankara', addressCountry: 'TR' },
       sameAs: [],
       description:
         'وكالة رقمية متكاملة تقدّم مواقع، تطبيقات موبايل، تصميم UI/UX، SEO، سوشيال ميديا، إنتاج محتوى، وإعلانات مدفوعة.',
       serviceArea: { '@type': 'AdministrativeArea', name: 'Worldwide' },
+      areaServed: { '@type': 'AdministrativeArea', name: 'Worldwide' },
+      knowsLanguage: ['ar', 'en'],
+      contactPoint: {
+        '@type': 'ContactPoint',
+        email: BRAND.email,
+        contactType: 'customer service',
+        areaServed: 'Worldwide',
+        availableLanguage: ['Arabic', 'English'],
+      },
       inLanguage: 'ar',
     },
     {

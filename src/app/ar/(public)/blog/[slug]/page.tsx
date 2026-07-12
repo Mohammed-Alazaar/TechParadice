@@ -45,24 +45,35 @@ export default async function ArBlogPostPage({ params }: Params) {
 
   const related = all.filter((p) => p.slug !== post.slug).slice(0, 2)
 
-  const jsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'BlogPosting',
-    headline: post.titleAr,
-    description: post.excerptAr,
-    inLanguage: 'ar',
-    author: { '@type': 'Person', name: post.author },
-    datePublished: post.date,
-    dateModified: post.date,
-    publisher: {
-      '@type': 'Organization',
-      name: BRAND.name,
-      logo: { '@type': 'ImageObject', url: `${SITE_URL}/og-image.png` },
+  const jsonLd = [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'BlogPosting',
+      headline: post.titleAr,
+      description: post.excerptAr,
+      inLanguage: 'ar',
+      author: { '@type': 'Person', name: post.author },
+      datePublished: post.date,
+      dateModified: post.date,
+      publisher: {
+        '@type': 'Organization',
+        name: BRAND.name,
+        logo: { '@type': 'ImageObject', url: `${SITE_URL}/og-image.png` },
+      },
+      mainEntityOfPage: { '@type': 'WebPage', '@id': `${SITE_URL}/ar/blog/${post.slug}` },
+      ...(post.cover ? { image: post.cover } : {}),
+      articleSection: post.category,
     },
-    mainEntityOfPage: { '@type': 'WebPage', '@id': `${SITE_URL}/ar/blog/${post.slug}` },
-    ...(post.cover ? { image: post.cover } : {}),
-    articleSection: post.category,
-  }
+    {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'الرئيسية', item: `${SITE_URL}/ar` },
+        { '@type': 'ListItem', position: 2, name: 'المدونة', item: `${SITE_URL}/ar/blog` },
+        { '@type': 'ListItem', position: 3, name: post.titleAr, item: `${SITE_URL}/ar/blog/${post.slug}` },
+      ],
+    },
+  ]
 
   return (
     <>
