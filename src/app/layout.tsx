@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from 'next'
 import { Figtree, Plus_Jakarta_Sans, Noto_Sans_Arabic } from 'next/font/google'
 import { headers } from 'next/headers'
 import Script from 'next/script'
-import { BRAND, SITE_URL } from '@/lib/utils'
+import { BRAND, SITE_URL, SOCIAL_LINKS } from '@/lib/utils'
 import { LocaleSync } from '@/components/layout/LocaleSync'
 import { ThemeProvider } from '@/components/layout/ThemeProvider'
 import './globals.css'
@@ -149,6 +149,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 addressLocality: 'Ankara',
                 addressCountry: 'TR',
               },
+              sameAs: SOCIAL_LINKS,
               areaServed: { '@type': 'AdministrativeArea', name: 'Worldwide' },
               knowsLanguage: ['en', 'ar'],
               contactPoint: {

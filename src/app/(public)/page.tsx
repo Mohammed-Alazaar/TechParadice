@@ -10,6 +10,7 @@ import { ProcessSnapshot } from '@/components/sections/ProcessSnapshot'
 import { Testimonial } from '@/components/sections/Testimonial'
 import { CtaBanner } from '@/components/sections/CtaBanner'
 import { buildMetadata } from '@/lib/seo'
+import { SOCIAL_LINKS } from '@/lib/utils'
 
 export const metadata: Metadata = buildMetadata({
   title: 'TechParadice — Your digital world, built.',
@@ -29,7 +30,7 @@ export default function HomePage() {
       image: 'https://techparadice.com/og-image.png',
       email: 'hello@techparadice.com',
       address: { '@type': 'PostalAddress', addressLocality: 'Ankara', addressCountry: 'TR' },
-      sameAs: [],
+      sameAs: SOCIAL_LINKS,
       description:
         'Full-stack digital agency offering websites, mobile apps, UI/UX design, SEO, social media, content creation, and paid advertising.',
       serviceArea: { '@type': 'AdministrativeArea', name: 'Worldwide' },

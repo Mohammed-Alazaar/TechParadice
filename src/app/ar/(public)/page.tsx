@@ -7,7 +7,7 @@ import { Section, SectionHeading } from '@/components/ui/Section'
 import { CtaBanner } from '@/components/sections/CtaBanner'
 import { getServices } from '@/lib/services'
 import { getArPortfolio } from '@/lib/portfolio'
-import { BRAND, SITE_URL } from '@/lib/utils'
+import { BRAND, SITE_URL, SOCIAL_LINKS } from '@/lib/utils'
 import { buildMetadata } from '@/lib/seo'
 
 export const revalidate = 300
@@ -33,7 +33,7 @@ export default async function ArHomePage() {
       image: `${SITE_URL}/og-image.png`,
       email: BRAND.email,
       address: { '@type': 'PostalAddress', addressLocality: 'Ankara', addressCountry: 'TR' },
-      sameAs: [],
+      sameAs: SOCIAL_LINKS,
       description:
         'وكالة رقمية متكاملة تقدّم مواقع، تطبيقات موبايل، تصميم UI/UX، SEO، سوشيال ميديا، إنتاج محتوى، وإعلانات مدفوعة.',
       serviceArea: { '@type': 'AdministrativeArea', name: 'Worldwide' },

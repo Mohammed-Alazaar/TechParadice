@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { Github, Linkedin, Mail, Twitter } from 'lucide-react'
+import { Facebook, Instagram, Linkedin, Mail, Twitter } from 'lucide-react'
 import { Wordmark } from '@/components/brand/Wordmark'
 import { BRAND } from '@/lib/utils'
 import { getDictionary } from '@/lib/i18n'
@@ -37,14 +37,17 @@ export async function Footer({ locale = 'en' }: FooterProps) {
               {locale === 'ar' ? 'موقع. تطبيق. سيو. سوشيال. جاهز.' : BRAND.taglineShort}
             </p>
             <div className="mt-6 flex items-center gap-3">
-              <Link href="https://twitter.com/" aria-label="Twitter / X" className="text-void/60 transition-colors hover:text-teal dark:text-white/60">
-                <Twitter size={18} />
-              </Link>
-              <Link href="https://linkedin.com/" aria-label="LinkedIn" className="text-void/60 transition-colors hover:text-teal dark:text-white/60">
+              <Link href={BRAND.social.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="text-void/60 transition-colors hover:text-teal dark:text-white/60">
                 <Linkedin size={18} />
               </Link>
-              <Link href="https://github.com/" aria-label="GitHub" className="text-void/60 transition-colors hover:text-teal dark:text-white/60">
-                <Github size={18} />
+              <Link href={BRAND.social.x} target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)" className="text-void/60 transition-colors hover:text-teal dark:text-white/60">
+                <Twitter size={18} />
+              </Link>
+              <Link href={BRAND.social.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="text-void/60 transition-colors hover:text-teal dark:text-white/60">
+                <Instagram size={18} />
+              </Link>
+              <Link href={BRAND.social.facebook} target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="text-void/60 transition-colors hover:text-teal dark:text-white/60">
+                <Facebook size={18} />
               </Link>
               <Link href={`mailto:${BRAND.email}`} aria-label="Email" className="text-void/60 transition-colors hover:text-teal dark:text-white/60">
                 <Mail size={18} />

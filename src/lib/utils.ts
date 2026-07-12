@@ -15,4 +15,13 @@ export const BRAND = {
   owner: 'Mohammed',
   location: 'Ankara, TR',
   email: 'hello@techparadice.com',
+  social: {
+    linkedin: 'https://www.linkedin.com/company/techparadice/',
+    instagram: 'https://www.instagram.com/tech.paradice/',
+    x: 'https://x.com/techparadices',
+    facebook: 'https://www.facebook.com/profile.php?id=61591609504987',
+  },
 }
+
+/** Public profile URLs used for schema.org sameAs and footer links. */
+export const SOCIAL_LINKS = Object.values(BRAND.social)
