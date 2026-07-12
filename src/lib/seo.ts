@@ -9,6 +9,13 @@ type SeoInput = {
   locale?: 'en' | 'ar'
   /** pass the corresponding path in the other language to get hreflang */
   alternatePath?: string
+  /**
+   * Whether a counterpart exists in the other language. Defaults to true.
+   * Set false for pages that only exist in one language (e.g. a blog post
+   * published in English but not Arabic) so we never emit an hreflang tag
+   * pointing at a URL that 404s.
+   */
+  hasAlternate?: boolean
 }
 
 export function buildMetadata({
@@ -18,6 +25,7 @@ export function buildMetadata({
   image = '/og-image.png',
   locale = 'en',
   alternatePath,
+  hasAlternate = true,
 }: SeoInput): Metadata {
   const url = `${SITE_URL}${path}`
   const fullTitle = title.includes(BRAND.name) ? title : `${title} | ${BRAND.name}`
@@ -29,11 +37,13 @@ export function buildMetadata({
 
   // English is the site's default language, so x-default should resolve to
   // the English version of this specific page (not always the homepage).
-  const languages: Record<string, string> = {
-    'x-default': enUrl,
-    en: enUrl,
-    ar: arUrl,
-  }
+  // When the page has no counterpart in the other language, only advertise
+  // the language that actually exists (x-default points at the page itself).
+  const languages: Record<string, string> = hasAlternate
+    ? { 'x-default': enUrl, en: enUrl, ar: arUrl }
+    : isAr
+      ? { 'x-default': arUrl, ar: arUrl }
+      : { 'x-default': enUrl, en: enUrl }
 
   return {
     title: fullTitle,

@@ -8,6 +8,7 @@ import { Badge } from '@/components/ui/Badge'
 import { CtaBanner } from '@/components/sections/CtaBanner'
 import { getArPost, getArPosts, getAllArPostSlugs } from '@/lib/blog'
 import { buildMetadata } from '@/lib/seo'
+import { SITE_URL, BRAND } from '@/lib/utils'
 
 export const dynamicParams = true
 
@@ -27,6 +28,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
     path: `/ar/blog/${post.slug}`,
     alternatePath: `/blog/${post.slug}`,
     locale: 'ar',
+    hasAlternate: Boolean(post.published),
   })
 }
 
@@ -43,8 +45,31 @@ export default async function ArBlogPostPage({ params }: Params) {
 
   const related = all.filter((p) => p.slug !== post.slug).slice(0, 2)
 
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: post.titleAr,
+    description: post.excerptAr,
+    inLanguage: 'ar',
+    author: { '@type': 'Person', name: post.author },
+    datePublished: post.date,
+    dateModified: post.date,
+    publisher: {
+      '@type': 'Organization',
+      name: BRAND.name,
+      logo: { '@type': 'ImageObject', url: `${SITE_URL}/og-image.png` },
+    },
+    mainEntityOfPage: { '@type': 'WebPage', '@id': `${SITE_URL}/ar/blog/${post.slug}` },
+    ...(post.cover ? { image: post.cover } : {}),
+    articleSection: post.category,
+  }
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <article className="bg-void pt-32 sm:pt-40 lg:pt-48">
         <div className="container-content max-w-reading">
           <Link

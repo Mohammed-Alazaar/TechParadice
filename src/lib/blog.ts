@@ -14,6 +14,8 @@ export type BlogPost = {
   body: string[]
   cover?: string
   published: boolean
+  /** same document also carries the Arabic publish flag */
+  publishedAr?: boolean
 }
 
 export type BlogPostAr = {
@@ -28,6 +30,8 @@ export type BlogPostAr = {
   bodyAr: string[]
   cover?: string
   publishedAr: boolean
+  /** same document also carries the English publish flag */
+  published?: boolean
 }
 
 function toPost(doc: any): BlogPost {

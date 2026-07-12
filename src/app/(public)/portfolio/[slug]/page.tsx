@@ -9,6 +9,7 @@ import { Badge } from '@/components/ui/Badge'
 import { CtaBanner } from '@/components/sections/CtaBanner'
 import { getCaseStudy, getAllCaseStudySlugs, getPortfolio } from '@/lib/portfolio'
 import { buildMetadata } from '@/lib/seo'
+import { SITE_URL, BRAND } from '@/lib/utils'
 
 export const dynamicParams = true
 
@@ -26,6 +27,8 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
     title: `${study.client} — ${study.title}`,
     description: study.challenge.slice(0, 150),
     path: `/portfolio/${study.slug}`,
+    alternatePath: `/ar/portfolio/${study.slug}`,
+    hasAlternate: Boolean(study.publishedAr),
   })
 }
 
@@ -39,8 +42,39 @@ export default async function CaseStudyPage({ params }: Params) {
   const index = portfolio.findIndex((p) => p.slug === study.slug)
   const next = portfolio[(index + 1) % portfolio.length] ?? portfolio[0]
 
+  const jsonLd = [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'Article',
+      headline: `${study.client} — ${study.title}`,
+      description: study.challenge.slice(0, 200),
+      author: { '@type': 'Organization', name: BRAND.name, url: SITE_URL },
+      publisher: {
+        '@type': 'Organization',
+        name: BRAND.name,
+        logo: { '@type': 'ImageObject', url: `${SITE_URL}/og-image.png` },
+      },
+      mainEntityOfPage: { '@type': 'WebPage', '@id': `${SITE_URL}/portfolio/${study.slug}` },
+      about: study.services,
+      ...(study.cover ? { image: study.cover } : {}),
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE_URL}/` },
+        { '@type': 'ListItem', position: 2, name: 'Portfolio', item: `${SITE_URL}/portfolio` },
+        { '@type': 'ListItem', position: 3, name: `${study.client} — ${study.title}`, item: `${SITE_URL}/portfolio/${study.slug}` },
+      ],
+    },
+  ]
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <PageHero
         eyebrow={study.industry}
         title={study.title}

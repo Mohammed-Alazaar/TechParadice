@@ -25,6 +25,8 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
     title: post.title,
     description: post.excerpt,
     path: `/blog/${post.slug}`,
+    alternatePath: `/ar/blog/${post.slug}`,
+    hasAlternate: Boolean(post.publishedAr),
   })
 }
 

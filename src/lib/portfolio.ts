@@ -19,6 +19,8 @@ export type CaseStudy = {
   results: { value: string; label: string }[]
   testimonial?: { quote: string; author: string; role: string }
   published: boolean
+  /** same document also carries the Arabic publish flag */
+  publishedAr?: boolean
 }
 
 export type CaseStudyAr = {
@@ -40,6 +42,8 @@ export type CaseStudyAr = {
   resultsAr: { value: string; label: string }[]
   testimonialAr?: { quote: string; author: string; role: string }
   publishedAr: boolean
+  /** same document also carries the English publish flag */
+  published?: boolean
 }
 
 function toStudy(doc: any): CaseStudy {
