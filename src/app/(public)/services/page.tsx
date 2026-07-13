@@ -5,7 +5,7 @@ import { PageHero } from '@/components/sections/PageHero'
 import { Section, SectionHeading } from '@/components/ui/Section'
 import { Faq } from '@/components/sections/Faq'
 import { CtaBanner } from '@/components/sections/CtaBanner'
-import { getServices } from '@/lib/services'
+import { getServices, type Service } from '@/lib/services'
 import { buildMetadata } from '@/lib/seo'
 import { SITE_URL, BRAND } from '@/lib/utils'
 
@@ -14,9 +14,13 @@ export const revalidate = 300
 export const metadata: Metadata = buildMetadata({
   title: 'Services',
   description:
-    'Websites, mobile apps, UI/UX, SEO, social, content, community, analytics, and paid ads — one senior team, one contract.',
+    'Websites, mobile apps, UI/UX, SEO & content, social media, paid ads, and AI assistants — one senior team, one contract.',
   path: '/services',
 })
+
+const BUILD_SLUGS = ['web-development', 'mobile-apps', 'ui-ux-design']
+const GROW_SLUGS = ['seo-content', 'social-media', 'paid-ads']
+const AUTOMATE_SLUGS = ['ai-assistants']
 
 const overviewFaqs = [
   {
@@ -37,8 +41,61 @@ const overviewFaqs = [
   },
 ]
 
+function ServiceCard({ service }: { service: Service }) {
+  const Icon = service.icon
+  return (
+    <Link
+      href={`/services/${service.slug}`}
+      className="group relative flex h-full flex-col overflow-hidden rounded-xl border border-border-dark bg-surface p-6 transition-all hover:-translate-y-1 hover:border-teal/50"
+    >
+      <span
+        aria-hidden
+        className="absolute inset-x-0 top-0 h-px origin-left scale-x-0 bg-teal transition-transform duration-500 group-hover:scale-x-100"
+      />
+      <div className="flex items-start justify-between">
+        <span className="inline-flex h-11 w-11 items-center justify-center rounded-lg border border-teal/30 bg-teal/5 text-teal">
+          <Icon size={20} />
+        </span>
+        <ArrowUpRight size={18} className="text-muted transition-colors group-hover:text-teal" />
+      </div>
+      <h2 className="mt-6 font-display text-h4 font-semibold text-white">{service.name}</h2>
+      <p className="mt-2 text-[14px] text-white/60">{service.short}</p>
+    </Link>
+  )
+}
+
+function ClusterRow({
+  label,
+  services,
+}: {
+  label: string
+  services: Service[]
+}) {
+  if (services.length === 0) return null
+  return (
+    <div>
+      <div className="mb-6 flex items-center gap-4">
+        <span className="h-px w-8 bg-teal" />
+        <p className="text-[11px] font-bold uppercase tracking-widest text-teal">{label}</p>
+        <span className="h-px flex-1 bg-border-dark" />
+      </div>
+      <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {services.map((service) => (
+          <li key={service.slug} className="flex">
+            <ServiceCard service={service} />
+          </li>
+        ))}
+      </ul>
+    </div>
+  )
+}
+
 export default async function ServicesPage() {
   const services = await getServices()
+
+  const build = services.filter((s) => BUILD_SLUGS.includes(s.slug))
+  const grow = services.filter((s) => GROW_SLUGS.includes(s.slug))
+  const automate = services.filter((s) => AUTOMATE_SLUGS.includes(s.slug))
 
   const jsonLd = [
     {
@@ -77,40 +134,17 @@ export default async function ServicesPage() {
         eyebrow="Services"
         title={
           <>
-            Everything you need to grow online,{' '}
-            <span className="text-teal">under one roof.</span>
+            Build. Grow.{' '}
+            <span className="text-teal">Automate.</span>
           </>
         }
-        description="Nine specialist capabilities. One contract, one point of accountability, one coherent plan."
+        description="Seven specialist capabilities across three clusters. One contract, one point of accountability, one coherent plan."
       />
 
-      <Section tone="void" className="pt-0">
-        <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {services.map((service) => {
-            const Icon = service.icon
-            return (
-              <li key={service.slug}>
-                <Link
-                  href={`/services/${service.slug}`}
-                  className="group relative block h-full overflow-hidden rounded-xl border border-border-dark bg-surface p-6 transition-all hover:-translate-y-1 hover:border-teal/50"
-                >
-                  <span
-                    aria-hidden
-                    className="absolute inset-x-0 top-0 h-px origin-left scale-x-0 bg-teal transition-transform duration-500 group-hover:scale-x-100"
-                  />
-                  <div className="flex items-start justify-between">
-                    <span className="inline-flex h-11 w-11 items-center justify-center rounded-lg border border-teal/30 bg-teal/5 text-teal">
-                      <Icon size={20} />
-                    </span>
-                    <ArrowUpRight size={18} className="text-muted transition-colors group-hover:text-teal" />
-                  </div>
-                  <h2 className="mt-6 font-display text-h4 font-semibold text-white">{service.name}</h2>
-                  <p className="mt-2 text-[14px] text-white/60">{service.short}</p>
-                </Link>
-              </li>
-            )
-          })}
-        </ul>
+      <Section tone="void" className="space-y-16 pt-0">
+        <ClusterRow label="Build" services={build} />
+        <ClusterRow label="Grow" services={grow} />
+        <ClusterRow label="Automate" services={automate} />
       </Section>
 
       <Section tone="surface">
@@ -119,20 +153,20 @@ export default async function ServicesPage() {
             <p className="text-caption uppercase text-teal">Better together</p>
             <h2 className="mt-4 heading-h2 text-balance text-white">
               Most clients work with us across{' '}
-              <span className="text-teal">three or more</span> services.
+              <span className="text-teal">two or more</span> clusters.
             </h2>
             <p className="mt-4 text-body-lg text-white/70">
-              Coordinated execution across web, design, content, and growth beats five disconnected
+              Coordinated execution across build, grow, and automate beats three disconnected
               vendors every time. One backlog, one roadmap, one team accountable to the outcome.
             </p>
           </div>
           <ul className="grid grid-cols-2 gap-3">
             {[
-              'Web + SEO + Content',
-              'Web + UI/UX + Analytics',
-              'Mobile + UI/UX + Analytics',
-              'Social + Content + Paid',
-              'SEO + Content + Paid',
+              'Web + SEO + Social',
+              'Web + UI/UX + Paid Ads',
+              'Mobile + UI/UX + AI',
+              'SEO + Content + Paid Ads',
+              'Web + AI Assistants',
               'Web + Mobile + UI/UX',
             ].map((combo) => (
               <li

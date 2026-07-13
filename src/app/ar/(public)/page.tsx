@@ -110,7 +110,7 @@ export default async function ArHomePage() {
           <SectionHeading
             eyebrow="الخدمات"
             title={<>كل ما تحتاجه، <span className="text-teal">تحت سقف واحد.</span></>}
-            description="تسع كفاءات متخصصة. عقد واحد، مسؤولية واحدة."
+            description="بناء. نمو. أتمتة. سبع كفاءات متخصصة في ثلاثة محاور."
           />
           <ul className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {services.map((service) => {
@@ -210,10 +210,10 @@ export default async function ArHomePage() {
       <CtaBanner
         heading="هل أنت مستعد للبدء؟"
         body="أخبرنا بأهدافك. سنتكفل بالباقي."
-        ctaLabel="تواصل معنا"
-        ctaHref="/ar/contact"
-        secondaryLabel="جميع الخدمات"
-        secondaryHref="/ar/services"
+        ctaLabel="احصل على تدقيق مجاني"
+        ctaHref="/ar/free-audit"
+        secondaryLabel="أعمالنا"
+        secondaryHref="/ar/work"
       />
     </>
   )
