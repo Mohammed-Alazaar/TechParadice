@@ -35,14 +35,24 @@ export async function Footer({ locale = 'en' }: FooterProps) {
     ? [
         { href: `${p}/industries/restaurants`, label: 'المطاعم' },
         { href: `${p}/industries/real-estate`, label: 'العقارات' },
+        { href: `${p}/industries/clinics`, label: 'العيادات والرعاية الصحية' },
+        { href: `${p}/industries/professional-services`, label: 'الخدمات المهنية' },
         { href: `${p}/industries/manufacturing-industrial`, label: 'التصنيع والصناعة' },
         { href: `${p}/industries/b2b-businesses`, label: 'شركات B2B' },
+        { href: `${p}/industries/law-firms`, label: 'مكاتب المحامين' },
+        { href: `${p}/industries/salons-beauty`, label: 'الصالونات والتجميل' },
+        { href: `${p}/industries/auto-repair`, label: 'ورش السيارات' },
       ]
     : [
         { href: `${p}/industries/restaurants`, label: 'Restaurants' },
         { href: `${p}/industries/real-estate`, label: 'Real Estate' },
+        { href: `${p}/industries/clinics`, label: 'Clinics & Healthcare' },
+        { href: `${p}/industries/professional-services`, label: 'Professional Services' },
         { href: `${p}/industries/manufacturing-industrial`, label: 'Manufacturing' },
         { href: `${p}/industries/b2b-businesses`, label: 'B2B Businesses' },
+        { href: `${p}/industries/law-firms`, label: 'Law Firms' },
+        { href: `${p}/industries/salons-beauty`, label: 'Salons & Beauty' },
+        { href: `${p}/industries/auto-repair`, label: 'Auto Repair' },
       ]
 
   return (

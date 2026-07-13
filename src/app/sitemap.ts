@@ -16,6 +16,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       getAllArCaseStudySlugs(),
     ])
 
+  const gccCities = ['dubai', 'abu-dhabi', 'riyadh', 'jeddah', 'kuwait', 'doha', 'muscat', 'manama']
+
   const staticRoutes: MetadataRoute.Sitemap = [
     { url: `${SITE_URL}/`, priority: 1.0, changeFrequency: 'weekly', lastModified: now },
     { url: `${SITE_URL}/about`, priority: 0.8, changeFrequency: 'monthly', lastModified: now },
@@ -24,10 +26,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${SITE_URL}/industries`, priority: 0.8, changeFrequency: 'monthly', lastModified: now },
     { url: `${SITE_URL}/industries/restaurants`, priority: 0.7, changeFrequency: 'monthly', lastModified: now },
     { url: `${SITE_URL}/industries/real-estate`, priority: 0.7, changeFrequency: 'monthly', lastModified: now },
+    { url: `${SITE_URL}/industries/clinics`, priority: 0.7, changeFrequency: 'monthly', lastModified: now },
+    { url: `${SITE_URL}/industries/professional-services`, priority: 0.7, changeFrequency: 'monthly', lastModified: now },
     { url: `${SITE_URL}/industries/manufacturing-industrial`, priority: 0.7, changeFrequency: 'monthly', lastModified: now },
     { url: `${SITE_URL}/industries/b2b-businesses`, priority: 0.7, changeFrequency: 'monthly', lastModified: now },
+    { url: `${SITE_URL}/industries/law-firms`, priority: 0.7, changeFrequency: 'monthly', lastModified: now },
+    { url: `${SITE_URL}/industries/salons-beauty`, priority: 0.7, changeFrequency: 'monthly', lastModified: now },
+    { url: `${SITE_URL}/industries/auto-repair`, priority: 0.7, changeFrequency: 'monthly', lastModified: now },
     { url: `${SITE_URL}/free-audit`, priority: 0.9, changeFrequency: 'monthly', lastModified: now },
-    { url: `${SITE_URL}/process`, priority: 0.6, changeFrequency: 'monthly', lastModified: now },
+    { url: `${SITE_URL}/how-we-work`, priority: 0.6, changeFrequency: 'monthly', lastModified: now },
     { url: `${SITE_URL}/blog`, priority: 0.6, changeFrequency: 'weekly', lastModified: now },
     { url: `${SITE_URL}/contact`, priority: 0.9, changeFrequency: 'monthly', lastModified: now },
     { url: `${SITE_URL}/privacy-policy`, priority: 0.3, changeFrequency: 'yearly', lastModified: now },
@@ -42,9 +49,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${SITE_URL}/ar/industries`, priority: 0.8, changeFrequency: 'monthly', lastModified: now },
     { url: `${SITE_URL}/ar/industries/restaurants`, priority: 0.7, changeFrequency: 'monthly', lastModified: now },
     { url: `${SITE_URL}/ar/industries/real-estate`, priority: 0.7, changeFrequency: 'monthly', lastModified: now },
+    { url: `${SITE_URL}/ar/industries/clinics`, priority: 0.7, changeFrequency: 'monthly', lastModified: now },
+    { url: `${SITE_URL}/ar/industries/professional-services`, priority: 0.7, changeFrequency: 'monthly', lastModified: now },
     { url: `${SITE_URL}/ar/industries/manufacturing-industrial`, priority: 0.7, changeFrequency: 'monthly', lastModified: now },
     { url: `${SITE_URL}/ar/industries/b2b-businesses`, priority: 0.7, changeFrequency: 'monthly', lastModified: now },
+    { url: `${SITE_URL}/ar/industries/law-firms`, priority: 0.7, changeFrequency: 'monthly', lastModified: now },
+    { url: `${SITE_URL}/ar/industries/salons-beauty`, priority: 0.7, changeFrequency: 'monthly', lastModified: now },
+    { url: `${SITE_URL}/ar/industries/auto-repair`, priority: 0.7, changeFrequency: 'monthly', lastModified: now },
     { url: `${SITE_URL}/ar/free-audit`, priority: 0.9, changeFrequency: 'monthly', lastModified: now },
+    { url: `${SITE_URL}/ar/how-we-work`, priority: 0.6, changeFrequency: 'monthly', lastModified: now },
     { url: `${SITE_URL}/ar/blog`, priority: 0.6, changeFrequency: 'weekly', lastModified: now },
     { url: `${SITE_URL}/ar/contact`, priority: 0.9, changeFrequency: 'monthly', lastModified: now },
   ]
@@ -91,6 +104,20 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     lastModified: now,
   }))
 
+  const cityRoutes: MetadataRoute.Sitemap = gccCities.map((city) => ({
+    url: `${SITE_URL}/in/${city}`,
+    priority: 0.6,
+    changeFrequency: 'monthly',
+    lastModified: now,
+  }))
+
+  const arCityRoutes: MetadataRoute.Sitemap = gccCities.map((city) => ({
+    url: `${SITE_URL}/ar/in/${city}`,
+    priority: 0.6,
+    changeFrequency: 'monthly',
+    lastModified: now,
+  }))
+
   return [
     ...staticRoutes,
     ...arStaticRoutes,
@@ -100,5 +127,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...arWorkRoutes,
     ...blogRoutes,
     ...arBlogRoutes,
+    ...cityRoutes,
+    ...arCityRoutes,
   ]
 }

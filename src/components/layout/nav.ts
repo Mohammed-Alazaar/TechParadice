@@ -51,6 +51,8 @@ export const primaryNav: NavItem[] = [
         items: [
           { label: 'Restaurants', href: '/industries/restaurants', description: 'Menus, reservations, and local SEO.' },
           { label: 'Real Estate', href: '/industries/real-estate', description: 'Listings, lead capture, and CRM integration.' },
+          { label: 'Clinics & Healthcare', href: '/industries/clinics', description: 'Booking flows, patient reviews, and medical SEO.' },
+          { label: 'Professional Services', href: '/industries/professional-services', description: 'Authority sites, lead gen, and intake automation.' },
         ],
       },
       {
@@ -104,6 +106,8 @@ export const primaryNavAr: NavItem[] = [
         items: [
           { label: 'المطاعم', href: '/ar/industries/restaurants', description: 'قوائم طعام، حجوزات، وسيو محلي.' },
           { label: 'العقارات', href: '/ar/industries/real-estate', description: 'قوائم عقارية وجذب العملاء.' },
+          { label: 'العيادات والرعاية الصحية', href: '/ar/industries/clinics', description: 'سير الحجز ومراجعات المرضى والسيو الطبي.' },
+          { label: 'الخدمات المهنية', href: '/ar/industries/professional-services', description: 'مواقع سلطة وتوليد عملاء وأتمتة الاستقبال.' },
         ],
       },
       {

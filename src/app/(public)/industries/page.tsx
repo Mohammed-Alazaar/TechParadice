@@ -9,7 +9,7 @@ import { buildMetadata } from '@/lib/seo'
 export const metadata: Metadata = buildMetadata({
   title: 'Industries We Serve',
   description:
-    'TechParadice builds digital products for restaurants, real estate, manufacturing, and B2B businesses. Industry-specific expertise, proven results.',
+    'TechParadice builds digital products for restaurants, real estate, clinics, professional services, manufacturing, B2B businesses, law firms, salons, and auto repair shops.',
   path: '/industries',
 })
 
@@ -26,6 +26,30 @@ const localBusiness = [
     description: 'Property listing sites, CRM integration, lead capture funnels, and paid ads that bring serious buyers and renters.',
     tags: ['Listing Portals', 'Lead Capture', 'Paid Ads'],
   },
+  {
+    href: '/industries/clinics',
+    title: 'Clinics & Healthcare',
+    description: 'Booking systems, patient reviews, local SEO, and trust content for medical clinics, dental practices, and healthcare providers.',
+    tags: ['Booking Systems', 'Medical SEO', 'Review Management'],
+  },
+  {
+    href: '/industries/professional-services',
+    title: 'Professional Services',
+    description: 'Authority websites, SEO, intake automation, and lead funnels for law firms, consultancies, accountants, and advisors.',
+    tags: ['Authority Sites', 'Lead Funnels', 'Thought Leadership'],
+  },
+  {
+    href: '/industries/salons-beauty',
+    title: 'Salons & Beauty',
+    description: 'Booking integrations, Instagram content, local SEO, and paid social that keep your chairs filled.',
+    tags: ['Online Booking', 'Instagram & TikTok', 'Local SEO'],
+  },
+  {
+    href: '/industries/auto-repair',
+    title: 'Auto Repair',
+    description: 'Local SEO, Google Ads, review management, and booking systems so drivers find you first when they need help.',
+    tags: ['Local SEO', 'Google Ads', 'Review Management'],
+  },
 ]
 
 const b2bIndustrial = [
@@ -41,7 +65,57 @@ const b2bIndustrial = [
     description: 'Account-based marketing, lead generation systems, AI-assisted outreach, and analytics dashboards that tie to pipeline.',
     tags: ['Account-Based', 'Lead Gen', 'AI Automation'],
   },
+  {
+    href: '/industries/law-firms',
+    title: 'Law Firms',
+    description: 'Authority sites, legal SEO, Google Ads, and intake automation that turn searches into consultations.',
+    tags: ['Authority Sites', 'Legal SEO', 'Intake Automation'],
+  },
 ]
+
+function IndustryCard({
+  href,
+  title,
+  description,
+  tags,
+  light = false,
+}: {
+  href: string
+  title: string
+  description: string
+  tags: string[]
+  light?: boolean
+}) {
+  const cardCls = light
+    ? 'group flex h-full flex-col justify-between rounded-2xl border border-border-light bg-white p-8 transition-all hover:-translate-y-1 hover:border-teal/40 dark:border-border-dark dark:bg-void'
+    : 'group flex h-full flex-col justify-between rounded-2xl border border-border-dark bg-surface p-8 transition-all hover:-translate-y-1 hover:border-teal/40'
+  const titleCls = light
+    ? 'font-display text-h3 font-semibold text-void dark:text-white'
+    : 'font-display text-h3 font-semibold text-white'
+  const descCls = light
+    ? 'mt-4 text-[15px] text-void/70 dark:text-white/70'
+    : 'mt-4 text-[15px] text-white/70'
+  const tagCls = light
+    ? 'rounded-full border border-border-light px-3 py-1 text-[12px] font-semibold uppercase tracking-wide text-muted dark:border-border-dark'
+    : 'rounded-full border border-border-dark px-3 py-1 text-[12px] font-semibold uppercase tracking-wide text-muted'
+
+  return (
+    <Link href={href} className={cardCls}>
+      <div>
+        <div className="flex items-start justify-between">
+          <h2 className={titleCls}>{title}</h2>
+          <ArrowUpRight size={20} className="text-muted transition-colors group-hover:text-teal" />
+        </div>
+        <p className={descCls}>{description}</p>
+      </div>
+      <ul className="mt-8 flex flex-wrap gap-2">
+        {tags.map((t) => (
+          <li key={t} className={tagCls}>{t}</li>
+        ))}
+      </ul>
+    </Link>
+  )
+}
 
 export default function IndustriesPage() {
   return (
@@ -54,7 +128,7 @@ export default function IndustriesPage() {
             <span className="text-teal">business type.</span>
           </>
         }
-        description="We've shipped digital products across industries that have different buying cycles, compliance needs, and customer expectations. We know what works — and what wastes budget."
+        description="We've shipped digital products across nine industries that have different buying cycles, compliance needs, and customer expectations. We know what works — and what wastes budget."
       />
 
       <Section tone="void" className="pt-0">
@@ -63,31 +137,10 @@ export default function IndustriesPage() {
           title="Serving your community online"
           description="Local presence, national polish. We help brick-and-mortar businesses win online."
         />
-        <ul className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2">
+        <ul className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
           {localBusiness.map((ind) => (
-            <li key={ind.href}>
-              <Link
-                href={ind.href}
-                className="group flex h-full flex-col justify-between rounded-2xl border border-border-dark bg-surface p-8 transition-all hover:-translate-y-1 hover:border-teal/40"
-              >
-                <div>
-                  <div className="flex items-start justify-between">
-                    <h2 className="font-display text-h3 font-semibold text-white">{ind.title}</h2>
-                    <ArrowUpRight size={20} className="text-muted transition-colors group-hover:text-teal" />
-                  </div>
-                  <p className="mt-4 text-[15px] text-white/70">{ind.description}</p>
-                </div>
-                <ul className="mt-8 flex flex-wrap gap-2">
-                  {ind.tags.map((t) => (
-                    <li
-                      key={t}
-                      className="rounded-full border border-border-dark px-3 py-1 text-[12px] font-semibold uppercase tracking-wide text-muted"
-                    >
-                      {t}
-                    </li>
-                  ))}
-                </ul>
-              </Link>
+            <li key={ind.href} className="flex">
+              <IndustryCard {...ind} />
             </li>
           ))}
         </ul>
@@ -99,31 +152,10 @@ export default function IndustriesPage() {
           title="Complex products, clear digital presence"
           description="Longer sales cycles, technical buyers, and global reach — we've shipped it all."
         />
-        <ul className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2">
+        <ul className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
           {b2bIndustrial.map((ind) => (
-            <li key={ind.href}>
-              <Link
-                href={ind.href}
-                className="group flex h-full flex-col justify-between rounded-2xl border border-border-light bg-white p-8 transition-all hover:-translate-y-1 hover:border-teal/40 dark:border-border-dark dark:bg-void"
-              >
-                <div>
-                  <div className="flex items-start justify-between">
-                    <h2 className="font-display text-h3 font-semibold text-void dark:text-white">{ind.title}</h2>
-                    <ArrowUpRight size={20} className="text-muted transition-colors group-hover:text-teal" />
-                  </div>
-                  <p className="mt-4 text-[15px] text-void/70 dark:text-white/70">{ind.description}</p>
-                </div>
-                <ul className="mt-8 flex flex-wrap gap-2">
-                  {ind.tags.map((t) => (
-                    <li
-                      key={t}
-                      className="rounded-full border border-border-light px-3 py-1 text-[12px] font-semibold uppercase tracking-wide text-muted dark:border-border-dark"
-                    >
-                      {t}
-                    </li>
-                  ))}
-                </ul>
-              </Link>
+            <li key={ind.href} className="flex">
+              <IndustryCard {...ind} light />
             </li>
           ))}
         </ul>

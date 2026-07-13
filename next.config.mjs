@@ -36,6 +36,9 @@ const nextConfig = {
       // Pricing → Free Audit
       { source: '/pricing', destination: '/free-audit', permanent: true },
       { source: '/ar/pricing', destination: '/ar/free-audit', permanent: true },
+      // Process → How We Work
+      { source: '/process', destination: '/how-we-work', permanent: true },
+      { source: '/ar/process', destination: '/ar/how-we-work', permanent: true },
     ]
   },
 }

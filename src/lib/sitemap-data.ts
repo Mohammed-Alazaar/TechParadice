@@ -66,14 +66,28 @@ export async function getSitemapEntries(): Promise<SitemapEntry[]> {
     { path: '/industries', priority: 0.8, changeFrequency: 'monthly' },
     { path: '/industries/restaurants', priority: 0.7, changeFrequency: 'monthly' },
     { path: '/industries/real-estate', priority: 0.7, changeFrequency: 'monthly' },
+    { path: '/industries/clinics', priority: 0.7, changeFrequency: 'monthly' },
+    { path: '/industries/professional-services', priority: 0.7, changeFrequency: 'monthly' },
     { path: '/industries/manufacturing-industrial', priority: 0.7, changeFrequency: 'monthly' },
     { path: '/industries/b2b-businesses', priority: 0.7, changeFrequency: 'monthly' },
+    { path: '/industries/law-firms', priority: 0.7, changeFrequency: 'monthly' },
+    { path: '/industries/salons-beauty', priority: 0.7, changeFrequency: 'monthly' },
+    { path: '/industries/auto-repair', priority: 0.7, changeFrequency: 'monthly' },
     { path: '/free-audit', priority: 0.9, changeFrequency: 'monthly' },
+    { path: '/how-we-work', priority: 0.6, changeFrequency: 'monthly' },
     { path: '/blog', priority: 0.6, changeFrequency: 'weekly' },
     { path: '/contact', priority: 0.9, changeFrequency: 'monthly' },
   ]
   for (const { path, priority, changeFrequency } of bilingualStatic) {
     entries.push(...pair(path || '/', `/ar${path}`, { priority, changeFrequency, lastModified: now }))
+  }
+
+  // GCC city landing pages (bilingual).
+  const gccCities = ['dubai', 'abu-dhabi', 'riyadh', 'jeddah', 'kuwait', 'doha', 'muscat', 'manama']
+  for (const city of gccCities) {
+    entries.push(
+      ...pair(`/in/${city}`, `/ar/in/${city}`, { priority: 0.6, changeFrequency: 'monthly', lastModified: now }),
+    )
   }
 
   // English-only static pages.
