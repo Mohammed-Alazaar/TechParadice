@@ -13,10 +13,10 @@ type Props = {
 export function CtaBanner({
   heading = 'Ready to build your digital world?',
   body = 'Tell us where you’re headed. We’ll propose a scope that fits and a plan that ships.',
-  ctaHref = '/contact',
-  ctaLabel = 'Start a project',
-  secondaryHref = '/pricing',
-  secondaryLabel = 'See how pricing works',
+  ctaHref = '/free-audit',
+  ctaLabel = 'Get a Free Audit',
+  secondaryHref = '/work',
+  secondaryLabel = 'See our work',
 }: Props) {
   return (
     <section className="bg-white py-20 dark:bg-void lg:py-28">

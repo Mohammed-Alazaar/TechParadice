@@ -33,11 +33,11 @@ export function Hero() {
           transparent scope, direct line to the founder.
         </p>
         <div className="mt-10 flex flex-wrap items-center gap-4">
-          <ButtonLink href="/pricing" size="xl">
-            Get a quote
+          <ButtonLink href="/free-audit" size="xl">
+            Get a Free Audit
             <ArrowRight size={18} />
           </ButtonLink>
-          <ButtonLink href="/portfolio" variant="secondary" size="xl">
+          <ButtonLink href="/work" variant="secondary" size="xl">
             View work
           </ButtonLink>
         </div>

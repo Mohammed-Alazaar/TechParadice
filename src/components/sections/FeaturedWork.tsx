@@ -23,7 +23,7 @@ export async function FeaturedWork() {
           description="A cross-section of what we build — from marketing sites to mobile apps to full-funnel campaigns."
         />
         <Link
-          href="/portfolio"
+          href="/work"
           className="inline-flex items-center gap-2 font-body text-[15px] font-semibold text-teal hover:underline"
         >
           View all
@@ -35,7 +35,7 @@ export async function FeaturedWork() {
         {featured.map((item) => (
           <li key={item.slug}>
             <Link
-              href={`/portfolio/${item.slug}`}
+              href={`/work/${item.slug}`}
               className="group block overflow-hidden rounded-2xl border border-border-light bg-white transition-all duration-300 hover:-translate-y-1 hover:border-teal/40 dark:border-border-dark dark:bg-surface"
             >
               <div className="relative aspect-[16/10] overflow-hidden bg-gradient-to-br from-teal/20 via-neutral-100 to-white dark:via-surface dark:to-void">

@@ -107,7 +107,7 @@ export default async function ArServiceDetailPage({ params }: Params) {
       />
       <PageHero eyebrow={name} title={value} description={short}>
         <div className="flex flex-wrap gap-3">
-          <ButtonLink href="/ar/contact" size="lg">ابدأ مشروعاً</ButtonLink>
+          <ButtonLink href="/ar/free-audit" size="lg">استشارة مجانية</ButtonLink>
           <ButtonLink href="/ar/services" variant="secondary" size="lg">جميع الخدمات</ButtonLink>
         </div>
       </PageHero>
@@ -172,7 +172,7 @@ export default async function ArServiceDetailPage({ params }: Params) {
             {sampleWork.slice(0, 2).map((c) => (
               <li key={c.slug}>
                 <Link
-                  href={`/ar/portfolio/${c.slug}`}
+                  href={`/ar/work/${c.slug}`}
                   className="group block overflow-hidden rounded-2xl border border-border-dark bg-void transition-all hover:-translate-y-1 hover:border-teal/40"
                 >
                   <div className="relative aspect-[16/9] bg-gradient-to-br from-teal/20 via-surface to-void">
@@ -245,7 +245,7 @@ export default async function ArServiceDetailPage({ params }: Params) {
         </Section>
       ) : null}
 
-      <CtaBanner heading={`هل أنت مستعد لتطوير ${name}؟`} ctaHref="/ar/contact" ctaLabel="تواصل معنا" />
+      <CtaBanner heading={`هل أنت مستعد لتطوير ${name}؟`} ctaHref="/ar/free-audit" ctaLabel="استشارة مجانية" />
     </>
   )
 }

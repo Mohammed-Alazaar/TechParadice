@@ -91,13 +91,13 @@ export default async function ArHomePage() {
       >
         <div className="flex flex-wrap gap-3">
           <Link
-            href="/ar/contact"
+            href="/ar/free-audit"
             className="inline-flex items-center gap-2 rounded-lg bg-teal px-5 py-2.5 text-[15px] font-semibold text-void transition-colors hover:bg-teal-dark"
           >
-            ابدأ مشروعاً
+            استشارة مجانية
           </Link>
           <Link
-            href="/ar/portfolio"
+            href="/ar/work"
             className="inline-flex items-center gap-2 rounded-lg border border-white/20 px-5 py-2.5 text-[15px] font-semibold text-white/80 transition-colors hover:border-white/40 hover:text-white"
           >
             أعمالنا
@@ -153,7 +153,7 @@ export default async function ArHomePage() {
             {portfolio.slice(0, 3).map((c) => (
               <li key={c.slug}>
                 <Link
-                  href={`/ar/portfolio/${c.slug}`}
+                  href={`/ar/work/${c.slug}`}
                   className="group block overflow-hidden rounded-2xl border border-border-dark bg-void transition-all hover:-translate-y-1 hover:border-teal/40"
                 >
                   <div className="relative aspect-[16/10] overflow-hidden bg-gradient-to-br from-teal/20 via-surface to-void">
@@ -176,7 +176,7 @@ export default async function ArHomePage() {
             ))}
           </ul>
           <div className="mt-8 text-center">
-            <Link href="/ar/portfolio" className="inline-flex items-center gap-2 text-[14px] font-semibold text-teal hover:underline">
+            <Link href="/ar/work" className="inline-flex items-center gap-2 text-[14px] font-semibold text-teal hover:underline">
               جميع الأعمال <ArrowUpRight size={14} />
             </Link>
           </div>

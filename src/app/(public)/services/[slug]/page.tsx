@@ -93,7 +93,7 @@ export default async function ServiceDetailPage({ params }: Params) {
       />
       <PageHero eyebrow={service.name} title={service.value} description={service.short}>
         <div className="flex flex-wrap gap-3">
-          <ButtonLink href="/contact" size="lg">Start a project</ButtonLink>
+          <ButtonLink href="/free-audit" size="lg">Get a Free Audit</ButtonLink>
           <ButtonLink href="/services" variant="secondary" size="lg">All services</ButtonLink>
         </div>
       </PageHero>
@@ -156,7 +156,7 @@ export default async function ServiceDetailPage({ params }: Params) {
             {sampleWork.slice(0, 2).map((c) => (
               <li key={c.slug}>
                 <Link
-                  href={`/portfolio/${c.slug}`}
+                  href={`/work/${c.slug}`}
                   className="group block overflow-hidden rounded-2xl border border-border-light bg-white transition-all hover:-translate-y-1 hover:border-teal/40 dark:border-border-dark dark:bg-void"
                 >
                   <div className="relative aspect-[16/9] bg-gradient-to-br from-teal/20 via-neutral-100 to-white dark:via-surface dark:to-void">
@@ -219,7 +219,7 @@ export default async function ServiceDetailPage({ params }: Params) {
         </Section>
       ) : null}
 
-      <CtaBanner heading={`Ready to scope your ${service.name.toLowerCase()}?`} />
+      <CtaBanner heading={`Ready to scope your ${service.name.toLowerCase()}?`} ctaHref="/free-audit" ctaLabel="Get a Free Audit" />
     </>
   )
 }

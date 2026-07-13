@@ -15,8 +15,8 @@ export function MobileNav({ locale = 'en' }: MobileNavProps) {
   const [open, setOpen] = useState(false)
   const nav = locale === 'ar' ? primaryNavAr : primaryNav
   const homeHref = locale === 'ar' ? '/ar' : '/'
-  const contactHref = locale === 'ar' ? '/ar/contact' : '/contact'
-  const contactLabel = locale === 'ar' ? 'تواصل معنا' : 'Get in touch'
+  const auditHref = locale === 'ar' ? '/ar/free-audit' : '/free-audit'
+  const auditLabel = locale === 'ar' ? 'استشارة مجانية' : 'Get a Free Audit'
 
   useEffect(() => {
     if (open) {
@@ -81,27 +81,36 @@ export function MobileNav({ locale = 'en' }: MobileNavProps) {
                   >
                     {item.label}
                   </Link>
-                  {'children' in item && item.children ? (
-                    <ul className="mt-3 flex flex-col gap-2 pl-2">
-                      {item.children.map((c) => (
-                        <li key={c.href}>
-                          <Link
-                            href={c.href}
-                            onClick={() => setOpen(false)}
-                            className="block text-[15px] text-void/70 hover:text-teal dark:text-white/70"
-                          >
-                            {c.label}
-                          </Link>
-                        </li>
+                  {'groups' in item && item.groups ? (
+                    <div className="mt-3 flex flex-col gap-4 pl-2">
+                      {item.groups.map((group) => (
+                        <div key={group.label}>
+                          <p className="mb-1.5 text-[11px] font-bold uppercase tracking-widest text-teal">
+                            {group.label}
+                          </p>
+                          <ul className="flex flex-col gap-1.5">
+                            {group.items.map((c) => (
+                              <li key={c.href}>
+                                <Link
+                                  href={c.href}
+                                  onClick={() => setOpen(false)}
+                                  className="block text-[15px] text-void/70 hover:text-teal dark:text-white/70"
+                                >
+                                  {c.label}
+                                </Link>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
                       ))}
-                    </ul>
+                    </div>
                   ) : null}
                 </div>
               ))}
             </nav>
 
-            <ButtonLink href={contactHref} size="lg" className="w-full">
-              {contactLabel}
+            <ButtonLink href={auditHref} size="lg" className="w-full">
+              {auditLabel}
             </ButtonLink>
           </div>
         </div>

@@ -3,6 +3,7 @@ import type { LucideIcon } from 'lucide-react'
 import {
   Activity,
   BarChart3,
+  Bot,
   Code2,
   FileText,
   Megaphone,
@@ -17,6 +18,7 @@ import ServiceModel from './models/Service'
 export const ICON_MAP: Record<string, LucideIcon> = {
   Activity,
   BarChart3,
+  Bot,
   Code2,
   FileText,
   Megaphone,
