@@ -42,7 +42,7 @@ function single(path: string, opts: Opts): SitemapEntry {
 export async function getSitemapEntries(): Promise<SitemapEntry[]> {
   const now = new Date().toISOString()
 
-  const [serviceSlugs, portfolioSlugs, arPortfolioSlugs, blogSlugs, arBlogSlugs] =
+  const [serviceSlugs, workSlugs, arWorkSlugs, blogSlugs, arBlogSlugs] =
     await Promise.all([
       getAllServiceSlugs(),
       getAllCaseStudySlugs(),
@@ -53,7 +53,7 @@ export async function getSitemapEntries(): Promise<SitemapEntry[]> {
 
   // Blog posts and case studies are single documents with independent publish
   // flags per language, so a slug may be live in one language only.
-  const arPortfolioSet = new Set(arPortfolioSlugs)
+  const arWorkSet = new Set(arWorkSlugs)
   const arBlogSet = new Set(arBlogSlugs)
 
   const entries: SitemapEntry[] = []
@@ -62,9 +62,13 @@ export async function getSitemapEntries(): Promise<SitemapEntry[]> {
     { path: '', priority: 1.0, changeFrequency: 'weekly' },
     { path: '/about', priority: 0.8, changeFrequency: 'monthly' },
     { path: '/services', priority: 0.9, changeFrequency: 'monthly' },
-    { path: '/portfolio', priority: 0.8, changeFrequency: 'weekly' },
-    { path: '/process', priority: 0.6, changeFrequency: 'monthly' },
-    { path: '/pricing', priority: 0.9, changeFrequency: 'monthly' },
+    { path: '/work', priority: 0.8, changeFrequency: 'weekly' },
+    { path: '/industries', priority: 0.8, changeFrequency: 'monthly' },
+    { path: '/industries/restaurants', priority: 0.7, changeFrequency: 'monthly' },
+    { path: '/industries/real-estate', priority: 0.7, changeFrequency: 'monthly' },
+    { path: '/industries/manufacturing-industrial', priority: 0.7, changeFrequency: 'monthly' },
+    { path: '/industries/b2b-businesses', priority: 0.7, changeFrequency: 'monthly' },
+    { path: '/free-audit', priority: 0.9, changeFrequency: 'monthly' },
     { path: '/blog', priority: 0.6, changeFrequency: 'weekly' },
     { path: '/contact', priority: 0.9, changeFrequency: 'monthly' },
   ]
@@ -73,6 +77,7 @@ export async function getSitemapEntries(): Promise<SitemapEntry[]> {
   }
 
   // English-only static pages.
+  entries.push(single('/process', { priority: 0.6, changeFrequency: 'monthly', lastModified: now }))
   entries.push(single('/privacy-policy', { priority: 0.3, changeFrequency: 'yearly', lastModified: now }))
   entries.push(single('/terms', { priority: 0.3, changeFrequency: 'yearly', lastModified: now }))
 
@@ -88,22 +93,22 @@ export async function getSitemapEntries(): Promise<SitemapEntry[]> {
   }
 
   // Case studies: pair where both languages are published, otherwise single.
-  for (const slug of portfolioSlugs) {
-    if (arPortfolioSet.has(slug)) {
+  for (const slug of workSlugs) {
+    if (arWorkSet.has(slug)) {
       entries.push(
-        ...pair(`/portfolio/${slug}`, `/ar/portfolio/${slug}`, {
+        ...pair(`/work/${slug}`, `/ar/work/${slug}`, {
           priority: 0.7,
           changeFrequency: 'monthly',
           lastModified: now,
         }),
       )
     } else {
-      entries.push(single(`/portfolio/${slug}`, { priority: 0.7, changeFrequency: 'monthly', lastModified: now }))
+      entries.push(single(`/work/${slug}`, { priority: 0.7, changeFrequency: 'monthly', lastModified: now }))
     }
   }
-  for (const slug of arPortfolioSlugs) {
-    if (!portfolioSlugs.includes(slug)) {
-      entries.push(single(`/ar/portfolio/${slug}`, { priority: 0.7, changeFrequency: 'monthly', lastModified: now }))
+  for (const slug of arWorkSlugs) {
+    if (!workSlugs.includes(slug)) {
+      entries.push(single(`/ar/work/${slug}`, { priority: 0.7, changeFrequency: 'monthly', lastModified: now }))
     }
   }
 

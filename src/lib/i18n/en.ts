@@ -63,7 +63,7 @@ export const en = {
     eyebrow: 'Services',
     title: 'Everything you need to grow online, under one roof.',
     description:
-      'Nine specialist capabilities. One contract, one point of accountability, one coherent plan.',
+      'Seven specialist capabilities across three clusters. One contract, one point of accountability, one coherent plan.',
     included: "What's included",
     process: 'Process',
     tooling: 'What we use to deliver',

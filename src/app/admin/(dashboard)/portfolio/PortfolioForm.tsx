@@ -280,7 +280,7 @@ export function PortfolioForm({ initialData }: PortfolioFormProps) {
       ) : (
         <>
           <div className="rounded-lg border border-amber-500/20 bg-amber-500/5 px-3 py-2 text-[12px] text-amber-400">
-            Arabic content is served at <code dir="ltr">/ar/portfolio/{form.slug || '[slug]'}</code>. Client name, industry, services, timeline, year, and cover image are shared.
+            Arabic content is served at <code dir="ltr">/ar/work/{form.slug || '[slug]'}</code>. Client name, industry, services, timeline, year, and cover image are shared.
           </div>
 
           <Field label="العنوان (Title in Arabic)">
