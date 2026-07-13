@@ -64,7 +64,7 @@ export default function ArFreeAuditPage() {
             <p className="text-caption uppercase text-teal">ما ستحصل عليه</p>
             <h2 className="mt-4 heading-h2 text-white">تدقيق حقيقي، لا عرض مبيعات.</h2>
             <p className="mt-4 text-body-lg text-white/70">
-              معظم الوكالات تستخدم "التدقيق المجاني" كطعم لعرض جاهز. تدقيقنا مراجعة تقنية فعلية
+              معظم الوكالات تستخدم &ldquo;التدقيق المجاني&rdquo; كطعم لعرض جاهز. تدقيقنا مراجعة تقنية فعلية
               لموقعك، يُنفّذها نفس الفريق الذي سيبني لك.
             </p>
             <ul className="mt-8 space-y-3">

@@ -79,7 +79,7 @@ export default function FreeAuditPage() {
               A real audit, not a sales pitch.
             </h2>
             <p className="mt-4 text-body-lg text-white/70">
-              Most agencies use "free audits" as a hook for a canned deck. Ours is an actual
+              Most agencies use &ldquo;free audits&rdquo; as a hook for a canned deck. Ours is an actual
               technical review of your site, delivered by the same team that would build for you.
             </p>
             <ul className="mt-8 space-y-3">
