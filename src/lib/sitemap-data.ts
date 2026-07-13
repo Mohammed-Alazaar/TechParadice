@@ -1,51 +1,46 @@
-import type { MetadataRoute } from 'next'
-import { SITE_URL } from '@/lib/utils'
-import { getAllServiceSlugs } from '@/lib/services'
-import { getAllCaseStudySlugs, getAllArCaseStudySlugs } from '@/lib/portfolio'
-import { getAllPostSlugs, getAllArPostSlugs } from '@/lib/blog'
+import { SITE_URL } from './utils'
+import { getAllServiceSlugs } from './services'
+import { getAllCaseStudySlugs, getAllArCaseStudySlugs } from './portfolio'
+import { getAllPostSlugs, getAllArPostSlugs } from './blog'
 
-type Entry = MetadataRoute.Sitemap[number]
-type ChangeFreq = NonNullable<Entry['changeFrequency']>
+export type ChangeFreq = 'weekly' | 'monthly' | 'yearly'
+
+export type SitemapEntry = {
+  url: string
+  lastModified: string
+  changeFrequency: ChangeFreq
+  priority: number
+  alternates: { hreflang: string; href: string }[]
+}
+
+type Opts = { priority: number; changeFrequency: ChangeFreq; lastModified: string }
 
 /**
- * A page that exists in both English and Arabic. Emits one sitemap entry per
- * language, and each entry advertises the full set of hreflang alternates
- * (en, ar, x-default) so Google and AI crawlers can pair the two versions.
+ * A page that exists in both English and Arabic. Emits one entry per language,
+ * each advertising the full set of hreflang alternates (en, ar, x-default) so
+ * Google and AI crawlers can pair the two versions.
  */
-function pair(
-  enPath: string,
-  arPath: string,
-  opts: { priority: number; changeFrequency: ChangeFreq; lastModified: Date },
-): Entry[] {
+function pair(enPath: string, arPath: string, opts: Opts): SitemapEntry[] {
   const enUrl = `${SITE_URL}${enPath}`
   const arUrl = `${SITE_URL}${arPath}`
-  const languages = { en: enUrl, ar: arUrl, 'x-default': enUrl }
-  const base = {
-    priority: opts.priority,
-    changeFrequency: opts.changeFrequency,
-    lastModified: opts.lastModified,
-  }
+  const alternates = [
+    { hreflang: 'en', href: enUrl },
+    { hreflang: 'ar', href: arUrl },
+    { hreflang: 'x-default', href: enUrl },
+  ]
   return [
-    { url: enUrl, ...base, alternates: { languages } },
-    { url: arUrl, ...base, alternates: { languages } },
+    { url: enUrl, ...opts, alternates },
+    { url: arUrl, ...opts, alternates },
   ]
 }
 
 /** A page that exists in only one language — no hreflang alternates. */
-function single(
-  path: string,
-  opts: { priority: number; changeFrequency: ChangeFreq; lastModified: Date },
-): Entry {
-  return {
-    url: `${SITE_URL}${path}`,
-    priority: opts.priority,
-    changeFrequency: opts.changeFrequency,
-    lastModified: opts.lastModified,
-  }
+function single(path: string, opts: Opts): SitemapEntry {
+  return { url: `${SITE_URL}${path}`, ...opts, alternates: [] }
 }
 
-export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const now = new Date()
+export async function getSitemapEntries(): Promise<SitemapEntry[]> {
+  const now = new Date().toISOString()
 
   const [serviceSlugs, portfolioSlugs, arPortfolioSlugs, blogSlugs, arBlogSlugs] =
     await Promise.all([
@@ -56,14 +51,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       getAllArPostSlugs(),
     ])
 
-  // Blog posts and case studies are single documents with independent
-  // publish flags per language, so a slug may be live in one language only.
+  // Blog posts and case studies are single documents with independent publish
+  // flags per language, so a slug may be live in one language only.
   const arPortfolioSet = new Set(arPortfolioSlugs)
   const arBlogSet = new Set(arBlogSlugs)
 
-  const entries: MetadataRoute.Sitemap = []
+  const entries: SitemapEntry[] = []
 
-  // Static pages that exist in both languages.
   const bilingualStatic: { path: string; priority: number; changeFrequency: ChangeFreq }[] = [
     { path: '', priority: 1.0, changeFrequency: 'weekly' },
     { path: '/about', priority: 0.8, changeFrequency: 'monthly' },
