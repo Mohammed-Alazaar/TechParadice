@@ -13,9 +13,13 @@ export type BlogPost = {
   readingTime: string
   body: string[]
   cover?: string
+  coverAr?: string
   published: boolean
   /** same document also carries the Arabic publish flag */
   publishedAr?: boolean
+  metaTitle?: string
+  metaDescription?: string
+  metaKeywords?: string[]
 }
 
 export type BlogPostAr = {
@@ -29,9 +33,14 @@ export type BlogPostAr = {
   readingTime: string
   bodyAr: string[]
   cover?: string
+  /** optional Arabic-specific cover; Arabic pages use this when set, else `cover` */
+  coverAr?: string
   publishedAr: boolean
   /** same document also carries the English publish flag */
   published?: boolean
+  metaTitleAr?: string
+  metaDescriptionAr?: string
+  metaKeywordsAr?: string[]
 }
 
 function toPost(doc: any): BlogPost {

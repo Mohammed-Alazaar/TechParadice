@@ -88,8 +88,8 @@ export default async function ArBlogPage() {
             className="group grid gap-8 rounded-2xl border border-border-dark bg-surface p-8 transition-all hover:-translate-y-1 hover:border-teal/40 lg:grid-cols-[1.1fr_1fr] lg:p-10"
           >
             <div className="relative aspect-[16/10] overflow-hidden rounded-xl bg-gradient-to-br from-teal/20 via-void to-surface">
-              {featured.cover ? (
-                <Image src={featured.cover} alt={featured.titleAr} fill className="object-cover" sizes="(min-width: 1024px) 55vw, 100vw" />
+              {featured.coverAr || featured.cover ? (
+                <Image src={(featured.coverAr || featured.cover)!} alt={featured.titleAr} fill className="object-cover" sizes="(min-width: 1024px) 55vw, 100vw" />
               ) : (
                 <div className="absolute inset-0 flex items-center justify-center font-display text-[96px] font-extrabold tracking-tight text-white/10">
                   /

@@ -22,7 +22,14 @@ interface BlogFormProps {
     titleAr?: string
     excerptAr?: string
     bodyAr?: string[]
+    coverAr?: string
     publishedAr?: boolean
+    metaTitle?: string
+    metaDescription?: string
+    metaKeywords?: string[]
+    metaTitleAr?: string
+    metaDescriptionAr?: string
+    metaKeywordsAr?: string[]
   }
 }
 
@@ -34,6 +41,20 @@ function toEditorContent(body: string[] | undefined): string {
   if (!body || body.length === 0) return ''
   if (body.length === 1 && /<[a-z][\s\S]*>/i.test(body[0])) return body[0]
   return body.map((p) => `<p>${p}</p>`).join('')
+}
+
+/** "a, b ,c" <-> ["a","b","c"] for the comma-separated keyword inputs */
+function splitKeywords(value: string): string[] {
+  return value.split(',').map((k) => k.trim()).filter(Boolean)
+}
+
+/** SERP-length hint under a meta title/description field */
+function CharCount({ value, max }: { value: string; max: number }) {
+  return (
+    <p className={`mt-1 text-[11px] ${value.length > max ? 'text-amber-400' : 'text-white/30'}`}>
+      {value.length}/{max} recommended
+    </p>
+  )
 }
 
 const REQUIRED = ['slug', 'title', 'excerpt', 'author', 'date', 'readingTime'] as const
@@ -57,8 +78,18 @@ export function BlogForm({ initialData }: BlogFormProps) {
     titleAr: initialData?.titleAr ?? '',
     excerptAr: initialData?.excerptAr ?? '',
     bodyAr: toEditorContent(initialData?.bodyAr),
+    coverAr: initialData?.coverAr ?? '',
     publishedAr: initialData?.publishedAr ?? false,
+    metaTitle: initialData?.metaTitle ?? '',
+    metaDescription: initialData?.metaDescription ?? '',
+    metaKeywords: (initialData?.metaKeywords ?? []).join(', '),
+    metaTitleAr: initialData?.metaTitleAr ?? '',
+    metaDescriptionAr: initialData?.metaDescriptionAr ?? '',
+    metaKeywordsAr: (initialData?.metaKeywordsAr ?? []).join(', '),
   })
+
+  // When no Arabic-specific cover is stored, default to reusing the English one.
+  const [useSameCover, setUseSameCover] = useState(!initialData?.coverAr)
 
   const [errors, setErrors] = useState<Record<string, string>>({})
   const [saving, setSaving] = useState(false)
@@ -94,6 +125,16 @@ export function BlogForm({ initialData }: BlogFormProps) {
       ...form,
       body: form.body ? [form.body] : [],
       bodyAr: form.bodyAr ? [form.bodyAr] : [],
+      // Empty coverAr => Arabic pages fall back to the English cover.
+      coverAr: useSameCover ? '' : form.coverAr,
+      // Comma-separated inputs -> string arrays for the schema.
+      metaKeywords: splitKeywords(form.metaKeywords),
+      metaKeywordsAr: splitKeywords(form.metaKeywordsAr),
+      // Trim so a whitespace-only entry collapses to '' and the ||-fallback engages.
+      metaTitle: form.metaTitle.trim(),
+      metaDescription: form.metaDescription.trim(),
+      metaTitleAr: form.metaTitleAr.trim(),
+      metaDescriptionAr: form.metaDescriptionAr.trim(),
     }
 
     const url = isEdit ? `/api/admin/blog/${initialData!.slug}` : '/api/admin/blog'
@@ -187,6 +228,38 @@ export function BlogForm({ initialData }: BlogFormProps) {
 
           <ImageUpload value={form.cover} onChange={(url) => set('cover', url)} />
 
+          <div className="space-y-4 rounded-lg border border-white/10 bg-white/5 p-4">
+            <p className="text-[13px] font-semibold text-white/80">SEO / Meta (English)</p>
+            <Field label="Meta title">
+              <input
+                value={form.metaTitle}
+                onChange={(e) => set('metaTitle', e.target.value)}
+                className={inp()}
+                placeholder="Falls back to the post title if left empty"
+              />
+              <CharCount value={form.metaTitle} max={60} />
+            </Field>
+            <Field label="Meta description">
+              <textarea
+                value={form.metaDescription}
+                onChange={(e) => set('metaDescription', e.target.value)}
+                rows={3}
+                className={inp()}
+                placeholder="Falls back to the excerpt if left empty"
+              />
+              <CharCount value={form.metaDescription} max={160} />
+            </Field>
+            <Field label="Meta keywords (comma-separated)">
+              <input
+                value={form.metaKeywords}
+                onChange={(e) => set('metaKeywords', e.target.value)}
+                className={inp()}
+                placeholder="web design, seo, growth"
+              />
+              <p className="mt-1 text-[11px] text-white/30">Stored as a keywords meta tag. Note: major search engines give it little weight.</p>
+            </Field>
+          </div>
+
           <label className="flex items-center gap-2 text-[13px] text-white/70">
             <input type="checkbox" checked={form.published} onChange={(e) => set('published', e.target.checked)} className="accent-teal" />
             Published (English)
@@ -195,7 +268,7 @@ export function BlogForm({ initialData }: BlogFormProps) {
       ) : (
         <>
           <div className="rounded-lg border border-amber-500/20 bg-amber-500/5 px-3 py-2 text-[12px] text-amber-400">
-            Arabic content served at <code dir="ltr">/ar/blog/{form.slug || '[slug]'}</code>. Cover image is shared.
+            Arabic content served at <code dir="ltr">/ar/blog/{form.slug || '[slug]'}</code>.
           </div>
 
           <Field label="عنوان المقال (Title in Arabic)">
@@ -227,6 +300,83 @@ export function BlogForm({ initialData }: BlogFormProps) {
               placeholder="اكتب محتوى المقال بالعربية..."
             />
           </Field>
+
+          <div className="space-y-3 rounded-lg border border-white/10 bg-white/5 p-4">
+            <p className="text-[13px] font-medium text-white/70">صورة الغلاف للنسخة العربية (Arabic cover image)</p>
+
+            <label className="flex items-center gap-2 text-[13px] text-white/70">
+              <input
+                type="checkbox"
+                checked={useSameCover}
+                onChange={(e) => setUseSameCover(e.target.checked)}
+                className="accent-teal"
+              />
+              استخدام نفس صورة النسخة الإنجليزية (Use the same image as English)
+            </label>
+
+            {useSameCover ? (
+              form.cover ? (
+                <div className="relative aspect-video w-full overflow-hidden rounded-lg border border-white/10">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={form.cover} alt="English cover" className="h-full w-full object-cover" />
+                  <span className="absolute left-2 top-2 rounded bg-black/70 px-2 py-0.5 text-[11px] text-white/80">
+                    English cover
+                  </span>
+                </div>
+              ) : (
+                <p className="text-[12px] text-white/40">
+                  No English cover uploaded yet — add one on the English tab, or uncheck this box to upload an Arabic-only image.
+                </p>
+              )
+            ) : (
+              <>
+                <ImageUpload
+                  label="صورة عربية (Arabic cover)"
+                  value={form.coverAr}
+                  onChange={(url) => set('coverAr', url)}
+                />
+                {!form.coverAr ? (
+                  <p className="text-[12px] text-white/40">
+                    لم تُضف صورة عربية بعد — ستُستخدم صورة النسخة الإنجليزية حتى ترفع واحدة. (No Arabic image yet — the English cover is used until you upload one.)
+                  </p>
+                ) : null}
+              </>
+            )}
+          </div>
+
+          <div className="space-y-4 rounded-lg border border-white/10 bg-white/5 p-4">
+            <p className="text-[13px] font-semibold text-white/80">SEO / Meta (العربية)</p>
+            <Field label="عنوان الميتا (Meta title)">
+              <input
+                dir="rtl"
+                value={form.metaTitleAr}
+                onChange={(e) => set('metaTitleAr', e.target.value)}
+                className={`${inp()} text-right`}
+                placeholder="يُستخدم عنوان المقال إذا تُرك فارغًا"
+              />
+              <CharCount value={form.metaTitleAr} max={60} />
+            </Field>
+            <Field label="وصف الميتا (Meta description)">
+              <textarea
+                dir="rtl"
+                value={form.metaDescriptionAr}
+                onChange={(e) => set('metaDescriptionAr', e.target.value)}
+                rows={3}
+                className={`${inp()} text-right`}
+                placeholder="يُستخدم المقتطف إذا تُرك فارغًا"
+              />
+              <CharCount value={form.metaDescriptionAr} max={160} />
+            </Field>
+            <Field label="الكلمات المفتاحية (مفصولة بفواصل)">
+              <input
+                dir="rtl"
+                value={form.metaKeywordsAr}
+                onChange={(e) => set('metaKeywordsAr', e.target.value)}
+                className={`${inp()} text-right`}
+                placeholder="السيو, تصميم المواقع, النمو"
+              />
+            </Field>
+          </div>
 
           <label className="flex items-center gap-2 text-[13px] text-white/70">
             <input type="checkbox" checked={form.publishedAr} onChange={(e) => set('publishedAr', e.target.checked)} className="accent-teal" />

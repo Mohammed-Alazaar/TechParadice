@@ -23,8 +23,9 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const post = await getArPost(params.slug)
   if (!post) return {}
   return buildMetadata({
-    title: post.titleAr,
-    description: post.excerptAr,
+    title: post.metaTitleAr || post.titleAr,
+    description: post.metaDescriptionAr || post.excerptAr,
+    keywords: post.metaKeywordsAr,
     path: `/ar/blog/${post.slug}`,
     alternatePath: `/blog/${post.slug}`,
     locale: 'ar',
@@ -69,6 +70,8 @@ export default async function ArBlogPostPage({ params }: Params) {
   }
 
   const related = all.filter((p) => p.slug !== post.slug).slice(0, 2)
+  // Arabic pages prefer an Arabic-specific cover, falling back to the shared one.
+  const cover = post.coverAr || post.cover
 
   const jsonLd = [
     {
@@ -86,7 +89,7 @@ export default async function ArBlogPostPage({ params }: Params) {
         logo: { '@type': 'ImageObject', url: `${SITE_URL}/og-image.png` },
       },
       mainEntityOfPage: { '@type': 'WebPage', '@id': `${SITE_URL}/ar/blog/${post.slug}` },
-      ...(post.cover ? { image: post.cover } : {}),
+      ...(cover ? { image: cover } : {}),
       articleSection: post.category,
     },
     {
@@ -124,8 +127,8 @@ export default async function ArBlogPostPage({ params }: Params) {
           </p>
 
           <div className="relative mt-12 aspect-[16/8] overflow-hidden rounded-2xl bg-gradient-to-br from-teal/20 via-void to-surface">
-            {post.cover ? (
-              <Image src={post.cover} alt={post.titleAr} fill className="object-cover" sizes="(min-width: 1024px) 75vw, 100vw" priority />
+            {cover ? (
+              <Image src={cover} alt={post.titleAr} fill className="object-cover" sizes="(min-width: 1024px) 75vw, 100vw" priority />
             ) : (
               <div className="absolute inset-0 flex items-center justify-center font-display text-[180px] font-extrabold text-white/10">
                 /

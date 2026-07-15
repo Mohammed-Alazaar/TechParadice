@@ -22,8 +22,9 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const post = await getPost(params.slug)
   if (!post) return {}
   return buildMetadata({
-    title: post.title,
-    description: post.excerpt,
+    title: post.metaTitle || post.title,
+    description: post.metaDescription || post.excerpt,
+    keywords: post.metaKeywords,
     path: `/blog/${post.slug}`,
     alternatePath: `/ar/blog/${post.slug}`,
     hasAlternate: Boolean(post.publishedAr),

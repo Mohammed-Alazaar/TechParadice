@@ -7,6 +7,8 @@ type SeoInput = {
   path?: string
   image?: string
   locale?: 'en' | 'ar'
+  /** optional meta keywords for this page */
+  keywords?: string[]
   /** pass the corresponding path in the other language to get hreflang */
   alternatePath?: string
   /**
@@ -24,6 +26,7 @@ export function buildMetadata({
   path = '/',
   image = '/og-image.png',
   locale = 'en',
+  keywords,
   alternatePath,
   hasAlternate = true,
 }: SeoInput): Metadata {
@@ -48,6 +51,7 @@ export function buildMetadata({
   return {
     title: fullTitle,
     description,
+    ...(keywords && keywords.length ? { keywords } : {}),
     metadataBase: new URL(SITE_URL),
     alternates: {
       canonical: url,

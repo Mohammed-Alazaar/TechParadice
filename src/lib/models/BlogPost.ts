@@ -14,7 +14,17 @@ export interface IBlogPost extends Document {
   titleAr?: string
   excerptAr?: string
   bodyAr?: string[]
+  /** optional Arabic-specific cover; when empty the Arabic pages fall back to `cover` */
+  coverAr?: string
   publishedAr: boolean
+  // SEO meta — English (fall back to title/excerpt when empty)
+  metaTitle?: string
+  metaDescription?: string
+  metaKeywords?: string[]
+  // SEO meta — Arabic (fall back to titleAr/excerptAr when empty)
+  metaTitleAr?: string
+  metaDescriptionAr?: string
+  metaKeywordsAr?: string[]
 }
 
 const BlogPostSchema = new Schema<IBlogPost>(
@@ -32,7 +42,14 @@ const BlogPostSchema = new Schema<IBlogPost>(
     titleAr: { type: String },
     excerptAr: { type: String },
     bodyAr: [{ type: String }],
+    coverAr: { type: String },
     publishedAr: { type: Boolean, default: false },
+    metaTitle: { type: String },
+    metaDescription: { type: String },
+    metaKeywords: [{ type: String }],
+    metaTitleAr: { type: String },
+    metaDescriptionAr: { type: String },
+    metaKeywordsAr: [{ type: String }],
   },
   { timestamps: true },
 )
