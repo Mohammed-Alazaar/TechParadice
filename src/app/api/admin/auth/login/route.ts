@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server'
 import { getSession } from '@/lib/admin/session'
+import { getPostHogClient } from '@/lib/posthog-server'
 
 export const runtime = 'nodejs'
 
@@ -35,6 +36,10 @@ export async function POST(req: Request) {
       { status: 500 }
     )
   }
+
+  const posthog = getPostHogClient()
+  posthog.capture({ distinctId: 'admin', event: 'admin_logged_in' })
+  await posthog.flush()
 
   return NextResponse.json({ ok: true })
 }

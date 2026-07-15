@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server'
 import dbConnect from '@/lib/mongodb'
 import InquiryModel from '@/lib/models/Inquiry'
+import { getPostHogClient } from '@/lib/posthog-server'
 
 export const runtime = 'nodejs'
 
@@ -15,6 +16,15 @@ export async function PATCH(req: Request, { params }: Params) {
     { new: true },
   )
   if (!inquiry) return NextResponse.json({ error: 'Not found' }, { status: 404 })
+
+  const posthog = getPostHogClient()
+  posthog.capture({
+    distinctId: 'admin',
+    event: 'inquiry_status_updated',
+    properties: { status, inquiry_type: inquiry.type },
+  })
+  await posthog.flush()
+
   return NextResponse.json(inquiry)
 }
 

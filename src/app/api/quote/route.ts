@@ -4,6 +4,7 @@ import { resend, hasEmailTransport } from '@/lib/email'
 import { BRAND } from '@/lib/utils'
 import dbConnect from '@/lib/mongodb'
 import InquiryModel from '@/lib/models/Inquiry'
+import { getPostHogClient } from '@/lib/posthog-server'
 
 export const runtime = 'nodejs'
 
@@ -19,6 +20,7 @@ const schema = z.object({
 })
 
 export async function POST(req: Request) {
+  const distinctId = req.headers.get('X-POSTHOG-DISTINCT-ID') ?? 'anonymous'
   let payload: unknown
   try {
     payload = await req.json()
@@ -43,6 +45,20 @@ export async function POST(req: Request) {
     console.error('[quote] db save error', err)
   }
 
+  const posthog = getPostHogClient()
+  posthog.identify({ distinctId, properties: { name: data.name, email: data.email, company: data.company } })
+  posthog.capture({
+    distinctId,
+    event: 'quote_request_received',
+    properties: {
+      project_type: data.projectType,
+      budget: data.budget,
+      timeline: data.timeline,
+      services: data.services,
+      services_count: data.services.length,
+    },
+  })
+
   const destination = process.env.CONTACT_EMAIL ?? BRAND.email
 
   if (!hasEmailTransport() || !resend) {
@@ -50,6 +66,7 @@ export async function POST(req: Request) {
       ...data,
       message: data.message.slice(0, 80),
     })
+    await posthog.flush()
     return NextResponse.json({ ok: true })
   }
 
@@ -79,5 +96,6 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: 'Failed to send' }, { status: 500 })
   }
 
+  await posthog.flush()
   return NextResponse.json({ ok: true })
 }

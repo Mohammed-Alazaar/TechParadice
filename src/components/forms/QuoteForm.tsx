@@ -7,6 +7,7 @@ import { useState } from 'react'
 import { CheckCircle2, Loader2 } from 'lucide-react'
 import { Input, Textarea, Select } from '@/components/ui/Input'
 import { Button } from '@/components/ui/Button'
+import posthog from 'posthog-js'
 
 const quoteSchema = z.object({
   name: z.string().min(2),
@@ -138,12 +139,24 @@ export function QuoteForm({ locale = 'en' }: QuoteFormProps) {
   })
 
   async function onSubmit(data: QuoteInput) {
+    const distinctId = posthog.get_distinct_id()
     const res = await fetch('/api/quote', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        'X-POSTHOG-DISTINCT-ID': distinctId ?? '',
+      },
       body: JSON.stringify(data),
     })
     if (res.ok) {
+      posthog.identify(distinctId, { name: data.name, email: data.email, company: data.company })
+      posthog.capture('quote_form_submitted', {
+        project_type: data.projectType,
+        budget: data.budget,
+        timeline: data.timeline,
+        services: data.services,
+        services_count: data.services.length,
+      })
       setSubmitted(true)
       reset()
     }
