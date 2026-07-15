@@ -7,6 +7,7 @@ import { z } from 'zod'
 import { CheckCircle2, Loader2 } from 'lucide-react'
 import { Input, Textarea, Select } from '@/components/ui/Input'
 import { Button } from '@/components/ui/Button'
+import posthog from 'posthog-js'
 
 const contactSchema = z.object({
   name: z.string().min(2),
@@ -107,12 +108,21 @@ export function ContactForm({ locale = 'en' }: ContactFormProps) {
   } = useForm<ContactInput>({ resolver: zodResolver(contactSchema) })
 
   async function onSubmit(data: ContactInput) {
+    const distinctId = posthog.get_distinct_id()
     const res = await fetch('/api/contact', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        'X-POSTHOG-DISTINCT-ID': distinctId ?? '',
+      },
       body: JSON.stringify(data),
     })
     if (res.ok) {
+      posthog.identify(distinctId, { name: data.name, email: data.email, company: data.company })
+      posthog.capture('contact_form_submitted', {
+        service_interest: data.interest,
+        budget: data.budget || undefined,
+      })
       setSubmitted(true)
       reset()
     }
