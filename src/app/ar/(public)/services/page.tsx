@@ -12,7 +12,7 @@ export const revalidate = 300
 
 export const metadata: Metadata = buildMetadata({
   title: 'الخدمات',
-  description: 'خدمات متكاملة في تطوير المواقع والتطبيقات وتصميم UI/UX وSEO والمحتوى وإدارة منصات التواصل والمجتمعات والتحليلات والإعلانات المدفوعة.',
+  description: 'خدمات متكاملة في تطوير المواقع والتطبيقات وتصميم UI/UX وSEO والمحتوى والإعلانات المدفوعة والمساعدين الذكيين المخصصين.',
   path: '/ar/services',
   alternatePath: '/services',
   locale: 'ar',
@@ -20,7 +20,14 @@ export const metadata: Metadata = buildMetadata({
 
 const BUILD_SLUGS = ['web-development', 'mobile-app-development', 'ui-ux-design']
 const GROW_SLUGS = ['seo', 'content-creation', 'paid-advertising']
-const ENGAGE_MEASURE_SLUGS = ['social-media-management', 'community-management', 'analytics-reporting']
+const AI_ASSISTANT_SLUGS = [
+  'voice-ai-receptionist',
+  'customer-support-ai',
+  'sales-lead-qualification-ai',
+  'business-analytics-ai',
+  'internal-knowledge-ai',
+  'meeting-executive-ai',
+]
 
 const overviewFaqs = [
   {
@@ -96,7 +103,7 @@ export default async function ArServicesPage() {
 
   const build = services.filter((s) => BUILD_SLUGS.includes(s.slug))
   const grow = services.filter((s) => GROW_SLUGS.includes(s.slug))
-  const engageAndMeasure = services.filter((s) => ENGAGE_MEASURE_SLUGS.includes(s.slug))
+  const aiAssistants = services.filter((s) => AI_ASSISTANT_SLUGS.includes(s.slug))
 
   const jsonLd = [
     {
@@ -148,7 +155,7 @@ export default async function ArServicesPage() {
           <>
             <ClusterRow label="بناء" services={build} />
             <ClusterRow label="نمو" services={grow} />
-            <ClusterRow label="تفاعل وقياس" services={engageAndMeasure} />
+            <ClusterRow label="المساعدون الذكيون" services={aiAssistants} />
           </>
         ) : (
           <div className="rounded-2xl border border-border-dark bg-surface p-8 sm:p-10">
@@ -178,11 +185,11 @@ export default async function ArServicesPage() {
           </div>
           <ul className="grid grid-cols-2 gap-3">
             {[
-              'تطوير الويب + SEO + تحليلات',
+              'تطوير الويب + SEO + محتوى',
               'تطوير الويب + UI/UX + إعلانات مدفوعة',
-              'تطبيقات iOS وAndroid + UI/UX + تحليلات',
+              'تطوير الويب + مساعد دعم ذكي',
               'SEO + محتوى + إعلانات مدفوعة',
-              'منصات التواصل + إدارة المجتمعات',
+              'مساعد صوتي + مساعد مبيعات',
               'تطوير الويب + تطبيقات + UI/UX',
             ].map((combo) => (
               <li

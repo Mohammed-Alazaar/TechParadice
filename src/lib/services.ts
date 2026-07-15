@@ -3,13 +3,18 @@ import type { LucideIcon } from 'lucide-react'
 import {
   Activity,
   BarChart3,
+  BookOpen,
   Bot,
+  CalendarCheck,
   Code2,
   FileText,
+  Headphones,
   Megaphone,
   Palette,
+  Phone,
   Search,
   Smartphone,
+  TrendingUp,
   Users,
 } from 'lucide-react'
 import dbConnect from './mongodb'
@@ -18,13 +23,18 @@ import ServiceModel from './models/Service'
 export const ICON_MAP: Record<string, LucideIcon> = {
   Activity,
   BarChart3,
+  BookOpen,
   Bot,
+  CalendarCheck,
   Code2,
   FileText,
+  Headphones,
   Megaphone,
   Palette,
+  Phone,
   Search,
   Smartphone,
+  TrendingUp,
   Users,
 }
 

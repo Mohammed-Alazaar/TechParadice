@@ -14,13 +14,20 @@ export const revalidate = 300
 export const metadata: Metadata = buildMetadata({
   title: 'Services',
   description:
-    'Explore TechParadice services across web development, mobile apps, UI/UX, SEO, content, social media, community management, analytics, and paid advertising.',
+    'Explore TechParadice services across web development, mobile apps, UI/UX, SEO, content, paid advertising, and custom AI assistants.',
   path: '/services',
 })
 
 const BUILD_SLUGS = ['web-development', 'mobile-app-development', 'ui-ux-design']
 const GROW_SLUGS = ['seo', 'content-creation', 'paid-advertising']
-const ENGAGE_MEASURE_SLUGS = ['social-media-management', 'community-management', 'analytics-reporting']
+const AI_ASSISTANT_SLUGS = [
+  'voice-ai-receptionist',
+  'customer-support-ai',
+  'sales-lead-qualification-ai',
+  'business-analytics-ai',
+  'internal-knowledge-ai',
+  'meeting-executive-ai',
+]
 
 const overviewFaqs = [
   {
@@ -95,7 +102,7 @@ export default async function ServicesPage() {
 
   const build = services.filter((s) => BUILD_SLUGS.includes(s.slug))
   const grow = services.filter((s) => GROW_SLUGS.includes(s.slug))
-  const engageAndMeasure = services.filter((s) => ENGAGE_MEASURE_SLUGS.includes(s.slug))
+  const aiAssistants = services.filter((s) => AI_ASSISTANT_SLUGS.includes(s.slug))
 
   const jsonLd = [
     {
@@ -146,7 +153,7 @@ export default async function ServicesPage() {
           <>
             <ClusterRow label="Build" services={build} />
             <ClusterRow label="Grow" services={grow} />
-            <ClusterRow label="Engage & measure" services={engageAndMeasure} />
+            <ClusterRow label="AI Assistants" services={aiAssistants} />
           </>
         ) : (
           <div className="rounded-2xl border border-border-dark bg-surface p-8 sm:p-10">
@@ -177,11 +184,11 @@ export default async function ServicesPage() {
           </div>
           <ul className="grid grid-cols-2 gap-3">
             {[
-              'Web + SEO + Analytics',
+              'Web + SEO + Content',
               'Web + UI/UX + Paid Advertising',
-              'Mobile + UI/UX + Analytics',
+              'Web + Customer Support AI',
               'SEO + Content + Paid Advertising',
-              'Social Media + Community',
+              'Voice AI + Sales AI',
               'Web + Mobile + UI/UX',
             ].map((combo) => (
               <li

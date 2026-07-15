@@ -309,7 +309,7 @@ const services = [
     process: [{ step: "Discover", detail: "Define user journeys, device requirements, integrations, risks, and MVP scope." }, { step: "Design", detail: "Create accessible mobile patterns and validate interactive prototypes on representative devices." }, { step: "Build", detail: "Develop in testable releases shared through TestFlight or the appropriate internal track." }, { step: "Launch", detail: "Prepare store submissions, plan the rollout, monitor stability, and prioritise follow-up improvements." }],
     tools: ["React Native", "Expo", "Swift", "Kotlin", "Firebase", "Sentry"],
     faqs: [{ q: "React Native or fully native development?", a: "We choose the approach based on the product, performance, device features, and integration requirements. React Native is often efficient, while native development is appropriate when it offers a meaningful advantage." }, { q: "Do you support App Store submissions?", a: "Yes. We prepare the required build and listing materials, support the review process, and address technical feedback. Final approval remains with Apple and Google." }],
-    pairsWith: ["ui-ux-design", "web-development", "analytics-reporting"],
+    pairsWith: ["ui-ux-design", "web-development", "customer-support-ai"],
     nameAr: "تطوير تطبيقات الجوال", shortAr: "تطبيقات موثوقة على iOS وAndroid مصممة حول مسارات استخدام حقيقية.", valueAr: "نطوّر تطبيقات متعددة المنصات باستخدام React Native، ونلجأ إلى Swift أو Kotlin عندما توفر التقنية Native ميزة واضحة للمنتج أو الأداء.",
     deliverablesAr: ["قاعدة كود مشتركة باستخدام React Native لنظامي iOS وAndroid عندما يكون ذلك مناسباً", "وحدات Native باستخدام Swift أو Kotlin وفق متطلبات المنتج", "تجهيز الإصدار ودعم تقديمه إلى App Store وPlay Store", "إشعارات فورية وإعداد التحليلات وتقارير الأعطال", "خطة للاختبار والإصدار والتحديثات بعد الإطلاق"],
     processAr: [{ step: "الاستكشاف", detail: "تحديد مسارات المستخدم ومتطلبات الأجهزة والتكاملات والمخاطر ونطاق MVP." }, { step: "التصميم", detail: "تصميم أنماط متوافقة مع الجوال واختبار النماذج التفاعلية على أجهزة ممثلة للاستخدام." }, { step: "التطوير", detail: "تنفيذ التطبيق على إصدارات قابلة للاختبار عبر TestFlight أو مسار الاختبار الداخلي المناسب." }, { step: "الإطلاق", detail: "تجهيز ملفات المتاجر وخطة طرح الإصدار ومراقبة الاستقرار وتحديد التحسينات اللاحقة." }],
@@ -333,23 +333,11 @@ const services = [
     process: [{ step: "Audit", detail: "Review crawling, indexing, site performance, page structure, content signals, and the relevant search landscape." }, { step: "Plan", detail: "Prioritise technical and on-page opportunities according to customer needs, effort, and commercial relevance." }, { step: "Implement", detail: "Apply the agreed improvements and coordinate any development or content dependencies." }, { step: "Measure", detail: "Track visibility, qualified traffic, and agreed conversions, then refine the next priorities from the evidence." }],
     tools: ["Google Search Console", "GA4", "Ahrefs", "Screaming Frog", "Looker Studio"],
     faqs: [{ q: "How long does SEO take to show progress?", a: "There is no universal timeline. Site condition, competition, content, authority, and implementation pace all affect progress. We establish a baseline and report movement against agreed measures without guaranteeing rankings." }, { q: "Can you implement the SEO recommendations?", a: "Yes. We can handle agreed technical and on-page changes directly, or work with your development and content teams through prioritised tickets and clear acceptance criteria." }],
-    pairsWith: ["web-development", "content-creation", "analytics-reporting"],
+    pairsWith: ["web-development", "content-creation", "business-analytics-ai"],
     nameAr: "SEO", shortAr: "SEO تقني يساعد محركات البحث على اكتشاف موقعك وفهمه وعرضه بصورة أفضل.", valueAr: "نجمع بين التدقيق التقني وبحث نية المستخدم وتحسين الصفحات وتقارير عملية لدعم الظهور العضوي على المدى الطويل.",
     deliverablesAr: ["تدقيق تقني لـ SEO يشمل الزحف والفهرسة والبيانات المنظمة وCore Web Vitals", "بحث الكلمات المفتاحية ونية البحث مع خطة عمل مرتبة حسب الأولوية", "توصيات للصفحات ذات الأولوية وتنفيذ التحسينات المتفق عليها", "توصيات للروابط الداخلية والبيانات المنظمة وفجوات المحتوى", "تقارير عن الظهور والزيارات العضوية المؤهلة ومؤشرات التحويل المتفق عليها"],
     processAr: [{ step: "التدقيق", detail: "مراجعة الزحف والفهرسة وأداء الموقع وبنية الصفحات وإشارات المحتوى ومشهد البحث ذي الصلة." }, { step: "التخطيط", detail: "ترتيب الفرص التقنية وفرص تحسين الصفحات وفق احتياجات العملاء والجهد والأهمية التجارية." }, { step: "التنفيذ", detail: "تطبيق التحسينات المتفق عليها وتنسيق أي متطلبات مرتبطة بالتطوير أو المحتوى." }, { step: "القياس", detail: "متابعة الظهور والزيارات المؤهلة والتحويلات المتفق عليها، ثم تحديث الأولويات بناءً على البيانات." }],
     faqsAr: [{ q: "كم يحتاج SEO حتى يظهر تقدماً؟", a: "لا توجد مدة واحدة تنطبق على جميع المواقع. تؤثر حالة الموقع والمنافسة والمحتوى والسمعة وسرعة التنفيذ في التقدم. نحدد خط أساس ونقيس الحركة وفق مؤشرات متفق عليها من دون ضمان ترتيب محدد." }, { q: "هل يمكنكم تنفيذ توصيات SEO؟", a: "نعم. يمكننا تنفيذ التحسينات التقنية وتحسينات الصفحات المتفق عليها، أو التعاون مع فريقي التطوير والمحتوى لديك من خلال مهام مرتبة ومعايير اعتماد واضحة." }],
-  },
-  {
-    slug: "social-media-management", name: "Social Media Management", short: "Structured planning and publishing that keeps your brand active and consistent across the right social channels.", value: "We manage channel strategy, editorial calendars, publishing, and approvals around your brand voice, audience, and business priorities.", iconName: "Megaphone", order: 5,
-    deliverables: ["A channel strategy based on audience behaviour and business goals", "An editorial calendar with clear briefs, formats, owners, and dates", "Copy adaptation, scheduling, publishing, and approval coordination", "A documented workflow for assets, feedback, and last-minute changes", "Performance reviews with recommendations for the next publishing cycle"],
-    process: [{ step: "Audit", detail: "Review current channels, audience behaviour, content performance, resources, and relevant competitors." }, { step: "Plan", detail: "Define the role of each channel, publishing themes, formats, cadence, and approval workflow." }, { step: "Manage", detail: "Coordinate assets and copy, secure approvals, schedule posts, and publish against the agreed calendar." }, { step: "Improve", detail: "Review meaningful engagement and business signals, then update the plan based on evidence." }],
-    tools: ["Meta Business Suite", "Buffer", "Later", "Notion", "Canva"],
-    faqs: [{ q: "Which platforms do you manage?", a: "We can support LinkedIn, Instagram, Facebook, X, TikTok, YouTube, and Threads. We recommend a channel mix based on where your audience is active and the level of coverage your team can sustain." }, { q: "How does the approval process work?", a: "We agree reviewers, deadlines, and escalation routes at the start. Content is shared in an editorial calendar so your team can comment and approve it before scheduling." }],
-    pairsWith: ["content-creation", "community-management", "analytics-reporting"],
-    nameAr: "إدارة منصات التواصل الاجتماعي", shortAr: "تخطيط ونشر منظمان يحافظان على حضور علامتك واتساقها عبر القنوات الاجتماعية المناسبة.", valueAr: "ندير استراتيجية القنوات والتقويم التحريري والنشر والاعتمادات بما ينسجم مع نبرة علامتك وجمهورك وأولويات أعمالك.",
-    deliverablesAr: ["استراتيجية للقنوات تستند إلى سلوك الجمهور وأهداف العمل", "تقويم تحريري يوضح الموجز والصيغة والمسؤول والموعد لكل منشور", "تكييف النصوص وجدولة المنشورات ونشرها وتنسيق اعتمادها", "آلية موثقة لإدارة المواد والملاحظات والتغييرات العاجلة", "مراجعات للأداء مع توصيات لدورة النشر التالية"],
-    processAr: [{ step: "التدقيق", detail: "مراجعة القنوات الحالية وسلوك الجمهور وأداء المحتوى والموارد والمنافسين ذوي الصلة." }, { step: "التخطيط", detail: "تحديد دور كل قناة وموضوعات النشر والصيغ والوتيرة وآلية الاعتماد." }, { step: "الإدارة", detail: "تنسيق المواد والنصوص والحصول على الاعتمادات وجدولة المنشورات ونشرها وفق التقويم المتفق عليه." }, { step: "التحسين", detail: "مراجعة التفاعل المفيد والمؤشرات المرتبطة بالأعمال، ثم تحديث الخطة بناءً على البيانات." }],
-    faqsAr: [{ q: "ما المنصات التي تديرونها؟", a: "يمكننا دعم LinkedIn وInstagram وFacebook وX وTikTok وYouTube وThreads. ونوصي بمزيج القنوات وفق نشاط جمهورك ومستوى التغطية الذي يستطيع فريقك استدامته." }, { q: "كيف تعمل آلية اعتماد المحتوى؟", a: "نتفق منذ البداية على المسؤولين عن المراجعة والمواعيد ومسارات التصعيد. نشارك المحتوى ضمن تقويم تحريري كي يتمكن فريقك من التعليق عليه واعتماده قبل الجدولة." }],
   },
   {
     slug: "content-creation", name: "Content Creation", short: "Purposeful copy, graphics, and short-form media shaped for your brand and chosen channels.", value: "We turn an agreed strategy into clear, consistent content that fits the audience, format, and action each asset is meant to support.", iconName: "FileText", order: 6,
@@ -357,35 +345,11 @@ const services = [
     process: [{ step: "Brief", detail: "Clarify the audience, message, channel, required formats, brand guidance, and approval criteria." }, { step: "Concept", detail: "Develop content angles and visual directions, then agree what moves into production." }, { step: "Create", detail: "Write, design, edit, and review each asset through the agreed feedback rounds." }, { step: "Deliver", detail: "Prepare channel-ready files, organise source materials, and record any usage or publishing notes." }],
     tools: ["Figma", "Adobe Creative Cloud", "Canva", "CapCut", "Notion"],
     faqs: [{ q: "What types of content can you create?", a: "Depending on the brief, we can produce copy, static designs, carousels, presentations, short-form video, motion assets, and reusable templates. Deliverables are confirmed before production starts." }, { q: "Can you create content in English and Arabic?", a: "Yes. We can plan bilingual content and adapt the message for each language rather than relying on literal translation. The final language mix and review process are agreed in the scope." }],
-    pairsWith: ["social-media-management", "paid-advertising", "seo"],
+    pairsWith: ["web-development", "paid-advertising", "seo"],
     nameAr: "إنتاج المحتوى", shortAr: "نصوص وتصاميم ومحتوى قصير هادف، يُعد بما يناسب علامتك والقنوات المختارة.", valueAr: "نحوّل الاستراتيجية المتفق عليها إلى محتوى واضح ومتسق يراعي الجمهور والصيغة والخطوة التي صُممت كل مادة لدعمها.",
     deliverablesAr: ["محاور للمحتوى وإرشادات للرسائل وموجزات واضحة للإنتاج", "نصوص للموقع أو الحملات أو البريد الإلكتروني أو القنوات الاجتماعية ضمن النطاق المتفق عليه", "تصاميم ثابتة ومنشورات متسلسلة وقوالب بصرية قابلة لإعادة الاستخدام", "فيديوهات قصيرة أو مواد Motion عندما تكون مدرجة في خطة الإنتاج", "ملفات مصدر منظمة ومكتبة تسليم للمواد المعتمدة"],
     processAr: [{ step: "الموجز", detail: "توضيح الجمهور والرسالة والقناة والصيغ المطلوبة وإرشادات العلامة ومعايير الاعتماد." }, { step: "الفكرة", detail: "تطوير زوايا المحتوى والاتجاهات البصرية، ثم الاتفاق على ما ينتقل إلى الإنتاج." }, { step: "الإنتاج", detail: "كتابة كل مادة وتصميمها وتحريرها ومراجعتها خلال جولات الملاحظات المتفق عليها." }, { step: "التسليم", detail: "تجهيز الملفات بصيغ مناسبة للقنوات وتنظيم مواد المصدر وتوثيق ملاحظات الاستخدام أو النشر." }],
     faqsAr: [{ q: "ما أنواع المحتوى التي يمكنكم إنتاجها؟", a: "وفق الموجز، يمكننا إعداد النصوص والتصاميم الثابتة والمنشورات المتسلسلة والعروض التقديمية والفيديو القصير ومواد Motion والقوالب القابلة لإعادة الاستخدام. نؤكد جميع المخرجات قبل بدء الإنتاج." }, { q: "هل تنشئون المحتوى بالإنجليزية والعربية؟", a: "نعم. يمكننا تخطيط محتوى ثنائي اللغة وتكييف الرسالة لكل لغة بدلاً من الاعتماد على الترجمة الحرفية. نتفق ضمن النطاق على مزيج اللغات وآلية المراجعة النهائية." }],
-  },
-  {
-    slug: "community-management", name: "Community Management", short: "Thoughtful audience engagement supported by clear response and escalation guidelines.", value: "We help you monitor conversations, respond consistently, identify recurring issues, and route sensitive or service-related cases to the right team.", iconName: "Users", order: 7,
-    deliverables: ["A channel coverage plan with agreed days, hours, and responsibilities", "A response playbook covering brand voice, common questions, and boundaries", "Inbox, comment, and mention monitoring during the agreed coverage periods", "Escalation routes for support, sales, complaints, and sensitive conversations", "Recurring insight summaries covering questions, sentiment themes, and unresolved issues"],
-    process: [{ step: "Set up", detail: "Agree access, coverage periods, response boundaries, service information, and escalation contacts." }, { step: "Monitor", detail: "Review relevant comments, direct messages, mentions, and conversation themes during agreed hours." }, { step: "Respond", detail: "Reply using approved guidance and route cases that require specialist or internal attention." }, { step: "Learn", detail: "Share recurring questions and audience signals so content, service, and channel plans can improve." }],
-    tools: ["Meta Business Suite", "Sprout Social", "Buffer", "Zendesk", "Notion"],
-    faqs: [{ q: "Do you provide round-the-clock community management?", a: "Coverage is agreed for each engagement based on channels, audience activity, risk, and budget. If extended or weekend monitoring is needed, we define the hours and escalation arrangements explicitly." }, { q: "How do you handle complaints or sensitive comments?", a: "We follow an approved response and escalation playbook. Cases involving account details, legal concerns, safety, or specialist support are routed to the named contact rather than answered beyond the agreed remit." }],
-    pairsWith: ["social-media-management", "content-creation", "analytics-reporting"],
-    nameAr: "إدارة المجتمع الرقمي", shortAr: "تفاعل مدروس مع الجمهور يستند إلى إرشادات واضحة للرد والتصعيد.", valueAr: "نساعدك على متابعة المحادثات والرد باتساق ورصد المسائل المتكررة وتحويل الحالات الحساسة أو المرتبطة بالخدمة إلى الفريق المناسب.",
-    deliverablesAr: ["خطة لتغطية القنوات توضح الأيام والساعات والمسؤوليات المتفق عليها", "دليل للردود يشمل نبرة العلامة والأسئلة الشائعة وحدود الصلاحية", "متابعة الرسائل والتعليقات والإشارات خلال فترات التغطية المتفق عليها", "مسارات تصعيد لحالات الدعم والمبيعات والشكاوى والمحادثات الحساسة", "ملخصات دورية للأسئلة والموضوعات المتكررة والحالات غير المحلولة"],
-    processAr: [{ step: "الإعداد", detail: "الاتفاق على الصلاحيات وفترات التغطية وحدود الرد ومعلومات الخدمة وجهات التصعيد." }, { step: "المتابعة", detail: "مراجعة التعليقات والرسائل الخاصة والإشارات والموضوعات ذات الصلة خلال الساعات المتفق عليها." }, { step: "الرد", detail: "الرد وفق الإرشادات المعتمدة وتحويل الحالات التي تحتاج إلى مختص أو إلى فريقك الداخلي." }, { step: "التعلّم", detail: "مشاركة الأسئلة المتكررة وإشارات الجمهور لتطوير المحتوى والخدمة وخطط القنوات." }],
-    faqsAr: [{ q: "هل توفرون إدارة للمجتمع على مدار الساعة؟", a: "نحدد التغطية لكل تعاون وفق القنوات ونشاط الجمهور والمخاطر والميزانية. وإذا كانت هناك حاجة إلى متابعة ممتدة أو في عطلة نهاية الأسبوع، فنوضح الساعات وترتيبات التصعيد ضمن النطاق." }, { q: "كيف تتعاملون مع الشكاوى أو التعليقات الحساسة؟", a: "نتبع دليلاً معتمداً للرد والتصعيد. ونحوّل الحالات التي تتضمن بيانات حساب أو مسائل قانونية أو سلامة أو دعماً متخصصاً إلى جهة الاتصال المحددة بدلاً من الرد خارج الصلاحية المتفق عليها." }],
-  },
-  {
-    slug: "analytics-reporting", name: "Analytics & Reporting", short: "Clear measurement that turns website and channel data into practical decisions.", value: "We define useful measures, review tracking quality, and build reporting that explains performance, limitations, and the next questions worth investigating.", iconName: "BarChart3", order: 8,
-    deliverables: ["A measurement plan with agreed goals, events, KPIs, and ownership", "A review of GA4, Google Tag Manager, pixels, consent signals, and data gaps", "Dashboards tailored to the audiences and decisions agreed in the brief", "Scheduled reports with concise interpretation and relevant comparisons", "Prioritised recommendations with data-quality notes and known limitations"],
-    process: [{ step: "Align", detail: "Clarify the decisions reporting should support and define each agreed measure consistently." }, { step: "Instrument", detail: "Review or configure tracking, events, naming, access, and relevant platform connections." }, { step: "Validate", detail: "Test collection and reconcile key figures where possible before relying on the reports." }, { step: "Report", detail: "Present trends, context, limitations, and practical follow-up questions on the agreed schedule." }],
-    tools: ["GA4", "Google Tag Manager", "Looker Studio", "Google Search Console", "Meta Ads Manager"],
-    faqs: [{ q: "Can you work with our existing analytics setup?", a: "Yes. We begin by reviewing access, configuration, events, consent behaviour, and known gaps. We then recommend which parts to keep, repair, or simplify before building new reporting." }, { q: "Will every platform show the same numbers?", a: "Not always. Platforms use different attribution rules, identity signals, time zones, and modelling. We document material differences and agree which source is appropriate for each decision." }],
-    pairsWith: ["seo", "paid-advertising", "social-media-management"],
-    nameAr: "التحليلات والتقارير", shortAr: "قياس واضح يحوّل بيانات الموقع والقنوات إلى قرارات عملية.", valueAr: "نحدد مؤشرات مفيدة ونراجع جودة التتبع ونبني تقارير توضح الأداء والقيود والأسئلة التالية الجديرة بالتحليل.",
-    deliverablesAr: ["خطة قياس توضح الأهداف والأحداث وKPI والمسؤوليات المتفق عليها", "مراجعة إعداد GA4 وGoogle Tag Manager وPixels وإشارات الموافقة وفجوات البيانات", "لوحات معلومات مصممة وفق الجمهور والقرارات المحددة في الموجز", "تقارير مجدولة تتضمن تفسيراً موجزاً ومقارنات ذات صلة", "توصيات مرتبة حسب الأولوية مع ملاحظات عن جودة البيانات والقيود المعروفة"],
-    processAr: [{ step: "المواءمة", detail: "توضيح القرارات التي ينبغي أن تدعمها التقارير ووضع تعريف موحد لكل مؤشر متفق عليه." }, { step: "الإعداد", detail: "مراجعة التتبع والأحداث والتسميات والصلاحيات وروابط المنصات ذات الصلة أو إعدادها." }, { step: "التحقق", detail: "اختبار جمع البيانات ومطابقة الأرقام الأساسية حيثما أمكن قبل الاعتماد على التقارير." }, { step: "إعداد التقارير", detail: "عرض الاتجاهات والسياق والقيود والأسئلة العملية التالية وفق الجدول المتفق عليه." }],
-    faqsAr: [{ q: "هل يمكنكم العمل على إعداد التحليلات الحالي لدينا؟", a: "نعم. نبدأ بمراجعة الصلاحيات والإعداد والأحداث وسلوك الموافقة والفجوات المعروفة، ثم نوصي بما ينبغي الإبقاء عليه أو إصلاحه أو تبسيطه قبل بناء تقارير جديدة." }, { q: "هل ستعرض جميع المنصات الأرقام نفسها؟", a: "ليس بالضرورة. تستخدم المنصات قواعد مختلفة للإسناد وإشارات الهوية والمناطق الزمنية والنمذجة. نوثق الفروقات المؤثرة ونتفق على المصدر المناسب لكل قرار." }],
   },
   {
     slug: "paid-advertising", name: "Paid Advertising", short: "Paid campaigns built around clear objectives, reliable tracking, and disciplined testing.", value: "We plan and manage campaigns across relevant platforms, connecting audience strategy, creative, landing pages, measurement, and budget decisions.", iconName: "Activity", order: 9,
@@ -393,11 +357,569 @@ const services = [
     process: [{ step: "Plan", detail: "Define audiences, offers, channels, budgets, measurement, and the assumptions to test." }, { step: "Launch", detail: "Build campaigns, complete quality checks, and validate conversion tracking before increasing spend." }, { step: "Optimise", detail: "Review performance on an agreed schedule and adjust creative, targeting, bids, and budgets." }, { step: "Expand", detail: "Increase investment carefully where evidence supports it and continue testing new opportunities." }],
     tools: ["Google Ads", "Meta Ads", "LinkedIn Ads", "TikTok Ads", "GA4"],
     faqs: [{ q: "What is the minimum advertising budget?", a: "The appropriate media budget depends on the market, audience size, objective, sales cycle, and available data. We recommend a testable starting range after reviewing those factors rather than applying one minimum to every business." }, { q: "Do you produce advertising creative?", a: "Yes. Creative production can be included in the scope, with each variation tied to a clear audience, message, or offer hypothesis. The required formats and production volume are agreed before launch." }],
-    pairsWith: ["content-creation", "analytics-reporting", "web-development"],
+    pairsWith: ["content-creation", "sales-lead-qualification-ai", "web-development"],
     nameAr: "الإعلانات المدفوعة", shortAr: "حملات مدفوعة مبنية على أهداف واضحة وتتبع موثوق واختبارات منضبطة.", valueAr: "نخطط الحملات ونديرها على المنصات المناسبة، مع ربط استراتيجية الجمهور والمحتوى الإعلاني وصفحات الهبوط والقياس وقرارات الميزانية.",
     deliverablesAr: ["خطة للقنوات والحملات على منصات الإعلان المناسبة", "فرضيات للجمهور والرسائل والمحتوى الإعلاني مع خطة موثقة للاختبار", "توصيات لصفحات الهبوط أو تنفيذها بما يتوافق مع هدف الحملة", "التحقق من التتبع ومتابعة الإنفاق وتحسين الحملات وفق جدول متفق عليه", "تقارير أداء تشمل ROAS ومؤشرات الأعمال الأخرى المتفق عليها"],
     processAr: [{ step: "التخطيط", detail: "تحديد الجمهور والعروض والقنوات والميزانيات وآلية القياس والفرضيات المطلوب اختبارها." }, { step: "الإطلاق", detail: "إعداد الحملات وفحص جودتها والتحقق من تتبع التحويل قبل زيادة الإنفاق." }, { step: "التحسين", detail: "مراجعة الأداء وفق جدول متفق عليه وتعديل المحتوى والاستهداف والعروض والميزانيات." }, { step: "التوسع المدروس", detail: "زيادة الاستثمار بحذر عندما تدعم البيانات ذلك، مع مواصلة اختبار فرص جديدة." }],
     faqsAr: [{ q: "ما الحد الأدنى لميزانية الإعلان؟", a: "تعتمد الميزانية المناسبة على السوق وحجم الجمهور والهدف ودورة البيع والبيانات المتاحة. نقترح نطاق بداية قابلاً للاختبار بعد مراجعة هذه العوامل بدلاً من تطبيق حد واحد على جميع الأعمال." }, { q: "هل تنتجون المحتوى الإعلاني؟", a: "نعم. يمكن إدراج إنتاج المحتوى الإعلاني ضمن النطاق، مع ربط كل نسخة بفرضية واضحة حول الجمهور أو الرسالة أو العرض. نتفق على الصيغ وحجم الإنتاج قبل الإطلاق." }],
+  },
+  {
+    "slug": "voice-ai-receptionist",
+    "name": "Voice AI Receptionist",
+    "nameAr": "مساعد الاستقبال الذكي الصوتي",
+    "iconName": "Phone",
+    "order": 10,
+    "short": "A voice assistant that answers calls around the clock, handles common requests, and routes important callers to your team.",
+    "value": "It answers routine calls, books appointments, and qualifies callers in Arabic and English, reducing repetitive reception work and staffing load while capturing enquiries that would otherwise be missed after hours.",
+    "deliverables": [
+      "A voice assistant configured to answer inbound calls at any hour and respond to common inquiries in a natural, on-brand manner",
+      "Appointment booking that checks availability, schedules callers into your calendar, and confirms the details during the call",
+      "Call routing rules that identify urgent or high-value callers and transfer them to the right person or team when needed",
+      "Lead qualification that captures caller intent, contact details, and key context, then records each enquiry for follow-up",
+      "Multilingual conversation handling in Arabic and English, with the assistant detecting and responding in the caller's language"
+    ],
+    "process": [
+      {
+        "step": "Discover",
+        "detail": "Review your call types, common inquiries, booking rules, escalation criteria, and the tone the assistant should use."
+      },
+      {
+        "step": "Configure",
+        "detail": "Build the conversation flows, qualification questions, routing logic, and Arabic and English voice settings."
+      },
+      {
+        "step": "Integrate",
+        "detail": "Connect telephony, calendar, and CRM systems so calls, bookings, and caller records flow into your existing tools."
+      },
+      {
+        "step": "Launch",
+        "detail": "Test with realistic call scenarios, launch on a live number, then monitor transcripts and refine responses over time."
+      }
+    ],
+    "tools": [
+      "Twilio",
+      "Vapi",
+      "ElevenLabs",
+      "OpenAI",
+      "Deepgram"
+    ],
+    "faqs": [
+      {
+        "q": "Will callers know they are speaking with an AI assistant?",
+        "a": "Yes. We configure the assistant to be clear about what it is, and it transfers to a member of your team whenever a caller asks for a person or the situation calls for one."
+      },
+      {
+        "q": "What happens if the assistant cannot handle a call?",
+        "a": "It follows the escalation rules we agree on, such as transferring to the right person, taking a message, or offering a callback, so callers are never left without a next step."
+      }
+    ],
+    "pairsWith": [
+      "customer-support-ai",
+      "sales-lead-qualification-ai",
+      "web-development"
+    ],
+    "shortAr": "مساعد صوتي يرد على المكالمات على مدار الساعة، ويتولى الطلبات الشائعة، ويحوّل المتصلين المهمين إلى فريقك.",
+    "valueAr": "يرد على المكالمات الروتينية، ويحجز المواعيد، ويؤهّل المتصلين بالعربية والإنجليزية، مما يقلل مهام الاستقبال المتكررة وأعباء التوظيف ويلتقط الاستفسارات التي قد تُفقد خارج ساعات العمل.",
+    "deliverablesAr": [
+      "مساعد صوتي مُعدّ للرد على المكالمات الواردة في أي وقت والإجابة عن الأسئلة الشائعة بأسلوب طبيعي يناسب علامتك",
+      "حجز المواعيد مع التحقق من التوفر وجدولة المتصلين في التقويم وتأكيد التفاصيل أثناء المكالمة",
+      "قواعد لتوجيه المكالمات تتعرّف على المتصلين العاجلين أو المهمين وتحوّلهم إلى الشخص أو الفريق المناسب عند الحاجة",
+      "تأهيل العملاء المحتملين بجمع نية المتصل وبيانات التواصل والسياق الأساسي، وتسجيل كل استفسار للمتابعة",
+      "إدارة المحادثات بالعربية والإنجليزية، مع تعرّف المساعد على لغة المتصل والرد بها"
+    ],
+    "processAr": [
+      {
+        "step": "الاكتشاف",
+        "detail": "مراجعة أنواع المكالمات والأسئلة الشائعة وقواعد الحجز ومعايير التصعيد والنبرة التي ينبغي أن يستخدمها المساعد."
+      },
+      {
+        "step": "الإعداد",
+        "detail": "بناء مسارات المحادثة وأسئلة التأهيل ومنطق التوجيه وإعدادات الصوت بالعربية والإنجليزية."
+      },
+      {
+        "step": "الربط",
+        "detail": "ربط أنظمة الهاتف والتقويم وإدارة العملاء بحيث تتدفق المكالمات والحجوزات وسجلات المتصلين إلى أدواتك الحالية."
+      },
+      {
+        "step": "الإطلاق",
+        "detail": "الاختبار بسيناريوهات مكالمات واقعية، ثم الإطلاق على رقم مباشر، ومتابعة النصوص وتحسين الردود مع الوقت."
+      }
+    ],
+    "faqsAr": [
+      {
+        "q": "هل سيعرف المتصلون أنهم يتحدثون مع مساعد ذكي؟",
+        "a": "نعم. نُعدّ المساعد ليكون واضحاً بشأن طبيعته، وهو يحوّل المكالمة إلى أحد أفراد فريقك متى طلب المتصل التحدث إلى شخص أو تطلّب الموقف ذلك."
+      },
+      {
+        "q": "ماذا يحدث إذا لم يستطع المساعد التعامل مع مكالمة؟",
+        "a": "يتّبع قواعد التصعيد المتفق عليها، مثل التحويل إلى الشخص المناسب أو تدوين رسالة أو عرض معاودة الاتصال، بحيث لا يُترك المتصل من دون خطوة تالية."
+      }
+    ]
+  },
+  {
+    "slug": "customer-support-ai",
+    "name": "Customer Support AI",
+    "nameAr": "مساعد خدمة العملاء الذكي",
+    "iconName": "Headphones",
+    "order": 11,
+    "short": "AI support across your website, WhatsApp, and email that answers routine questions instantly and escalates complex cases to your team.",
+    "shortAr": "دعم بالذكاء الاصطناعي عبر الموقع وواتساب والبريد الإلكتروني يجيب فوراً عن الأسئلة المتكررة ويحوّل الحالات المعقدة إلى فريقك.",
+    "value": "We connect a single AI assistant across your website, WhatsApp, and email to answer routine questions instantly around the clock, reduce your team's support workload, and escalate complex cases with full context.",
+    "valueAr": "نربط مساعداً ذكياً واحداً عبر موقعك وواتساب والبريد الإلكتروني للإجابة الفورية عن الأسئلة المتكررة على مدار الساعة، وتخفيف عبء الدعم عن فريقك، وتحويل الحالات المعقدة مع سياقها الكامل.",
+    "deliverables": [
+      "A website chat assistant configured with your brand voice to answer common questions and guide visitors toward the right next step",
+      "A WhatsApp Business API integration that responds to customer messages and continues conversations on their preferred channel",
+      "Email support handling that answers routine enquiries and routes the remainder to your team with the relevant context",
+      "An automated FAQ layer grounded in your own approved content so answers stay accurate and consistent across channels",
+      "Ticket routing and escalation rules that pass complex or sensitive cases to the right agent, along with the conversation history"
+    ],
+    "deliverablesAr": [
+      "مساعد محادثة على الموقع مُعدّ بنبرة علامتك التجارية للإجابة عن الأسئلة الشائعة وتوجيه الزوار إلى الخطوة التالية المناسبة",
+      "تكامل مع WhatsApp Business API يرد على رسائل العملاء ويكمل المحادثات على قناتهم المفضلة",
+      "معالجة دعم عبر البريد الإلكتروني تجيب عن الاستفسارات المتكررة وتحوّل الباقي إلى فريقك مع السياق ذي الصلة",
+      "طبقة أسئلة شائعة آلية مبنية على محتواك المعتمد لضمان بقاء الإجابات دقيقة ومتسقة عبر القنوات",
+      "قواعد لتوجيه التذاكر وتصعيدها تمرر الحالات المعقدة أو الحساسة إلى الموظف المناسب مع سجل المحادثة"
+    ],
+    "process": [
+      {
+        "step": "Discover",
+        "detail": "Review your common enquiries, support channels, existing content, and the cases that should always reach a person."
+      },
+      {
+        "step": "Configure",
+        "detail": "Build the assistant's knowledge base, brand voice, answer boundaries, and escalation rules from your approved material."
+      },
+      {
+        "step": "Integrate",
+        "detail": "Connect the assistant to your website, WhatsApp, email, and helpdesk, and validate handovers to your team."
+      },
+      {
+        "step": "Launch",
+        "detail": "Go live on the agreed channels, monitor real conversations, and refine answers and routing over time."
+      }
+    ],
+    "processAr": [
+      {
+        "step": "الاكتشاف",
+        "detail": "مراجعة استفساراتك المتكررة وقنوات الدعم والمحتوى الحالي والحالات التي يجب أن تصل دائماً إلى موظف."
+      },
+      {
+        "step": "الإعداد",
+        "detail": "بناء قاعدة معرفة المساعد ونبرة العلامة وحدود الإجابات وقواعد التصعيد من موادك المعتمدة."
+      },
+      {
+        "step": "التكامل",
+        "detail": "ربط المساعد بموقعك وواتساب والبريد الإلكتروني ونظام الدعم، والتحقق من عمليات التحويل إلى فريقك."
+      },
+      {
+        "step": "الإطلاق",
+        "detail": "التشغيل على القنوات المتفق عليها ومتابعة المحادثات الفعلية وتحسين الإجابات والتوجيه بمرور الوقت."
+      }
+    ],
+    "tools": [
+      "OpenAI",
+      "WhatsApp Business API",
+      "Zendesk",
+      "Intercom",
+      "Pinecone"
+    ],
+    "faqs": [
+      {
+        "q": "Will this replace our support team?",
+        "a": "No. The assistant handles routine, high-volume enquiries around the clock and escalates complex or sensitive cases to your team with the full conversation context, so staff focus on the work that genuinely needs a person."
+      },
+      {
+        "q": "How do you keep it from giving inaccurate answers?",
+        "a": "The assistant answers from your own approved content and defined boundaries rather than open-ended generation. When a question falls outside what it can confidently handle, it hands the conversation to your team instead of guessing."
+      }
+    ],
+    "faqsAr": [
+      {
+        "q": "هل سيحل هذا محل فريق الدعم لدينا؟",
+        "a": "لا. يتولى المساعد الاستفسارات المتكررة وكبيرة الحجم على مدار الساعة، ويحوّل الحالات المعقدة أو الحساسة إلى فريقك مع سياق المحادثة الكامل، ليتفرغ الموظفون للعمل الذي يحتاج فعلاً إلى تدخل بشري."
+      },
+      {
+        "q": "كيف تضمنون عدم تقديمه إجابات غير دقيقة؟",
+        "a": "يجيب المساعد اعتماداً على محتواك المعتمد وحدود محددة بدلاً من التوليد المفتوح. وعندما يقع السؤال خارج ما يمكنه التعامل معه بثقة، يحوّل المحادثة إلى فريقك بدلاً من التخمين."
+      }
+    ],
+    "pairsWith": [
+      "voice-ai-receptionist",
+      "internal-knowledge-ai",
+      "web-development"
+    ]
+  },
+  {
+    "slug": "sales-lead-qualification-ai",
+    "name": "Sales & Lead Qualification AI",
+    "short": "An AI assistant that engages prospects, qualifies leads, follows up automatically, and books meetings with your sales team.",
+    "value": "It combines lead qualification, automated follow-up, and meeting scheduling with your CRM, helping you respond faster, surface more qualified leads, and lift sales-team productivity and conversion over time.",
+    "iconName": "TrendingUp",
+    "order": 12,
+    "deliverables": [
+      "A configured qualification flow that scores and routes prospects against your defined criteria before they reach the sales team",
+      "Automated, multi-step follow-up sequences that re-engage prospects across your chosen channels without manual chasing",
+      "Real-time meeting scheduling that checks representative availability and books qualified prospects directly into calendars",
+      "Two-way CRM integration that logs conversations, contact details, and lead status so your pipeline stays current",
+      "Natural sales conversations aligned with your product, pricing, and brand voice, with a clear handover to a person when needed"
+    ],
+    "process": [
+      {
+        "step": "Discover",
+        "detail": "Map your sales process, qualification criteria, common questions, and the CRM and calendar tools already in use."
+      },
+      {
+        "step": "Configure",
+        "detail": "Build the qualification logic, conversation flows, follow-up sequences, and escalation rules around your sales team."
+      },
+      {
+        "step": "Integrate",
+        "detail": "Connect the assistant to your CRM, calendar, and messaging channels, then validate data flow and booking end to end."
+      },
+      {
+        "step": "Launch",
+        "detail": "Deploy to live traffic, monitor conversations and conversion, and refine qualification and follow-up on an agreed schedule."
+      }
+    ],
+    "tools": [
+      "OpenAI",
+      "HubSpot",
+      "Salesforce",
+      "Calendly",
+      "Make"
+    ],
+    "faqs": [
+      {
+        "q": "Will the AI replace our sales team?",
+        "a": "No. It handles early engagement, qualification, follow-up, and scheduling so your representatives spend their time on qualified conversations. Complex or high-intent cases are handed to a person with the full context captured."
+      },
+      {
+        "q": "Which CRM and calendar tools does it work with?",
+        "a": "It integrates with common platforms such as HubSpot, Salesforce, and Calendly, and can connect to others through automation tools like Make. We confirm compatibility with your current stack during discovery."
+      }
+    ],
+    "pairsWith": [
+      "customer-support-ai",
+      "paid-advertising",
+      "business-analytics-ai"
+    ],
+    "nameAr": "مساعد المبيعات وتأهيل العملاء",
+    "shortAr": "مساعد ذكاء اصطناعي يتفاعل مع العملاء المحتملين، ويؤهّلهم، ويتابع تلقائياً، ويحجز الاجتماعات مع فريق المبيعات.",
+    "valueAr": "يجمع بين تأهيل العملاء والمتابعة التلقائية وجدولة الاجتماعات مع التكامل مع نظام CRM، مما يساعدك على الاستجابة أسرع، وإبراز مزيد من العملاء المؤهلين، ورفع إنتاجية فريق المبيعات ومعدلات التحويل بمرور الوقت.",
+    "deliverablesAr": [
+      "مسار تأهيل مُعدّ يقيّم العملاء المحتملين ويوجّههم وفق معاييرك المحددة قبل وصولهم إلى فريق المبيعات",
+      "سلاسل متابعة تلقائية متعددة الخطوات تعيد التفاعل مع العملاء المحتملين عبر القنوات المختارة دون متابعة يدوية",
+      "جدولة اجتماعات فورية تتحقق من توفّر أعضاء الفريق وتحجز العملاء المؤهلين مباشرة في التقويم",
+      "تكامل ثنائي الاتجاه مع نظام CRM يسجّل المحادثات وبيانات التواصل وحالة العميل ليبقى مسار المبيعات محدّثاً",
+      "محادثات مبيعات طبيعية تتوافق مع منتجك وأسعارك ونبرة علامتك، مع تحويل واضح إلى موظف بشري عند الحاجة"
+    ],
+    "processAr": [
+      {
+        "step": "الاكتشاف",
+        "detail": "رسم عملية المبيعات ومعايير التأهيل والأسئلة الشائعة وأنظمة CRM والتقويم المستخدمة حالياً."
+      },
+      {
+        "step": "الإعداد",
+        "detail": "بناء منطق التأهيل ومسارات المحادثة وسلاسل المتابعة وقواعد التصعيد حول فريق المبيعات."
+      },
+      {
+        "step": "التكامل",
+        "detail": "ربط المساعد بنظام CRM والتقويم وقنوات المراسلة، والتحقق من تدفق البيانات والحجز من البداية إلى النهاية."
+      },
+      {
+        "step": "الإطلاق",
+        "detail": "التشغيل على الحركة الفعلية، ومراقبة المحادثات والتحويل، وتحسين التأهيل والمتابعة وفق جدول متفق عليه."
+      }
+    ],
+    "faqsAr": [
+      {
+        "q": "هل سيحل الذكاء الاصطناعي محل فريق المبيعات؟",
+        "a": "لا. يتولى التفاعل المبكر والتأهيل والمتابعة والجدولة كي يركّز فريقك على المحادثات المؤهلة. أما الحالات المعقّدة أو عالية الاهتمام فتُحوَّل إلى موظف بشري مع كامل السياق."
+      },
+      {
+        "q": "ما أنظمة CRM والتقويم التي يعمل معها؟",
+        "a": "يتكامل مع منصات شائعة مثل HubSpot وSalesforce وCalendly، ويمكن ربطه بغيرها عبر أدوات الأتمتة مثل Make. نتحقق من التوافق مع أنظمتك الحالية أثناء مرحلة الاكتشاف."
+      }
+    ]
+  },
+  {
+    "slug": "business-analytics-ai",
+    "name": "Business Analytics AI",
+    "short": "An AI assistant that connects your dashboards, spreadsheets, and databases so teams can ask questions in plain language.",
+    "value": "We deploy an assistant that turns your existing data sources into plain-language KPI analysis, trend reports, and forecasts, supporting faster reporting, clearer executive dashboards, and better-informed decisions.",
+    "iconName": "BarChart3",
+    "order": 13,
+    "deliverables": [
+      "A KPI reporting layer that summarises agreed metrics from your connected sources and answers questions in plain language",
+      "Sales analysis views that break performance down by product, channel, region, or period on request",
+      "Trend detection that surfaces meaningful movements and anomalies across your key measures",
+      "Forecasting that projects selected metrics forward with the assumptions and ranges stated clearly",
+      "A natural-language query interface configured against your dashboards, spreadsheets, and databases"
+    ],
+    "process": [
+      {
+        "step": "Discover",
+        "detail": "Identify the metrics, questions, and reports that matter, then map the data sources and access needed to answer them reliably."
+      },
+      {
+        "step": "Connect",
+        "detail": "Integrate the assistant with your dashboards, spreadsheets, and databases, and define how each metric is calculated."
+      },
+      {
+        "step": "Configure",
+        "detail": "Tune the natural-language queries, KPI definitions, trend rules, and forecast assumptions against real questions from your team."
+      },
+      {
+        "step": "Launch",
+        "detail": "Roll out the assistant to agreed users, review answer quality, and refine definitions and dashboards from actual usage."
+      }
+    ],
+    "tools": [
+      "OpenAI",
+      "BigQuery",
+      "Metabase",
+      "Looker Studio",
+      "GA4"
+    ],
+    "faqs": [
+      {
+        "q": "Where does the assistant get its numbers from?",
+        "a": "It works from the data sources you connect, such as dashboards, spreadsheets, and databases. It does not invent figures; answers reflect the metrics and definitions configured during setup, so accuracy depends on the quality and freshness of the connected data."
+      },
+      {
+        "q": "Can it forecast future performance reliably?",
+        "a": "It can project selected metrics forward based on historical patterns and stated assumptions, and it presents ranges rather than single certainties. Forecasts are decision-support estimates that should be read alongside business context, not guarantees of future results."
+      }
+    ],
+    "pairsWith": [
+      "seo",
+      "sales-lead-qualification-ai",
+      "meeting-executive-ai"
+    ],
+    "nameAr": "مساعد تحليل الأعمال الذكي",
+    "shortAr": "مساعد ذكي يربط لوحات البيانات وملفات Excel وقواعد البيانات ليطرح فريقك أسئلته باللغة الطبيعية.",
+    "valueAr": "ننشر مساعداً يحوّل مصادر بياناتك الحالية إلى تحليل للمؤشرات وتقارير للاتجاهات وتوقعات باللغة الطبيعية، بما يدعم تقارير أسرع ولوحات ملائمة للإدارة وقرارات أفضل استناداً إلى البيانات.",
+    "deliverablesAr": [
+      "طبقة لتقارير المؤشرات تلخّص المقاييس المتفق عليها من مصادرك المتصلة وتجيب عن الأسئلة باللغة الطبيعية",
+      "لوحات لتحليل المبيعات تفصّل الأداء حسب المنتج أو القناة أو المنطقة أو الفترة عند الطلب",
+      "رصد للاتجاهات يبرز التحركات المهمة والحالات الشاذة عبر مقاييسك الأساسية",
+      "توقعات تعرض مساراً مستقبلياً للمقاييس المختارة مع بيان الافتراضات والنطاقات بوضوح",
+      "واجهة استعلام باللغة الطبيعية مهيأة على لوحات بياناتك وملفات Excel وقواعد بياناتك"
+    ],
+    "processAr": [
+      {
+        "step": "الاكتشاف",
+        "detail": "تحديد المؤشرات والأسئلة والتقارير المهمة، ثم رسم مصادر البيانات والصلاحيات اللازمة للإجابة عنها بموثوقية."
+      },
+      {
+        "step": "الربط",
+        "detail": "دمج المساعد مع لوحات بياناتك وملفات Excel وقواعد بياناتك، وتحديد طريقة احتساب كل مؤشر."
+      },
+      {
+        "step": "التهيئة",
+        "detail": "ضبط الاستعلامات باللغة الطبيعية وتعريفات المؤشرات وقواعد الاتجاهات وافتراضات التوقعات وفق أسئلة فعلية من فريقك."
+      },
+      {
+        "step": "الإطلاق",
+        "detail": "إتاحة المساعد للمستخدمين المتفق عليهم ومراجعة جودة الإجابات وتحسين التعريفات واللوحات بناءً على الاستخدام الفعلي."
+      }
+    ],
+    "faqsAr": [
+      {
+        "q": "من أين يحصل المساعد على أرقامه؟",
+        "a": "يعمل من مصادر البيانات التي تربطها، مثل لوحات البيانات وملفات Excel وقواعد البيانات. وهو لا يختلق الأرقام؛ فالإجابات تعكس المؤشرات والتعريفات المهيأة أثناء الإعداد، وبالتالي تعتمد الدقة على جودة البيانات المتصلة وحداثتها."
+      },
+      {
+        "q": "هل يمكنه التنبؤ بالأداء المستقبلي بموثوقية؟",
+        "a": "يستطيع عرض مسار مستقبلي للمقاييس المختارة استناداً إلى الأنماط التاريخية والافتراضات المعلنة، ويقدّم نطاقات بدلاً من قيم قاطعة. والتوقعات تقديرات داعمة للقرار يجب قراءتها مع السياق التجاري، وليست ضماناً للنتائج المستقبلية."
+      }
+    ]
+  },
+  {
+    "slug": "internal-knowledge-ai",
+    "name": "Internal Knowledge AI",
+    "short": "An internal assistant that lets employees find company knowledge across policies, SOPs, and documents in seconds.",
+    "value": "We connect your policies, SOPs, HR files, and technical manuals into a secure assistant that gives staff consistent answers in seconds, shortening onboarding and reducing repeated questions.",
+    "iconName": "BookOpen",
+    "order": 14,
+    "deliverables": [
+      "A unified company knowledge base that indexes policies, SOPs, HR documents, and technical manuals for search",
+      "An HR assistant that answers common questions about leave, benefits, and internal procedures from approved sources",
+      "Natural-language SOP search that returns the relevant step or section rather than a full document to read",
+      "Document question-and-answer with citations back to the source file so staff can verify each response",
+      "Secure internal access with role-based permissions so employees only see the knowledge they are authorised to view"
+    ],
+    "process": [
+      {
+        "step": "Discover",
+        "detail": "Review the documents, systems, and common questions, and agree access rules, source priorities, and success measures."
+      },
+      {
+        "step": "Configure",
+        "detail": "Index the approved sources, structure the knowledge base, and set retrieval, permissions, and response guidelines."
+      },
+      {
+        "step": "Integrate",
+        "detail": "Connect the assistant to your document stores and internal channels, then test answers against real employee questions."
+      },
+      {
+        "step": "Launch",
+        "detail": "Roll out to teams with guidance, monitor accuracy and gaps, and refine the sources and responses from actual usage."
+      }
+    ],
+    "tools": [
+      "OpenAI",
+      "Pinecone",
+      "LangChain",
+      "Notion",
+      "Google Drive"
+    ],
+    "faqs": [
+      {
+        "q": "Is company data kept secure and private?",
+        "a": "Yes. The assistant works within agreed access controls, respects existing document permissions, and only draws on the internal sources you approve. We confirm data handling, retention, and access boundaries before launch."
+      },
+      {
+        "q": "What happens when the assistant cannot find an answer?",
+        "a": "It is configured to say when the knowledge base does not cover a question rather than guess, and to point staff toward the right document or team. Gaps surfaced this way help us improve the sources over time."
+      }
+    ],
+    "pairsWith": [
+      "customer-support-ai",
+      "meeting-executive-ai",
+      "ui-ux-design"
+    ],
+    "nameAr": "مساعد المعرفة الداخلية",
+    "shortAr": "مساعد داخلي يمكّن الموظفين من العثور على معرفة الشركة عبر السياسات والإجراءات والمستندات خلال ثوانٍ.",
+    "valueAr": "نربط سياساتك وإجراءاتك ومستندات الموارد البشرية والأدلة الفنية في مساعد آمن يمنح الموظفين إجابات متسقة خلال ثوانٍ، ما يسرّع التهيئة ويقلّل الأسئلة المتكررة.",
+    "deliverablesAr": [
+      "قاعدة معرفة موحّدة للشركة تفهرس السياسات والإجراءات ومستندات الموارد البشرية والأدلة الفنية للبحث فيها",
+      "مساعد للموارد البشرية يجيب عن الأسئلة الشائعة حول الإجازات والمزايا والإجراءات الداخلية من مصادر معتمدة",
+      "بحث في الإجراءات باللغة الطبيعية يعيد الخطوة أو القسم المطلوب بدلاً من مستند كامل للقراءة",
+      "أسئلة وأجوبة على المستندات مع الإحالة إلى الملف المصدر ليتمكن الموظف من التحقق من كل إجابة",
+      "وصول داخلي آمن بصلاحيات محددة حسب الدور بحيث لا يرى الموظف سوى المعرفة المصرّح له بالاطلاع عليها"
+    ],
+    "processAr": [
+      {
+        "step": "الاكتشاف",
+        "detail": "مراجعة المستندات والأنظمة والأسئلة الشائعة، والاتفاق على قواعد الوصول وأولويات المصادر ومؤشرات النجاح."
+      },
+      {
+        "step": "الإعداد",
+        "detail": "فهرسة المصادر المعتمدة وبناء قاعدة المعرفة وضبط الاسترجاع والصلاحيات وإرشادات الردود."
+      },
+      {
+        "step": "الربط",
+        "detail": "ربط المساعد بمخازن مستنداتك وقنواتك الداخلية، ثم اختبار الإجابات مقابل أسئلة حقيقية للموظفين."
+      },
+      {
+        "step": "الإطلاق",
+        "detail": "الطرح للفرق مع إرشاد، ومتابعة الدقة والفجوات، وتحسين المصادر والردود بناءً على الاستخدام الفعلي."
+      }
+    ],
+    "faqsAr": [
+      {
+        "q": "هل تبقى بيانات الشركة آمنة وخاصة؟",
+        "a": "نعم. يعمل المساعد ضمن ضوابط الوصول المتفق عليها ويحترم صلاحيات المستندات القائمة ولا يعتمد إلا على المصادر الداخلية التي تعتمدها. نؤكد آلية التعامل مع البيانات والاحتفاظ بها وحدود الوصول قبل الإطلاق."
+      },
+      {
+        "q": "ماذا يحدث حين لا يجد المساعد إجابة؟",
+        "a": "يُهيَّأ ليوضح أن قاعدة المعرفة لا تغطي السؤال بدلاً من التخمين، ويوجّه الموظف إلى المستند أو الفريق المناسب. وتساعدنا الفجوات التي تظهر بهذه الطريقة على تحسين المصادر مع الوقت."
+      }
+    ]
+  },
+  {
+    "slug": "meeting-executive-ai",
+    "name": "Meeting & Executive AI",
+    "short": "An AI assistant that records, summarises, and organises meetings so teams focus on execution instead of note-taking.",
+    "value": "We deploy an assistant that captures meetings, drafts summaries, action items, follow-up emails, and executive reports, saving management time and improving accountability, documentation, and decision execution.",
+    "iconName": "CalendarCheck",
+    "order": 15,
+    "deliverables": [
+      "Automated meeting summaries that capture key discussion points, decisions, and context from each session",
+      "Structured action items with owners, due dates, and status ready to track after every meeting",
+      "Drafted follow-up emails and meeting recaps prepared for review and sending to participants",
+      "Concise executive reports that consolidate outcomes across meetings for leadership review",
+      "A shared collaboration workspace where notes, tasks, and summaries are organised and searchable for the team"
+    ],
+    "process": [
+      {
+        "step": "Discover",
+        "detail": "Review your meeting types, participants, tools, and reporting needs to define what the assistant should capture and produce."
+      },
+      {
+        "step": "Configure",
+        "detail": "Set up transcription, summary formats, action-item structure, and executive report templates aligned with your workflow."
+      },
+      {
+        "step": "Integrate",
+        "detail": "Connect the assistant to your meeting, task, and communication tools, with agreed access and data-handling controls."
+      },
+      {
+        "step": "Launch",
+        "detail": "Roll out with your team, monitor output quality, and refine prompts, templates, and routing based on real use."
+      }
+    ],
+    "tools": [
+      "OpenAI",
+      "Whisper",
+      "Otter.ai",
+      "Notion",
+      "Slack"
+    ],
+    "faqs": [
+      {
+        "q": "How does the assistant handle meeting recordings and data privacy?",
+        "a": "We agree at the outset which meetings are captured, where recordings and transcripts are stored, and who can access them. Access controls and retention rules are configured to match your internal policies, and sensitive sessions can be excluded."
+      },
+      {
+        "q": "How accurate are the summaries and action items?",
+        "a": "Accuracy depends on audio quality, speaker clarity, and how the meeting is structured. The assistant produces a strong first draft that a participant can review and correct, rather than a final record that goes out without oversight."
+      }
+    ],
+    "pairsWith": [
+      "internal-knowledge-ai",
+      "business-analytics-ai",
+      "customer-support-ai"
+    ],
+    "nameAr": "مساعد الاجتماعات والمدير التنفيذي",
+    "shortAr": "مساعد بالذكاء الاصطناعي يسجّل الاجتماعات ويلخّصها وينظّمها ليتفرّغ الفريق للتنفيذ بدل تدوين الملاحظات.",
+    "valueAr": "ننشر مساعداً يوثّق الاجتماعات ويصوغ الملخصات والمهام ورسائل المتابعة والتقارير التنفيذية، بما يوفّر وقت الإدارة ويعزّز المساءلة والتوثيق وسرعة تنفيذ القرارات.",
+    "deliverablesAr": [
+      "ملخصات آلية للاجتماعات تلتقط أبرز نقاط النقاش والقرارات والسياق من كل جلسة",
+      "مهام منظمة تحدّد المسؤول والموعد والحالة وتكون جاهزة للمتابعة بعد كل اجتماع",
+      "رسائل متابعة ومحاضر موجزة مُعدّة للمراجعة والإرسال إلى المشاركين",
+      "تقارير تنفيذية مختصرة تجمع مخرجات الاجتماعات لمراجعة الإدارة",
+      "مساحة عمل مشتركة تُنظَّم فيها الملاحظات والمهام والملخصات وتكون قابلة للبحث أمام الفريق"
+    ],
+    "processAr": [
+      {
+        "step": "الاستكشاف",
+        "detail": "مراجعة أنواع اجتماعاتكم والمشاركين والأدوات واحتياجات التقارير لتحديد ما ينبغي أن يلتقطه المساعد وينتجه."
+      },
+      {
+        "step": "الإعداد",
+        "detail": "تهيئة التفريغ الصوتي وصيغ الملخصات وبنية المهام وقوالب التقارير التنفيذية بما يتوافق مع سير عملكم."
+      },
+      {
+        "step": "الربط",
+        "detail": "ربط المساعد بأدوات الاجتماعات والمهام والتواصل لديكم، مع صلاحيات وضوابط لمعالجة البيانات متفق عليها."
+      },
+      {
+        "step": "الإطلاق",
+        "detail": "الإطلاق مع فريقكم ومتابعة جودة المخرجات وتحسين التوجيهات والقوالب والتوزيع بناءً على الاستخدام الفعلي."
+      }
+    ],
+    "faqsAr": [
+      {
+        "q": "كيف يتعامل المساعد مع تسجيلات الاجتماعات وخصوصية البيانات؟",
+        "a": "نتفق منذ البداية على الاجتماعات التي تُسجَّل وأماكن حفظ التسجيلات والتفريغات ومن يمكنه الوصول إليها. تُضبط صلاحيات الوصول وقواعد الاحتفاظ بما يتوافق مع سياساتكم الداخلية، ويمكن استثناء الجلسات الحساسة."
+      },
+      {
+        "q": "ما مدى دقة الملخصات والمهام؟",
+        "a": "تعتمد الدقة على جودة الصوت ووضوح المتحدثين وطريقة تنظيم الاجتماع. ينتج المساعد مسودة أولى قوية يمكن لأحد المشاركين مراجعتها وتصحيحها، بدل اعتبارها محضراً نهائياً يُرسل من دون إشراف."
+      }
+    ]
   },
 ]
 

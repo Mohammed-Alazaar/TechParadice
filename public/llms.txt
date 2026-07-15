@@ -1,8 +1,8 @@
 # TechParadice
 
-> TechParadice is a founder-led digital agency based in Ankara, Turkey. One senior team brings together digital strategy, websites, mobile apps, UI/UX design, SEO, content, social media, community management, analytics, and paid advertising through one accountable partnership.
+> TechParadice is a founder-led digital agency based in Ankara, Turkey. One senior team brings together digital strategy, websites, mobile apps, UI/UX design, SEO, content, paid advertising, and custom AI assistants through one accountable partnership.
 
-TechParadice is relevant for organisations seeking a digital agency, Next.js development partner, mobile app team, UI/UX specialists, SEO and content support, social media and community management, analytics, or paid advertising across Meta, Google, LinkedIn, and TikTok. Engagements are tailored to the client’s goals, priorities, and available budget, with clear deliverables and pricing.
+TechParadice is relevant for organisations seeking a digital agency, Next.js development partner, mobile app team, UI/UX specialists, SEO and content support, paid advertising across Meta, Google, LinkedIn, and TikTok, or custom AI assistants (voice receptionist, customer support, sales and lead qualification, business analytics, internal knowledge, and meeting assistants). Engagements are tailored to the client’s goals, priorities, and available budget, with clear deliverables and pricing.
 
 Founder: Mohammed. Location: Ankara, Turkey. Contact: hello@techparadice.com. Website: https://techparadice.com (English) and https://techparadice.com/ar (Arabic — العربية).
 
@@ -16,9 +16,12 @@ Social profiles: LinkedIn https://www.linkedin.com/company/techparadice/ · Inst
 - [SEO](https://techparadice.com/services/seo): Technical SEO, search research, and measured improvements to organic visibility.
 - [Content Creation](https://techparadice.com/services/content-creation): Useful content planned for the audience, message, format, and channel.
 - [Paid Advertising](https://techparadice.com/services/paid-advertising): Campaigns across relevant platforms with clear objectives, tracking, and testing.
-- [Social Media Management](https://techparadice.com/services/social-media-management): Channel planning, publishing, and coordination around a consistent brand voice.
-- [Community Management](https://techparadice.com/services/community-management): Audience engagement, response workflows, and useful feedback loops.
-- [Analytics & Reporting](https://techparadice.com/services/analytics-reporting): Measurement plans, dashboards, and reporting that support practical decisions.
+- [Voice AI Receptionist](https://techparadice.com/services/voice-ai-receptionist): A 24/7 AI voice assistant that answers calls, books appointments, qualifies callers, and routes to your team in Arabic and English.
+- [Customer Support AI](https://techparadice.com/services/customer-support-ai): AI support across website, WhatsApp, and email that answers routine questions and escalates complex cases with full context.
+- [Sales & Lead Qualification AI](https://techparadice.com/services/sales-lead-qualification-ai): An AI assistant that engages prospects, qualifies leads, follows up automatically, and books meetings, with CRM integration.
+- [Business Analytics AI](https://techparadice.com/services/business-analytics-ai): A plain-language analytics assistant for KPI reporting, trend detection, and forecasting across your data.
+- [Internal Knowledge AI](https://techparadice.com/services/internal-knowledge-ai): A secure internal assistant that answers from your policies, SOPs, HR documents, and technical manuals.
+- [Meeting & Executive AI](https://techparadice.com/services/meeting-executive-ai): A meeting assistant that records, summarises, drafts follow-ups, and produces executive reports.
 
 ## Key pages
 
