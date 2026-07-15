@@ -5,23 +5,25 @@ import { ArrowUpRight } from 'lucide-react'
 import { PageHero } from '@/components/sections/PageHero'
 import { Section, SectionHeading } from '@/components/ui/Section'
 import { CtaBanner } from '@/components/sections/CtaBanner'
-import { getServices } from '@/lib/services'
+import { Testimonial } from '@/components/sections/Testimonial'
+import { getArServices } from '@/lib/services'
 import { getArPortfolio } from '@/lib/portfolio'
+import { localizePortfolioIndustryAr } from '@/lib/i18n/portfolio-ar'
 import { BRAND, SITE_URL, SOCIAL_LINKS } from '@/lib/utils'
 import { buildMetadata } from '@/lib/seo'
 
 export const revalidate = 300
 
 export const metadata: Metadata = buildMetadata({
-  title: `${BRAND.name} — عالمك الرقمي، مبني.`,
-  description: 'تك باراديس وكالة رقمية متكاملة. مواقع، تطبيقات، تصميم، SEO، سوشيال ومحتوى — فريق واحد متكامل.',
+  title: `${BRAND.name} | الاستراتيجية والتصميم والنمو الرقمي`,
+  description: 'يجمع TechParadice الاستراتيجية والمواقع والتطبيقات وتصميم UI/UX وSEO والمحتوى والتسويق ضمن خطة رقمية واحدة.',
   path: '/ar',
   alternatePath: '/',
   locale: 'ar',
 })
 
 export default async function ArHomePage() {
-  const [services, portfolio] = await Promise.all([getServices(), getArPortfolio()])
+  const [services, portfolio] = await Promise.all([getArServices(), getArPortfolio()])
 
   const jsonLd = [
     {
@@ -35,15 +37,12 @@ export default async function ArHomePage() {
       address: { '@type': 'PostalAddress', addressLocality: 'Ankara', addressCountry: 'TR' },
       sameAs: SOCIAL_LINKS,
       description:
-        'وكالة رقمية متكاملة تقدّم مواقع، تطبيقات موبايل، تصميم UI/UX، SEO، سوشيال ميديا، إنتاج محتوى، وإعلانات مدفوعة.',
-      serviceArea: { '@type': 'AdministrativeArea', name: 'Worldwide' },
-      areaServed: { '@type': 'AdministrativeArea', name: 'Worldwide' },
+        'وكالة رقمية متكاملة تقدم تطوير المواقع وتطبيقات iOS وAndroid وتصميم UI/UX وSEO وإدارة وسائل التواصل الاجتماعي وإنتاج المحتوى والإعلانات المدفوعة.',
       knowsLanguage: ['ar', 'en'],
       contactPoint: {
         '@type': 'ContactPoint',
         email: BRAND.email,
         contactType: 'customer service',
-        areaServed: 'Worldwide',
         availableLanguage: ['Arabic', 'English'],
       },
       inLanguage: 'ar',
@@ -54,11 +53,6 @@ export default async function ArHomePage() {
       url: `${SITE_URL}/ar`,
       name: BRAND.name,
       inLanguage: 'ar',
-      potentialAction: {
-        '@type': 'SearchAction',
-        target: `${SITE_URL}/ar/blog?q={search_term_string}`,
-        'query-input': 'required name=search_term_string',
-      },
     },
     {
       '@context': 'https://schema.org',
@@ -68,7 +62,7 @@ export default async function ArHomePage() {
       email: BRAND.email,
       address: { '@type': 'PostalAddress', addressLocality: 'Ankara', addressCountry: 'TR' },
       priceRange: '$0 – $5,000+',
-      description: 'وكالة رقمية: تطوير مواقع، تطبيقات موبايل، SEO، سوشيال ميديا، وتصميم.',
+      description: 'وكالة رقمية متكاملة لتطوير المواقع والتطبيقات وتصميم UI/UX وSEO والتسويق الرقمي.',
       inLanguage: 'ar',
     },
   ]
@@ -80,21 +74,21 @@ export default async function ArHomePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <PageHero
-        eyebrow="تك باراديس"
+        eyebrow="TechParadice"
         title={
           <>
-            عالمك الرقمي،{' '}
-            <span className="text-teal">مبني.</span>
+            نحوّل رؤيتك إلى{' '}
+            <span className="text-teal">مسار رقمي واضح.</span>
           </>
         }
-        description="وكالة رقمية متكاملة تحت قيادة واحدة. مواقع، تطبيقات، تصميم، SEO، سوشيال ومحتوى — كل شيء في فريق واحد."
+        description="فريق خبير واحد للمواقع والتطبيقات وSEO ووسائل التواصل الاجتماعي والإعلانات المدفوعة، مع استراتيجية واضحة وتنفيذ شفاف وتواصل مباشر مع المؤسس من المحادثة الأولى حتى الإطلاق والتحسين المستمر."
       >
         <div className="flex flex-wrap gap-3">
           <Link
             href="/ar/free-audit"
             className="inline-flex items-center gap-2 rounded-lg bg-teal px-5 py-2.5 text-[15px] font-semibold text-void transition-colors hover:bg-teal-dark"
           >
-            استشارة مجانية
+            اطلب تدقيقك المجاني
           </Link>
           <Link
             href="/ar/work"
@@ -109,8 +103,8 @@ export default async function ArHomePage() {
         <Section tone="void" className="pt-0">
           <SectionHeading
             eyebrow="الخدمات"
-            title={<>كل ما تحتاجه، <span className="text-teal">تحت سقف واحد.</span></>}
-            description="بناء. نمو. أتمتة. سبع كفاءات متخصصة في ثلاثة محاور."
+            title={<>خبرات تغطي كل مرحلة، <span className="text-teal">ضمن فريق واحد.</span></>}
+            description="ننسق الاستراتيجية والتصميم والتقنية والتسويق عبر فريق خبير واحد وخطة عمل مترابطة."
           />
           <ul className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {services.map((service) => {
@@ -129,10 +123,10 @@ export default async function ArHomePage() {
                       <ArrowUpRight size={18} className="text-muted transition-colors group-hover:text-teal" />
                     </div>
                     <h2 className="mt-6 font-display text-h4 font-semibold text-white">
-                      {service.nameAr ?? service.name}
+                      {service.nameAr}
                     </h2>
                     <p className="mt-2 text-[14px] text-white/60">
-                      {service.shortAr ?? service.short}
+                      {service.shortAr}
                     </p>
                   </Link>
                 </li>
@@ -146,8 +140,8 @@ export default async function ArHomePage() {
         <Section tone="surface">
           <SectionHeading
             eyebrow="أعمال مختارة"
-            title={<>مشاريع <span className="text-teal">أطلقناها.</span></>}
-            description="دراسات حالة حقيقية مع الأرقام."
+            title={<>أعمال مبنية حول <span className="text-teal">أهداف واضحة.</span></>}
+            description="دراسات حالة تعرض سياق العمل والتحدي والنهج وما نفذناه والمخرجات المتاحة."
           />
           <ul className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
             {portfolio.slice(0, 3).map((c) => (
@@ -166,7 +160,10 @@ export default async function ArHomePage() {
                     )}
                   </div>
                   <div className="p-6">
-                    <p className="text-caption uppercase text-muted">{c.industry} · {c.year}</p>
+                    <p className="text-caption uppercase text-muted">
+                      {localizePortfolioIndustryAr(c.industry)} ·{' '}
+                      {c.year === 'Not publicly disclosed' ? 'غير معلن' : c.year}
+                    </p>
                     <h3 className="mt-2 font-display text-h4 font-semibold text-white">
                       {c.titleAr ?? c.title}
                     </h3>
@@ -187,15 +184,15 @@ export default async function ArHomePage() {
         <div className="grid gap-12 lg:grid-cols-2">
           <SectionHeading
             eyebrow="لماذا نحن"
-            title={<>فريق واحد، <span className="text-teal">مسؤولية واحدة.</span></>}
-            description="لا تنسيق بين وكالات متعددة. فريق متكامل يملك كل الكفاءات ويُسلّم نتائج حقيقية."
+            title={<>فريق واحد، <span className="text-teal">ورؤية متكاملة.</span></>}
+            description="بدلًا من تنسيق العمل بين جهات متعددة، تتعامل مع فريق واحد ينسق التخصصات حول خطة وأولويات مشتركة."
           />
           <ul className="grid grid-cols-2 gap-4">
             {[
-              { t: 'بلا حشو', b: 'نطاقات واضحة وأرقام واضحة.' },
-              { t: 'تنفيذ كبار', b: 'لا مبتدئين. كل شخص في مشروعك أطلق منتجات حقيقية.' },
-              { t: 'تسعير شفاف', b: 'ميزانية محددة مسبقاً. بلا نسب غامضة.' },
-              { t: 'مبني للشحن', b: 'نقيس أنفسنا بالنتائج في الإنتاج — لا بالعروض التقديمية.' },
+              { t: 'وضوح منذ البداية', b: 'أهداف ونطاق عمل ومؤشرات نجاح متفق عليها قبل التنفيذ.' },
+              { t: 'خبرات متخصصة', b: 'نختار المتخصصين وفق المهارات والخبرة التي يحتاج إليها العمل.' },
+              { t: 'تسعير واضح', b: 'ميزانية ونطاق محددان مسبقًا، من دون رسوم مبهمة أو مفاجآت.' },
+              { t: 'مصمم للاستخدام الفعلي', b: 'نراجع المخرجات وفق الاحتياجات المتفق عليها ومؤشرات القياس المناسبة.' },
             ].map((v) => (
               <li key={v.t} className="rounded-xl border border-border-dark bg-surface p-5">
                 <span className="mb-2 inline-block h-px w-6 bg-teal" />
@@ -207,10 +204,12 @@ export default async function ArHomePage() {
         </div>
       </Section>
 
+      <Testimonial locale="ar" />
+
       <CtaBanner
-        heading="هل أنت مستعد للبدء؟"
-        body="أخبرنا بأهدافك. سنتكفل بالباقي."
-        ctaLabel="احصل على تدقيق مجاني"
+        heading="لنحوّل أهدافك إلى خطة واضحة."
+        body="شاركنا ما تريد تحقيقه، وسنحدد لك الأولويات والخطوات العملية المناسبة."
+        ctaLabel="اطلب تدقيقك المجاني"
         ctaHref="/ar/free-audit"
         secondaryLabel="أعمالنا"
         secondaryHref="/ar/work"

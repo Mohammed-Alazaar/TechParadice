@@ -22,22 +22,24 @@ export const primaryNav: NavItem[] = [
         label: 'BUILD',
         items: [
           { label: 'Website Development', href: '/services/web-development', description: 'Fast, accessible sites built in Next.js.' },
-          { label: 'Mobile Apps', href: '/services/mobile-apps', description: 'Native-feeling iOS and Android apps.' },
-          { label: 'UI/UX Design', href: '/services/ui-ux-design', description: 'Design systems that look right and work harder.' },
+          { label: 'Mobile App Development', href: '/services/mobile-app-development', description: 'Reliable iOS and Android products built around real journeys.' },
+          { label: 'Custom UI/UX Design', href: '/services/ui-ux-design', description: 'Clear interfaces and reusable design systems.' },
         ],
       },
       {
         label: 'GROW',
         items: [
-          { label: 'SEO & Content', href: '/services/seo-content', description: 'Technical SEO and content that compounds.' },
-          { label: 'Social Media', href: '/services/social-media', description: 'On-brand social that builds trust and pipeline.' },
-          { label: 'Paid Ads', href: '/services/paid-ads', description: 'Meta, Google, LinkedIn, TikTok for ROAS.' },
+          { label: 'SEO', href: '/services/seo', description: 'Technical foundations and search-informed improvements.' },
+          { label: 'Content Creation', href: '/services/content-creation', description: 'Useful content shaped for your audience and channels.' },
+          { label: 'Paid Advertising', href: '/services/paid-advertising', description: 'Campaigns built around clear objectives and tracking.' },
         ],
       },
       {
-        label: 'AUTOMATE',
+        label: 'ENGAGE & MEASURE',
         items: [
-          { label: 'AI Assistants', href: '/services/ai-assistants', description: 'Custom AI agents and chatbots for your workflows.' },
+          { label: 'Social Media Management', href: '/services/social-media-management', description: 'Consistent publishing and channel coordination.' },
+          { label: 'Community Management', href: '/services/community-management', description: 'Thoughtful audience engagement and response workflows.' },
+          { label: 'Analytics & Reporting', href: '/services/analytics-reporting', description: 'Clear measurement and decision-ready reporting.' },
         ],
       },
     ],
@@ -52,13 +54,13 @@ export const primaryNav: NavItem[] = [
           { label: 'Restaurants', href: '/industries/restaurants', description: 'Menus, reservations, and local SEO.' },
           { label: 'Real Estate', href: '/industries/real-estate', description: 'Listings, lead capture, and CRM integration.' },
           { label: 'Clinics & Healthcare', href: '/industries/clinics', description: 'Booking flows, patient reviews, and medical SEO.' },
-          { label: 'Professional Services', href: '/industries/professional-services', description: 'Authority sites, lead gen, and intake automation.' },
+          { label: 'Professional Services', href: '/industries/professional-services', description: 'Credible websites, lead generation, and intake automation.' },
         ],
       },
       {
         label: 'B2B & INDUSTRIAL',
         items: [
-          { label: 'Manufacturing', href: '/industries/manufacturing-industrial', description: 'Product catalogs, dealer portals, and multilingual sites.' },
+          { label: 'Manufacturing', href: '/industries/manufacturing-industrial', description: 'Product catalogues, dealer portals, and multilingual sites.' },
           { label: 'B2B Businesses', href: '/industries/b2b-businesses', description: 'Lead gen, account-based marketing, and automation.' },
         ],
       },
@@ -76,23 +78,25 @@ export const primaryNavAr: NavItem[] = [
       {
         label: 'بناء',
         items: [
-          { label: 'تطوير المواقع', href: '/ar/services/web-development', description: 'مواقع سريعة مبنية بـ Next.js.' },
-          { label: 'تطبيقات الجوال', href: '/ar/services/mobile-apps', description: 'تطبيقات iOS وAndroid بتجربة أصيلة.' },
-          { label: 'تصميم UI/UX', href: '/ar/services/ui-ux-design', description: 'أنظمة تصميم تبدو صحيحة وتعمل بكفاءة.' },
+          { label: 'تطوير المواقع', href: '/ar/services/web-development', description: 'مواقع سريعة مبنية باستخدام Next.js.' },
+          { label: 'تطوير تطبيقات الجوال', href: '/ar/services/mobile-app-development', description: 'منتجات موثوقة لنظامي iOS وAndroid مبنية حول رحلات استخدام حقيقية.' },
+          { label: 'تصميم UI/UX مخصص', href: '/ar/services/ui-ux-design', description: 'واجهات واضحة وأنظمة تصميم قابلة لإعادة الاستخدام.' },
         ],
       },
       {
         label: 'نمو',
         items: [
-          { label: 'SEO والمحتوى', href: '/ar/services/seo-content', description: 'سيو تقني ومحتوى يتراكم مع الوقت.' },
-          { label: 'السوشيال ميديا', href: '/ar/services/social-media', description: 'تواجد اجتماعي يبني الثقة والجمهور.' },
-          { label: 'الإعلانات المدفوعة', href: '/ar/services/paid-ads', description: 'Meta وGoogle وLinkedIn وTikTok لتحقيق ROAS.' },
+          { label: 'SEO', href: '/ar/services/seo', description: 'أسس تقنية وتحسينات مدروسة للظهور في نتائج البحث.' },
+          { label: 'إنتاج المحتوى', href: '/ar/services/content-creation', description: 'محتوى مفيد يناسب جمهورك وقنواتك.' },
+          { label: 'الإعلانات المدفوعة', href: '/ar/services/paid-advertising', description: 'حملات بأهداف واضحة وقياس موثوق.' },
         ],
       },
       {
-        label: 'أتمتة',
+        label: 'تفاعل وقياس',
         items: [
-          { label: 'مساعدو الذكاء الاصطناعي', href: '/ar/services/ai-assistants', description: 'وكلاء AI وبوتات مخصصة لسير عملك.' },
+          { label: 'إدارة منصات التواصل الاجتماعي', href: '/ar/services/social-media-management', description: 'نشر منتظم وتنسيق واضح بين القنوات.' },
+          { label: 'إدارة المجتمعات الرقمية', href: '/ar/services/community-management', description: 'تفاعل مدروس وآلية واضحة للاستجابة للجمهور.' },
+          { label: 'التحليلات والتقارير', href: '/ar/services/analytics-reporting', description: 'قياس واضح وتقارير تساعد على اتخاذ القرار.' },
         ],
       },
     ],
@@ -104,10 +108,10 @@ export const primaryNavAr: NavItem[] = [
       {
         label: 'الأعمال المحلية',
         items: [
-          { label: 'المطاعم', href: '/ar/industries/restaurants', description: 'قوائم طعام، حجوزات، وسيو محلي.' },
+          { label: 'المطاعم', href: '/ar/industries/restaurants', description: 'قوائم طعام، حجوزات، وSEO محلي.' },
           { label: 'العقارات', href: '/ar/industries/real-estate', description: 'قوائم عقارية وجذب العملاء.' },
-          { label: 'العيادات والرعاية الصحية', href: '/ar/industries/clinics', description: 'سير الحجز ومراجعات المرضى والسيو الطبي.' },
-          { label: 'الخدمات المهنية', href: '/ar/industries/professional-services', description: 'مواقع سلطة وتوليد عملاء وأتمتة الاستقبال.' },
+          { label: 'العيادات والرعاية الصحية', href: '/ar/industries/clinics', description: 'رحلات حجز سهلة، تقييمات المرضى، وSEO طبي.' },
+          { label: 'الخدمات المهنية', href: '/ar/industries/professional-services', description: 'مواقع موثوقة وتوليد فرص وأتمتة استقبال العملاء.' },
         ],
       },
       {

@@ -14,7 +14,7 @@ export function LogoCloud() {
     <section className="border-y border-border-light bg-white py-14 dark:border-border-dark dark:bg-void">
       <div className="container-content">
         <p className="text-center text-caption uppercase text-muted">
-          Built with the best
+          Technology selected for performance and scale
         </p>
         <ul className="mt-8 grid grid-cols-2 items-center gap-x-8 gap-y-6 sm:grid-cols-4 lg:grid-cols-8">
           {stack.map((name) => (

@@ -5,27 +5,28 @@ import { PageHero } from '@/components/sections/PageHero'
 import { Section, SectionHeading } from '@/components/ui/Section'
 import { ContactForm } from '@/components/forms/ContactForm'
 import { BRAND } from '@/lib/utils'
-import { SITE_URL } from '@/lib/utils'
+import { buildMetadata } from '@/lib/seo'
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildMetadata({
   title: 'تدقيق رقمي مجاني | TechParadice',
-  description: 'احصل على تدقيق مجاني لموقعك والسيو والحضور الرقمي. نتائج قابلة للتنفيذ بدون أي مبيعات.',
-  alternates: { canonical: `${SITE_URL}/ar/free-audit` },
-  openGraph: { locale: 'ar_SA' },
-}
+  description: 'اطلب تدقيقًا مجانيًا لموقعك وأداء SEO وحضورك الرقمي، واحصل على توصيات واضحة ومرتبة حسب الأولوية.',
+  path: '/ar/free-audit',
+  alternatePath: '/free-audit',
+  locale: 'ar',
+})
 
 const auditItems = [
   'تحليل Core Web Vitals وسرعة الصفحة',
-  'فحص SEO تقني (الفهرسة، البيانات المنظمة، الروابط الداخلية)',
-  'لمحة عن وضع المنافسين',
-  'مراجعة مسار التحويل',
-  'قائمة أولويات (3-5 إجراءات يمكنك تطبيقها هذا الأسبوع)',
+  'مراجعة SEO التقني، بما يشمل الفهرسة والبيانات المنظمة والروابط الداخلية',
+  'مقارنة موجزة مع أبرز المنافسين',
+  'مراجعة رحلة المستخدم ومسار التحويل',
+  'قائمة مرتبة حسب الأولوية تضم تحسينات عملية مقترحة',
 ]
 
 const steps = [
-  { n: '01', title: 'أكمل النموذج', detail: 'شارك رابط موقعك وما تريد تحسينه. يستغرق دقيقتين.' },
-  { n: '02', title: 'نجري التدقيق', detail: 'يراجع فريقنا موقعك خلال 48 ساعة ويُعدّ تقريرًا مركّزًا.' },
-  { n: '03', title: 'تستلم النتائج', detail: 'ملف PDF واضح بإجراءات مرتبة حسب الأولوية — بلا مصطلحات تقنية، بلا عرض تقديمي.' },
+  { n: '01', title: 'أرسل طلبك', detail: 'ألصق رابط موقعك في الرسالة وأخبرنا بما تريد تحسينه.' },
+  { n: '02', title: 'نراجع الموقع', detail: 'نفحص الجوانب ذات الأولوية ونعد تقييماً موجزاً ومركزاً.' },
+  { n: '03', title: 'استلم النتائج', detail: 'تحصل على ملخص واضح يتضمن توصيات مرتبة حسب الأولوية وخطوات تالية مقترحة.' },
 ]
 
 export default function ArFreeAuditPage() {
@@ -35,11 +36,11 @@ export default function ArFreeAuditPage() {
         eyebrow="تدقيق مجاني"
         title={
           <>
-            اعرف بالضبط ما الذي{' '}
-            <span className="text-teal">يُعيق موقعك.</span>
+            اكتشف أوضح فرص{' '}
+            <span className="text-teal">تحسين موقعك.</span>
           </>
         }
-        description="سندقق في حضورك الرقمي ونسلّمك قائمة إجراءات مرتبة بالأولوية — مجانًا، بدون أي التزام."
+        description="نراجع موقعك وSEO، ثم نشاركك قائمة إجراءات مرتبة حسب الأولوية، من دون تكلفة أو التزام بالتعاقد."
       >
         <div className="flex flex-wrap gap-3">
           <Link
@@ -47,13 +48,13 @@ export default function ArFreeAuditPage() {
             className="inline-flex items-center gap-2 rounded-lg bg-teal px-5 py-2.5 text-[15px] font-semibold text-void transition-colors hover:bg-teal-dark"
           >
             <Zap size={16} />
-            اطلب التدقيق المجاني
+            اطلب تدقيقك المجاني
           </Link>
           <Link
             href="/ar/work"
             className="inline-flex items-center gap-2 rounded-lg border border-white/20 px-5 py-2.5 text-[15px] font-semibold text-white/80 transition-colors hover:border-white/40 hover:text-white"
           >
-            شاهد أعمالنا أولًا
+            اطّلع على أعمالنا
           </Link>
         </div>
       </PageHero>
@@ -62,10 +63,10 @@ export default function ArFreeAuditPage() {
         <div className="grid gap-12 lg:grid-cols-2">
           <div>
             <p className="text-caption uppercase text-teal">ما ستحصل عليه</p>
-            <h2 className="mt-4 heading-h2 text-white">تدقيق حقيقي، لا عرض مبيعات.</h2>
+            <h2 className="mt-4 heading-h2 text-white">مراجعة مركزة يمكنك الاستفادة منها.</h2>
             <p className="mt-4 text-body-lg text-white/70">
-              معظم الوكالات تستخدم &ldquo;التدقيق المجاني&rdquo; كطعم لعرض جاهز. تدقيقنا مراجعة تقنية فعلية
-              لموقعك، يُنفّذها نفس الفريق الذي سيبني لك.
+              نقيّم الجوانب الأكثر ارتباطاً بالظهور وسهولة الاستخدام والتحويل، ثم نرتب النتائج
+              وفق أثرها المتوقع والجهد اللازم لتنفيذها.
             </p>
             <ul className="mt-8 space-y-3">
               {auditItems.map((item) => (
@@ -92,7 +93,7 @@ export default function ArFreeAuditPage() {
             <div className="flex items-center gap-3 rounded-xl border border-teal/20 bg-teal/5 p-5">
               <Clock size={18} className="shrink-0 text-teal" />
               <p className="text-[14px] text-white/70">
-                وقت التسليم: <span className="font-semibold text-white">خلال 48 ساعة</span>
+                وقت التسليم المستهدف: <span className="font-semibold text-white">خلال يومي عمل</span>
               </p>
             </div>
           </div>
@@ -103,18 +104,18 @@ export default function ArFreeAuditPage() {
         <div className="mx-auto max-w-2xl">
           <SectionHeading
             eyebrow="اطلب تدقيقك"
-            title="أخبرنا أين تريد النمو"
-            description="شارك رابطك والتحدي الذي تواجهه. سنتولى الباقي."
+            title="أخبرنا ما الذي تريد تحسينه"
+            description="ألصق رابط موقعك في حقل الرسالة واشرح التحدي الذي تواجهه، وسنستخدم هذا السياق لتركيز المراجعة."
           />
           <div className="mt-10 rounded-2xl border border-border-dark bg-void p-6 sm:p-8">
-            <ContactForm />
+            <ContactForm locale="ar" />
           </div>
           <p className="mt-6 text-center text-[13px] text-muted">
-            تفضل البريد الإلكتروني؟{' '}
+            تفضّل التواصل عبر البريد الإلكتروني؟{' '}
             <Link href={`mailto:${BRAND.email}`} className="text-teal hover:underline">
               {BRAND.email}
             </Link>
-            {' '}— نرد خلال 24 ساعة.
+            {' '}— نرد عادة خلال يوم عمل واحد.
           </p>
         </div>
       </Section>
@@ -122,9 +123,9 @@ export default function ArFreeAuditPage() {
       <Section tone="void">
         <div className="grid gap-6 sm:grid-cols-3">
           {[
-            { value: '+38%', label: 'متوسط تحسّن التحويل بعد التدقيق' },
-            { value: '48 ساعة', label: 'وقت تسليم كل تدقيق' },
-            { value: '100%', label: 'مجاني — بلا بطاقة، بلا التزام' },
+            { value: 'مركّز', label: 'مراجعة مبنية على الأهداف التي تشاركها معنا' },
+            { value: 'يومان', label: 'المدة المستهدفة للتسليم خلال أيام العمل' },
+            { value: 'دون تكلفة', label: 'لا دفع ولا التزام بالتعاقد' },
           ].map((stat) => (
             <div key={stat.label} className="rounded-2xl border border-border-dark bg-surface p-8 text-center">
               <p className="font-display text-[48px] font-extrabold leading-none text-teal">{stat.value}</p>

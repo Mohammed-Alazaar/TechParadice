@@ -14,6 +14,7 @@ export async function Footer({ locale = 'en' }: FooterProps) {
   const p = locale === 'ar' ? '/ar' : ''
   const homeHref = locale === 'ar' ? '/ar' : '/'
   const isAr = locale === 'ar'
+  const homeLabel = isAr ? 'TechParadice — الرئيسية' : 'TechParadice — Home'
 
   const companyLinks = isAr
     ? [
@@ -21,7 +22,7 @@ export async function Footer({ locale = 'en' }: FooterProps) {
         { href: `${p}/work`, label: 'أعمالنا' },
         { href: `${p}/blog`, label: 'المدونة' },
         { href: `${p}/contact`, label: 'تواصل معنا' },
-        { href: `${p}/free-audit`, label: 'استشارة مجانية' },
+        { href: `${p}/free-audit`, label: 'تدقيق مجاني' },
       ]
     : [
         { href: `${p}/about`, label: 'About' },
@@ -61,11 +62,11 @@ export async function Footer({ locale = 'en' }: FooterProps) {
         {/* Logo row */}
         <div className="mb-12 flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div>
-            <Link href={homeHref} aria-label="TechParadice — Home">
+            <Link href={homeHref} aria-label={homeLabel}>
               <Wordmark size="md" />
             </Link>
             <p className="mt-3 max-w-xs text-[14px] text-void/60 dark:text-white/60">
-              {isAr ? 'موقع. تطبيق. سيو. سوشيال. جاهز.' : BRAND.taglineShort}
+              {isAr ? 'مواقع. تطبيقات. SEO. تسويق. فريق واحد.' : BRAND.taglineShort}
             </p>
             <div className="mt-4 flex items-center gap-3">
               <Link href={BRAND.social.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="text-void/60 transition-colors hover:text-teal dark:text-white/60">
@@ -154,28 +155,15 @@ export async function Footer({ locale = 'en' }: FooterProps) {
             <ul className="mt-6 flex flex-col gap-2 text-[14px] text-void/70 dark:text-white/70">
               <li><a href={`mailto:${BRAND.email}`} className="hover:text-teal">{BRAND.email}</a></li>
               <li>{isAr ? 'أنقرة، تركيا' : BRAND.location}</li>
-              <li>{isAr ? 'رد خلال 24 ساعة' : 'Response within 24h'}</li>
+              <li>{isAr ? 'نرد عادة خلال يوم عمل واحد' : 'Usually within one business day'}</li>
             </ul>
 
-            <form className="mt-6 flex gap-2" action="/api/contact" method="post" aria-label={isAr ? 'اشتراك في النشرة' : 'Newsletter signup'}>
-              <label htmlFor="newsletter-email" className="sr-only">
-                {isAr ? 'البريد الإلكتروني' : 'Email address'}
-              </label>
-              <input
-                id="newsletter-email"
-                type="email"
-                name="email"
-                required
-                placeholder={isAr ? 'بريدك@مثال.كوم' : 'you@example.com'}
-                className="h-10 min-w-0 flex-1 rounded-md border border-border-light bg-neutral-50 px-3 text-[14px] text-void placeholder:text-void/40 focus:border-teal focus:outline-none focus:ring-2 focus:ring-teal/30 dark:border-border-dark dark:bg-surface dark:text-white dark:placeholder:text-white/40"
-              />
-              <button
-                type="submit"
-                className="inline-flex h-10 items-center justify-center rounded-md bg-teal px-4 text-[13px] font-semibold text-void transition-colors hover:bg-teal-dark"
-              >
-                {isAr ? 'اشتراك' : 'Subscribe'}
-              </button>
-            </form>
+            <Link
+              href={`${p}/blog`}
+              className="mt-6 inline-flex text-[14px] font-semibold text-teal hover:underline"
+            >
+              {isAr ? 'اقرأ أحدث مقالاتنا' : 'Read our latest insights'}
+            </Link>
           </div>
         </div>
 

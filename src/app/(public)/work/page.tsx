@@ -13,7 +13,7 @@ export const revalidate = 300
 export const metadata: Metadata = buildMetadata({
   title: 'Our Work',
   description:
-    'Recent TechParadice engagements — websites, mobile apps, and full-funnel growth programs.',
+    'Explore selected TechParadice work across websites, mobile products, design, SEO, content, and digital campaigns.',
   path: '/work',
 })
 
@@ -25,14 +25,14 @@ export default async function WorkPage() {
   return (
     <>
       <PageHero
-        eyebrow="Selected work"
+        eyebrow="Client work"
         title={
           <>
-            Projects we&apos;ve{' '}
-            <span className="text-teal">shipped.</span>
+            Selected projects and{' '}
+            <span className="text-teal">the thinking behind them.</span>
           </>
         }
-        description="Each case study includes the challenge, the approach, and the numbers that came out the other side."
+        description="Explore the business context, our approach, the work delivered, and the available outcomes for each engagement."
       >
         <ul className="flex flex-wrap gap-2" aria-label="Filter">
           {filters.map((f, i) => (
@@ -53,8 +53,9 @@ export default async function WorkPage() {
       </PageHero>
 
       <Section tone="void" className="pt-0">
-        <ul className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {portfolio.map((c) => (
+        {portfolio.length > 0 ? (
+          <ul className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {portfolio.map((c) => (
             <li key={c.slug}>
               <Link
                 href={`/work/${c.slug}`}
@@ -87,11 +88,27 @@ export default async function WorkPage() {
                 </div>
               </Link>
             </li>
-          ))}
-        </ul>
+            ))}
+          </ul>
+        ) : (
+          <div className="rounded-2xl border border-border-dark bg-surface p-8 sm:p-10">
+            <h2 className="font-display text-h3 font-semibold text-white">
+              Case studies are being prepared
+            </h2>
+            <p className="mt-3 max-w-2xl text-white/65">
+              We are documenting selected engagements in more detail. Contact us
+              to discuss relevant experience for your project in the meantime.
+            </p>
+          </div>
+        )}
       </Section>
 
-      <CtaBanner />
+      <CtaBanner
+        heading="Have a similar challenge?"
+        body="Share your goals and current setup. We will help you define a practical scope for the next step."
+        ctaHref="/contact"
+        ctaLabel="Discuss your project"
+      />
     </>
   )
 }

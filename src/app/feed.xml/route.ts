@@ -10,7 +10,7 @@ export async function GET() {
   const xml = buildRssFeed({
     title: `${BRAND.name} — Blog`,
     description:
-      'Articles on engineering, design, and growth from the TechParadice team.',
+      'Practical perspectives on technology, design, and digital growth from the TechParadice team.',
     feedUrl: `${SITE_URL}/feed.xml`,
     siteUrl: `${SITE_URL}/blog`,
     language: 'en',

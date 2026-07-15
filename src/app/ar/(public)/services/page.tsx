@@ -4,7 +4,7 @@ import { ArrowUpRight } from 'lucide-react'
 import { PageHero } from '@/components/sections/PageHero'
 import { Section, SectionHeading } from '@/components/ui/Section'
 import { CtaBanner } from '@/components/sections/CtaBanner'
-import { getServices, type Service } from '@/lib/services'
+import { getArServices, type ArabicService } from '@/lib/services'
 import { buildMetadata } from '@/lib/seo'
 import { SITE_URL, BRAND } from '@/lib/utils'
 
@@ -12,36 +12,36 @@ export const revalidate = 300
 
 export const metadata: Metadata = buildMetadata({
   title: 'الخدمات',
-  description: 'مواقع، تطبيقات، تصميم، SEO والمحتوى، سوشيال، إعلانات ومساعدو الذكاء الاصطناعي — فريق واحد متكامل.',
+  description: 'خدمات متكاملة في تطوير المواقع والتطبيقات وتصميم UI/UX وSEO والمحتوى وإدارة منصات التواصل والمجتمعات والتحليلات والإعلانات المدفوعة.',
   path: '/ar/services',
   alternatePath: '/services',
   locale: 'ar',
 })
 
-const BUILD_SLUGS = ['web-development', 'mobile-apps', 'ui-ux-design']
-const GROW_SLUGS = ['seo-content', 'social-media', 'paid-ads']
-const AUTOMATE_SLUGS = ['ai-assistants']
+const BUILD_SLUGS = ['web-development', 'mobile-app-development', 'ui-ux-design']
+const GROW_SLUGS = ['seo', 'content-creation', 'paid-advertising']
+const ENGAGE_MEASURE_SLUGS = ['social-media-management', 'community-management', 'analytics-reporting']
 
 const overviewFaqs = [
   {
     q: 'هل يمكنني العمل معكم على خدمة واحدة فقط؟',
-    a: 'بالتأكيد. ابدأ بما تحتاجه — معظم عملائنا يضيفون خدمات مع نمو العلاقة.',
+    a: 'نعم. يمكننا تنفيذ مشروع مركز لخدمة واحدة، أو تنسيق عدة خبرات عندما يعتمد العمل عليها.',
   },
   {
     q: 'هل أحتاج إلى معرفة ما أريده قبل التواصل؟',
-    a: 'لا. شارك هدفك وقيودك. سنحدد المسار والمخرجات معاً.',
+    a: 'لا. شاركنا الهدف والوضع الحالي والقيود ونطاق الميزانية، وسنساعدك على تحديد نطاق العمل الأكثر فائدة وشرح المفاضلات.',
   },
   {
     q: 'كيف تسعّرون المشاريع؟',
-    a: 'على أساس الميزانية. نقترح نطاقاً يناسب هدفك وننفذ بشفافية.',
+    a: 'يعكس التسعير نطاق العمل المتفق عليه ودرجة التعقيد والفريق ومتطلبات التنفيذ. نوثق المخرجات والافتراضات والرسوم والمراحل قبل بدء العمل.',
   },
   {
     q: 'أين يتمركز فريقكم؟',
-    a: 'مقرنا في أنقرة، تركيا. مع شبكة من كبار المستقلين المنتشرين في أوروبا والشرق الأوسط.',
+    a: 'مقر TechParadice في أنقرة، تركيا، ونستعين بخبرات متخصصة وفق احتياجات كل مشروع.',
   },
 ]
 
-function ServiceCard({ service }: { service: Service }) {
+function ServiceCard({ service }: { service: ArabicService }) {
   const Icon = service.icon
   return (
     <Link
@@ -56,10 +56,10 @@ function ServiceCard({ service }: { service: Service }) {
         <ArrowUpRight size={18} className="text-muted transition-colors group-hover:text-teal" />
       </div>
       <h2 className="mt-6 font-display text-h4 font-semibold text-white">
-        {service.nameAr ?? service.name}
+        {service.nameAr}
       </h2>
       <p className="mt-2 text-[14px] text-white/60">
-        {service.shortAr ?? service.short}
+        {service.shortAr}
       </p>
     </Link>
   )
@@ -70,7 +70,7 @@ function ClusterRow({
   services,
 }: {
   label: string
-  services: Service[]
+  services: ArabicService[]
 }) {
   if (services.length === 0) return null
   return (
@@ -92,11 +92,11 @@ function ClusterRow({
 }
 
 export default async function ArServicesPage() {
-  const services = await getServices()
+  const services = await getArServices()
 
   const build = services.filter((s) => BUILD_SLUGS.includes(s.slug))
   const grow = services.filter((s) => GROW_SLUGS.includes(s.slug))
-  const automate = services.filter((s) => AUTOMATE_SLUGS.includes(s.slug))
+  const engageAndMeasure = services.filter((s) => ENGAGE_MEASURE_SLUGS.includes(s.slug))
 
   const jsonLd = [
     {
@@ -107,8 +107,8 @@ export default async function ArServicesPage() {
         position: i + 1,
         item: {
           '@type': 'Service',
-          name: service.nameAr ?? service.name,
-          description: service.shortAr ?? service.short,
+          name: service.nameAr,
+          description: service.shortAr,
           url: `${SITE_URL}/ar/services/${service.slug}`,
           provider: { '@type': 'Organization', name: BRAND.name, url: SITE_URL },
           inLanguage: 'ar',
@@ -136,40 +136,54 @@ export default async function ArServicesPage() {
         eyebrow="الخدمات"
         title={
           <>
-            بناء. نمو.{' '}
-            <span className="text-teal">أتمتة.</span>
+            ابنِ حضورك الرقمي وطوّره{' '}
+            <span className="text-teal">واربط مكوّناته.</span>
           </>
         }
-        description="سبع كفاءات متخصصة في ثلاثة محاور. عقد واحد، مسؤولية واحدة، خطة متكاملة."
+        description="اختر خبرة محددة أو اجمع عدة خدمات ضمن خطة مترابطة، مع مسؤوليات واضحة وأولويات مشتركة."
       />
 
       <Section tone="void" className="space-y-16 pt-0">
-        <ClusterRow label="بناء" services={build} />
-        <ClusterRow label="نمو" services={grow} />
-        <ClusterRow label="أتمتة" services={automate} />
+        {services.length > 0 ? (
+          <>
+            <ClusterRow label="بناء" services={build} />
+            <ClusterRow label="نمو" services={grow} />
+            <ClusterRow label="تفاعل وقياس" services={engageAndMeasure} />
+          </>
+        ) : (
+          <div className="rounded-2xl border border-border-dark bg-surface p-8 sm:p-10">
+            <h2 className="font-display text-h3 font-semibold text-white">
+              نحدّث تفاصيل خدماتنا
+            </h2>
+            <p className="mt-3 max-w-2xl text-white/65">
+              تواصل معنا لمناقشة أهدافك، وسنوضح لك الخبرات المناسبة ونطاق العمل والخطوات التالية.
+            </p>
+          </div>
+        )}
       </Section>
 
       <Section tone="surface">
         <div className="grid items-center gap-12 lg:grid-cols-2">
           <div>
-            <p className="text-caption uppercase text-teal">أفضل معاً</p>
+            <p className="text-caption uppercase text-teal">تنفيذ منسق</p>
             <h2 className="mt-4 heading-h2 text-balance text-white">
-              معظم عملائنا يعملون معنا عبر{' '}
-              <span className="text-teal">محورين أو أكثر.</span>
+              اجمع فقط الخبرات{' '}
+              <span className="text-teal">التي تتطلبها أهدافك.</span>
             </h2>
             <p className="mt-4 text-body-lg text-white/70">
-              التنفيذ المنسق عبر البناء والنمو والأتمتة يتفوق على ثلاثة موردين منفصلين
-              في كل مرة. خطة خلفية واحدة، فريق واحد مسؤول عن النتائج.
+              عندما تتبع الاستراتيجية والتصميم والتقنية والمحتوى والحملات والقياس
+              الأولويات نفسها، يصبح تنسيق القرارات وتقييم النتائج أكثر وضوحًا. نحدد خارطة
+              طريق واحدة ونوضح المسؤوليات طوال فترة العمل.
             </p>
           </div>
           <ul className="grid grid-cols-2 gap-3">
             {[
-              'ويب + SEO + سوشيال',
-              'ويب + تصميم + إعلانات',
-              'موبايل + تصميم + AI',
-              'SEO + محتوى + إعلانات',
-              'ويب + مساعد AI',
-              'ويب + موبايل + تصميم',
+              'تطوير الويب + SEO + تحليلات',
+              'تطوير الويب + UI/UX + إعلانات مدفوعة',
+              'تطبيقات iOS وAndroid + UI/UX + تحليلات',
+              'SEO + محتوى + إعلانات مدفوعة',
+              'منصات التواصل + إدارة المجتمعات',
+              'تطوير الويب + تطبيقات + UI/UX',
             ].map((combo) => (
               <li
                 key={combo}
@@ -187,7 +201,7 @@ export default async function ArServicesPage() {
         <SectionHeading
           eyebrow="أسئلة شائعة"
           title="أسئلة حول الخدمات"
-          description="أسئلة أكثر تحديداً؟ كل صفحة خدمة تحتوي على قسم أسئلة شائعة خاص بها."
+          description="تشرح صفحة كل خدمة المخرجات المعتادة وآلية العمل والأدوات والأسئلة المرتبطة بها بمزيد من التفصيل."
         />
         <div className="mt-10 max-w-3xl">
           <ul className="divide-y divide-border-dark">
@@ -202,12 +216,10 @@ export default async function ArServicesPage() {
       </Section>
 
       <CtaBanner
-        heading="هل أنت مستعد للبدء؟"
-        body="أخبرنا بأهدافك. سنقترح نطاق عمل يناسبك وخطة تُنجز."
-        ctaLabel="احصل على تدقيق مجاني"
-        ctaHref="/ar/free-audit"
-        secondaryLabel="أعمالنا"
-        secondaryHref="/ar/work"
+        heading="لست متأكدًا من الخدمة الأنسب؟"
+        body="أخبرنا بما تريد تحسينه وما الذي يعيقك، وسنقترح نقطة بداية عملية."
+        ctaLabel="ناقش احتياجاتك"
+        ctaHref="/ar/contact"
       />
     </>
   )

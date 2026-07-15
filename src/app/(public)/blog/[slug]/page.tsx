@@ -78,7 +78,7 @@ export default async function BlogPostPage({ params }: Params) {
             className="inline-flex items-center gap-2 text-[13px] font-semibold text-teal hover:underline"
           >
             <ArrowLeft size={14} />
-            Back to blog
+            Back to all articles
           </Link>
           <Badge tone="teal" className="mt-6">
             {post.category}
@@ -108,29 +108,36 @@ export default async function BlogPostPage({ params }: Params) {
             }}
           />
 
-          <div className="mt-16 border-t border-border-light pt-8 dark:border-border-dark">
-            <p className="text-caption uppercase text-teal">Keep reading</p>
-            <ul className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
-              {related.map((r) => (
-                <li key={r.slug}>
-                  <Link
-                    href={`/blog/${r.slug}`}
-                    className="block rounded-xl border border-border-light bg-neutral-50 p-5 transition-all hover:-translate-y-1 hover:border-teal/40 dark:border-border-dark dark:bg-surface"
-                  >
-                    <Badge>{r.category}</Badge>
-                    <p className="mt-3 font-display text-[17px] font-semibold text-void dark:text-white">
-                      {r.title}
-                    </p>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
+          {related.length > 0 ? (
+            <div className="mt-16 border-t border-border-light pt-8 dark:border-border-dark">
+              <p className="text-caption uppercase text-teal">Related articles</p>
+              <ul className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
+                {related.map((r) => (
+                  <li key={r.slug}>
+                    <Link
+                      href={`/blog/${r.slug}`}
+                      className="block rounded-xl border border-border-light bg-neutral-50 p-5 transition-all hover:-translate-y-1 hover:border-teal/40 dark:border-border-dark dark:bg-surface"
+                    >
+                      <Badge>{r.category}</Badge>
+                      <p className="mt-3 font-display text-[17px] font-semibold text-void dark:text-white">
+                        {r.title}
+                      </p>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ) : null}
         </div>
       </article>
 
       <Section tone="void" />
-      <CtaBanner />
+      <CtaBanner
+        heading="Want to apply these ideas to your business?"
+        body="Tell us what you are trying to improve, and we will help you identify a practical next step."
+        ctaHref="/contact"
+        ctaLabel="Start a conversation"
+      />
     </>
   )
 }

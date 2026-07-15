@@ -77,6 +77,8 @@ export async function getSitemapEntries(): Promise<SitemapEntry[]> {
     { path: '/how-we-work', priority: 0.6, changeFrequency: 'monthly' },
     { path: '/blog', priority: 0.6, changeFrequency: 'weekly' },
     { path: '/contact', priority: 0.9, changeFrequency: 'monthly' },
+    { path: '/privacy-policy', priority: 0.3, changeFrequency: 'yearly' },
+    { path: '/terms', priority: 0.3, changeFrequency: 'yearly' },
   ]
   for (const { path, priority, changeFrequency } of bilingualStatic) {
     entries.push(...pair(path || '/', `/ar${path}`, { priority, changeFrequency, lastModified: now }))
@@ -89,11 +91,6 @@ export async function getSitemapEntries(): Promise<SitemapEntry[]> {
       ...pair(`/in/${city}`, `/ar/in/${city}`, { priority: 0.6, changeFrequency: 'monthly', lastModified: now }),
     )
   }
-
-  // English-only static pages.
-  entries.push(single('/process', { priority: 0.6, changeFrequency: 'monthly', lastModified: now }))
-  entries.push(single('/privacy-policy', { priority: 0.3, changeFrequency: 'yearly', lastModified: now }))
-  entries.push(single('/terms', { priority: 0.3, changeFrequency: 'yearly', lastModified: now }))
 
   // Services share one slug set across both languages.
   for (const slug of serviceSlugs) {

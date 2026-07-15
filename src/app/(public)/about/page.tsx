@@ -7,15 +7,15 @@ import { buildMetadata } from '@/lib/seo'
 
 export const metadata: Metadata = buildMetadata({
   title: 'About',
-  description: `TechParadice is a founder-led, full-stack digital agency. Built in Ankara by ${BRAND.owner}, coordinated across a vetted senior freelancer network.`,
+  description: `Meet TechParadice, a founder-led digital agency based in Ankara and supported by a trusted network of specialists.`,
   path: '/about',
 })
 
 const values = [
-  { title: 'No fluff', body: 'Clear scopes, clear numbers, clear communication. We protect your time.' },
-  { title: 'Senior-only execution', body: 'No junior shadowing. Every person on your project has shipped at scale.' },
-  { title: 'Transparent pricing', body: 'Budgets defined up front. No opaque percentages, no surprise invoices.' },
-  { title: 'Built to ship', body: 'We measure ourselves on outcomes in production — not decks.' },
+  { title: 'Clarity first', body: 'Clear priorities, deliverables, success measures, and communication from day one.' },
+  { title: 'Experienced specialists', body: 'Each contributor is selected for the skills and experience your project requires.' },
+  { title: 'Transparent pricing', body: 'Scope and fees are agreed in advance, with changes discussed before work begins.' },
+  { title: 'Useful outcomes', body: 'We focus on what the work needs to achieve for your customers and your business.' },
 ]
 
 const disciplines = [
@@ -70,11 +70,11 @@ export default function AboutPage() {
         eyebrow="About"
         title={
           <>
-            A full-stack digital team,{' '}
+            A focused digital team,{' '}
             <span className="text-teal">founder-led.</span>
           </>
         }
-        description={`TechParadice is built and led by ${BRAND.owner} from ${BRAND.location}. One team, one point of accountability, senior execution across every discipline.`}
+        description={`TechParadice is led by ${BRAND.owner} from ${BRAND.location}. Clients get one accountable partner coordinating strategy, design, technology, and growth.`}
       />
 
       <Section tone="void" className="pt-0">
@@ -83,21 +83,21 @@ export default function AboutPage() {
             <p className="text-caption uppercase text-teal">Our story</p>
             <div className="mt-4 space-y-4 text-body-lg text-white/75">
               <p>
-                I started TechParadice because I was tired of watching good
-                companies pay three vendors to do what one coordinated team
-                could do better. A website agency here, a social team there,
-                a paid consultant on retainer — all bumping into each other,
-                none owning the outcome.
+                I founded TechParadice because businesses should not have to
+                coordinate several disconnected partners to improve one digital
+                customer journey. Websites, campaigns, content, and analytics
+                work better when they follow the same priorities.
               </p>
               <p>
-                TechParadice collapses that. You get one senior team across
-                web, mobile, design, SEO, content, social, community,
-                analytics, and paid. One plan. One number to call.
+                We bring those capabilities together. Your engagement has one
+                plan, one accountable lead, and the right mix of specialists
+                across web, mobile, design, SEO, content, social media,
+                analytics, and paid campaigns.
               </p>
               <p>
-                We’re lean by design — a core team plus a vetted network of
-                senior freelancers, assembled per project. That’s how we
-                deliver studio-quality work without the studio overhead.
+                Our model combines a small core team with a trusted specialist
+                network. We shape the team around the work, keep communication
+                direct, and stay responsible from planning through launch.
               </p>
             </div>
           </div>
@@ -109,12 +109,12 @@ export default function AboutPage() {
             <p className="mt-1 text-muted">{BRAND.location}</p>
             <div className="mt-6 space-y-3 text-[15px] text-white/70">
               <p>
-                Engineer and operator with 10+ years building and shipping
-                digital products.
+                Engineer and operator experienced in building digital
+                products.
               </p>
               <p>
-                Hands-on across strategy, design direction, and code —
-                involved on every engagement from kickoff to launch.
+                Hands-on across strategy, design direction, and engineering,
+                with direct involvement from discovery through launch.
               </p>
             </div>
           </div>
@@ -124,7 +124,7 @@ export default function AboutPage() {
       <Section tone="surface">
         <SectionHeading
           eyebrow="What we believe"
-          title="Four non-negotiables"
+          title="Four principles that guide our work"
         />
         <ul className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {values.map((v) => (
@@ -148,11 +148,11 @@ export default function AboutPage() {
             eyebrow="Network"
             title={
               <>
-                A vetted network,{' '}
+                The right specialists,{' '}
                 <span className="text-teal">led by {BRAND.owner}.</span>
               </>
             }
-            description="Senior specialists assembled per project. Every contributor is hand-picked, contract-bound, and reviewed per engagement."
+            description="Each team is assembled for the project at hand. Contributors are selected for relevant experience, given a clear scope, and accountable to the same delivery standards."
           />
           <ul className="grid grid-cols-1 gap-3 sm:grid-cols-2">
             {disciplines.map((d) => (

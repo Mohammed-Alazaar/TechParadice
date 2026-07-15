@@ -9,25 +9,25 @@ import { buildMetadata } from '@/lib/seo'
 export const metadata: Metadata = buildMetadata({
   title: 'التسويق الرقمي لورش السيارات',
   description:
-    'سيو محلي، إعلانات Google، إدارة التقييمات، وأنظمة الحجز لورش السيارات ومراكز الخدمة في الخليج.',
+    'SEO محلي، وحملات بحث، ودعم للسمعة، ومواقع، ومسارات للحجز تناسب ورش السيارات ومراكز الخدمة.',
   path: '/ar/industries/auto-repair',
   alternatePath: '/industries/auto-repair',
   locale: 'ar',
 })
 
 const services = [
-  { title: 'السيو المحلي وتحسين الخرائط', detail: 'تحسين Google Business Profile واستهداف كلمات محلية يضع ورشتك في صدارة نتائج الخرائط.' },
-  { title: 'إعلانات Google', detail: 'حملات نية عالية تستقطب السائقين الباحثين عن إصلاحات عاجلة في منطقتك.' },
-  { title: 'إدارة التقييمات', detail: 'طلبات تقييم آلية بعد الخدمة تبني تقييمك النجمي وتبني الثقة مع العملاء الجدد.' },
-  { title: 'الحجز والعروض الإلكترونية', detail: 'نماذج حجز ذاتي وعروض أسعار فورية تحوّل زوار الموقع إلى مواعيد مؤكدة.' },
-  { title: 'تطوير المواقع', detail: 'مواقع سريعة ومحسّنة للجوال مع نقر للاتصال وتكامل حجز للعملاء في حاجة عاجلة.' },
-  { title: 'السوشيال ميديا', detail: 'محتوى قبل/بعد ونصائح وعروض تبقي ورشتك حاضرة في أذهان العملاء بين الخدمات.' },
+  { title: 'SEO محلي والظهور على الخرائط', detail: 'تحسين Google Business Profile ودقة بيانات النشاط ومحتوى خدمات ذي صلة بالموقع الجغرافي.' },
+  { title: 'حملات بحث Google', detail: 'حملات منظمة وفق نوع الخدمة والموقع ونية البحث والمكالمات أو الاستفسارات القابلة للتتبع.' },
+  { title: 'دعم السمعة', detail: 'طلبات تقييم بعد انتهاء الخدمة وإرشادات للرد، تساعد العملاء على تقييم نشاطك.' },
+  { title: 'الحجز الإلكتروني وعروض الأسعار', detail: 'نماذج عملية للحجز وطلب التقدير، تجمع التفاصيل التي يحتاج إليها فريقك.' },
+  { title: 'تطوير المواقع', detail: 'مواقع سريعة ومتوافقة مع الجوال، تعرض الخدمات والموقع وخيارات الاتصال والحجز بوضوح.' },
+  { title: 'منصات التواصل', detail: 'أمثلة للخدمات وإرشادات للصيانة وتحديثات الورشة والعروض، منظمة ضمن خطة محتوى مفيدة.' },
 ]
 
 const results = [
-  { value: '4.1x', label: 'متوسط زيادة المكالمات' },
-  { value: '< 6 أسابيع', label: 'للمركز الثلاثة الأولى في Google' },
-  { value: '–22%', label: 'تكلفة الحجز' },
+  { value: 'العثور', label: 'ظهور محلي دقيق للخدمات ذات الصلة' },
+  { value: 'الاختيار', label: 'أدلة وتقييمات ومعلومات واضحة عن الورشة' },
+  { value: 'الحجز', label: 'خيارات سهلة للمكالمة وطلب السعر والموعد' },
 ]
 
 export default function ArAutoRepairPage() {
@@ -37,18 +37,18 @@ export default function ArAutoRepairPage() {
         eyebrow="ورش السيارات"
         title={
           <>
-            كن أول من يُجد{' '}
-            <span className="text-teal">في لحظة الحاجة.</span>
+            سهّل على السائقين في منطقتك{' '}
+            <span className="text-teal">العثور على ورشتك والتواصل معها.</span>
           </>
         }
-        description="أعطال السيارات عاجلة. حين يبحث أحد عن 'ورشة قريبة مني'، يجب أن تكون أنت الأول. نتولى السيو المحلي والإعلانات والحجز لجعل ذلك يحدث."
+        description="اجمع حضورك في البحث المحلي ومعلومات الخدمات والتقييمات والحملات وخيارات الحجز ضمن رحلة واضحة للعميل."
       >
         <div className="flex flex-wrap gap-3">
           <Link
             href="/ar/free-audit"
             className="inline-flex items-center gap-2 rounded-lg bg-teal px-5 py-2.5 text-[15px] font-semibold text-void transition-colors hover:bg-teal-dark"
           >
-            احصل على تدقيق مجاني
+            اطلب تدقيقاً مجانياً
           </Link>
           <Link
             href="/ar/industries"
@@ -73,8 +73,8 @@ export default function ArAutoRepairPage() {
       <Section tone="surface">
         <SectionHeading
           eyebrow="ما نقدمه لورش السيارات"
-          title="من أول بحث إلى حجز في الكراج"
-          description="نغطي كل خطوة بين 'سيارتي عطلت' وحجز مكانك."
+          title="ادعم الرحلة من البحث إلى الخدمة"
+          description="وفر للسائقين المعلومات وخيارات التواصل التي يحتاجون إليها، وساعد فريقك على جمع تفاصيل مفيدة للحجز."
         />
         <ul className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {services.map((s) => (
@@ -92,12 +92,12 @@ export default function ArAutoRepairPage() {
       </Section>
 
       <CtaBanner
-        heading="مستعد لجلب المزيد من السيارات؟"
-        body="شاركنا رابط ورشتك — سنراجع حضورك الرقمي المحلي مجاناً."
+        heading="هل تريد تحسين رحلة عملائك المحليين؟"
+        body="شاركنا رابط موقع الورشة وأولوياتك. سنراجع حضورك الرقمي ونحدد تحسينات عملية."
         ctaHref="/ar/free-audit"
-        ctaLabel="احصل على تدقيق مجاني"
+        ctaLabel="اطلب تدقيقاً مجانياً"
         secondaryHref="/ar/work"
-        secondaryLabel="أعمالنا"
+        secondaryLabel="اطّلع على أعمالنا"
       />
     </>
   )

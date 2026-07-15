@@ -14,30 +14,30 @@ export const revalidate = 300
 export const metadata: Metadata = buildMetadata({
   title: 'Services',
   description:
-    'Websites, mobile apps, UI/UX, SEO & content, social media, paid ads, and AI assistants — one senior team, one contract.',
+    'Explore TechParadice services across web development, mobile apps, UI/UX, SEO, content, social media, community management, analytics, and paid advertising.',
   path: '/services',
 })
 
-const BUILD_SLUGS = ['web-development', 'mobile-apps', 'ui-ux-design']
-const GROW_SLUGS = ['seo-content', 'social-media', 'paid-ads']
-const AUTOMATE_SLUGS = ['ai-assistants']
+const BUILD_SLUGS = ['web-development', 'mobile-app-development', 'ui-ux-design']
+const GROW_SLUGS = ['seo', 'content-creation', 'paid-advertising']
+const ENGAGE_MEASURE_SLUGS = ['social-media-management', 'community-management', 'analytics-reporting']
 
 const overviewFaqs = [
   {
     q: 'Can I work with you on just one service?',
-    a: 'Absolutely. Start with what you need — most clients add services as the relationship grows.',
+    a: 'Yes. We can deliver a focused engagement for one service or coordinate several capabilities when the work depends on them.',
   },
   {
     q: 'Do I need to know what I want before contacting you?',
-    a: "No. Share your goal and constraints. We'll scope the path and the deliverables together.",
+    a: "No. Share the goal, current situation, constraints, and budget range. We will help define the most useful scope and explain the trade-offs.",
   },
   {
     q: 'How do you price engagements?',
-    a: "Budget-based. We propose scope that fits your target and deliver transparently against it.",
+    a: 'Pricing reflects the agreed scope, complexity, team, and delivery requirements. We document deliverables, assumptions, fees, and milestones before work starts.',
   },
   {
     q: 'Where is your team?',
-    a: 'Headquartered in Ankara, Turkey. Vetted senior freelancers distributed across Europe and MENA.',
+    a: 'TechParadice is based in Ankara, Turkey, and brings in specialist support according to the needs of each engagement.',
   },
 ]
 
@@ -95,7 +95,7 @@ export default async function ServicesPage() {
 
   const build = services.filter((s) => BUILD_SLUGS.includes(s.slug))
   const grow = services.filter((s) => GROW_SLUGS.includes(s.slug))
-  const automate = services.filter((s) => AUTOMATE_SLUGS.includes(s.slug))
+  const engageAndMeasure = services.filter((s) => ENGAGE_MEASURE_SLUGS.includes(s.slug))
 
   const jsonLd = [
     {
@@ -134,39 +134,54 @@ export default async function ServicesPage() {
         eyebrow="Services"
         title={
           <>
-            Build. Grow.{' '}
-            <span className="text-teal">Automate.</span>
+            Build, improve, and{' '}
+            <span className="text-teal">connect your digital presence.</span>
           </>
         }
-        description="Seven specialist capabilities across three clusters. One contract, one point of accountability, one coherent plan."
+        description="Choose a focused capability or combine services around one coherent plan, with clear ownership and shared priorities."
       />
 
       <Section tone="void" className="space-y-16 pt-0">
-        <ClusterRow label="Build" services={build} />
-        <ClusterRow label="Grow" services={grow} />
-        <ClusterRow label="Automate" services={automate} />
+        {services.length > 0 ? (
+          <>
+            <ClusterRow label="Build" services={build} />
+            <ClusterRow label="Grow" services={grow} />
+            <ClusterRow label="Engage & measure" services={engageAndMeasure} />
+          </>
+        ) : (
+          <div className="rounded-2xl border border-border-dark bg-surface p-8 sm:p-10">
+            <h2 className="font-display text-h3 font-semibold text-white">
+              Service details are being updated
+            </h2>
+            <p className="mt-3 max-w-2xl text-white/65">
+              Contact us to discuss your goals and we will outline the relevant
+              capabilities, scope, and next steps directly.
+            </p>
+          </div>
+        )}
       </Section>
 
       <Section tone="surface">
         <div className="grid items-center gap-12 lg:grid-cols-2">
           <div>
-            <p className="text-caption uppercase text-teal">Better together</p>
+            <p className="text-caption uppercase text-teal">Coordinated delivery</p>
             <h2 className="mt-4 heading-h2 text-balance text-white">
-              Most clients work with us across{' '}
-              <span className="text-teal">two or more</span> clusters.
+              Combine only the capabilities{' '}
+              <span className="text-teal">your goals require.</span>
             </h2>
             <p className="mt-4 text-body-lg text-white/70">
-              Coordinated execution across build, grow, and automate beats three disconnected
-              vendors every time. One backlog, one roadmap, one team accountable to the outcome.
+              When design, technology, content, campaigns, and measurement share the same
+              priorities, decisions are easier to coordinate and results are easier to assess.
+              We define one roadmap and make ownership clear across the engagement.
             </p>
           </div>
           <ul className="grid grid-cols-2 gap-3">
             {[
-              'Web + SEO + Social',
-              'Web + UI/UX + Paid Ads',
-              'Mobile + UI/UX + AI',
-              'SEO + Content + Paid Ads',
-              'Web + AI Assistants',
+              'Web + SEO + Analytics',
+              'Web + UI/UX + Paid Advertising',
+              'Mobile + UI/UX + Analytics',
+              'SEO + Content + Paid Advertising',
+              'Social Media + Community',
               'Web + Mobile + UI/UX',
             ].map((combo) => (
               <li
@@ -185,14 +200,19 @@ export default async function ServicesPage() {
         <SectionHeading
           eyebrow="Questions"
           title="Common service questions"
-          description="More specific questions? Each service page has its own FAQ section."
+          description="Each service page explains its typical deliverables, process, tools, and related questions in more detail."
         />
         <div className="mt-10 max-w-3xl">
           <Faq items={overviewFaqs} />
         </div>
       </Section>
 
-      <CtaBanner />
+      <CtaBanner
+        heading="Not sure which service to start with?"
+        body="Tell us what you want to improve and what is getting in the way. We will recommend a practical starting point."
+        ctaHref="/contact"
+        ctaLabel="Discuss your needs"
+      />
     </>
   )
 }

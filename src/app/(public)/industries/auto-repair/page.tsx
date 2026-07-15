@@ -9,23 +9,23 @@ import { buildMetadata } from '@/lib/seo'
 export const metadata: Metadata = buildMetadata({
   title: 'Digital Marketing for Auto Repair Shops',
   description:
-    'Local SEO, Google Ads, review management, and booking systems for auto repair shops, garages, and automotive service centres in the GCC.',
+    'Local SEO, search campaigns, reputation support, websites, and booking journeys for garages and automotive service centres in the GCC.',
   path: '/industries/auto-repair',
 })
 
 const services = [
-  { title: 'Local SEO & Maps Optimisation', detail: 'Google Business Profile optimisation and local keyword targeting that puts your garage at the top of Maps results.' },
-  { title: 'Google Search Ads', detail: 'High-intent campaigns capturing drivers searching for repairs right now, in your area.' },
-  { title: 'Review Management', detail: 'Automated post-service review requests that build your star rating and build trust with new customers.' },
-  { title: 'Online Booking & Quotes', detail: 'Self-serve booking and instant quote forms that convert website visitors into confirmed appointments.' },
-  { title: 'Website Development', detail: 'Fast, mobile-first sites with click-to-call and booking integration built for customers in urgent need.' },
-  { title: 'Social Media', detail: 'Before/after content, tips, and promotions that keep your shop top-of-mind between services.' },
+  { title: 'Local SEO & Maps', detail: 'Google Business Profile improvements, accurate listings, and locally relevant service content.' },
+  { title: 'Google Search Campaigns', detail: 'Campaigns organised around service type, location, search intent, and trackable calls or enquiries.' },
+  { title: 'Reputation Support', detail: 'Post-service review requests and response guidance that help customers assess your business.' },
+  { title: 'Online Booking & Quotes', detail: 'Practical booking and estimate-request forms that collect the details your team needs.' },
+  { title: 'Website Development', detail: 'Fast, mobile-friendly sites with prominent service, location, call, and booking information.' },
+  { title: 'Social Media', detail: 'Service examples, maintenance guidance, workshop updates, and promotions organised into a useful content plan.' },
 ]
 
-const results = [
-  { value: '4.1x', label: 'avg. call volume increase' },
-  { value: '< 6 wks', label: 'time to top 3 Google' },
-  { value: '–22%', label: 'cost per booked job' },
+const priorities = [
+  { value: 'Find', label: 'accurate local visibility for relevant services' },
+  { value: 'Choose', label: 'clear evidence, reviews, and workshop details' },
+  { value: 'Book', label: 'simple call, quote, and appointment options' },
 ]
 
 export default function AutoRepairPage() {
@@ -35,18 +35,18 @@ export default function AutoRepairPage() {
         eyebrow="Auto Repair"
         title={
           <>
-            Get found when{' '}
-            <span className="text-teal">someone needs you most.</span>
+            Make it easier for local drivers to{' '}
+            <span className="text-teal">find and contact your workshop.</span>
           </>
         }
-        description="Car trouble is urgent. When someone searches 'garage near me', your business needs to be first. We handle the local SEO, paid ads, and booking that makes that happen."
+        description="Bring your local search presence, service information, reviews, campaigns, and booking options into one clear customer journey."
       >
         <div className="flex flex-wrap gap-3">
           <Link
             href="/free-audit"
             className="inline-flex items-center gap-2 rounded-lg bg-teal px-5 py-2.5 text-[15px] font-semibold text-void transition-colors hover:bg-teal-dark"
           >
-            Get a free audit
+            Request a free audit
           </Link>
           <Link
             href="/industries"
@@ -57,10 +57,10 @@ export default function AutoRepairPage() {
         </div>
       </PageHero>
 
-      {/* Results strip */}
+      {/* Customer journey priorities */}
       <Section tone="void" className="pt-0">
         <ul className="grid grid-cols-1 gap-6 sm:grid-cols-3">
-          {results.map((r) => (
+          {priorities.map((r) => (
             <li key={r.label} className="rounded-2xl border border-border-dark bg-surface p-8">
               <p className="font-display text-[48px] font-extrabold leading-none text-teal">{r.value}</p>
               <p className="mt-3 text-[13px] uppercase tracking-[1.5px] text-muted">{r.label}</p>
@@ -73,8 +73,8 @@ export default function AutoRepairPage() {
       <Section tone="surface">
         <SectionHeading
           eyebrow="What we do for auto repair shops"
-          title="From first search to booked in"
-          description="We cover every step between 'my car broke down' and your bay being booked."
+          title="Support the journey from search to service"
+          description="Give drivers the information and contact options they need while helping your team capture useful booking details."
         />
         <ul className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {services.map((s) => (
@@ -92,10 +92,10 @@ export default function AutoRepairPage() {
       </Section>
 
       <CtaBanner
-        heading="Ready to get more cars through your door?"
-        body="Share your garage URL — we'll audit your local digital presence for free."
+        heading="Want to improve your local customer journey?"
+        body="Share your workshop website and priorities. We will review your digital presence and identify practical improvements."
         ctaHref="/free-audit"
-        ctaLabel="Get a Free Audit"
+        ctaLabel="Request a free audit"
         secondaryHref="/work"
         secondaryLabel="See our work"
       />

@@ -10,34 +10,34 @@ export const revalidate = 86400
 export const metadata: Metadata = buildMetadata({
   title: 'How We Work',
   description:
-    'Our process, engagement models, and pricing philosophy — transparent from day one.',
+    'See how TechParadice scopes, delivers, and supports digital projects, from the first review to ongoing improvement.',
   path: '/how-we-work',
 })
 
 const steps = [
   {
     n: '01',
-    title: 'Free Audit',
+    title: 'Initial review',
     description:
-      'We analyse your current site, SEO, and competitors. You get findings — no strings attached.',
+      'We review your current website, SEO, competitors, goals, and constraints to identify the right starting point.',
   },
   {
     n: '02',
-    title: 'Proposal',
+    title: 'Scope and proposal',
     description:
-      'We scope the work that matches your goals and budget. Fixed price, defined deliverables, clear timeline.',
+      'We recommend a practical scope with defined deliverables, responsibilities, fees, and an indicative timeline.',
   },
   {
     n: '03',
-    title: 'Build & Launch',
+    title: 'Delivery and launch',
     description:
-      'Senior-only execution. You get weekly updates, a staging review, and you approve before we ship.',
+      'The team works through agreed milestones, shares regular updates, and gives you review points before launch.',
   },
   {
     n: '04',
-    title: 'Grow & Iterate',
+    title: 'Measure and improve',
     description:
-      'Post-launch, we track, report, and optimise. Retainer clients get monthly strategy calls and a shared backlog.',
+      'After launch, we can monitor performance, prioritise improvements, and continue through an agreed support or retainer plan.',
   },
 ]
 
@@ -45,41 +45,41 @@ const engagementModels = [
   {
     title: 'Project',
     description:
-      'One fixed scope. One invoice. One deadline. Perfect for a new site, a product launch, or a specific campaign.',
+      'A defined scope, set of milestones, and agreed fee for work such as a website, product launch, or campaign.',
   },
   {
     title: 'Retainer',
     description:
-      'An ongoing relationship. Monthly scope, monthly reporting, shared backlog, and a team that knows your business.',
+      'Ongoing access to the team through a monthly scope, shared priorities, regular reporting, and planned review points.',
   },
 ]
 
 const stats = [
-  { value: '0', label: 'hidden fees' },
-  { value: '100%', label: 'scope-matched invoices' },
-  { value: '24h', label: 'response SLA' },
+  { value: 'Written', label: 'scope, responsibilities, and fees' },
+  { value: 'Regular', label: 'progress updates and review points' },
+  { value: 'Agreed', label: 'change process before extra work begins' },
 ]
 
 const faqs = [
   {
     q: 'What does the free audit actually include?',
-    a: "A review of your site's Core Web Vitals, technical SEO health, competitor snapshot, and top 3 quick-win recommendations. Delivered within 48 hours as a written summary.",
+    a: "A focused review of your site's Core Web Vitals, technical SEO health, competitor positioning, and priority improvements. We aim to deliver a written summary within two business days.",
   },
   {
     q: 'How long does a typical project take?',
-    a: 'A website: 4–8 weeks. A full brand + site + SEO: 8–12 weeks. Retainer engagements are open-ended. We give timeline estimates in every proposal.',
+    a: 'Timing depends on scope, content readiness, integrations, and review cycles. A focused website may take 4–8 weeks, while broader brand, website, and SEO engagements may take 8–12 weeks. Your proposal will include an indicative schedule.',
   },
   {
     q: 'Do you work with small budgets?',
-    a: 'Yes. We have projects from $500 upward. The constraint shapes the scope, not the quality. Senior execution, right-sized deliverables.',
+    a: 'We can often adjust the scope, sequence, or delivery model to fit a defined budget. Share your ceiling and priorities, and we will tell you what is realistic before you commit.',
   },
   {
     q: 'Can I pause or cancel a retainer?',
-    a: "Yes, with 30 days' written notice. We don't lock you in. We'd rather earn the relationship month to month.",
+    a: "Yes, with 30 days' written notice unless your agreement states otherwise. We use the notice period to close or hand over active work and confirm any remaining commitments.",
   },
   {
     q: 'Do you work outside the GCC?',
-    a: 'Yes. We work with clients globally. The team is in Ankara; the output is timezone-flexible.',
+    a: 'Yes. We work remotely with clients in the GCC and other international markets, with meeting times agreed around the project team.',
   },
 ]
 
@@ -90,11 +90,11 @@ export default function HowWeWorkPage() {
         eyebrow="How We Work"
         title={
           <>
-            Transparent by design,
-            <span className="text-teal"> results by delivery.</span>
+            Clear from the outset,
+            <span className="text-teal"> accountable throughout.</span>
           </>
         }
-        description="No retainer surprises, no scope fog. Here's exactly how we work — from first call to ongoing growth."
+        description="Understand how we define the work, manage decisions, communicate progress, and support your team after launch."
       />
 
       {/* 4-step process */}
@@ -124,8 +124,8 @@ export default function HowWeWorkPage() {
         <div className="grid gap-12 lg:grid-cols-2">
           <SectionHeading
             eyebrow="Engagement Models"
-            title="Project or retainer — your call."
-            description="We work both ways. Most clients start with a project, then move to a retainer once they see what coordinated execution looks like."
+            title="Choose the model that fits the work."
+            description="Use a defined project for a specific outcome, or a retainer when you need ongoing capacity and continuous improvement."
           />
           <div className="flex flex-col gap-6">
             {engagementModels.map((model) => (
@@ -152,12 +152,12 @@ export default function HowWeWorkPage() {
             Pricing
           </p>
           <h2 className="heading-h2 text-balance text-void dark:text-white">
-            Budget-based. No surprises.
+            Scope-first, with transparent fees.
           </h2>
           <p className="mt-6 text-body-lg text-void/70 dark:text-white/70">
-            We don&apos;t have a price list. We have a conversation. You share your goal and your
-            budget ceiling; we propose the scope that delivers the most value within it. Scope is
-            fixed. Timeline is fixed. The invoice matches the proposal.
+            You share the goal, priorities, constraints, and budget range. We then recommend the
+            most useful scope within those limits. Deliverables, assumptions, fees, and the change
+            process are documented before work starts.
           </p>
         </div>
         <div className="mt-12 flex flex-wrap gap-12">
@@ -181,10 +181,10 @@ export default function HowWeWorkPage() {
       </Section>
 
       <CtaBanner
-        heading="Ready to start? So are we."
-        body="Book the free audit — no commitment, no sales call required. Just send your URL and goals."
+        heading="Ready to identify the right next step?"
+        body="Send us your website and goals. We will review the current position and share a focused set of priorities."
         ctaHref="/free-audit"
-        ctaLabel="Get a Free Audit"
+        ctaLabel="Request a free audit"
         secondaryHref="/about"
         secondaryLabel="About us"
       />

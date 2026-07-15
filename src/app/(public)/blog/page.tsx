@@ -13,7 +13,7 @@ export const revalidate = 300
 export const metadata: Metadata = buildMetadata({
   title: 'Blog',
   description:
-    'Short, useful essays on shipping software, design, and growth — from the TechParadice team.',
+    'Practical articles from TechParadice on digital strategy, design, engineering, SEO, and growth.',
   path: '/blog',
 })
 
@@ -26,14 +26,14 @@ export default async function BlogPage() {
   return (
     <>
       <PageHero
-        eyebrow="Writing"
+        eyebrow="Insights"
         title={
           <>
-            Essays on shipping,{' '}
-            <span className="text-teal">and why.</span>
+            Useful thinking for{' '}
+            <span className="text-teal">better digital decisions.</span>
           </>
         }
-        description="Notes from the team on engineering, design, and growth — short, specific, no filler."
+        description="Clear, practical perspectives on strategy, design, engineering, SEO, and sustainable growth."
       >
         <ul className="flex flex-wrap gap-2" aria-label="Categories">
           {categories.map((c, i) => (
@@ -77,37 +77,50 @@ export default async function BlogPage() {
               </p>
             </div>
           </Link>
-        ) : null}
+        ) : (
+          <div className="rounded-2xl border border-border-dark bg-surface p-8 sm:p-10">
+            <h2 className="font-display text-h3 font-semibold text-white">
+              New articles are in progress
+            </h2>
+            <p className="mt-3 max-w-2xl text-white/65">
+              We are preparing practical articles on digital strategy, design,
+              engineering, SEO, and growth. In the meantime, contact us if you
+              have a specific question.
+            </p>
+          </div>
+        )}
       </Section>
 
-      <Section tone="void" className="pt-0">
-        <ul className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {rest.map((p) => (
-            <li key={p.slug}>
-              <Link
-                href={`/blog/${p.slug}`}
-                className="group flex h-full flex-col rounded-xl border border-border-dark bg-surface p-6 transition-all hover:-translate-y-1 hover:border-teal/40"
-              >
-                <Badge>{p.category}</Badge>
-                <h3 className="mt-4 font-display text-h4 font-semibold text-white group-hover:text-teal">
-                  {p.title}
-                </h3>
-                <p className="mt-2 flex-1 text-[14px] text-white/60">{p.excerpt}</p>
-                <p className="mt-6 text-[12px] text-muted">
-                  {p.date} · {p.readingTime}
-                </p>
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </Section>
+      {rest.length > 0 ? (
+        <Section tone="void" className="pt-0">
+          <ul className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {rest.map((p) => (
+              <li key={p.slug}>
+                <Link
+                  href={`/blog/${p.slug}`}
+                  className="group flex h-full flex-col rounded-xl border border-border-dark bg-surface p-6 transition-all hover:-translate-y-1 hover:border-teal/40"
+                >
+                  <Badge>{p.category}</Badge>
+                  <h3 className="mt-4 font-display text-h4 font-semibold text-white group-hover:text-teal">
+                    {p.title}
+                  </h3>
+                  <p className="mt-2 flex-1 text-[14px] text-white/60">{p.excerpt}</p>
+                  <p className="mt-6 text-[12px] text-muted">
+                    {p.date} · {p.readingTime}
+                  </p>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </Section>
+      ) : null}
 
       <CtaBanner
-        heading="Want these delivered?"
-        body="A short monthly email — what we shipped, what we learned, what's worth reading."
-        ctaLabel="Subscribe via contact"
+        heading="Have a digital challenge to solve?"
+        body="Tell us what you are trying to improve, and we will help you identify a practical next step."
+        ctaLabel="Start a conversation"
         ctaHref="/contact"
-        secondaryLabel="All services"
+        secondaryLabel="Explore services"
         secondaryHref="/services"
       />
     </>

@@ -7,27 +7,27 @@ import { CtaBanner } from '@/components/sections/CtaBanner'
 import { buildMetadata } from '@/lib/seo'
 
 export const metadata: Metadata = buildMetadata({
-  title: 'الرقمي لشركات B2B',
+  title: 'التسويق الرقمي لشركات B2B',
   description:
-    'توليد عملاء محتملين، تسويق قائم على الحسابات، مساعدو AI ولوحات تحليلات مرتبطة مباشرة بخط المبيعات لشركات B2B.',
+    'مواقع B2B، ومسارات لتوليد العملاء المحتملين، وحملات موجهة للحسابات، وأتمتة مسؤولة، وSEO، وتحليلات لمسار المبيعات.',
   path: '/ar/industries/b2b-businesses',
   alternatePath: '/industries/b2b-businesses',
   locale: 'ar',
 })
 
 const services = [
-  { title: 'أنظمة توليد العملاء', detail: 'قمع inbound ومحتوى مقيّد وتسلسلات outbound تملأ خط مبيعاتك.' },
-  { title: 'التسويق القائم على الحسابات', detail: 'صفحات هبوط وحملات مخصصة تستهدف حسابات وأدوار بعينها.' },
-  { title: 'مساعدو الذكاء الاصطناعي', detail: 'بوتات تأهيل تُصنّف وتُوجّه العملاء الواردين قبل أن يلمسهم فريقك.' },
-  { title: 'تطوير المواقع', detail: 'مواقع سلطة مع حاسبات ROI ودراسات حالة وتدفقات حجز عرض توضيحي.' },
-  { title: 'SEO والمحتوى', detail: 'محتوى قيادة فكرية وسيو تقني يستهدف كلمات نية الشراء.' },
-  { title: 'لوحات التحليلات والمبيعات', detail: 'تقارير إسناد تربط الإنفاق التسويقي بالإيراد المُغلق.' },
+  { title: 'مسارات توليد العملاء المحتملين', detail: 'محتوى وموارد مفيدة ونماذج وتسلسلات متابعة ضمن مسارات لاكتساب العملاء المحتملين، ومتوافقة مع عملية المبيعات لديك.' },
+  { title: 'التسويق الموجّه للحسابات', detail: 'صفحات هبوط ومحتوى وحملات مركزة للحسابات ذات الأولوية والأدوار المشاركة في اتخاذ القرار.' },
+  { title: 'مساعدات رقمية بتقنيات AI', detail: 'أدوات محددة النطاق بعناية، تجمع السياق وتجيب عن الأسئلة المعتمدة وتوجه الاستفسارات.' },
+  { title: 'تطوير المواقع', detail: 'مواقع B2B موثوقة تضم دراسات حالة وأدوات مفيدة ومسارات واضحة لحجز عرض توضيحي أو استشارة.' },
+  { title: 'SEO والمحتوى المتخصص', detail: 'SEO تقني ومحتوى متخصص منظم حول أسئلة البحث والشراء الفعلية.' },
+  { title: 'التحليلات ولوحات مسار المبيعات', detail: 'تقارير تجمع بيانات التسويق وCRM المتاحة لدعم قرارات مسار المبيعات.' },
 ]
 
 const results = [
-  { value: '+112%', label: 'متوسط زيادة الزيارات الطبيعية' },
-  { value: '–28%', label: 'متوسط انخفاض تكلفة الاكتساب' },
-  { value: '3.2x', label: 'ROAS مُحقَّق' },
+  { value: 'الجذب', label: 'الوصول إلى جمهور مناسب حول احتياجات محددة' },
+  { value: 'التأهيل', label: 'استفسارات تتضمن سياقاً مفيداً لفريق المبيعات' },
+  { value: 'القياس', label: 'ربط النشاط التسويقي ببيانات مسار المبيعات' },
 ]
 
 export default function ArB2BBusinessesPage() {
@@ -37,18 +37,18 @@ export default function ArB2BBusinessesPage() {
         eyebrow="شركات B2B"
         title={
           <>
-            خط مبيعات،{' '}
-            <span className="text-teal">لا مقاييس وهمية.</span>
+            ابنِ مساراً أوضح من{' '}
+            <span className="text-teal">الاهتمام إلى الفرصة.</span>
           </>
         }
-        description="مشترو B2B يأخذون وقتهم. نبني أنظمة — محتوى وسيو وتواصل وأتمتة — تعمل عبر دورات مبيعات طويلة مع إسناد واضح."
+        description="نسّق موقعك ومحتواك وحملاتك وأتمتتك وتقاريرك مع رحلة شراء أطول يشارك فيها عدد من أصحاب المصلحة."
       >
         <div className="flex flex-wrap gap-3">
           <Link
             href="/ar/free-audit"
             className="inline-flex items-center gap-2 rounded-lg bg-teal px-5 py-2.5 text-[15px] font-semibold text-void transition-colors hover:bg-teal-dark"
           >
-            احصل على تدقيق مجاني
+            اطلب تدقيقاً مجانياً
           </Link>
           <Link
             href="/ar/industries"
@@ -73,8 +73,8 @@ export default function ArB2BBusinessesPage() {
       <Section tone="surface">
         <SectionHeading
           eyebrow="ما نقدمه لشركات B2B"
-          title="من أول نقرة إلى إغلاق الصفقة"
-          description="نبني الأنظمة التي تجعل تسويقك قابلاً للإسناد إلى الإيراد — لا مجرد زيارات."
+          title="اربط النشاط التسويقي بأولويات المبيعات"
+          description="صمم رحلات مفيدة للمشترين، مع تزويد فريقك بسياق أفضل للتأهيل والمتابعة والقياس."
         />
         <ul className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {services.map((s) => (
@@ -92,12 +92,12 @@ export default function ArB2BBusinessesPage() {
       </Section>
 
       <CtaBanner
-        heading="مستعد لبناء خط مبيعات لا يعتمد على الإحالات؟"
-        body="شاركنا أهداف نموك وسنراجع إعدادك الحالي — مجاناً مع خطة عمل واضحة."
+        heading="هل تريد منظومة أكثر اتساقاً لدعم نمو B2B؟"
+        body="شاركنا أهدافك وعملية المبيعات وإعدادك الرقمي الحالي. سنحدد طرقاً عملية لتعزيز الرحلة."
         ctaHref="/ar/free-audit"
-        ctaLabel="احصل على تدقيق مجاني"
+        ctaLabel="اطلب تدقيقاً مجانياً"
         secondaryHref="/ar/work"
-        secondaryLabel="أعمالنا"
+        secondaryLabel="اطّلع على أعمالنا"
       />
     </>
   )

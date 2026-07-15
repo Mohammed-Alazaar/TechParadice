@@ -4,23 +4,23 @@ import { Section, SectionHeading } from '@/components/ui/Section'
 const reasons = [
   {
     icon: Sparkles,
-    title: 'All-in-one senior team',
-    body: 'Nine disciplines, one contract, zero hand-off tax. Everyone on your project has shipped work at scale.',
+    title: 'Coordinated senior expertise',
+    body: 'Strategy, design, technology, and marketing are organised around one plan and one set of priorities.',
   },
   {
     icon: Compass,
     title: 'Flexible budget-based pricing',
-    body: 'No rigid tiers. Share your goal and budget — we scope a path that fits, transparently.',
+    body: 'No rigid tiers. Share your goals and budget, and we’ll recommend a transparent plan that fits.',
   },
   {
     icon: MessageCircle,
     title: 'Direct line to the founder',
-    body: 'Mohammed is on every project. Decisions are fast, accountability is clear, momentum stays high.',
+    body: 'Mohammed stays involved throughout the engagement, giving decisions and responsibilities clear owners.',
   },
   {
     icon: CheckCircle2,
-    title: 'Built to ship, built to grow',
-    body: 'Everything we build is production-grade, measured, and set up to compound month over month.',
+    title: 'Designed for real-world use',
+    body: 'Deliverables are reviewed against agreed needs, measured with relevant signals, and designed to evolve.',
   },
 ]
 
@@ -31,11 +31,11 @@ export function WhyUs() {
         eyebrow="Why TechParadice"
         title={
           <>
-            A studio-quality team{' '}
-            <span className="text-teal-dark dark:text-teal">without the studio tax.</span>
+            Senior expertise,{' '}
+            <span className="text-teal-dark dark:text-teal">one accountable team.</span>
           </>
         }
-        description="We cut the overhead, keep the craft. You get senior execution across every discipline, coordinated by one founder-led team."
+        description="You get the expertise your project needs, aligned around your goals and coordinated by one founder-led team."
       />
 
       <ul className="mt-12 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">

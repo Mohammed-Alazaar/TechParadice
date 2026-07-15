@@ -34,7 +34,7 @@ export type CaseStudyAr = {
   timeline: string
   year: string
   outcome: string
-  outcomeAr?: string
+  outcomeAr: string
   cover?: string
   challengeAr: string
   approachAr: string[]
@@ -54,11 +54,31 @@ function toArStudy(doc: any): CaseStudyAr {
   return { ...doc, _id: doc._id?.toString() }
 }
 
+// Older databases may still mark these demonstration records as published.
+// They are not verified client work, so public reads exclude them even before
+// the revised seed safely sets their publish flags to false.
+const unverifiedLegacyStudySlugs = ['northwind-commerce', 'orbit-fintech-app', 'acacia-growth']
+
+const publishedEnglishStudyFilter = {
+  published: true,
+  slug: { $nin: unverifiedLegacyStudySlugs },
+}
+
+const completeArabicStudyFilter = {
+  publishedAr: true,
+  slug: { $nin: unverifiedLegacyStudySlugs },
+  titleAr: { $type: 'string', $ne: '' },
+  outcomeAr: { $type: 'string', $ne: '' },
+  challengeAr: { $type: 'string', $ne: '' },
+  'approachAr.0': { $exists: true },
+  'solutionAr.0': { $exists: true },
+}
+
 export const getPortfolio = unstable_cache(
   async (): Promise<CaseStudy[]> => {
     try {
       await dbConnect()
-      const docs = await CaseStudyModel.find({ published: true }).sort({ year: -1 }).lean()
+      const docs = await CaseStudyModel.find(publishedEnglishStudyFilter).sort({ year: -1 }).lean()
       return docs.map(toStudy)
     } catch {
       return []
@@ -72,7 +92,7 @@ export const getCaseStudy = unstable_cache(
   async (slug: string): Promise<CaseStudy | null> => {
     try {
       await dbConnect()
-      const doc = await CaseStudyModel.findOne({ slug }).lean()
+      const doc = await CaseStudyModel.findOne({ $and: [{ slug }, publishedEnglishStudyFilter] }).lean()
       return doc ? toStudy(doc) : null
     } catch {
       return null
@@ -86,7 +106,7 @@ export const getAllCaseStudySlugs = unstable_cache(
   async (): Promise<string[]> => {
     try {
       await dbConnect()
-      const docs = await CaseStudyModel.find({ published: true }, { slug: 1 }).lean()
+      const docs = await CaseStudyModel.find(publishedEnglishStudyFilter, { slug: 1 }).lean()
       return docs.map((d) => d.slug)
     } catch {
       return []
@@ -100,7 +120,7 @@ export const getArPortfolio = unstable_cache(
   async (): Promise<CaseStudyAr[]> => {
     try {
       await dbConnect()
-      const docs = await CaseStudyModel.find({ publishedAr: true }).sort({ year: -1 }).lean()
+      const docs = await CaseStudyModel.find(completeArabicStudyFilter).sort({ year: -1 }).lean()
       return docs.map(toArStudy)
     } catch {
       return []
@@ -114,7 +134,7 @@ export const getArCaseStudy = unstable_cache(
   async (slug: string): Promise<CaseStudyAr | null> => {
     try {
       await dbConnect()
-      const doc = await CaseStudyModel.findOne({ slug, publishedAr: true }).lean()
+      const doc = await CaseStudyModel.findOne({ $and: [{ slug }, completeArabicStudyFilter] }).lean()
       return doc ? toArStudy(doc) : null
     } catch {
       return null
@@ -128,7 +148,7 @@ export const getAllArCaseStudySlugs = unstable_cache(
   async (): Promise<string[]> => {
     try {
       await dbConnect()
-      const docs = await CaseStudyModel.find({ publishedAr: true }, { slug: 1 }).lean()
+      const docs = await CaseStudyModel.find(completeArabicStudyFilter, { slug: 1 }).lean()
       return docs.map((d) => d.slug)
     } catch {
       return []

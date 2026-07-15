@@ -11,8 +11,8 @@ type Props = {
 }
 
 export function CtaBanner({
-  heading = 'Ready to build your digital world?',
-  body = 'Tell us where you’re headed. We’ll propose a scope that fits and a plan that ships.',
+  heading = 'Ready to move your digital goals forward?',
+  body = 'Tell us what you want to achieve, and we’ll recommend a clear plan tailored to your priorities and budget.',
   ctaHref = '/free-audit',
   ctaLabel = 'Get a Free Audit',
   secondaryHref = '/work',

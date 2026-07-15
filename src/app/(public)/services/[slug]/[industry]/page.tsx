@@ -11,16 +11,68 @@ import { buildMetadata } from '@/lib/seo'
 
 export const revalidate = 3600
 
-const INDUSTRY_META: Record<string, { label: string; geo: string; painPoint: string; proof: string }> = {
-  restaurants:          { label: 'Restaurants',            geo: 'GCC',    painPoint: 'empty tables and low online visibility',                        proof: 'restaurants we work with see +3x table reservations within 6 weeks' },
-  'real-estate':        { label: 'Real Estate',            geo: 'GCC',    painPoint: 'low-quality leads and wasted ad spend',                          proof: 'real estate clients report 2.4x lead volume at –31% cost' },
-  clinics:              { label: 'Clinics & Healthcare',   geo: 'GCC',    painPoint: 'missed appointments and a weak online presence',                  proof: 'healthcare clients average 2.1x appointment growth in 4 weeks' },
-  'professional-services': { label: 'Professional Services', geo: 'GCC', painPoint: 'no consistent inbound pipeline beyond referrals',                 proof: 'professional service firms see +89% organic traffic and –34% cost per lead' },
-  'manufacturing-industrial': { label: 'Manufacturing & Industrial', geo: 'GCC', painPoint: 'slow sales cycles and hard-to-navigate product catalogs', proof: 'manufacturing clients ship multilingual platforms in 20 weeks' },
-  'b2b-businesses':     { label: 'B2B Businesses',         geo: 'GCC',    painPoint: 'long sales cycles and no attribution on marketing spend',         proof: 'B2B clients achieve 3.2x ROAS and +112% organic traffic' },
-  'law-firms':          { label: 'Law Firms',              geo: 'GCC',    painPoint: 'over-reliance on referrals and low search visibility',            proof: 'law firm clients see 3.1x consultation uplift and –29% cost per intake' },
-  'salons-beauty':      { label: 'Salons & Beauty',        geo: 'GCC',    painPoint: 'empty appointment slots and low Instagram reach',                 proof: 'beauty clients see 2.8x bookings in under 3 weeks' },
-  'auto-repair':        { label: 'Auto Repair',            geo: 'GCC',    painPoint: 'low call volume and poor local search rankings',                  proof: 'auto repair shops see 4.1x call volume and top-3 Google rank in 6 weeks' },
+type IndustryMeta = {
+  label: string
+  geo: string
+  challenge: string
+  focus: string
+}
+
+const INDUSTRY_META: Record<string, IndustryMeta> = {
+  restaurants: {
+    label: 'Restaurants',
+    geo: 'GCC',
+    challenge: 'turning local discovery into reservations and orders',
+    focus: 'menus, locations, reservation journeys, local search, and guest communications',
+  },
+  'real-estate': {
+    label: 'Real Estate',
+    geo: 'GCC',
+    challenge: 'helping buyers and renters find relevant properties and submit useful enquiries',
+    focus: 'property discovery, lead qualification, campaign journeys, and CRM handover',
+  },
+  clinics: {
+    label: 'Clinics & Healthcare',
+    geo: 'GCC',
+    challenge: 'making trusted information and appointment options easier to access',
+    focus: 'patient information, local visibility, reputation, accessibility, and booking journeys',
+  },
+  'professional-services': {
+    label: 'Professional Services',
+    geo: 'GCC',
+    challenge: 'turning expertise and referrals into a more consistent enquiry journey',
+    focus: 'credibility, expert content, search visibility, and structured consultation enquiries',
+  },
+  'manufacturing-industrial': {
+    label: 'Manufacturing & Industrial',
+    geo: 'GCC',
+    challenge: 'presenting complex products clearly across longer and often multilingual sales cycles',
+    focus: 'technical catalogues, dealer access, multilingual publishing, and routed enquiries',
+  },
+  'b2b-businesses': {
+    label: 'B2B Businesses',
+    geo: 'GCC',
+    challenge: 'supporting longer buying cycles with clearer qualification and measurement',
+    focus: 'buyer journeys, useful content, account priorities, lead routing, and pipeline reporting',
+  },
+  'law-firms': {
+    label: 'Law Firms',
+    geo: 'GCC',
+    challenge: 'building trust and making confidential enquiries easier to direct',
+    focus: 'practice-area content, professional credibility, search visibility, and structured contact options',
+  },
+  'salons-beauty': {
+    label: 'Salons & Beauty',
+    geo: 'GCC',
+    challenge: 'connecting social and local discovery with booking and rebooking',
+    focus: 'visual content, local search, service information, booking tools, and client follow-up',
+  },
+  'auto-repair': {
+    label: 'Auto Repair',
+    geo: 'GCC',
+    challenge: 'helping local drivers find the right service and contact the workshop quickly',
+    focus: 'maps visibility, service information, reputation, calls, quotes, and appointment requests',
+  },
 }
 
 export async function generateMetadata({
@@ -35,7 +87,7 @@ export async function generateMetadata({
 
   return buildMetadata({
     title: `${service.name} for ${ind.label}`,
-    description: `${service.name} built specifically for ${ind.label} in the ${ind.geo}. ${service.short} Tackle ${ind.painPoint}.`,
+    description: `${service.name} for ${ind.label} in the ${ind.geo}, shaped around ${ind.challenge}. ${service.short}`,
     path: `/services/${slug}/${industry}`,
   })
 }
@@ -54,16 +106,16 @@ export default async function ServiceIndustryPage({
 
   const faqs = [
     {
-      q: `How quickly can you deliver ${service.name} results for a ${ind.label} business?`,
-      a: `Typical first results are visible within 4–8 weeks. ${ind.proof}.`,
+      q: `How long does a ${service.name} engagement for ${ind.label} take?`,
+      a: 'Timing depends on the agreed deliverables, content readiness, integrations, approvals, and technical dependencies. After the initial review, we provide an indicative schedule with the proposed scope.',
     },
     {
-      q: `Do you specialise in ${ind.label}?`,
-      a: `Yes. We've worked with ${ind.label} businesses across the GCC and built processes tailored to your specific buyer journey and compliance environment.`,
+      q: `How do you adapt ${service.name} for ${ind.label}?`,
+      a: `We begin with the customer journey, operating requirements, local context, and any relevant compliance constraints. We then include only the deliverables that support your priorities and existing systems.`,
     },
     {
       q: 'What does the free audit include?',
-      a: 'A review of your current site, technical SEO health, competitor snapshot, and a prioritised action plan — delivered within 48 hours, no commitment required.',
+      a: 'A focused review of your website, technical SEO, competitor positioning, and priority improvements. We aim to provide a written summary within two business days, with no obligation to continue.',
     },
   ]
 
@@ -77,14 +129,14 @@ export default async function ServiceIndustryPage({
             <span className="text-teal">{ind.label}.</span>
           </>
         }
-        description={`${service.short} Tailored to the specific challenges ${ind.label} businesses face — ${ind.painPoint}.`}
+        description={`${service.short} Applied to ${ind.label.toLowerCase()} priorities such as ${ind.challenge}.`}
       >
         <div className="flex flex-wrap gap-3">
           <Link
             href="/free-audit"
             className="inline-flex items-center gap-2 rounded-lg bg-teal px-5 py-2.5 text-[15px] font-semibold text-void transition-colors hover:bg-teal-dark"
           >
-            Get a free audit <ArrowRight size={16} />
+            Request a free audit <ArrowRight size={16} />
           </Link>
           <Link
             href={`/services/${slug}`}
@@ -103,25 +155,33 @@ export default async function ServiceIndustryPage({
             </span>
             <h2 className="mt-6 font-display text-h2 font-semibold text-white">{service.value}</h2>
             <p className="mt-4 text-body-lg text-white/70">
-              For {ind.label} in the GCC, this translates to: solving {ind.painPoint}, without adding headcount or changing what makes you great.
+              For {ind.label} in the {ind.geo}, we shape the scope around {ind.focus}.
+              The initial review confirms which priorities are relevant to your customers,
+              team, systems, and budget.
             </p>
             <Link
               href={`/industries/${industry}`}
               className="mt-6 inline-flex items-center gap-2 text-[14px] font-semibold text-teal hover:underline"
             >
-              See our full {ind.label} page →
+              Explore our {ind.label} services →
             </Link>
           </div>
-          <ul className="grid grid-cols-1 gap-3">
-            {service.deliverables.map((d) => (
-              <li key={d} className="flex gap-3 rounded-xl border border-border-dark bg-surface p-4">
-                <span className="mt-0.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-teal/40 bg-teal/10 text-teal">
-                  <Check size={12} />
-                </span>
-                <span className="text-[14px] text-white/80">{d}</span>
-              </li>
-            ))}
-          </ul>
+          {service.deliverables.length > 0 ? (
+            <ul className="grid grid-cols-1 gap-3">
+              {service.deliverables.map((d) => (
+                <li key={d} className="flex gap-3 rounded-xl border border-border-dark bg-surface p-4">
+                  <span className="mt-0.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-teal/40 bg-teal/10 text-teal">
+                    <Check size={12} />
+                  </span>
+                  <span className="text-[14px] text-white/80">{d}</span>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p className="rounded-xl border border-border-dark bg-surface p-6 text-white/70">
+              Deliverables are defined after the initial review and documented in the proposal.
+            </p>
+          )}
         </div>
       </Section>
 
@@ -129,37 +189,43 @@ export default async function ServiceIndustryPage({
         <SectionHeading
           eyebrow="How it works"
           title={`Our ${service.name} process for ${ind.label}`}
-          description="Four clear steps — no black boxes, no moving goalposts."
+          description="The sequence is adapted to the scope, with responsibilities, review points, and decisions made clear before delivery begins."
         />
-        <ol className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {service.process.map((p, i) => (
-            <li key={p.step} className="rounded-xl border border-border-light bg-white p-6 dark:border-border-dark dark:bg-void">
-              <span className="font-display text-[40px] font-extrabold leading-none text-teal/25">
-                {String(i + 1).padStart(2, '0')}
-              </span>
-              <h3 className="mt-3 font-display text-[17px] font-semibold text-void dark:text-white">{p.step}</h3>
-              <p className="mt-1 text-[13px] text-void/60 dark:text-white/60">{p.detail}</p>
-            </li>
-          ))}
-        </ol>
+        {service.process.length > 0 ? (
+          <ol className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {service.process.map((p, i) => (
+              <li key={p.step} className="rounded-xl border border-border-light bg-white p-6 dark:border-border-dark dark:bg-void">
+                <span className="font-display text-[40px] font-extrabold leading-none text-teal/25">
+                  {String(i + 1).padStart(2, '0')}
+                </span>
+                <h3 className="mt-3 font-display text-[17px] font-semibold text-void dark:text-white">{p.step}</h3>
+                <p className="mt-1 text-[13px] text-void/60 dark:text-white/60">{p.detail}</p>
+              </li>
+            ))}
+          </ol>
+        ) : (
+          <p className="mt-8 text-void/70 dark:text-white/70">
+            The proposed delivery stages and review points will be included in your scope.
+          </p>
+        )}
       </Section>
 
       <Section tone="void">
         <div className="grid gap-12 lg:grid-cols-[1fr_1.4fr]">
           <SectionHeading
             eyebrow="FAQ"
-            title={`${service.name} for ${ind.label} — questions`}
-            description="More questions? The free audit is the fastest way to get specific answers."
+            title={`Questions about ${service.name} for ${ind.label}`}
+            description="An initial review helps us answer these questions based on your current setup and priorities."
           />
           <Faq items={faqs} />
         </div>
       </Section>
 
       <CtaBanner
-        heading={`Ready to grow your ${ind.label} business?`}
-        body={`Tell us your goals. We'll propose ${service.name.toLowerCase()} scope that fits your budget and ships on time.`}
+        heading={`Planning to improve your ${ind.label} digital journey?`}
+        body={`Tell us your goals and constraints. We will recommend a ${service.name.toLowerCase()} scope aligned with your priorities and budget.`}
         ctaHref="/free-audit"
-        ctaLabel="Get a Free Audit"
+        ctaLabel="Request a free audit"
         secondaryHref={`/industries/${industry}`}
         secondaryLabel={`${ind.label} overview`}
       />

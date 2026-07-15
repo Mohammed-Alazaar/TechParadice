@@ -9,7 +9,7 @@ import { buildMetadata } from '@/lib/seo'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Contact',
-  description: `Reach out to TechParadice. We reply within 24 hours.`,
+  description: `Contact TechParadice to discuss your website, product, SEO, content, or digital growth goals.`,
   path: '/contact',
 })
 
@@ -20,11 +20,11 @@ export default function ContactPage() {
         eyebrow="Contact"
         title={
           <>
-            Let’s build something{' '}
-            <span className="text-teal">worth shipping.</span>
+            Let’s discuss what your business{' '}
+            <span className="text-teal">needs next.</span>
           </>
         }
-        description="Tell us what you’re working on. We read every message and reply within 24 hours."
+        description="Share your goals, constraints, and current challenges. We review every message and aim to reply within one business day."
       />
 
       <Section tone="void" className="pt-0">
@@ -46,7 +46,7 @@ export default function ContactPage() {
                 <Clock size={18} className="mt-1 text-teal" />
                 <div>
                   <p className="font-semibold text-white">Response time</p>
-                  <p className="text-white/60">Within 24 hours, Mon–Fri.</p>
+                  <p className="text-white/60">Usually within one business day, Monday–Friday.</p>
                 </div>
               </li>
               <li className="flex items-start gap-3">
@@ -60,8 +60,8 @@ export default function ContactPage() {
             <div className="rounded-2xl border border-border-dark bg-surface p-6">
               <p className="text-caption uppercase text-teal">Prefer a call?</p>
               <p className="mt-3 text-[15px] text-white/80">
-                Share the form and we’ll send a Calendly link with the reply.
-                15 minutes, no slides, straight to what you need.
+                Complete the form and ask for a call. We will suggest a time
+                to discuss your priorities and answer the initial questions.
               </p>
             </div>
           </aside>

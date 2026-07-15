@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     template: `%s | ${BRAND.name}`,
   },
   description:
-    'TechParadice is a B2B digital agency. Websites, mobile apps, UI/UX, SEO, social, content, ads — one senior team, flexible pricing.',
+    'TechParadice is a founder-led digital agency delivering websites, mobile apps, UI/UX, SEO, content, social media, and paid growth through one senior team.',
   applicationName: BRAND.name,
   keywords: [
     'digital agency',
@@ -65,13 +65,13 @@ export const metadata: Metadata = {
     url: SITE_URL,
     title: `${BRAND.name} — ${BRAND.tagline}`,
     description:
-      'One senior team. Websites, apps, SEO, social, and ads — built to ship and built to grow.',
+      'One senior team for digital strategy, websites, apps, SEO, content, social media, and paid growth.',
     images: [{ url: '/og-image.png', width: 1200, height: 630, alt: BRAND.name }],
   },
   twitter: {
     card: 'summary_large_image',
     title: `${BRAND.name} — ${BRAND.tagline}`,
-    description: 'One senior team. Full stack. No compromise.',
+    description: 'Digital strategy, technology, and growth through one accountable senior team.',
     images: ['/og-image.png'],
   },
   robots: {
@@ -147,20 +147,18 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               image: `${SITE_URL}/og-image.png`,
               email: BRAND.email,
               description:
-                'Full-stack digital agency delivering websites, mobile apps, UI/UX design, SEO, social media, content, and paid advertising with one senior team.',
+                'Founder-led digital agency delivering websites, mobile apps, UI/UX design, SEO, content, social media, and paid advertising through one senior team.',
               address: {
                 '@type': 'PostalAddress',
                 addressLocality: 'Ankara',
                 addressCountry: 'TR',
               },
               sameAs: SOCIAL_LINKS,
-              areaServed: { '@type': 'AdministrativeArea', name: 'Worldwide' },
               knowsLanguage: ['en', 'ar'],
               contactPoint: {
                 '@type': 'ContactPoint',
                 email: BRAND.email,
                 contactType: 'customer service',
-                areaServed: 'Worldwide',
                 availableLanguage: ['English', 'Arabic'],
               },
               founder: { '@type': 'Person', name: BRAND.owner },

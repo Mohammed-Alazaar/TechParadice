@@ -7,27 +7,27 @@ import { CtaBanner } from '@/components/sections/CtaBanner'
 import { buildMetadata } from '@/lib/seo'
 
 export const metadata: Metadata = buildMetadata({
-  title: 'الرقمي للتصنيع والصناعة',
+  title: 'الحلول الرقمية لشركات التصنيع والصناعة',
   description:
-    'كتالوجات المنتجات، بوابات الموزعين، منصات B2B متعددة اللغات وخطوط العملاء للشركات الصناعية والمصنّعين.',
+    'كتالوجات منتجات، وبوابات للموزعين، ومواقع B2B متعددة اللغات، ومسارات للاستفسارات، وSEO، ومساعدات AI للمصنّعين والشركات الصناعية.',
   path: '/ar/industries/manufacturing-industrial',
   alternatePath: '/industries/manufacturing-industrial',
   locale: 'ar',
 })
 
 const services = [
-  { title: 'مواقع كتالوج المنتجات', detail: 'كتالوجات قابلة للبحث والفلترة مع متغيرات الموديل والملحقات والمواصفات التقنية.' },
-  { title: 'بوابات الموزعين', detail: 'بوابات مُؤمَّنة للوصول إلى الأسعار والمخزون وأدوات الضمان.' },
-  { title: 'منصات متعددة اللغات', detail: 'دعم 5+ لغات مع تحكم في النشر لكل لغة وعلامات hreflang.' },
-  { title: 'أتمتة خط العملاء', detail: 'نماذج استفسار وعروض أسعار وضمانات تُوجَّه للفريق المناسب مع أتمتة بريدية.' },
-  { title: 'SEO والمحتوى', detail: 'صفحات منتجات تقنية ومحتوى صناعي محسّن للبحث B2B ذي الذيل الطويل.' },
-  { title: 'مساعدو الذكاء الاصطناعي', detail: 'بوتات مدرّبة على كتالوج منتجاتك للإجابة على استفسارات الموزعين والعملاء.' },
+  { title: 'مواقع وكتالوجات المنتجات', detail: 'كتالوجات قابلة للبحث والتصفية، تعرض تنويعات الطرازات والملحقات والاستخدامات والمواصفات التقنية.' },
+  { title: 'بوابات الوكلاء والموزعين', detail: 'بوابات آمنة تتيح للمستخدمين المعتمدين الوصول إلى الأسعار والمخزون والوثائق وأدوات الخدمة ذات الصلة.' },
+  { title: 'منصات متعددة اللغات', detail: 'نشر منظم بلغات متعددة، مع ضوابط على مستوى كل لغة وتطبيق مناسب لعلامات hreflang.' },
+  { title: 'أتمتة مسارات الاستفسارات', detail: 'توجيه طلبات عروض الأسعار والمنتجات والخدمة والضمان إلى الفريق المناسب، مع إشعارات مهيأة.' },
+  { title: 'SEO والمحتوى الصناعي', detail: 'معلومات تقنية عن المنتجات ومحتوى صناعي، منظمان وفق عمليات بحث B2B محددة وأسئلة المشترين.' },
+  { title: 'مساعدات بتقنيات AI', detail: 'مساعدات خاضعة لضوابط واضحة وتستند إلى معلومات المنتجات المعتمدة للإجابة عن الأسئلة الشائعة للوكلاء والعملاء.' },
 ]
 
 const results = [
-  { value: '5', label: 'لغات مُطلقة (مشروع DragLab)' },
-  { value: '18', label: 'نموذج بيانات بدون تبعية على المطور' },
-  { value: '6', label: 'سير عمل جذب عملاء مُؤتمتة' },
+  { value: '5', label: 'لغات تدعمها منصة DragLab' },
+  { value: '18', label: 'نموذجاً منظماً للبيانات في المشروع' },
+  { value: '6', label: 'مسارات مهيأة للاستفسارات والخدمة' },
 ]
 
 export default function ArManufacturingPage() {
@@ -37,21 +37,21 @@ export default function ArManufacturingPage() {
         eyebrow="التصنيع والصناعة"
         title={
           <>
-            منتجات معقدة،{' '}
-            <span className="text-teal">حضور رقمي واضح.</span>
+            اجعل المنتجات المعقدة{' '}
+            <span className="text-teal">أسهل في العثور عليها وتقييمها.</span>
           </>
         }
-        description="بنينا منصات B2B متعددة اللغات للمصنّعين الذين يحتاجون وصولاً عالمياً وبوابات موزعين وخطوط عملاء يمكن لفرقهم غير التقنية تشغيلها."
+        description="نصمم منصات B2B وكتالوجات وبوابات ومسارات للاستفسارات بلغات متعددة، تناسب المصنّعين ذوي المنتجات التقنية والفرق الموزعة."
       >
         <div className="flex flex-wrap gap-3">
           <Link
             href="/ar/free-audit"
             className="inline-flex items-center gap-2 rounded-lg bg-teal px-5 py-2.5 text-[15px] font-semibold text-void transition-colors hover:bg-teal-dark"
           >
-            احصل على تدقيق مجاني
+            اطلب تدقيقاً مجانياً
           </Link>
           <Link
-            href="/ar/work/draglab"
+            href="/ar/work/draglab-germany"
             className="inline-flex items-center gap-2 rounded-lg border border-white/20 px-5 py-2.5 text-[15px] font-semibold text-white/80 transition-colors hover:border-white/40 hover:text-white"
           >
             دراسة حالة DragLab
@@ -73,8 +73,8 @@ export default function ArManufacturingPage() {
       <Section tone="surface">
         <SectionHeading
           eyebrow="ما نقدمه للمصنّعين"
-          title="مبني لدورات مبيعات طويلة ومشترين عالميين"
-          description="مشتروك تقنيون، منتجاتك معقدة، وفريقك يحتاج لتحديث المحتوى دون استدعاء مطور."
+          title="ادعم المشترين التقنيين والفرق الموزعة"
+          description="نظّم معلومات المنتجات التفصيلية بوضوح، ووفر للفرق المخولة أدوات عملية لإدارة المحتوى والاستفسارات."
         />
         <ul className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {services.map((s) => (
@@ -92,12 +92,12 @@ export default function ArManufacturingPage() {
       </Section>
 
       <CtaBanner
-        heading="مستعد لتحديث حضورك الرقمي B2B؟"
-        body="سنراجع إعدادك الحالي ونضع خارطة طريق لمنصة يمكن لفريقك العالمي تشغيلها باستقلالية."
+        heading="هل تخطط لمنصة رقمية صناعية أكثر قوة؟"
+        body="شاركنا إعدادك الحالي وهيكل المنتجات ومتطلبات الفريق. سنرتب أولويات مرحلة تالية عملية."
         ctaHref="/ar/free-audit"
-        ctaLabel="احصل على تدقيق مجاني"
+        ctaLabel="اطلب تدقيقاً مجانياً"
         secondaryHref="/ar/work"
-        secondaryLabel="أعمالنا"
+        secondaryLabel="اطّلع على أعمالنا"
       />
     </>
   )

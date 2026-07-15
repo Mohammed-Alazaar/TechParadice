@@ -20,7 +20,9 @@ export function Header({ locale = 'en' }: HeaderProps) {
   const nav = locale === 'ar' ? primaryNavAr : primaryNav
   const homeHref = locale === 'ar' ? '/ar' : '/'
   const auditHref = locale === 'ar' ? '/ar/free-audit' : '/free-audit'
-  const auditLabel = locale === 'ar' ? 'استشارة مجانية' : 'Get a Free Audit'
+  const auditLabel = locale === 'ar' ? 'تدقيق مجاني' : 'Get a Free Audit'
+  const homeLabel = locale === 'ar' ? 'TechParadice — الرئيسية' : 'TechParadice — Home'
+  const navLabel = locale === 'ar' ? 'التنقل الرئيسي' : 'Primary navigation'
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8)
@@ -39,11 +41,11 @@ export function Header({ locale = 'en' }: HeaderProps) {
       )}
     >
       <div className="container-content flex h-16 items-center justify-between lg:h-20">
-        <Link href={homeHref} aria-label="TechParadice — Home" className="shrink-0">
+        <Link href={homeHref} aria-label={homeLabel} className="shrink-0">
           <Wordmark size="md" />
         </Link>
 
-        <nav className="hidden items-center gap-8 lg:flex" aria-label="Primary">
+        <nav className="hidden items-center gap-8 lg:flex" aria-label={navLabel}>
           {nav.map((item) => {
             if ('groups' in item) {
               const grouped = item as NavItemGrouped
@@ -98,7 +100,7 @@ export function Header({ locale = 'en' }: HeaderProps) {
         </nav>
 
         <div className="flex items-center gap-3">
-          <ThemeToggle />
+          <ThemeToggle locale={locale} />
           <LanguageSwitcher locale={locale} />
           <ButtonLink href={auditHref} size="sm" className="hidden sm:inline-flex">
             {auditLabel}

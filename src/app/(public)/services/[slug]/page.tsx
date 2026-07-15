@@ -26,7 +26,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   if (!service) return {}
   return buildMetadata({
     title: service.name,
-    description: service.value,
+    description: service.short,
     path: `/services/${service.slug}`,
   })
 }
@@ -60,7 +60,6 @@ export default async function ServiceDetailPage({ params }: Params) {
       },
       url: `https://techparadice.com/services/${service.slug}`,
       serviceType: service.name,
-      areaServed: 'Worldwide',
     },
     {
       '@context': 'https://schema.org',
@@ -93,8 +92,8 @@ export default async function ServiceDetailPage({ params }: Params) {
       />
       <PageHero eyebrow={service.name} title={service.value} description={service.short}>
         <div className="flex flex-wrap gap-3">
-          <ButtonLink href="/free-audit" size="lg">Get a Free Audit</ButtonLink>
-          <ButtonLink href="/services" variant="secondary" size="lg">All services</ButtonLink>
+          <ButtonLink href="/free-audit" size="lg">Request a free audit</ButtonLink>
+          <ButtonLink href="/services" variant="secondary" size="lg">Explore all services</ButtonLink>
         </div>
       </PageHero>
 
@@ -104,54 +103,82 @@ export default async function ServiceDetailPage({ params }: Params) {
             <span className="inline-flex h-14 w-14 items-center justify-center rounded-xl border border-teal/30 bg-teal/5 text-teal">
               <Icon size={24} />
             </span>
-            <h2 className="mt-6 heading-h2 text-void dark:text-white">What&apos;s included</h2>
+            <h2 className="mt-6 heading-h2 text-void dark:text-white">What an engagement can include</h2>
             <p className="mt-3 max-w-md text-void/70 dark:text-white/70">
-              A scoped, transparent set of deliverables — adjusted to your goals during kickoff.
+              We confirm the final deliverables after reviewing your goals,
+              current setup, dependencies, and priorities.
             </p>
           </div>
-          <ul className="space-y-3">
-            {service.deliverables.map((d) => (
-              <li key={d} className="flex gap-3 rounded-lg border border-border-light bg-neutral-50 p-5 dark:border-border-dark dark:bg-surface">
-                <span className="mt-0.5 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-teal/40 bg-teal/10 text-teal">
-                  <Check size={14} />
-                </span>
-                <span className="text-[15px] text-void/85 dark:text-white/85">{d}</span>
-              </li>
-            ))}
-          </ul>
+          {service.deliverables.length > 0 ? (
+            <ul className="space-y-3">
+              {service.deliverables.map((d) => (
+                <li key={d} className="flex gap-3 rounded-lg border border-border-light bg-neutral-50 p-5 dark:border-border-dark dark:bg-surface">
+                  <span className="mt-0.5 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-teal/40 bg-teal/10 text-teal">
+                    <Check size={14} />
+                  </span>
+                  <span className="text-[15px] text-void/85 dark:text-white/85">{d}</span>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p className="rounded-xl border border-border-dark bg-surface p-6 text-white/70">
+              Deliverables are defined around the project requirements. Contact
+              us for a scope tailored to your goals.
+            </p>
+          )}
         </div>
       </Section>
 
       <Section tone="surface">
-        <SectionHeading eyebrow="Process" title={`How a ${service.name.toLowerCase()} engagement runs`} />
-        <ol className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {service.process.map((p, i) => (
-            <li key={p.step} className="rounded-xl border border-border-light bg-white p-6 dark:border-border-dark dark:bg-void">
-              <span className="font-display text-[28px] font-extrabold text-teal">0{i + 1}</span>
-              <h3 className="mt-3 font-display text-h4 font-semibold text-void dark:text-white">{p.step}</h3>
-              <p className="mt-2 text-[14px] text-void/60 dark:text-white/60">{p.detail}</p>
-            </li>
-          ))}
-        </ol>
+        <SectionHeading
+          eyebrow="Process"
+          title={`How we deliver ${service.name.toLowerCase()}`}
+          description="The exact sequence is adjusted to the scope, but responsibilities and review points are agreed before delivery begins."
+        />
+        {service.process.length > 0 ? (
+          <ol className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {service.process.map((p, i) => (
+              <li key={p.step} className="rounded-xl border border-border-light bg-white p-6 dark:border-border-dark dark:bg-void">
+                <span className="font-display text-[28px] font-extrabold text-teal">0{i + 1}</span>
+                <h3 className="mt-3 font-display text-h4 font-semibold text-void dark:text-white">{p.step}</h3>
+                <p className="mt-2 text-[14px] text-void/60 dark:text-white/60">{p.detail}</p>
+              </li>
+            ))}
+          </ol>
+        ) : (
+          <p className="mt-8 text-void/70 dark:text-white/70">
+            We will document the delivery stages and review points in your proposal.
+          </p>
+        )}
       </Section>
 
       <Section tone="void">
-        <SectionHeading eyebrow="Tooling" title="What we use to deliver" />
-        <ul className="mt-10 grid grid-cols-2 items-center gap-x-6 gap-y-5 sm:grid-cols-3 lg:grid-cols-6">
-          {service.tools.map((t) => (
-            <li
-              key={t}
-              className="rounded-lg border border-border-light bg-neutral-50 px-4 py-3 text-center font-display text-[15px] font-semibold text-void/60 transition-colors hover:text-void dark:border-border-dark dark:bg-surface dark:text-white/60 dark:hover:text-white"
-            >
-              {t}
-            </li>
-          ))}
-        </ul>
+        <SectionHeading
+          eyebrow="Tools"
+          title="Tools selected for the work"
+          description="We choose tools based on the project requirements, your existing systems, and the needs of the people who will maintain the work."
+        />
+        {service.tools.length > 0 ? (
+          <ul className="mt-10 grid grid-cols-2 items-center gap-x-6 gap-y-5 sm:grid-cols-3 lg:grid-cols-6">
+            {service.tools.map((t) => (
+              <li
+                key={t}
+                className="rounded-lg border border-border-light bg-neutral-50 px-4 py-3 text-center font-display text-[15px] font-semibold text-void/60 transition-colors hover:text-void dark:border-border-dark dark:bg-surface dark:text-white/60 dark:hover:text-white"
+              >
+                {t}
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p className="mt-8 text-white/70">
+            Recommended tools will be included in the proposed technical approach.
+          </p>
+        )}
       </Section>
 
       {sampleWork.length > 0 ? (
         <Section tone="surface">
-          <SectionHeading eyebrow="Sample work" title={`${service.name} in action`} />
+          <SectionHeading eyebrow="Relevant work" title={`${service.name} examples`} />
           <ul className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2">
             {sampleWork.slice(0, 2).map((c) => (
               <li key={c.slug}>
@@ -178,19 +205,21 @@ export default async function ServiceDetailPage({ params }: Params) {
         </Section>
       ) : null}
 
-      <Section tone="void">
-        <div className="grid gap-12 lg:grid-cols-[1fr_1.4fr]">
-          <SectionHeading eyebrow="FAQ" title={`About ${service.name.toLowerCase()}`} />
-          <Faq items={service.faqs} />
-        </div>
-      </Section>
+      {service.faqs?.length ? (
+        <Section tone="void">
+          <div className="grid gap-12 lg:grid-cols-[1fr_1.4fr]">
+            <SectionHeading eyebrow="FAQ" title={`Questions about ${service.name.toLowerCase()}`} />
+            <Faq items={service.faqs} />
+          </div>
+        </Section>
+      ) : null}
 
       {related.length > 0 ? (
         <Section tone="surface">
           <SectionHeading
             eyebrow="Pair with"
-            title="Services that work well together"
-            description={`Clients running ${service.name.toLowerCase()} often add:`}
+            title="Related capabilities"
+            description={`Depending on your goals, ${service.name.toLowerCase()} may also benefit from:`}
           />
           <ul className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-3">
             {related.map((r) => {
@@ -209,7 +238,7 @@ export default async function ServiceDetailPage({ params }: Params) {
                       <p className="mt-2 text-[14px] text-void/60 dark:text-white/60">{r.short}</p>
                     </div>
                     <span className="mt-6 inline-flex items-center gap-1 text-[13px] font-semibold text-teal">
-                      Explore <ArrowUpRight size={14} />
+                      View service <ArrowUpRight size={14} />
                     </span>
                   </Link>
                 </li>
@@ -219,7 +248,12 @@ export default async function ServiceDetailPage({ params }: Params) {
         </Section>
       ) : null}
 
-      <CtaBanner heading={`Ready to scope your ${service.name.toLowerCase()}?`} ctaHref="/free-audit" ctaLabel="Get a Free Audit" />
+      <CtaBanner
+        heading={`Planning a ${service.name.toLowerCase()} project?`}
+        body="Share your goals, current setup, and constraints. We will help you define a practical scope and next step."
+        ctaHref="/contact"
+        ctaLabel="Discuss your project"
+      />
     </>
   )
 }

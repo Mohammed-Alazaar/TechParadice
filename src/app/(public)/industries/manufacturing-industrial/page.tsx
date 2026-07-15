@@ -7,25 +7,25 @@ import { CtaBanner } from '@/components/sections/CtaBanner'
 import { buildMetadata } from '@/lib/seo'
 
 export const metadata: Metadata = buildMetadata({
-  title: 'Digital for Manufacturing & Industrial Companies',
+  title: 'Digital Platforms for Manufacturing & Industry',
   description:
-    'Product catalogs, dealer portals, multilingual B2B sites, and lead pipelines built for manufacturers and industrial companies.',
+    'Product catalogues, dealer portals, multilingual B2B websites, enquiry workflows, SEO, and AI assistants for manufacturers and industrial companies.',
   path: '/industries/manufacturing-industrial',
 })
 
 const services = [
-  { title: 'Product Catalog Sites', detail: 'Searchable, filterable catalogs with nested model variants, accessories, and technical specs.' },
-  { title: 'Dealer & Distributor Portals', detail: 'Authenticated portals for dealers to access pricing, inventory, and warranty tools.' },
-  { title: 'Multilingual Platforms', detail: 'Full 5+ language support with per-language publish control and hreflang tags.' },
-  { title: 'Lead Pipeline Automation', detail: 'Inquiry, quote, and warranty forms routed to the right team with email automation.' },
-  { title: 'SEO & Content', detail: 'Technical product pages and industry content optimised for long-tail B2B search.' },
-  { title: 'AI Assistants', detail: 'Chatbots trained on your product catalog to handle first-line dealer and customer inquiries.' },
+  { title: 'Product Catalogue Websites', detail: 'Searchable, filterable catalogues for model variants, accessories, applications, and technical specifications.' },
+  { title: 'Dealer & Distributor Portals', detail: 'Secure portals for approved users to access relevant pricing, inventory, documentation, and service tools.' },
+  { title: 'Multilingual Platforms', detail: 'Structured multilingual publishing with language-level controls and appropriate hreflang implementation.' },
+  { title: 'Enquiry Workflow Automation', detail: 'Quote, product, service, and warranty requests routed to the appropriate team with defined notifications.' },
+  { title: 'SEO & Content', detail: 'Technical product information and industry content organised for specific B2B searches and buyer questions.' },
+  { title: 'AI Assistants', detail: 'Carefully governed assistants grounded in approved product information for common dealer and customer questions.' },
 ]
 
 const results = [
-  { value: '5', label: 'languages shipped (DragLab case)' },
-  { value: '18', label: 'data models, zero dev dependency' },
-  { value: '6', label: 'lead capture workflows automated' },
+  { value: '5', label: 'languages supported in the DragLab platform' },
+  { value: '18', label: 'structured data models in the project' },
+  { value: '6', label: 'lead and service workflows configured' },
 ]
 
 export default function ManufacturingPage() {
@@ -35,21 +35,21 @@ export default function ManufacturingPage() {
         eyebrow="Manufacturing & Industrial"
         title={
           <>
-            Complex products,{' '}
-            <span className="text-teal">clear digital presence.</span>
+            Make complex products{' '}
+            <span className="text-teal">easier to find and evaluate.</span>
           </>
         }
-        description="We've built multilingual B2B platforms for manufacturers that need global reach, dealer portals, and lead pipelines their non-technical teams can operate."
+        description="We design multilingual B2B platforms, catalogues, portals, and enquiry workflows for manufacturers with technical products and distributed teams."
       >
         <div className="flex flex-wrap gap-3">
           <Link
             href="/free-audit"
             className="inline-flex items-center gap-2 rounded-lg bg-teal px-5 py-2.5 text-[15px] font-semibold text-void transition-colors hover:bg-teal-dark"
           >
-            Get a free audit
+            Request a free audit
           </Link>
           <Link
-            href="/work/draglab"
+            href="/work/draglab-germany"
             className="inline-flex items-center gap-2 rounded-lg border border-white/20 px-5 py-2.5 text-[15px] font-semibold text-white/80 transition-colors hover:border-white/40 hover:text-white"
           >
             See DragLab case study
@@ -71,8 +71,8 @@ export default function ManufacturingPage() {
       <Section tone="surface">
         <SectionHeading
           eyebrow="What we do for manufacturers"
-          title="Built for long sales cycles and global buyers"
-          description="Your buyers are technical, your products are complex, and your team needs to update content without calling a developer."
+          title="Support technical buyers and distributed teams"
+          description="Structure detailed product information clearly while giving authorised teams practical tools to manage content and enquiries."
         />
         <ul className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {services.map((s) => (
@@ -90,10 +90,10 @@ export default function ManufacturingPage() {
       </Section>
 
       <CtaBanner
-        heading="Ready to modernise your B2B digital presence?"
-        body="We'll audit your current setup and map a path to a platform your global team can operate independently."
+        heading="Planning a stronger industrial digital platform?"
+        body="Share your current setup, product structure, and team requirements. We will map the priorities for a practical next phase."
         ctaHref="/free-audit"
-        ctaLabel="Get a Free Audit"
+        ctaLabel="Request a free audit"
         secondaryHref="/work"
         secondaryLabel="See our work"
       />

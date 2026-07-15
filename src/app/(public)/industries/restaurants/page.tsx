@@ -9,23 +9,23 @@ import { buildMetadata } from '@/lib/seo'
 export const metadata: Metadata = buildMetadata({
   title: 'Digital Marketing for Restaurants',
   description:
-    'Online menus, reservation funnels, local SEO, and social media management built for restaurants that want to fill tables consistently.',
+    'Mobile-friendly menus, reservation journeys, local SEO, social media, and paid campaigns for restaurants in the GCC.',
   path: '/industries/restaurants',
 })
 
 const services = [
-  { title: 'Online Menu & Ordering', detail: 'Fast, mobile-first menus with optional online ordering integration.' },
-  { title: 'Local SEO', detail: 'Google Business Profile optimisation and local keyword targeting.' },
-  { title: 'Social Media Management', detail: 'Weekly content calendars, food photography direction, and community management.' },
-  { title: 'Reservation Funnels', detail: 'Integrated booking widgets with SMS and email confirmation flows.' },
-  { title: 'Paid Ads', detail: 'Hyper-local Meta and Google campaigns targeted by radius, time, and occasion.' },
-  { title: 'Website Development', detail: 'Lightning-fast sites built to convert hungry visitors into booked tables.' },
+  { title: 'Online Menus & Ordering', detail: 'Fast, mobile-friendly menus with optional ordering and delivery integrations.' },
+  { title: 'Local SEO', detail: 'Google Business Profile improvements, accurate listings, and locally relevant search content.' },
+  { title: 'Social Media Management', detail: 'Content planning, creative direction, publishing support, and community guidelines.' },
+  { title: 'Reservation Journeys', detail: 'Integrated booking tools with clear availability, confirmations, and reminder options.' },
+  { title: 'Paid Campaigns', detail: 'Meta and Google campaigns structured around location, intent, timing, and measurable actions.' },
+  { title: 'Website Development', detail: 'Fast, accessible websites that make menus, locations, hours, and reservations easy to use.' },
 ]
 
-const results = [
-  { value: '3.2x', label: 'avg. reservation uplift' },
-  { value: '< 6 wks', label: 'typical time to first results' },
-  { value: '4.8★', label: 'avg. Google rating improvement' },
+const priorities = [
+  { value: 'Find', label: 'accurate information in search and maps' },
+  { value: 'Choose', label: 'clear menus, locations, and guest information' },
+  { value: 'Book', label: 'simple reservation and ordering journeys' },
 ]
 
 export default function RestaurantsPage() {
@@ -35,18 +35,18 @@ export default function RestaurantsPage() {
         eyebrow="Restaurants"
         title={
           <>
-            Fill more tables with{' '}
-            <span className="text-teal">digital that works.</span>
+            Turn local discovery into{' '}
+            <span className="text-teal">reservations and orders.</span>
           </>
         }
-        description="From a fast online menu to local SEO that puts you first on Google Maps — we handle the digital so you can focus on the kitchen."
+        description="Bring your menu, location details, reservations, content, and campaigns into one clear digital journey for guests."
       >
         <div className="flex flex-wrap gap-3">
           <Link
             href="/free-audit"
             className="inline-flex items-center gap-2 rounded-lg bg-teal px-5 py-2.5 text-[15px] font-semibold text-void transition-colors hover:bg-teal-dark"
           >
-            Get a free audit
+            Request a free audit
           </Link>
           <Link
             href="/industries"
@@ -57,10 +57,10 @@ export default function RestaurantsPage() {
         </div>
       </PageHero>
 
-      {/* Results strip */}
+      {/* Customer journey priorities */}
       <Section tone="void" className="pt-0">
         <ul className="grid grid-cols-1 gap-6 sm:grid-cols-3">
-          {results.map((r) => (
+          {priorities.map((r) => (
             <li key={r.label} className="rounded-2xl border border-border-dark bg-surface p-8">
               <p className="font-display text-[48px] font-extrabold leading-none text-teal">{r.value}</p>
               <p className="mt-3 text-[13px] uppercase tracking-[1.5px] text-muted">{r.label}</p>
@@ -73,8 +73,8 @@ export default function RestaurantsPage() {
       <Section tone="surface">
         <SectionHeading
           eyebrow="What we do for restaurants"
-          title="Every touchpoint covered"
-          description="A customer finds you on Google, checks your menu, books a table. We make every step frictionless."
+          title="Support the journey from search to table"
+          description="Make it easy for guests to find you, confirm the details that matter, and reserve or order from any device."
         />
         <ul className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {services.map((s) => (
@@ -92,10 +92,10 @@ export default function RestaurantsPage() {
       </Section>
 
       <CtaBanner
-        heading="Ready to fill more tables?"
-        body="Share your restaurant URL and we'll audit your digital presence — free, no obligation."
+        heading="Want a clearer path from discovery to booking?"
+        body="Share your restaurant website and goals. We will review the current journey and prioritise practical improvements."
         ctaHref="/free-audit"
-        ctaLabel="Get a Free Audit"
+        ctaLabel="Request a free audit"
         secondaryHref="/work"
         secondaryLabel="See our work"
       />

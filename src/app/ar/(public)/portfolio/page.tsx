@@ -6,13 +6,14 @@ import { Section } from '@/components/ui/Section'
 import { Badge } from '@/components/ui/Badge'
 import { CtaBanner } from '@/components/sections/CtaBanner'
 import { getArPortfolio } from '@/lib/portfolio'
+import { localizePortfolioIndustryAr, localizePortfolioServiceAr } from '@/lib/i18n/portfolio-ar'
 import { buildMetadata } from '@/lib/seo'
 
 export const revalidate = 300
 
 export const metadata: Metadata = buildMetadata({
   title: 'أعمالنا',
-  description: 'مشاريع تك باراديس الحديثة — مواقع وتطبيقات وبرامج نمو رقمي متكاملة.',
+  description: 'استكشف دراسات حالة من TechParadice في تطوير المواقع والتطبيقات وتصميم UI/UX وSEO والنمو الرقمي.',
   path: '/ar/portfolio',
   alternatePath: '/portfolio',
   locale: 'ar',
@@ -27,14 +28,14 @@ export default async function ArPortfolioPage() {
         eyebrow="أعمال مختارة"
         title={
           <>
-            مشاريع{' '}
-            <span className="text-teal">أطلقناها.</span>
+            مشروعات بُنيت حول{' '}
+            <span className="text-teal">تحديات واضحة.</span>
           </>
         }
-        description="كل دراسة حالة تتضمن التحدي والنهج والأرقام التي خرجت من الجانب الآخر."
+        description="تعرّف إلى سياق كل مشروع ومنهجنا وما نفذناه والنتائج المتاحة لكل تعاون."
       >
         <ul className="flex flex-wrap gap-2" aria-label="تصفية">
-          {['الكل', 'ويب', 'موبايل', 'تصميم', 'تسويق'].map((f, i) => (
+          {['الكل', 'تطوير الويب', 'التطبيقات', 'تصميم UI/UX', 'التسويق'].map((f, i) => (
             <li key={f}>
               <button
                 type="button"
@@ -53,7 +54,7 @@ export default async function ArPortfolioPage() {
 
       <Section tone="void" className="pt-0">
         {portfolio.length === 0 ? (
-          <p className="text-muted">لا توجد دراسات حالة بعد.</p>
+          <p className="text-muted">لا توجد دراسات حالة منشورة حاليًا. عد قريبًا للاطلاع على أحدث أعمالنا.</p>
         ) : (
           <ul className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
             {portfolio.map((c) => (
@@ -73,19 +74,20 @@ export default async function ArPortfolioPage() {
                       </div>
                     )}
                     <div className="absolute right-4 top-4">
-                      <Badge tone="teal">{c.outcomeAr ?? c.outcome}</Badge>
+                      <Badge tone="teal">{c.outcomeAr}</Badge>
                     </div>
                   </div>
                   <div className="p-6">
                     <p className="text-caption uppercase text-muted">
-                      {c.industry} · {c.year}
+                      {localizePortfolioIndustryAr(c.industry)} ·{' '}
+                      {c.year === 'Not publicly disclosed' ? 'غير معلن' : c.year}
                     </p>
                     <h2 className="mt-2 font-display text-h4 font-semibold text-white">
-                      {c.titleAr ?? c.title}
+                      {c.titleAr}
                     </h2>
                     <div className="mt-4 flex flex-wrap gap-2">
                       {c.services.map((s) => (
-                        <Badge key={s}>{s}</Badge>
+                        <Badge key={s}>{localizePortfolioServiceAr(s)}</Badge>
                       ))}
                     </div>
                   </div>
@@ -97,9 +99,9 @@ export default async function ArPortfolioPage() {
       </Section>
 
       <CtaBanner
-        heading="هل أنت مستعد للبدء؟"
-        body="أخبرنا بأهدافك. سنتكفل بالباقي."
-        ctaLabel="تواصل معنا"
+        heading="هل تريد مناقشة مشروعك؟"
+        body="شاركنا أهدافك والتحدي الذي تواجهه، وسنساعدك على تحديد نطاق عملي وخطوة تالية واضحة."
+        ctaLabel="ابدأ المحادثة"
         ctaHref="/ar/contact"
       />
     </>

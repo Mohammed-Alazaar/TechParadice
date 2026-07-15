@@ -25,7 +25,7 @@ const CITIES: Record<string, CityMeta> = {
     labelAr: 'دبي',
     country: 'UAE',
     countryAr: 'الإمارات',
-    description: 'تتنافس الأعمال في دبي في أحد أكثر الأسواق تطوراً رقمياً في العالم. نساعدك على التميز — بمواقع تحمل سريعاً وتتصدر نتائج البحث وتحوّل الزوار.',
+    description: 'نساعد الشركات في دبي على تحسين طريقة عثور العملاء عليها وفهمهم لما تقدمه وتفاعلهم معها عبر الإنترنت، من خلال استراتيجية واضحة وتصميم متقن وتقنيات موثوقة.',
     industries: ['restaurants', 'real-estate', 'clinics', 'professional-services', 'b2b-businesses'],
   },
   'abu-dhabi': {
@@ -33,7 +33,7 @@ const CITIES: Record<string, CityMeta> = {
     labelAr: 'أبوظبي',
     country: 'UAE',
     countryAr: 'الإمارات',
-    description: 'اقتصاد أبوظبي يتنوع بسرعة. سواء كنت تخدم العملاء الحكوميين أو الضيافة أو المهنيين، نبني الحضور الرقمي الذي يكسب الثقة.',
+    description: 'نساعد المؤسسات في أبوظبي على عرض خدماتها بوضوح، وبناء الثقة عبر الإنترنت، وتسهيل انتقال العملاء من الاهتمام إلى التواصل.',
     industries: ['professional-services', 'clinics', 'manufacturing-industrial', 'b2b-businesses', 'restaurants'],
   },
   riyadh: {
@@ -41,7 +41,7 @@ const CITIES: Record<string, CityMeta> = {
     labelAr: 'الرياض',
     country: 'Saudi Arabia',
     countryAr: 'المملكة العربية السعودية',
-    description: 'الرياض في قلب التحول الرقمي لرؤية 2030. نساعد الأعمال السعودية على اقتناص نصيبها من هذا النمو بمواقع ثنائية اللغة وسريعة وجاهزة للسيو.',
+    description: 'نساعد الشركات في الرياض على بناء تجارب رقمية واضحة وثنائية اللغة، مصممة لتناسب الجمهور المحلي وأولويات العمل القابلة للقياس.',
     industries: ['restaurants', 'real-estate', 'clinics', 'b2b-businesses', 'professional-services'],
   },
   jeddah: {
@@ -49,7 +49,7 @@ const CITIES: Record<string, CityMeta> = {
     labelAr: 'جدة',
     country: 'Saudi Arabia',
     countryAr: 'المملكة العربية السعودية',
-    description: 'طفرة الميناء والسياحة والضيافة في جدة تعني منافسة رقمية شرسة. نبني المواقع والحملات التي تضع عملك أمام الجمهور المناسب.',
+    description: 'نساعد الشركات في جدة على تنسيق المواقع والمحتوى وSEO والحملات ضمن رحلة عميل متسقة.',
     industries: ['restaurants', 'real-estate', 'salons-beauty', 'clinics', 'b2b-businesses'],
   },
   kuwait: {
@@ -57,7 +57,7 @@ const CITIES: Record<string, CityMeta> = {
     labelAr: 'الكويت',
     country: 'Kuwait',
     countryAr: 'الكويت',
-    description: 'سوق الأعمال الصغيرة والمتوسطة في الكويت لم يُخدَم بما يكفي إلكترونياً. نساعد الأعمال المحلية على بناء حضور رقمي ينافس الأفضل في المنطقة.',
+    description: 'نساعد الشركات في مدينة الكويت على إنشاء تجارب رقمية احترافية تسهّل العثور على عروضها وتقييمها واتخاذ الخطوة التالية.',
     industries: ['restaurants', 'clinics', 'real-estate', 'professional-services', 'auto-repair'],
   },
   doha: {
@@ -65,7 +65,7 @@ const CITIES: Record<string, CityMeta> = {
     labelAr: 'الدوحة',
     country: 'Qatar',
     countryAr: 'قطر',
-    description: 'الدوحة بعد 2022 مدينة عالمية في صعود. نساعد الأعمال القطرية على مجاراة طموحها بحضور رقمي يؤدي في كل نقطة تواصل.',
+    description: 'نساعد الشركات في الدوحة على تحسين حضورها الرقمي عبر المواقع وSEO والمحتوى والحملات، وفق خطة تُصاغ حول أهدافها.',
     industries: ['restaurants', 'real-estate', 'professional-services', 'b2b-businesses', 'clinics'],
   },
   muscat: {
@@ -73,7 +73,7 @@ const CITIES: Record<string, CityMeta> = {
     labelAr: 'مسقط',
     country: 'Oman',
     countryAr: 'عُمان',
-    description: 'الاقتصاد المتنامي وقطاع السياحة في مسقط يعني فرصاً للأعمال المستعدة للاستثمار الرقمي. نساعدك على الوصول أسرع.',
+    description: 'نساعد الشركات في مسقط على تحويل الاستثمار الرقمي إلى رحلة عميل أوضح، من الاكتشاف والتقييم إلى التواصل أو الحجز.',
     industries: ['restaurants', 'clinics', 'real-estate', 'professional-services', 'auto-repair'],
   },
   manama: {
@@ -81,7 +81,7 @@ const CITIES: Record<string, CityMeta> = {
     labelAr: 'المنامة',
     country: 'Bahrain',
     countryAr: 'البحرين',
-    description: 'الاقتصاد المفتوح ومركز التقنية المالية يجعلان المنامة من أكثر أسواق دول مجلس التعاون الخليجي ديناميكية. نساعد الأعمال المحلية على المنافسة إلكترونياً.',
+    description: 'نساعد الشركات في المنامة على توضيح عروضها وتعزيز ظهورها عبر الإنترنت وتسهيل الخطوة التالية على العملاء المناسبين.',
     industries: ['professional-services', 'restaurants', 'b2b-businesses', 'clinics', 'real-estate'],
   },
 }
@@ -93,9 +93,9 @@ const INDUSTRY_LABELS: Record<string, string> = {
   'professional-services': 'الخدمات المهنية',
   'manufacturing-industrial': 'التصنيع والصناعة',
   'b2b-businesses': 'شركات B2B',
-  'law-firms': 'مكاتب المحامين',
+  'law-firms': 'مكاتب المحاماة',
   'salons-beauty': 'الصالونات والتجميل',
-  'auto-repair': 'ورش السيارات',
+  'auto-repair': 'ورش صيانة السيارات',
 }
 
 export async function generateMetadata({
@@ -108,8 +108,8 @@ export async function generateMetadata({
   if (!meta) return {}
 
   return buildMetadata({
-    title: `وكالة رقمية في ${meta.labelAr}، ${meta.countryAr}`,
-    description: `تك باراديس تبني المواقع والتطبيقات والسيو والسوشيال ميديا والإعلانات المدفوعة للأعمال في ${meta.labelAr}. فريق متمرس واحد. نتائج سريعة.`,
+    title: `شركة خدمات رقمية في ${meta.labelAr}، ${meta.countryAr}`,
+    description: `تقدم TechParadice خدمات تطوير المواقع وتطبيقات الجوال وUI/UX وSEO والمحتوى وإدارة منصات التواصل الاجتماعي والحملات المدفوعة للشركات في ${meta.labelAr}.`,
     path: `/ar/in/${city}`,
     alternatePath: `/in/${city}`,
     locale: 'ar',
@@ -137,7 +137,7 @@ export default async function ArCityPage({
         eyebrow={`${meta.labelAr}، ${meta.countryAr}`}
         title={
           <>
-            نمو رقمي للأعمال في{' '}
+            دعم النمو الرقمي للشركات في{' '}
             <span className="text-teal">{meta.labelAr}.</span>
           </>
         }
@@ -148,13 +148,13 @@ export default async function ArCityPage({
             href="/ar/free-audit"
             className="inline-flex items-center gap-2 rounded-lg bg-teal px-5 py-2.5 text-[15px] font-semibold text-void transition-colors hover:bg-teal-dark"
           >
-            احصل على تدقيق مجاني <ArrowRight size={16} className="rotate-180" />
+            اطلب تدقيقاً مجانياً <ArrowRight size={16} className="rotate-180" />
           </Link>
           <Link
             href="/ar/work"
             className="inline-flex items-center gap-2 rounded-lg border border-white/20 px-5 py-2.5 text-[15px] font-semibold text-white/80 transition-colors hover:border-white/40 hover:text-white"
           >
-            شاهد أعمالنا
+            اطّلع على أعمالنا
           </Link>
         </div>
       </PageHero>
@@ -162,37 +162,44 @@ export default async function ArCityPage({
       <Section tone="void" className="pt-0">
         <SectionHeading
           eyebrow="الخدمات"
-          title={`ما نبنيه لأعمال ${meta.labelAr}`}
-          description="كل خدمة متاحة في هذا السوق. نعرف المشهد المحلي ونصمم وفقاً له."
+          title={`خدمات رقمية للشركات في ${meta.labelAr}`}
+          description="اختر خدمة محددة أو اجمع عدة تخصصات ضمن خطة واحدة منسقة، تُصاغ وفق جمهورك وأهدافك وسياق عملك."
         />
-        <ul className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {services.map((service) => {
-            const Icon = service.icon
-            return (
-              <li key={service.slug}>
-                <Link
-                  href={`/ar/services/${service.slug}`}
-                  className="group flex items-start gap-4 rounded-xl border border-border-dark bg-surface p-5 transition-all hover:border-teal/50"
-                >
-                  <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-teal/30 bg-teal/5 text-teal">
-                    <Icon size={18} />
-                  </span>
-                  <div>
-                    <p className="font-display text-[15px] font-semibold text-white">{service.nameAr ?? service.name}</p>
-                    <p className="mt-0.5 text-[13px] text-white/50">{service.shortAr ?? service.short}</p>
-                  </div>
-                </Link>
-              </li>
-            )
-          })}
-        </ul>
+        {services.length > 0 ? (
+          <ul className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {services.map((service) => {
+              const Icon = service.icon
+              return (
+                <li key={service.slug}>
+                  <Link
+                    href={`/ar/services/${service.slug}`}
+                    className="group flex items-start gap-4 rounded-xl border border-border-dark bg-surface p-5 transition-all hover:border-teal/50"
+                  >
+                    <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-teal/30 bg-teal/5 text-teal">
+                      <Icon size={18} />
+                    </span>
+                    <div>
+                      <p className="font-display text-[15px] font-semibold text-white">{service.nameAr ?? service.name}</p>
+                      <p className="mt-0.5 text-[13px] text-white/50">{service.shortAr ?? service.short}</p>
+                    </div>
+                  </Link>
+                </li>
+              )
+            })}
+          </ul>
+        ) : (
+          <p className="mt-8 rounded-xl border border-border-dark bg-surface p-6 text-white/70">
+            نعمل على تحديث تفاصيل الخدمات. تواصل معنا لمناقشة الخدمات المناسبة لأهدافك في{' '}
+            {meta.labelAr}.
+          </p>
+        )}
       </Section>
 
       <Section tone="surface">
         <SectionHeading
           eyebrow="القطاعات"
-          title={`القطاعات التي نخدمها في ${meta.labelAr}`}
-          description={`عملنا مع أعمال ${meta.labelAr} في هذه القطاعات.`}
+          title={`قطاعات ذات صلة في ${meta.labelAr}`}
+          description="استكشف أمثلة على كيفية تكييف قدراتنا مع رحلات عملاء ونماذج أعمال مختلفة."
         />
         <ul className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-3">
           {meta.industries.map((ind) => (
@@ -212,10 +219,10 @@ export default async function ArCityPage({
       </Section>
 
       <CtaBanner
-        heading={`هل أنت مستعد للنمو في ${meta.labelAr}؟`}
-        body="نخدم الأعمال في منطقة دول مجلس التعاون الخليجي. شارك رابطك وأهدافك — سنراجع حضورك الرقمي ونحدد أكبر الفرص المتاحة."
+        heading={`هل تخطط لمبادرتك الرقمية التالية في ${meta.labelAr}؟`}
+        body="شاركنا رابط موقعك وأهدافك والقيود الحالية. سنراجع الفرصة ونوصي بنقطة بداية عملية."
         ctaHref="/ar/free-audit"
-        ctaLabel="احصل على تدقيق مجاني"
+        ctaLabel="اطلب تدقيقاً مجانياً"
         secondaryHref="/ar/about"
         secondaryLabel="من نحن"
       />

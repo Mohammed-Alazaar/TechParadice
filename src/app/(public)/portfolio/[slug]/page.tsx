@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const study = await getCaseStudy(params.slug)
   if (!study) return {}
   return buildMetadata({
-    title: `${study.client} — ${study.title}`,
+    title: `${study.client} | ${study.title}`,
     description: study.challenge.slice(0, 150),
     path: `/portfolio/${study.slug}`,
     alternatePath: `/ar/portfolio/${study.slug}`,
@@ -46,7 +46,7 @@ export default async function CaseStudyPage({ params }: Params) {
     {
       '@context': 'https://schema.org',
       '@type': 'Article',
-      headline: `${study.client} — ${study.title}`,
+      headline: `${study.client} | ${study.title}`,
       description: study.challenge.slice(0, 200),
       author: { '@type': 'Organization', name: BRAND.name, url: SITE_URL },
       publisher: {
@@ -64,7 +64,7 @@ export default async function CaseStudyPage({ params }: Params) {
       itemListElement: [
         { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE_URL}/` },
         { '@type': 'ListItem', position: 2, name: 'Portfolio', item: `${SITE_URL}/portfolio` },
-        { '@type': 'ListItem', position: 3, name: `${study.client} — ${study.title}`, item: `${SITE_URL}/portfolio/${study.slug}` },
+        { '@type': 'ListItem', position: 3, name: `${study.client} | ${study.title}`, item: `${SITE_URL}/portfolio/${study.slug}` },
       ],
     },
   ]
@@ -121,11 +121,11 @@ export default async function CaseStudyPage({ params }: Params) {
       <Section tone="void">
         <div className="mx-auto grid max-w-4xl gap-10">
           <div>
-            <p className="text-caption uppercase text-teal">Challenge</p>
+            <p className="text-caption uppercase text-teal">The challenge</p>
             <p className="mt-4 text-body-lg text-white/80">{study.challenge}</p>
           </div>
           <div>
-            <p className="text-caption uppercase text-teal">Approach</p>
+            <p className="text-caption uppercase text-teal">Our approach</p>
             <ul className="mt-4 space-y-3">
               {study.approach.map((a) => (
                 <li key={a} className="flex gap-3 text-body-lg text-white/80">
@@ -136,7 +136,7 @@ export default async function CaseStudyPage({ params }: Params) {
             </ul>
           </div>
           <div>
-            <p className="text-caption uppercase text-teal">Solution</p>
+            <p className="text-caption uppercase text-teal">What we delivered</p>
             <ul className="mt-4 space-y-3">
               {study.solution.map((s) => (
                 <li key={s} className="flex gap-3 text-body-lg text-white/80">
@@ -150,17 +150,24 @@ export default async function CaseStudyPage({ params }: Params) {
       </Section>
 
       <Section tone="surface">
-        <p className="text-caption uppercase text-teal">Results</p>
-        <ul className="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-3">
-          {study.results.map((r) => (
-            <li key={r.label} className="rounded-2xl border border-border-dark bg-void p-8">
-              <p className="font-display text-[56px] font-extrabold leading-none text-teal">
-                {r.value}
-              </p>
-              <p className="mt-3 text-[14px] uppercase tracking-[1.5px] text-muted">{r.label}</p>
-            </li>
-          ))}
-        </ul>
+        <p className="text-caption uppercase text-teal">Outcomes</p>
+        {study.results.length > 0 ? (
+          <ul className="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-3">
+            {study.results.map((r) => (
+              <li key={r.label} className="rounded-2xl border border-border-dark bg-void p-8">
+                <p className="font-display text-[56px] font-extrabold leading-none text-teal">
+                  {r.value}
+                </p>
+                <p className="mt-3 text-[14px] uppercase tracking-[1.5px] text-muted">{r.label}</p>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p className="mt-4 max-w-3xl text-white/70">
+            This case study focuses on the work delivered. Additional performance
+            data is not published for this engagement.
+          </p>
+        )}
 
         {study.testimonial ? (
           <figure className="mt-14 border-l-2 border-teal pl-6">
@@ -182,7 +189,7 @@ export default async function CaseStudyPage({ params }: Params) {
             className="group flex items-center justify-between rounded-2xl border border-border-dark bg-surface p-8 transition-all hover:border-teal/40"
           >
             <div>
-              <p className="text-caption uppercase text-muted">Next case study</p>
+              <p className="text-caption uppercase text-muted">Explore another case study</p>
               <p className="mt-2 font-display text-h3 font-semibold text-white">{next.title}</p>
             </div>
             <ArrowRight
@@ -193,7 +200,12 @@ export default async function CaseStudyPage({ params }: Params) {
         </Section>
       ) : null}
 
-      <CtaBanner />
+      <CtaBanner
+        heading="Working through a similar challenge?"
+        body="Tell us about your goals, current setup, and constraints. We will help you define a practical next step."
+        ctaHref="/contact"
+        ctaLabel="Discuss your project"
+      />
     </>
   )
 }

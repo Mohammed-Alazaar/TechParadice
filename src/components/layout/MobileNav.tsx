@@ -16,7 +16,11 @@ export function MobileNav({ locale = 'en' }: MobileNavProps) {
   const nav = locale === 'ar' ? primaryNavAr : primaryNav
   const homeHref = locale === 'ar' ? '/ar' : '/'
   const auditHref = locale === 'ar' ? '/ar/free-audit' : '/free-audit'
-  const auditLabel = locale === 'ar' ? 'استشارة مجانية' : 'Get a Free Audit'
+  const auditLabel = locale === 'ar' ? 'تدقيق مجاني' : 'Get a Free Audit'
+  const openLabel = locale === 'ar' ? 'فتح القائمة' : 'Open menu'
+  const closeLabel = locale === 'ar' ? 'إغلاق القائمة' : 'Close menu'
+  const dialogLabel = locale === 'ar' ? 'التنقل الرئيسي' : 'Main navigation'
+  const homeLabel = locale === 'ar' ? 'TechParadice — الرئيسية' : 'TechParadice — Home'
 
   useEffect(() => {
     if (open) {
@@ -42,7 +46,7 @@ export function MobileNav({ locale = 'en' }: MobileNavProps) {
       <button
         type="button"
         className="inline-flex h-10 w-10 items-center justify-center rounded-md text-void/70 transition-colors hover:bg-void/5 hover:text-void dark:text-white/80 dark:hover:bg-white/5 dark:hover:text-white lg:hidden"
-        aria-label="Open menu"
+        aria-label={openLabel}
         aria-expanded={open}
         onClick={() => setOpen(true)}
       >
@@ -53,17 +57,17 @@ export function MobileNav({ locale = 'en' }: MobileNavProps) {
         <div
           role="dialog"
           aria-modal="true"
-          aria-label="Main navigation"
+          aria-label={dialogLabel}
           className="fixed inset-0 z-[70] animate-fade-in overflow-y-auto bg-white dark:bg-void"
         >
           <div className="container-content flex h-16 items-center justify-between lg:h-20">
-            <Link href={homeHref} aria-label="TechParadice — Home" onClick={() => setOpen(false)}>
+            <Link href={homeHref} aria-label={homeLabel} onClick={() => setOpen(false)}>
               <Wordmark size="md" />
             </Link>
             <button
               type="button"
               onClick={() => setOpen(false)}
-              aria-label="Close menu"
+              aria-label={closeLabel}
               className="inline-flex h-10 w-10 items-center justify-center rounded-md text-void/70 hover:bg-void/5 hover:text-void dark:text-white/80 dark:hover:bg-white/5 dark:hover:text-white"
             >
               <X size={22} />
@@ -71,7 +75,7 @@ export function MobileNav({ locale = 'en' }: MobileNavProps) {
           </div>
 
           <div className="container-content flex flex-col gap-8 pb-16 pt-6">
-            <nav className="flex flex-col gap-2" aria-label="Mobile">
+            <nav className="flex flex-col gap-2" aria-label={dialogLabel}>
               {nav.map((item) => (
                 <div key={item.href} className="border-b border-border-light pb-4 dark:border-border-dark">
                   <Link

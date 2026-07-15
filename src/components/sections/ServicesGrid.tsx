@@ -12,11 +12,11 @@ export async function ServicesGrid() {
         eyebrow="What we do"
         title={
           <>
-            Nine services.{' '}
+            Expertise across every stage.{' '}
             <span className="text-teal">One team.</span>
           </>
         }
-        description="Everything you need to build, launch, and grow online — executed by senior specialists, coordinated end-to-end."
+        description="Strategy, design, technology, and marketing delivered by senior specialists through one coordinated team."
       />
 
       <ul className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">

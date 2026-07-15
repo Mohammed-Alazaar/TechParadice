@@ -9,7 +9,7 @@ export async function GET() {
 
   const xml = buildRssFeed({
     title: `${BRAND.name} — المدونة`,
-    description: 'مقالات حول الهندسة والتصميم والنمو من فريق تك باراديس.',
+    description: 'رؤى عملية حول التقنية والتصميم والنمو من فريق TechParadice.',
     feedUrl: `${SITE_URL}/ar/feed.xml`,
     siteUrl: `${SITE_URL}/ar/blog`,
     language: 'ar',

@@ -8,7 +8,7 @@ import { buildMetadata } from '@/lib/seo'
 export const metadata: Metadata = buildMetadata({
   title: 'Our Process',
   description:
-    'Discovery, strategy, design, build, QA, launch, growth. The same framework we use on every engagement.',
+    'See how TechParadice moves from discovery and strategy through design, development, quality assurance, launch, and ongoing improvement.',
   path: '/process',
 })
 
@@ -16,77 +16,77 @@ const phases = [
   {
     n: '01',
     name: 'Discovery',
-    what: 'Stakeholder interviews, audit of existing assets, and alignment on goals and constraints.',
-    deliverables: ['Goals doc', 'Success metrics', 'Project brief'],
-    timeline: 'Week 1',
-    who: 'Founder, lead strategist',
+    what: 'We review the current position, speak with key stakeholders, and agree on the business goals, audience needs, constraints, and evidence available.',
+    deliverables: ['Agreed goals', 'Success measures', 'Project brief'],
+    timeline: 'Typically week 1',
+    who: 'Founder and strategy lead',
   },
   {
     n: '02',
     name: 'Strategy',
-    what: 'We translate goals into a roadmap — scope, sequence, team, and budget against outcomes.',
-    deliverables: ['Scope of work', 'Milestones', 'Risk plan'],
-    timeline: 'Week 1–2',
-    who: 'Founder, PM',
+    what: 'We turn the agreed goals into a practical scope, delivery sequence, measurement plan, team structure, and set of priorities.',
+    deliverables: ['Scope of work', 'Milestone plan', 'Risks and assumptions'],
+    timeline: 'Typically weeks 1–2',
+    who: 'Founder and project lead',
   },
   {
     n: '03',
     name: 'Design',
-    what: 'Wireframes and high-fidelity prototypes in Figma — reviewed weekly with the client team.',
+    what: 'We shape the information, journeys, interface, and visual direction, with planned reviews before detailed design is approved.',
     deliverables: ['Wireframes', 'Prototypes', 'Design system'],
-    timeline: 'Weeks 2–5',
-    who: 'Designers, PM',
+    timeline: 'Often weeks 2–5',
+    who: 'Design team and project lead',
   },
   {
     n: '04',
     name: 'Build',
-    what: 'Bi-weekly sprints with staging URLs, testable increments, and demos at sprint end.',
-    deliverables: ['Staging URLs', 'Sprint demos', 'Tested components'],
-    timeline: 'Weeks 4–10',
-    who: 'Engineers, QA, PM',
+    what: 'We develop the approved experience in reviewable increments, share progress in a staging environment, and resolve questions as they arise.',
+    deliverables: ['Staging environment', 'Progress reviews', 'Tested components'],
+    timeline: 'Often weeks 4–10',
+    who: 'Engineering, QA, and project lead',
   },
   {
     n: '05',
-    name: 'QA',
-    what: 'Accessibility audits, cross-browser tests, performance passes, content checks.',
-    deliverables: ['Axe audit', 'Lighthouse report', 'Bug triage'],
-    timeline: 'Week 10',
-    who: 'QA, engineers',
+    name: 'Quality assurance',
+    what: 'We review accessibility, content, responsive behaviour, browser compatibility, analytics, integrations, and performance before release.',
+    deliverables: ['Accessibility review', 'Performance report', 'Prioritised issue log'],
+    timeline: 'Before launch',
+    who: 'QA and engineering',
   },
   {
     n: '06',
     name: 'Launch',
-    what: 'Final review, DNS cutover, analytics verification, rollback plan ready.',
-    deliverables: ['Go-live', 'Analytics live', 'Handoff doc'],
-    timeline: 'Week 11',
-    who: 'Founder, engineers',
+    what: 'After final approval, we complete the release plan, verify analytics and critical journeys, and provide the agreed documentation.',
+    deliverables: ['Production release', 'Analytics verification', 'Handover guide'],
+    timeline: 'On the agreed release date',
+    who: 'Founder and engineering team',
   },
   {
     n: '07',
-    name: 'Growth',
-    what: 'Retainer or project — we measure, iterate, and compound the wins post-launch.',
-    deliverables: ['Monthly report', 'Roadmap refresh', 'Optimizations'],
+    name: 'Improvement',
+    what: 'Where ongoing support is included, we review performance, gather evidence, and prioritise the next improvements with your team.',
+    deliverables: ['Performance review', 'Updated priorities', 'Optimisation work'],
     timeline: 'Ongoing',
-    who: 'Full team',
+    who: 'Agreed delivery team',
   },
 ]
 
 const processFaqs = [
   {
     q: 'How long is a typical engagement?',
-    a: 'Small scopes take 4–6 weeks. Mid-size web builds take 8–12 weeks. Complex apps take 12–20 weeks.',
+    a: 'A small, focused scope may take 4–6 weeks, a mid-sized website 8–12 weeks, and a complex application 12–20 weeks or more. Content readiness, integrations, feedback cycles, and dependencies all affect timing, so your proposal includes a project-specific schedule.',
   },
   {
     q: 'How often do we meet?',
-    a: 'Weekly syncs by default, plus a sprint demo every two weeks. Always an open channel in Slack or Discord.',
+    a: 'Weekly progress meetings are common, with additional reviews at key milestones. We agree the cadence and communication channel during kickoff so it fits the team and scope.',
   },
   {
     q: 'What tools do we use together?',
-    a: 'Figma for design, Linear or Notion for work tracking, GitHub for code, and a shared Slack channel.',
+    a: 'We commonly use Figma for design, Linear or Notion for work tracking, GitHub for code, and Slack or another agreed channel for communication. We can adapt when your organisation has established tools or security requirements.',
   },
   {
     q: 'Can you work with our in-house team?',
-    a: 'Yes — we collaborate with internal engineers, designers, and marketers. We adapt to your tools and cadence.',
+    a: 'Yes. We can work alongside internal engineering, design, marketing, content, and operational teams, with responsibilities and decision ownership defined at the start.',
   },
 ]
 
@@ -98,10 +98,10 @@ export default function ProcessPage() {
         title={
           <>
             A clear path from{' '}
-            <span className="text-teal">brief to ship.</span>
+            <span className="text-teal">brief to measurable progress.</span>
           </>
         }
-        description="Seven phases that keep the project predictable, accountable, and moving. No mystery weeks."
+        description="A seven-phase framework that makes decisions, responsibilities, review points, and progress visible throughout the engagement."
       />
 
       <Section tone="void" className="pt-0">
@@ -150,7 +150,12 @@ export default function ProcessPage() {
         </div>
       </Section>
 
-      <CtaBanner />
+      <CtaBanner
+        heading="Have a project to plan?"
+        body="Share your goals, constraints, and current setup. We will help you identify the right scope and starting point."
+        ctaHref="/contact"
+        ctaLabel="Discuss your project"
+      />
     </>
   )
 }

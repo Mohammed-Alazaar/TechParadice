@@ -9,25 +9,25 @@ import { buildMetadata } from '@/lib/seo'
 export const metadata: Metadata = buildMetadata({
   title: 'التسويق الرقمي للصالونات ومراكز التجميل',
   description:
-    'أنظمة حجز، محتوى إنستغرام، سيو محلي، وإعلانات مدفوعة لصالونات الشعر ومراكز الأظافر والسبا ومشاريع التجميل في الخليج.',
+    'تكاملات للحجز، ومحتوى اجتماعي، وSEO محلي، ومواقع، وحملات مدفوعة للصالونات والسبا والاستوديوهات وأنشطة التجميل.',
   path: '/ar/industries/salons-beauty',
   alternatePath: '/industries/salons-beauty',
   locale: 'ar',
 })
 
 const services = [
-  { title: 'تكامل الحجز الإلكتروني', detail: 'أدوات حجز سلسة تتيح للعملاء الجدولة الذاتية 24/7 من إنستغرام أو Google أو موقعك.' },
-  { title: 'محتوى إنستغرام وتيك توك', detail: 'خطط محتوى جذابة وكتابة تعليقات وجداول نشر مصمّمة لتنمية متابعيك وملء مواعيدك.' },
-  { title: 'السيو المحلي وGoogle Business Profile', detail: 'ملفات محسّنة واستهداف كلمات محلية حتى تظهر حين يبحث الناس عن "صالون قريب مني".' },
-  { title: 'حملات السوشيال المدفوعة', detail: 'إعلانات Meta وتيك توك مستهدفة تصل لعملاء جدد في منطقتك في اللحظة المناسبة.' },
-  { title: 'سير الولاء والإحالة', detail: 'رسائل آلية تشجع على إعادة الحجز وتحوّل العملاء السعداء إلى أفضل مسوّقيك.' },
-  { title: 'تطوير المواقع', detail: 'مواقع سريعة وجذابة بصرياً تعرض أعمالك وتحوّل الزوار إلى مواعيد محجوزة.' },
+  { title: 'تكامل الحجز الإلكتروني', detail: 'أدوات حجز تتيح للعملاء التحقق من المواعيد المتاحة وطلبها أو جدولتها عبر القنوات الأساسية.' },
+  { title: 'محتوى Instagram وTikTok', detail: 'تخطيط للمحتوى وتوجيه إبداعي ونصوص ودعم للنشر، وكلها مصممة حول خدماتك وجمهورك.' },
+  { title: 'SEO محلي وGoogle Business Profile', detail: 'ملفات نشاط دقيقة ومحتوى محلي ذو صلة وتحسينات للبحث تساعد على اكتشاف الخدمات القريبة.' },
+  { title: 'الحملات الاجتماعية المدفوعة', detail: 'حملات عبر Meta وTikTok منظمة وفق الموقع والجمهور والعرض وإجراءات الحجز القابلة للقياس.' },
+  { title: 'مسارات الولاء والإحالة', detail: 'رسائل متابعة وإعادة حجز وإحالة تُستخدم بعد الموافقة، ومصممة لدعم العلاقات المتكررة مع العملاء.' },
+  { title: 'تطوير المواقع', detail: 'مواقع سريعة ومتقنة تعرض الخدمات ونماذج الأعمال وإرشادات الأسعار والفروع وخيارات الحجز.' },
 ]
 
 const results = [
-  { value: '2.8x', label: 'متوسط زيادة الحجوزات' },
-  { value: '< 3 أسابيع', label: 'أول نتائج' },
-  { value: '4.9★', label: 'متوسط تقييم Google' },
+  { value: 'الاكتشاف', label: 'حضور متسق عبر البحث ووسائل التواصل الاجتماعي' },
+  { value: 'الحجز', label: 'خدمات ومواعيد وخطوات تالية واضحة' },
+  { value: 'العودة', label: 'رحلات مدروسة لإعادة الحجز والإحالة' },
 ]
 
 export default function ArSalonsBeautyPage() {
@@ -37,18 +37,18 @@ export default function ArSalonsBeautyPage() {
         eyebrow="الصالونات والتجميل"
         title={
           <>
-            امتلئ كراسيك بـ
-            <span className="text-teal">رقمي يحوّل.</span>
+            سهّل الانتقال من الاكتشاف الرقمي{' '}
+            <span className="text-teal">إلى الحجز.</span>
           </>
         }
-        description="عملاء التجميل يكتشفونك على إنستغرام ويحجزون عبر Google. نضمن أنك موجود وتبدو رائعاً وسهل الحجز — في كل مكان ينظرون."
+        description="أنشئ رحلة متسقة عبر منصات التواصل والبحث المحلي وموقعك وأدوات الحجز، ليتمكن العملاء من الاختيار وتحديد الموعد بوضوح."
       >
         <div className="flex flex-wrap gap-3">
           <Link
             href="/ar/free-audit"
             className="inline-flex items-center gap-2 rounded-lg bg-teal px-5 py-2.5 text-[15px] font-semibold text-void transition-colors hover:bg-teal-dark"
           >
-            احصل على تدقيق مجاني
+            اطلب تدقيقاً مجانياً
           </Link>
           <Link
             href="/ar/industries"
@@ -73,8 +73,8 @@ export default function ArSalonsBeautyPage() {
       <Section tone="surface">
         <SectionHeading
           eyebrow="ما نقدمه للصالونات والتجميل"
-          title="كل نقطة تواصل من الاكتشاف إلى إعادة الحجز"
-          description="نغطي رحلة عميل التجميل الكاملة — من أول تمرير إلى زبون وفي."
+          title="اربط الاكتشاف والحجز وإعادة الحجز"
+          description="اعرض أعمالك بصورة متسقة، وقلل تعقيد الحجز، وادعم علاقة مستمرة مع العملاء."
         />
         <ul className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {services.map((s) => (
@@ -92,12 +92,12 @@ export default function ArSalonsBeautyPage() {
       </Section>
 
       <CtaBanner
-        heading="مستعد لملء روزنامتك؟"
-        body="شاركنا رابط صالونك — سنراجع حضورك الأونلاين ونجد أكبر الفرص."
+        heading="هل تريد مساراً أكثر سلاسة من الاكتشاف إلى الحجز؟"
+        body="شاركنا موقعك وأولوياتك. سنراجع التجربة الحالية ونحدد فرصاً عملية لتحسينها."
         ctaHref="/ar/free-audit"
-        ctaLabel="احصل على تدقيق مجاني"
+        ctaLabel="اطلب تدقيقاً مجانياً"
         secondaryHref="/ar/work"
-        secondaryLabel="أعمالنا"
+        secondaryLabel="اطّلع على أعمالنا"
       />
     </>
   )

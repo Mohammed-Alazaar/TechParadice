@@ -50,6 +50,15 @@ export type Service = {
   faqsAr?: { q: string; a: string }[]
 }
 
+export type ArabicService = Service & {
+  nameAr: string
+  shortAr: string
+  valueAr: string
+  deliverablesAr: string[]
+  processAr: { step: string; detail: string }[]
+  faqsAr: { q: string; a: string }[]
+}
+
 // icon is a React component (non-serializable) — cache raw DB docs, add icon at call site
 type RawService = Omit<Service, 'icon'>
 
@@ -110,4 +119,24 @@ export async function getServices(): Promise<Service[]> {
 export async function getService(slug: string): Promise<Service | null> {
   const raw = await getRawService(slug)
   return raw ? addIcon(raw) : null
+}
+
+function hasArabicCopy(service: Service): service is ArabicService {
+  return Boolean(
+    service.nameAr?.trim() &&
+      service.shortAr?.trim() &&
+      service.valueAr?.trim() &&
+      service.deliverablesAr?.length &&
+      service.processAr?.length &&
+      service.faqsAr?.length,
+  )
+}
+
+export async function getArServices(): Promise<ArabicService[]> {
+  return (await getServices()).filter(hasArabicCopy)
+}
+
+export async function getArService(slug: string): Promise<ArabicService | null> {
+  const service = await getService(slug)
+  return service && hasArabicCopy(service) ? service : null
 }

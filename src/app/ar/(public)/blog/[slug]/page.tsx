@@ -1,12 +1,12 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
-import { notFound } from 'next/navigation'
+import { notFound, redirect } from 'next/navigation'
 import { ArrowRight } from 'lucide-react'
 import { Section } from '@/components/ui/Section'
 import { Badge } from '@/components/ui/Badge'
 import { CtaBanner } from '@/components/sections/CtaBanner'
-import { getArPost, getArPosts, getAllArPostSlugs } from '@/lib/blog'
+import { getArPost, getArPosts, getAllArPostSlugs, getPost } from '@/lib/blog'
 import { buildMetadata } from '@/lib/seo'
 import { SITE_URL, BRAND } from '@/lib/utils'
 
@@ -33,15 +33,40 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
 }
 
 const categoryLabels: Record<string, string> = {
-  Web: 'ويب',
+  Web: 'تطوير الويب',
   Design: 'تصميم',
   Growth: 'نمو',
   Engineering: 'هندسة',
 }
 
+function formatArabicDate(date: string) {
+  const parsed = new Date(/^\d{4}-\d{2}-\d{2}$/.test(date) ? `${date}T00:00:00Z` : date)
+  if (Number.isNaN(parsed.getTime())) return date
+  return new Intl.DateTimeFormat('ar', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+    timeZone: 'UTC',
+  }).format(parsed)
+}
+
+function localizeReadingTime(readingTime: string) {
+  const minutes = readingTime.match(/^(\d+)\s*(?:min|minutes?)(?:\s+read)?$/i)
+  if (!minutes) return readingTime
+  const count = Number(minutes[1])
+  if (count === 1) return 'دقيقة قراءة'
+  if (count === 2) return 'دقيقتان للقراءة'
+  if (count >= 3 && count <= 10) return `${count} دقائق قراءة`
+  return `${count} دقيقة قراءة`
+}
+
 export default async function ArBlogPostPage({ params }: Params) {
   const [post, all] = await Promise.all([getArPost(params.slug), getArPosts()])
-  if (!post) notFound()
+  if (!post) {
+    const englishPost = await getPost(params.slug)
+    if (englishPost?.published) redirect('/ar/blog')
+    notFound()
+  }
 
   const related = all.filter((p) => p.slug !== post.slug).slice(0, 2)
 
@@ -87,15 +112,15 @@ export default async function ArBlogPostPage({ params }: Params) {
             href="/ar/blog"
             className="inline-flex items-center gap-2 text-[13px] font-semibold text-teal hover:underline"
           >
-            <ArrowRight size={14} className="rotate-180" />
-            العودة إلى المدونة
+            <ArrowRight size={14} />
+            العودة إلى جميع المقالات
           </Link>
           <Badge tone="teal" className="mt-6">
             {categoryLabels[post.category] ?? post.category}
           </Badge>
           <h1 className="mt-4 heading-h1 text-balance text-white">{post.titleAr}</h1>
           <p className="mt-6 text-[14px] text-muted">
-            {post.author} · {post.date} · {post.readingTime}
+            {post.author} · {formatArabicDate(post.date)} · {localizeReadingTime(post.readingTime)}
           </p>
 
           <div className="relative mt-12 aspect-[16/8] overflow-hidden rounded-2xl bg-gradient-to-br from-teal/20 via-void to-surface">
@@ -120,7 +145,7 @@ export default async function ArBlogPostPage({ params }: Params) {
 
           {related.length > 0 ? (
             <div className="mt-16 border-t border-border-dark pt-8">
-              <p className="text-caption uppercase text-teal">تابع القراءة</p>
+              <p className="text-caption uppercase text-teal">مقالات ذات صلة</p>
               <ul className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
                 {related.map((r) => (
                   <li key={r.slug}>
@@ -143,9 +168,9 @@ export default async function ArBlogPostPage({ params }: Params) {
 
       <Section tone="void" />
       <CtaBanner
-        heading="هل أنت مستعد للبدء؟"
-        body="أخبرنا بأهدافك. سنتكفل بالباقي."
-        ctaLabel="تواصل معنا"
+        heading="هل تريد تطبيق هذه الأفكار في عملك؟"
+        body="أخبرنا بما تريد تحسينه، وسنساعدك على تحديد خطوة تالية عملية."
+        ctaLabel="ابدأ المحادثة"
         ctaHref="/ar/contact"
       />
     </>

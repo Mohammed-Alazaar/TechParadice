@@ -16,7 +16,9 @@
       "Bash(xargs grep *)",
       "Bash(npx tsc *)",
       "Bash(DOTENV_CONFIG_PATH=.env.local npx tsx -r dotenv/config scripts/seed-blogs.ts)",
-      "Bash(npx next *)"
+      "Bash(npx next *)",
+      "Bash(git commit -m ' *)",
+      "Bash(git pull *)"
     ]
   }
 }

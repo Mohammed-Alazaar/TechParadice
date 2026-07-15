@@ -42,6 +42,13 @@ function toArPost(doc: any): BlogPostAr {
   return { ...doc, _id: doc._id?.toString() }
 }
 
+const completeArabicPostFilter = {
+  publishedAr: true,
+  titleAr: { $type: 'string', $ne: '' },
+  excerptAr: { $type: 'string', $ne: '' },
+  'bodyAr.0': { $exists: true },
+}
+
 export const getPosts = unstable_cache(
   async (): Promise<BlogPost[]> => {
     try {
@@ -60,7 +67,7 @@ export const getPost = unstable_cache(
   async (slug: string): Promise<BlogPost | null> => {
     try {
       await dbConnect()
-      const doc = await BlogPostModel.findOne({ slug }).lean()
+      const doc = await BlogPostModel.findOne({ slug, published: true }).lean()
       return doc ? toPost(doc) : null
     } catch {
       return null
@@ -88,7 +95,7 @@ export const getArPosts = unstable_cache(
   async (): Promise<BlogPostAr[]> => {
     try {
       await dbConnect()
-      const docs = await BlogPostModel.find({ publishedAr: true }).sort({ date: -1 }).lean()
+      const docs = await BlogPostModel.find(completeArabicPostFilter).sort({ date: -1 }).lean()
       return docs.map(toArPost)
     } catch {
       return []
@@ -102,7 +109,7 @@ export const getArPost = unstable_cache(
   async (slug: string): Promise<BlogPostAr | null> => {
     try {
       await dbConnect()
-      const doc = await BlogPostModel.findOne({ slug, publishedAr: true }).lean()
+      const doc = await BlogPostModel.findOne({ slug, ...completeArabicPostFilter }).lean()
       return doc ? toArPost(doc) : null
     } catch {
       return null
@@ -116,7 +123,7 @@ export const getAllArPostSlugs = unstable_cache(
   async (): Promise<string[]> => {
     try {
       await dbConnect()
-      const docs = await BlogPostModel.find({ publishedAr: true }, { slug: 1 }).lean()
+      const docs = await BlogPostModel.find(completeArabicPostFilter, { slug: 1 }).lean()
       return docs.map((d) => d.slug)
     } catch {
       return []

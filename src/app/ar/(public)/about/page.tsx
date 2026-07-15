@@ -5,30 +5,32 @@ import { CtaBanner } from '@/components/sections/CtaBanner'
 import { BRAND, SITE_URL, SOCIAL_LINKS } from '@/lib/utils'
 import { buildMetadata } from '@/lib/seo'
 
+const AR_LOCATION = 'أنقرة، تركيا'
+
 export const metadata: Metadata = buildMetadata({
   title: 'من نحن',
-  description: `تك باراديس وكالة رقمية متكاملة بقيادة مؤسسها ${BRAND.owner}. فريق واحد، كفاءات متعددة.`,
+  description: 'تعرّف إلى TechParadice، فريق رقمي بقيادة مؤسسه من أنقرة، تدعمه خبرات متخصصة وفق احتياجات كل مشروع.',
   path: '/ar/about',
   alternatePath: '/about',
   locale: 'ar',
 })
 
 const values = [
-  { title: 'بلا حشو', body: 'نطاقات واضحة وأرقام واضحة وتواصل واضح. نحترم وقتك.' },
-  { title: 'تنفيذ كبار فقط', body: 'لا مبتدئين. كل شخص في مشروعك أطلق منتجات حقيقية.' },
-  { title: 'تسعير شفاف', body: 'ميزانية محددة مسبقاً. بلا نسب غامضة وبلا فواتير مفاجئة.' },
-  { title: 'مبني للشحن', body: 'نقيس أنفسنا بالنتائج في الإنتاج — لا بالعروض التقديمية.' },
+  { title: 'الوضوح أولًا', body: 'أولويات ومخرجات ومؤشرات نجاح وآلية تواصل واضحة منذ اليوم الأول.' },
+  { title: 'خبرات متخصصة', body: 'نختار كل مساهم وفق المهارات والخبرة التي يحتاج إليها مشروعك.' },
+  { title: 'تسعير شفاف', body: 'نتفق على نطاق العمل والرسوم مسبقًا، ونناقش أي تغيير قبل تنفيذه.' },
+  { title: 'مخرجات مفيدة', body: 'نركز على ما ينبغي أن يحققه العمل لعملائك ولنشاطك.' },
 ]
 
 const disciplines = [
-  'استراتيجية المنتج',
+  'استراتيجية المنتجات',
   'تصميم UI/UX',
-  'هندسة الواجهة الأمامية',
-  'هندسة الموبايل',
+  'تطوير الواجهات الأمامية',
+  'تطوير تطبيقات iOS وAndroid',
   'SEO والتحليلات',
   'الإعلانات المدفوعة',
-  'المحتوى والكتابة',
-  'المجتمع والعمليات',
+  'استراتيجية المحتوى وكتابته',
+  'إدارة المجتمعات والعمليات',
 ]
 
 export default function ArAboutPage() {
@@ -47,9 +49,9 @@ export default function ArAboutPage() {
         founder: {
           '@type': 'Person',
           name: BRAND.owner,
-          jobTitle: 'Founder',
+          jobTitle: 'المؤسس',
           worksFor: { '@type': 'Organization', name: BRAND.name, url: SITE_URL },
-          homeLocation: { '@type': 'Place', name: BRAND.location },
+          homeLocation: { '@type': 'Place', name: AR_LOCATION },
         },
       },
     },
@@ -73,11 +75,11 @@ export default function ArAboutPage() {
         eyebrow="من نحن"
         title={
           <>
-            فريق رقمي متكامل،{' '}
+            فريق رقمي مركز،{' '}
             <span className="text-teal">بقيادة مؤسسه.</span>
           </>
         }
-        description={`تك باراديس بُنيت وتُقاد من ${BRAND.owner} في ${BRAND.location}. فريق واحد، مسؤولية واحدة، تنفيذ كبار عبر كل التخصصات.`}
+        description={`يقود ${BRAND.owner} فريق TechParadice من ${AR_LOCATION}. تحصل على شريك واحد مسؤول ينسق الاستراتيجية والتصميم والتقنية والنمو.`}
       />
 
       <Section tone="void" className="pt-0">
@@ -86,32 +88,30 @@ export default function ArAboutPage() {
             <p className="text-caption uppercase text-teal">قصتنا</p>
             <div className="mt-4 space-y-4 text-body-lg text-white/75">
               <p>
-                أسست تك باراديس لأنني كنت أرى شركات جيدة تدفع لثلاث وكالات
-                لإنجاز ما يمكن لفريق واحد منسق أن يفعله بشكل أفضل. وكالة موقع
-                هنا، وفريق سوشيال هناك، ومستشار مدفوع بالساعة — كلهم يتعثرون
-                ببعضهم ولا أحد يملك النتيجة.
+                أسست TechParadice لأن الشركات لا ينبغي أن تضطر إلى التنسيق بين جهات منفصلة
+                لتحسين رحلة رقمية واحدة. تعمل المواقع والحملات والمحتوى والتحليلات بصورة أفضل
+                عندما تتبع الأولويات نفسها.
               </p>
               <p>
-                تك باراديس تطوي هذا كله. تحصل على فريق واحد كبير عبر الويب
-                والموبايل والتصميم والـ SEO والمحتوى والسوشيال والمجتمع
-                والتحليلات والإعلانات. خطة واحدة. رقم واحد تتصل به.
+                نجمع هذه الخبرات ضمن خطة واحدة ومسؤول واضح، مع المزيج المناسب من المتخصصين
+                في الويب والتطبيقات والتصميم وSEO والمحتوى ووسائل التواصل الاجتماعي
+                والتحليلات والإعلانات المدفوعة.
               </p>
               <p>
-                نحن نبقى بحجم مدروس — فريق أساسي بالإضافة إلى شبكة من كبار
-                المستقلين المختارين بعناية، يُجمَعون لكل مشروع. هكذا نقدم
-                عمل جودة الاستوديو بدون تكاليف الاستوديو.
+                يجمع نموذجنا فريقًا أساسيًا صغيرًا مع شبكة من المتخصصين. نُشكّل الفريق وفق
+                متطلبات العمل، ونحافظ على تواصل مباشر، ونتحمل المسؤولية من التخطيط حتى الإطلاق.
               </p>
             </div>
           </div>
           <div className="rounded-2xl border border-border-dark bg-surface p-8">
             <p className="text-caption uppercase text-teal">المؤسس</p>
             <p className="mt-4 font-display text-h2 font-bold text-white">{BRAND.owner}</p>
-            <p className="mt-1 text-muted">{BRAND.location}</p>
+            <p className="mt-1 text-muted">{AR_LOCATION}</p>
             <div className="mt-6 space-y-3 text-[15px] text-white/70">
-              <p>مهندس ومشغّل بخبرة 10+ سنوات في بناء المنتجات الرقمية وإطلاقها.</p>
+              <p>مهندس ورائد أعمال لديه خبرة في بناء المنتجات الرقمية وإطلاقها وتطويرها.</p>
               <p>
-                متواجد بشكل عملي عبر الاستراتيجية وتوجيه التصميم والكود —
-                متفاعل في كل مشاركة من الانطلاق حتى الإطلاق.
+                يشارك مباشرة في الاستراتيجية وتوجيه التصميم والقرارات التقنية، من مرحلة
+                الاستكشاف حتى الإطلاق.
               </p>
             </div>
           </div>
@@ -119,7 +119,7 @@ export default function ArAboutPage() {
       </Section>
 
       <Section tone="surface">
-        <SectionHeading eyebrow="ما نؤمن به" title="أربعة ثوابت لا تقبل التنازل" />
+        <SectionHeading eyebrow="ما نؤمن به" title="أربعة مبادئ توجه عملنا" />
         <ul className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {values.map((v) => (
             <li key={v.title} className="rounded-xl border border-border-dark bg-void p-6">
@@ -134,9 +134,9 @@ export default function ArAboutPage() {
       <Section tone="void">
         <div className="grid gap-12 lg:grid-cols-2">
           <SectionHeading
-            eyebrow="الشبكة"
-            title={<>شبكة موثوقة، <span className="text-teal">بقيادة {BRAND.owner}.</span></>}
-            description="متخصصون كبار يُجمَعون لكل مشروع. كل مساهم مختار بعناية، مرتبط بعقد، ومُراجَع بعد كل مشاركة."
+            eyebrow="شبكة المتخصصين"
+            title={<>الخبرات المناسبة، <span className="text-teal">بقيادة ${BRAND.owner}.</span></>}
+            description="نُشكّل كل فريق وفق المشروع. نختار المساهمين لخبرتهم ذات الصلة، ونحدد لهم نطاقًا واضحًا، ونعمل جميعًا وفق معايير تنفيذ مشتركة."
           />
           <ul className="grid grid-cols-1 gap-3 sm:grid-cols-2">
             {disciplines.map((d) => (
@@ -153,9 +153,9 @@ export default function ArAboutPage() {
       </Section>
 
       <CtaBanner
-        heading="هل أنت مستعد للبدء؟"
-        body="أخبرنا بأهدافك. سنتكفل بالباقي."
-        ctaLabel="تواصل معنا"
+        heading="هل تبحث عن شريك رقمي يفهم أهدافك؟"
+        body="شاركنا التحدي الذي تعمل عليه، وسنساعدك على تحديد الخطوة التالية بوضوح."
+        ctaLabel="ابدأ المحادثة"
         ctaHref="/ar/contact"
       />
     </>

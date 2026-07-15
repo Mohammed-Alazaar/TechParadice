@@ -8,35 +8,35 @@ import { BRAND } from '@/lib/utils'
 import { buildMetadata } from '@/lib/seo'
 
 export const metadata: Metadata = buildMetadata({
-  title: 'Free Digital Audit',
+  title: 'Free Website & SEO Audit',
   description:
-    'Get a no-cost audit of your website, SEO, and digital presence. Actionable findings, no upsell.',
+    'Request a focused review of your website, technical SEO, user journey, and competitive positioning, with prioritised recommendations.',
   path: '/free-audit',
 })
 
 const auditItems = [
-  'Core Web Vitals & page speed analysis',
-  'Technical SEO crawl (indexing, schema, internal links)',
+  'Core Web Vitals and page-speed review',
+  'Technical SEO review, including indexing, schema, and internal links',
   'Competitor positioning snapshot',
-  'Conversion funnel review',
-  'Quick-win priority list (3–5 items you can act on this week)',
+  'Key conversion-path review',
+  'A prioritised list of practical improvements',
 ]
 
 const steps = [
   {
     n: '01',
-    title: 'Fill the form',
-    detail: 'Share your URL and what you want to improve. Takes two minutes.',
+    title: 'Send your request',
+    detail: 'Paste your website link into the message and tell us what you want to improve.',
   },
   {
     n: '02',
-    title: 'We run the audit',
-    detail: 'Our team reviews your site within 48 hours and prepares a focused report.',
+    title: 'We review the site',
+    detail: 'We examine the priority areas and prepare a concise, focused assessment.',
   },
   {
     n: '03',
-    title: 'You get the findings',
-    detail: 'A clear PDF with prioritised actions — no jargon, no pitch deck.',
+    title: 'Receive the findings',
+    detail: 'You receive a clear summary with prioritised recommendations and suggested next steps.',
   },
 ]
 
@@ -47,11 +47,11 @@ export default function FreeAuditPage() {
         eyebrow="Free Audit"
         title={
           <>
-            Know exactly what&apos;s holding{' '}
-            <span className="text-teal">your site back.</span>
+            Find the clearest opportunities to{' '}
+            <span className="text-teal">improve your website.</span>
           </>
         }
-        description="We'll audit your digital presence and hand you a prioritised action list — free, no strings attached."
+        description="We will review your website and SEO, then share a prioritised action list at no cost and without an obligation to hire us."
       >
         <div className="flex flex-wrap gap-3">
           <Link
@@ -59,13 +59,13 @@ export default function FreeAuditPage() {
             className="inline-flex items-center gap-2 rounded-lg bg-teal px-5 py-2.5 text-[15px] font-semibold text-void transition-colors hover:bg-teal-dark"
           >
             <Zap size={16} />
-            Request my free audit
+            Request a free audit
           </Link>
           <Link
             href="/work"
             className="inline-flex items-center gap-2 rounded-lg border border-white/20 px-5 py-2.5 text-[15px] font-semibold text-white/80 transition-colors hover:border-white/40 hover:text-white"
           >
-            See our work first
+            Review our work
           </Link>
         </div>
       </PageHero>
@@ -76,11 +76,12 @@ export default function FreeAuditPage() {
           <div>
             <p className="text-caption uppercase text-teal">What you get</p>
             <h2 className="mt-4 heading-h2 text-white">
-              A real audit, not a sales pitch.
+              A focused review you can act on.
             </h2>
             <p className="mt-4 text-body-lg text-white/70">
-              Most agencies use &ldquo;free audits&rdquo; as a hook for a canned deck. Ours is an actual
-              technical review of your site, delivered by the same team that would build for you.
+              We assess the parts of your digital presence that matter most to
+              visibility, usability, and conversion, then organise the findings
+              by likely impact and effort.
             </p>
             <ul className="mt-8 space-y-3">
               {auditItems.map((item) => (
@@ -112,7 +113,7 @@ export default function FreeAuditPage() {
             <div className="flex items-center gap-3 rounded-xl border border-teal/20 bg-teal/5 p-5">
               <Clock size={18} className="shrink-0 text-teal" />
               <p className="text-[14px] text-white/70">
-                Turnaround: <span className="font-semibold text-white">within 48 hours</span>
+                Target turnaround: <span className="font-semibold text-white">two business days</span>
               </p>
             </div>
           </div>
@@ -124,8 +125,8 @@ export default function FreeAuditPage() {
         <div className="mx-auto max-w-2xl">
           <SectionHeading
             eyebrow="Request your audit"
-            title="Tell us where you want to grow"
-            description="Drop your URL and the challenge you're facing. We'll handle the rest."
+            title="Tell us what you want to improve"
+            description="Paste your website link into the message and describe the challenge you are facing. We will use that context to focus the review."
           />
           <div className="mt-10 rounded-2xl border border-border-dark bg-void p-6 sm:p-8">
             <ContactForm />
@@ -135,7 +136,7 @@ export default function FreeAuditPage() {
             <Link href={`mailto:${BRAND.email}`} className="text-teal hover:underline">
               {BRAND.email}
             </Link>
-            {' '}— we reply within 24 hours.
+            {' '}— we usually reply within one business day.
           </p>
         </div>
       </Section>
@@ -144,9 +145,9 @@ export default function FreeAuditPage() {
       <Section tone="void">
         <div className="grid gap-6 sm:grid-cols-3">
           {[
-            { value: '+38%', label: 'avg. conversion uplift after audit' },
-            { value: '48h', label: 'turnaround on every audit' },
-            { value: '100%', label: 'free — no card, no obligation' },
+            { value: 'Focused', label: 'review based on your stated goals' },
+            { value: '2 days', label: 'target business-day turnaround' },
+            { value: 'No cost', label: 'no payment or engagement required' },
           ].map((stat) => (
             <div
               key={stat.label}

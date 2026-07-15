@@ -6,7 +6,7 @@ export default function manifest(): MetadataRoute.Manifest {
     name: `${BRAND.name} — ${BRAND.tagline}`,
     short_name: BRAND.name,
     description:
-      'Full-stack digital agency. Websites, mobile apps, UI/UX, SEO, social, content, and ads — one senior team.',
+      'One senior digital team for websites, mobile apps, UI/UX, SEO, content, social media, and paid growth.',
     start_url: '/',
     display: 'standalone',
     background_color: '#0D0D0D',

@@ -17,10 +17,10 @@ export async function FeaturedWork() {
           title={
             <>
               Recent projects,{' '}
-              <span className="text-teal">shipped.</span>
+              <span className="text-teal">built for impact.</span>
             </>
           }
-          description="A cross-section of what we build — from marketing sites to mobile apps to full-funnel campaigns."
+          description="A selection of digital products and growth programmes shaped around real business goals."
         />
         <Link
           href="/work"

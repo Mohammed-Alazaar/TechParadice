@@ -9,23 +9,23 @@ import { buildMetadata } from '@/lib/seo'
 export const metadata: Metadata = buildMetadata({
   title: 'Digital Marketing for Real Estate',
   description:
-    'Property listing portals, lead capture funnels, CRM integration, and paid ads for real estate agents and agencies.',
+    'Property websites, enquiry journeys, CRM integration, SEO, and paid campaigns for real estate agents, developers, and agencies.',
   path: '/industries/real-estate',
 })
 
 const services = [
-  { title: 'Property Listing Portals', detail: 'Searchable listing sites with filters, map views, and inquiry forms.' },
-  { title: 'Lead Capture Funnels', detail: 'Landing pages and forms engineered to convert visitors into qualified leads.' },
-  { title: 'CRM Integration', detail: 'Leads pushed directly to your CRM — HubSpot, Salesforce, or bespoke.' },
-  { title: 'Paid Advertising', detail: 'Facebook, Instagram, and Google ads targeting buyers by location and intent.' },
-  { title: 'SEO & Content', detail: 'Neighbourhood guides, market reports, and structured data for rich results.' },
-  { title: 'UI/UX Design', detail: 'Property detail pages designed to hold attention and drive enquiries.' },
+  { title: 'Property Websites', detail: 'Searchable listings with useful filters, map views, clear details, and enquiry options.' },
+  { title: 'Lead-Capture Journeys', detail: 'Focused landing pages and forms that collect the information your sales team needs.' },
+  { title: 'CRM Integration', detail: 'Route enquiries to HubSpot, Salesforce, or another compatible CRM for timely follow-up.' },
+  { title: 'Paid Campaigns', detail: 'Meta and Google campaigns organised around location, audience, intent, and property type.' },
+  { title: 'SEO & Content', detail: 'Area guides, market insights, property content, and structured data for search visibility.' },
+  { title: 'UI/UX Design', detail: 'Clear property and project journeys designed for comparison, shortlisting, and enquiry.' },
 ]
 
-const results = [
-  { value: '2.4x', label: 'avg. lead volume increase' },
-  { value: '–31%', label: 'avg. cost per qualified lead' },
-  { value: '8 wks', label: 'typical time to full launch' },
+const priorities = [
+  { value: 'Discover', label: 'searchable properties and useful market content' },
+  { value: 'Qualify', label: 'enquiry forms aligned with sales requirements' },
+  { value: 'Follow up', label: 'connected CRM and lead-routing workflows' },
 ]
 
 export default function RealEstatePage() {
@@ -35,18 +35,18 @@ export default function RealEstatePage() {
         eyebrow="Real Estate"
         title={
           <>
-            More qualified leads,{' '}
-            <span className="text-teal">less wasted spend.</span>
+            Make property discovery{' '}
+            <span className="text-teal">easier to act on.</span>
           </>
         }
-        description="Property portals, lead funnels, and paid campaigns built to bring serious buyers — not tyre-kickers."
+        description="Connect property search, content, campaigns, enquiries, and CRM workflows so your team can focus on relevant opportunities."
       >
         <div className="flex flex-wrap gap-3">
           <Link
             href="/free-audit"
             className="inline-flex items-center gap-2 rounded-lg bg-teal px-5 py-2.5 text-[15px] font-semibold text-void transition-colors hover:bg-teal-dark"
           >
-            Get a free audit
+            Request a free audit
           </Link>
           <Link
             href="/industries"
@@ -59,7 +59,7 @@ export default function RealEstatePage() {
 
       <Section tone="void" className="pt-0">
         <ul className="grid grid-cols-1 gap-6 sm:grid-cols-3">
-          {results.map((r) => (
+          {priorities.map((r) => (
             <li key={r.label} className="rounded-2xl border border-border-dark bg-surface p-8">
               <p className="font-display text-[48px] font-extrabold leading-none text-teal">{r.value}</p>
               <p className="mt-3 text-[13px] uppercase tracking-[1.5px] text-muted">{r.label}</p>
@@ -71,8 +71,8 @@ export default function RealEstatePage() {
       <Section tone="surface">
         <SectionHeading
           eyebrow="What we do for real estate"
-          title="From listing to signed contract"
-          description="Every step of the buyer and renter journey — optimised to reduce friction and increase enquiries."
+          title="Connect listings, enquiries, and follow-up"
+          description="Create a coherent journey for buyers, renters, sellers, and your internal sales team."
         />
         <ul className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {services.map((s) => (
@@ -90,10 +90,10 @@ export default function RealEstatePage() {
       </Section>
 
       <CtaBanner
-        heading="Ready to close more deals?"
-        body="Share your website and goals — we'll audit your digital funnel and identify the biggest opportunities."
+        heading="Want to improve your property enquiry journey?"
+        body="Share your website and commercial goals. We will review the current experience and identify the highest-priority improvements."
         ctaHref="/free-audit"
-        ctaLabel="Get a Free Audit"
+        ctaLabel="Request a free audit"
         secondaryHref="/work"
         secondaryLabel="See our work"
       />

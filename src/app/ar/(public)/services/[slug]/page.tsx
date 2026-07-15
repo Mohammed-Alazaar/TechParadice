@@ -6,8 +6,9 @@ import { PageHero } from '@/components/sections/PageHero'
 import { Section, SectionHeading } from '@/components/ui/Section'
 import { CtaBanner } from '@/components/sections/CtaBanner'
 import { ButtonLink } from '@/components/ui/Button'
-import { getService, getAllServiceSlugs } from '@/lib/services'
+import { getArService, getAllServiceSlugs } from '@/lib/services'
 import { getArPortfolio } from '@/lib/portfolio'
+import { localizePortfolioIndustryAr, localizePortfolioTimelineAr } from '@/lib/i18n/portfolio-ar'
 import { SITE_URL, BRAND } from '@/lib/utils'
 import { buildMetadata } from '@/lib/seo'
 
@@ -21,11 +22,11 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: Params): Promise<Metadata> {
-  const service = await getService(params.slug)
+  const service = await getArService(params.slug)
   if (!service) return {}
   return buildMetadata({
-    title: service.nameAr ?? service.name,
-    description: service.valueAr ?? service.value,
+    title: service.nameAr,
+    description: service.valueAr,
     path: `/ar/services/${service.slug}`,
     alternatePath: `/services/${service.slug}`,
     locale: 'ar',
@@ -33,25 +34,19 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
 }
 
 export default async function ArServiceDetailPage({ params }: Params) {
-  const [service, portfolio] = await Promise.all([getService(params.slug), getArPortfolio()])
+  const [service, portfolio] = await Promise.all([getArService(params.slug), getArPortfolio()])
   if (!service) notFound()
 
   const Icon = service.icon
-  const name = service.nameAr ?? service.name
-  const value = service.valueAr ?? service.value
-  const short = service.shortAr ?? service.short
-  const deliverables = service.deliverablesAr && service.deliverablesAr.length > 0
-    ? service.deliverablesAr
-    : service.deliverables
-  const process = service.processAr && service.processAr.length > 0
-    ? service.processAr
-    : service.process
-  const faqs = service.faqsAr && service.faqsAr.length > 0
-    ? service.faqsAr
-    : service.faqs
+  const name = service.nameAr
+  const value = service.valueAr
+  const short = service.shortAr
+  const deliverables = service.deliverablesAr
+  const process = service.processAr
+  const faqs = service.faqsAr
 
   const related = (
-    await Promise.all(service.pairsWith.map((s) => getService(s)))
+    await Promise.all(service.pairsWith.map((s) => getArService(s)))
   ).filter((s): s is NonNullable<typeof s> => Boolean(s))
 
   const sampleWork = portfolio.filter((p) =>
@@ -73,7 +68,6 @@ export default async function ArServiceDetailPage({ params }: Params) {
       },
       url: `${SITE_URL}/ar/services/${service.slug}`,
       serviceType: name,
-      areaServed: 'Worldwide',
       inLanguage: 'ar',
     },
     {
@@ -107,8 +101,8 @@ export default async function ArServiceDetailPage({ params }: Params) {
       />
       <PageHero eyebrow={name} title={value} description={short}>
         <div className="flex flex-wrap gap-3">
-          <ButtonLink href="/ar/free-audit" size="lg">استشارة مجانية</ButtonLink>
-          <ButtonLink href="/ar/services" variant="secondary" size="lg">جميع الخدمات</ButtonLink>
+          <ButtonLink href="/ar/free-audit" size="lg">اطلب تدقيقك المجاني</ButtonLink>
+          <ButtonLink href="/ar/services" variant="secondary" size="lg">استكشف جميع الخدمات</ButtonLink>
         </div>
       </PageHero>
 
@@ -118,27 +112,37 @@ export default async function ArServiceDetailPage({ params }: Params) {
             <span className="inline-flex h-14 w-14 items-center justify-center rounded-xl border border-teal/30 bg-teal/5 text-teal">
               <Icon size={24} />
             </span>
-            <h2 className="mt-6 heading-h2 text-white">ما يشمله العمل</h2>
+            <h2 className="mt-6 heading-h2 text-white">ما الذي يمكن أن يشمله العمل؟</h2>
             <p className="mt-3 max-w-md text-white/70">
-              مجموعة محددة وشفافة من المخرجات — تُعدَّل وفق أهدافك عند الانطلاق.
+              نؤكد المخرجات النهائية بعد مراجعة أهدافك ووضعك الحالي والتبعيات والأولويات.
             </p>
           </div>
-          <ul className="space-y-3">
-            {deliverables.map((d) => (
-              <li key={d} className="flex gap-3 rounded-lg border border-border-dark bg-surface p-5">
-                <span className="mt-0.5 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-teal/40 bg-teal/10 text-teal">
-                  <Check size={14} />
-                </span>
-                <span className="text-[15px] text-white/85">{d}</span>
-              </li>
-            ))}
-          </ul>
+          {deliverables.length > 0 ? (
+            <ul className="space-y-3">
+              {deliverables.map((d) => (
+                <li key={d} className="flex gap-3 rounded-lg border border-border-dark bg-surface p-5">
+                  <span className="mt-0.5 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-teal/40 bg-teal/10 text-teal">
+                    <Check size={14} />
+                  </span>
+                  <span className="text-[15px] text-white/85">{d}</span>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p className="rounded-xl border border-border-dark bg-surface p-6 text-white/70">
+              نحدد المخرجات وفق متطلبات المشروع. تواصل معنا للحصول على نطاق عمل مصمم حول أهدافك.
+            </p>
+          )}
         </div>
       </Section>
 
-      {process.length > 0 ? (
-        <Section tone="surface">
-          <SectionHeading eyebrow="العملية" title={`كيف تسير مشاركة ${name}`} />
+      <Section tone="surface">
+        <SectionHeading
+          eyebrow="آلية التنفيذ"
+          title={`كيف ننفذ ${name}`}
+          description="نكيّف التسلسل الدقيق وفق نطاق العمل، مع الاتفاق على المسؤوليات ونقاط المراجعة قبل بدء التنفيذ."
+        />
+        {process.length > 0 ? (
           <ol className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {process.map((p, i) => (
               <li key={p.step} className="rounded-xl border border-border-dark bg-void p-6">
@@ -148,26 +152,40 @@ export default async function ArServiceDetailPage({ params }: Params) {
               </li>
             ))}
           </ol>
-        </Section>
-      ) : null}
+        ) : (
+          <p className="mt-8 text-void/70 dark:text-white/70">
+            نوثق مراحل التنفيذ ونقاط المراجعة في عرض المشروع.
+          </p>
+        )}
+      </Section>
 
       <Section tone="void">
-        <SectionHeading eyebrow="الأدوات" title="الأدوات التي نستخدمها" />
-        <ul className="mt-10 grid grid-cols-2 items-center gap-x-6 gap-y-5 sm:grid-cols-3 lg:grid-cols-6">
-          {service.tools.map((t) => (
-            <li
-              key={t}
-              className="rounded-lg border border-border-dark bg-surface px-4 py-3 text-center font-display text-[15px] font-semibold text-white/60 transition-colors hover:text-white"
-            >
-              {t}
-            </li>
-          ))}
-        </ul>
+        <SectionHeading
+          eyebrow="الأدوات"
+          title="أدوات نختارها وفق متطلبات العمل"
+          description="نختار الأدوات وفق متطلبات المشروع وأنظمتك الحالية واحتياجات الأشخاص الذين سيتولون إدارة العمل وصيانته."
+        />
+        {service.tools.length > 0 ? (
+          <ul className="mt-10 grid grid-cols-2 items-center gap-x-6 gap-y-5 sm:grid-cols-3 lg:grid-cols-6">
+            {service.tools.map((t) => (
+              <li
+                key={t}
+                className="rounded-lg border border-border-dark bg-surface px-4 py-3 text-center font-display text-[15px] font-semibold text-white/60 transition-colors hover:text-white"
+              >
+                {t}
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p className="mt-8 text-white/70">
+            ندرج الأدوات المقترحة ضمن النهج التقني المقدم للمشروع.
+          </p>
+        )}
       </Section>
 
       {sampleWork.length > 0 ? (
         <Section tone="surface">
-          <SectionHeading eyebrow="نماذج من الأعمال" title={`${name} في التطبيق`} />
+          <SectionHeading eyebrow="نماذج من أعمالنا" title="كيف تبدو الخدمة عند تطبيقها؟" />
           <ul className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2">
             {sampleWork.slice(0, 2).map((c) => (
               <li key={c.slug}>
@@ -184,7 +202,9 @@ export default async function ArServiceDetailPage({ params }: Params) {
                     <h3 className="font-display text-h4 font-semibold text-white">
                       {c.titleAr ?? c.title}
                     </h3>
-                    <p className="mt-2 text-[14px] text-muted">{c.industry} · {c.timeline}</p>
+                    <p className="mt-2 text-[14px] text-muted">
+                      {localizePortfolioIndustryAr(c.industry)} · {localizePortfolioTimelineAr(c.timeline)}
+                    </p>
                   </div>
                 </Link>
               </li>
@@ -196,7 +216,7 @@ export default async function ArServiceDetailPage({ params }: Params) {
       {faqs.length > 0 ? (
         <Section tone="void">
           <div className="grid gap-12 lg:grid-cols-[1fr_1.4fr]">
-            <SectionHeading eyebrow="الأسئلة الشائعة" title={`حول ${name}`} />
+            <SectionHeading eyebrow="الأسئلة الشائعة" title={`أسئلة حول ${name}`} />
             <ul className="divide-y divide-border-dark">
               {faqs.map((faq) => (
                 <li key={faq.q} className="py-6">
@@ -212,9 +232,9 @@ export default async function ArServiceDetailPage({ params }: Params) {
       {related.length > 0 ? (
         <Section tone="surface">
           <SectionHeading
-            eyebrow="اقرنها بـ"
-            title="خدمات تعمل معاً بشكل أفضل"
-            description={`عملاء ${name} يضيفون في الغالب:`}
+            eyebrow="خدمات مكملة"
+            title="خبرات مرتبطة"
+            description={`بحسب أهدافك، قد تستفيد خدمة ${name} أيضًا من:`}
           />
           <ul className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-3">
             {related.map((r) => {
@@ -230,12 +250,12 @@ export default async function ArServiceDetailPage({ params }: Params) {
                         <RIcon size={18} />
                       </span>
                       <h3 className="mt-5 font-display text-h4 font-semibold text-white">
-                        {r.nameAr ?? r.name}
+                        {r.nameAr}
                       </h3>
-                      <p className="mt-2 text-[14px] text-white/60">{r.shortAr ?? r.short}</p>
+                      <p className="mt-2 text-[14px] text-white/60">{r.shortAr}</p>
                     </div>
                     <span className="mt-6 inline-flex items-center gap-1 text-[13px] font-semibold text-teal">
-                      استكشف <ArrowUpRight size={14} />
+                      استكشف المشروع <ArrowUpRight size={14} />
                     </span>
                   </Link>
                 </li>
@@ -245,7 +265,12 @@ export default async function ArServiceDetailPage({ params }: Params) {
         </Section>
       ) : null}
 
-      <CtaBanner heading={`هل أنت مستعد لتطوير ${name}؟`} ctaHref="/ar/free-audit" ctaLabel="استشارة مجانية" />
+      <CtaBanner
+        heading={`هل تخطط لمشروع في ${name}؟`}
+        body="شاركنا أهدافك ووضعك الحالي والقيود التي تواجهها، وسنساعدك على تحديد نطاق عملي وخطوة تالية واضحة."
+        ctaHref="/ar/contact"
+        ctaLabel="ناقش مشروعك"
+      />
     </>
   )
 }

@@ -7,25 +7,25 @@ import { CtaBanner } from '@/components/sections/CtaBanner'
 import { buildMetadata } from '@/lib/seo'
 
 export const metadata: Metadata = buildMetadata({
-  title: 'Digital for B2B Businesses',
+  title: 'Digital Strategy for B2B Businesses',
   description:
-    'Lead generation, account-based marketing, AI-assisted outreach, and analytics dashboards that tie directly to pipeline for B2B companies.',
+    'B2B websites, lead-generation journeys, account-focused campaigns, responsible automation, SEO, and pipeline analytics.',
   path: '/industries/b2b-businesses',
 })
 
 const services = [
-  { title: 'Lead Generation Systems', detail: 'Inbound funnels, gated content, and outbound sequences that fill your pipeline.' },
-  { title: 'Account-Based Marketing', detail: 'Personalised landing pages and campaigns targeting specific accounts and roles.' },
-  { title: 'AI Assistants', detail: 'Qualification bots that score and route inbound leads before your team touches them.' },
-  { title: 'Website Development', detail: 'Authority sites with ROI calculators, case studies, and demo booking flows.' },
-  { title: 'SEO & Content', detail: 'Thought leadership content and technical SEO targeting buying intent keywords.' },
-  { title: 'Analytics & Pipeline Dashboards', detail: 'Attribution reporting that connects marketing spend to closed revenue.' },
+  { title: 'Lead-Generation Systems', detail: 'Inbound journeys, useful resources, forms, and nurture sequences aligned with your sales process.' },
+  { title: 'Account-Based Marketing', detail: 'Focused landing pages, content, and campaigns for priority accounts and decision-making roles.' },
+  { title: 'AI Assistants', detail: 'Carefully scoped tools that can capture context, answer approved questions, and route enquiries.' },
+  { title: 'Website Development', detail: 'Credible B2B websites with case studies, useful tools, and clear demo or consultation journeys.' },
+  { title: 'SEO & Content', detail: 'Technical SEO and expert content organised around real research and buying questions.' },
+  { title: 'Analytics & Pipeline Dashboards', detail: 'Reporting that combines available marketing and CRM data to support pipeline decisions.' },
 ]
 
-const results = [
-  { value: '+112%', label: 'avg. organic traffic increase' },
-  { value: '–28%', label: 'avg. cost per acquisition' },
-  { value: '3.2x', label: 'blended ROAS achieved' },
+const priorities = [
+  { value: 'Attract', label: 'relevant audiences around defined needs' },
+  { value: 'Qualify', label: 'enquiries with useful context for sales' },
+  { value: 'Measure', label: 'marketing activity alongside pipeline data' },
 ]
 
 export default function B2BBusinessesPage() {
@@ -35,18 +35,18 @@ export default function B2BBusinessesPage() {
         eyebrow="B2B Businesses"
         title={
           <>
-            Pipeline, not{' '}
-            <span className="text-teal">vanity metrics.</span>
+            Build a clearer route from{' '}
+            <span className="text-teal">interest to opportunity.</span>
           </>
         }
-        description="B2B buyers take time. We build systems — content, SEO, outreach, and automation — that work across long sales cycles and come with clear attribution."
+        description="Align your website, content, campaigns, automation, and reporting with a longer, multi-stakeholder buying journey."
       >
         <div className="flex flex-wrap gap-3">
           <Link
             href="/free-audit"
             className="inline-flex items-center gap-2 rounded-lg bg-teal px-5 py-2.5 text-[15px] font-semibold text-void transition-colors hover:bg-teal-dark"
           >
-            Get a free audit
+            Request a free audit
           </Link>
           <Link
             href="/industries"
@@ -59,7 +59,7 @@ export default function B2BBusinessesPage() {
 
       <Section tone="void" className="pt-0">
         <ul className="grid grid-cols-1 gap-6 sm:grid-cols-3">
-          {results.map((r) => (
+          {priorities.map((r) => (
             <li key={r.label} className="rounded-2xl border border-border-dark bg-surface p-8">
               <p className="font-display text-[48px] font-extrabold leading-none text-teal">{r.value}</p>
               <p className="mt-3 text-[13px] uppercase tracking-[1.5px] text-muted">{r.label}</p>
@@ -71,8 +71,8 @@ export default function B2BBusinessesPage() {
       <Section tone="surface">
         <SectionHeading
           eyebrow="What we do for B2B companies"
-          title="From first click to closed deal"
-          description="We build the systems that make your marketing attributable to revenue, not just traffic."
+          title="Connect marketing activity with sales priorities"
+          description="Design useful journeys for buyers while giving your team better context for qualification, follow-up, and measurement."
         />
         <ul className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {services.map((s) => (
@@ -90,10 +90,10 @@ export default function B2BBusinessesPage() {
       </Section>
 
       <CtaBanner
-        heading="Ready to build a pipeline that doesn't rely on referrals?"
-        body="Share your growth targets and we'll audit your current setup — free, with a clear action plan."
+        heading="Want a more consistent B2B growth system?"
+        body="Share your goals, sales process, and current digital setup. We will identify practical ways to strengthen the journey."
         ctaHref="/free-audit"
-        ctaLabel="Get a Free Audit"
+        ctaLabel="Request a free audit"
         secondaryHref="/work"
         secondaryLabel="See our work"
       />

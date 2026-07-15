@@ -9,25 +9,25 @@ import { buildMetadata } from '@/lib/seo'
 export const metadata: Metadata = buildMetadata({
   title: 'التسويق الرقمي للعقارات',
   description:
-    'بوابات قوائم العقارات، قمع جذب العملاء، تكامل CRM وإعلانات مدفوعة لوكلاء ووكالات العقارات.',
+    'مواقع للعقارات، ومسارات للاستفسارات، وتكامل مع CRM، وSEO، وحملات مدفوعة للوكلاء والمطورين والشركات العقارية.',
   path: '/ar/industries/real-estate',
   alternatePath: '/industries/real-estate',
   locale: 'ar',
 })
 
 const services = [
-  { title: 'بوابات قوائم العقارات', detail: 'مواقع بحث عقاري مع فلاتر وخرائط ونماذج استفسار.' },
-  { title: 'قمع جذب العملاء', detail: 'صفحات هبوط ونماذج مُهندسة لتحويل الزوار إلى عملاء مؤهلين.' },
-  { title: 'تكامل CRM', detail: 'إرسال العملاء مباشرة إلى CRM الخاص بك — HubSpot أو Salesforce أو مخصص.' },
-  { title: 'الإعلانات المدفوعة', detail: 'إعلانات Facebook وInstagram وGoogle مستهدفة حسب الموقع والنية.' },
-  { title: 'SEO والمحتوى', detail: 'أدلة الأحياء وتقارير السوق والبيانات المنظمة لنتائج بحث غنية.' },
-  { title: 'تصميم UI/UX', detail: 'صفحات تفاصيل العقار مصممة للإبقاء على الانتباه وتحفيز الاستفسار.' },
+  { title: 'مواقع العقارات', detail: 'قوائم عقارية قابلة للبحث، مع مرشحات مفيدة وخرائط وتفاصيل واضحة وخيارات للاستفسار.' },
+  { title: 'مسارات جمع الاستفسارات', detail: 'صفحات هبوط مركزة ونماذج تجمع المعلومات التي يحتاج إليها فريق المبيعات.' },
+  { title: 'تكامل CRM', detail: 'توجيه الاستفسارات إلى HubSpot أو Salesforce أو نظام CRM متوافق لتمكين المتابعة في الوقت المناسب.' },
+  { title: 'الحملات المدفوعة', detail: 'حملات عبر Meta وGoogle منظمة وفق الموقع والجمهور ونية البحث ونوع العقار.' },
+  { title: 'SEO والمحتوى', detail: 'أدلة للمناطق ومعلومات عن السوق ومحتوى للعقارات وبيانات منظمة تدعم الظهور في البحث.' },
+  { title: 'تصميم UI/UX', detail: 'رحلات واضحة للعقارات والمشروعات، مصممة للمقارنة وإعداد القوائم المختصرة وتقديم الاستفسارات.' },
 ]
 
 const results = [
-  { value: '2.4x', label: 'متوسط زيادة حجم العملاء' },
-  { value: '–31%', label: 'متوسط انخفاض تكلفة العميل المؤهل' },
-  { value: '8 أسابيع', label: 'وقت الإطلاق الكامل' },
+  { value: 'الاكتشاف', label: 'عقارات قابلة للبحث ومحتوى مفيد عن السوق' },
+  { value: 'التأهيل', label: 'نماذج استفسار متوافقة مع احتياجات المبيعات' },
+  { value: 'المتابعة', label: 'ربط CRM وتوجيه الفرص إلى الفريق المناسب' },
 ]
 
 export default function ArRealEstatePage() {
@@ -37,18 +37,18 @@ export default function ArRealEstatePage() {
         eyebrow="العقارات"
         title={
           <>
-            المزيد من العملاء المؤهلين،{' '}
-            <span className="text-teal">أقل إنفاق مهدر.</span>
+            سهّل اكتشاف العقارات{' '}
+            <span className="text-teal">واتخاذ الخطوة التالية.</span>
           </>
         }
-        description="بوابات عقارية وقمع جذب عملاء وحملات مدفوعة مبنية لجلب المشترين الجادين — لا المتفرجين."
+        description="اربط البحث عن العقارات والمحتوى والحملات والاستفسارات ومسارات CRM، ليتمكن فريقك من التركيز على الفرص ذات الصلة."
       >
         <div className="flex flex-wrap gap-3">
           <Link
             href="/ar/free-audit"
             className="inline-flex items-center gap-2 rounded-lg bg-teal px-5 py-2.5 text-[15px] font-semibold text-void transition-colors hover:bg-teal-dark"
           >
-            احصل على تدقيق مجاني
+            اطلب تدقيقاً مجانياً
           </Link>
           <Link
             href="/ar/industries"
@@ -73,8 +73,8 @@ export default function ArRealEstatePage() {
       <Section tone="surface">
         <SectionHeading
           eyebrow="ما نقدمه لقطاع العقارات"
-          title="من القائمة إلى توقيع العقد"
-          description="كل خطوة في رحلة المشتري والمستأجر — محسّنة لتقليل الاحتكاك وزيادة الاستفسارات."
+          title="اربط القوائم العقارية والاستفسارات والمتابعة"
+          description="أنشئ رحلة مترابطة للمشترين والمستأجرين والبائعين ولفريق المبيعات الداخلي."
         />
         <ul className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {services.map((s) => (
@@ -92,12 +92,12 @@ export default function ArRealEstatePage() {
       </Section>
 
       <CtaBanner
-        heading="مستعد لإغلاق المزيد من الصفقات؟"
-        body="شاركنا موقعك وأهدافك — سنراجع قمع الرقمي ونحدد أكبر الفرص."
+        heading="هل تريد تحسين رحلة الاستفسار عن العقارات؟"
+        body="شاركنا موقعك وأهدافك التجارية. سنراجع التجربة الحالية ونحدد التحسينات الأعلى أولوية."
         ctaHref="/ar/free-audit"
-        ctaLabel="احصل على تدقيق مجاني"
+        ctaLabel="اطلب تدقيقاً مجانياً"
         secondaryHref="/ar/work"
-        secondaryLabel="أعمالنا"
+        secondaryLabel="اطّلع على أعمالنا"
       />
     </>
   )

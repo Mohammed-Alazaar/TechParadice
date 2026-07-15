@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Mail, MapPin } from 'lucide-react'
+import { Clock, Mail, MapPin } from 'lucide-react'
 import { PageHero } from '@/components/sections/PageHero'
 import { Section } from '@/components/ui/Section'
 import { ContactForm } from '@/components/forms/ContactForm'
@@ -7,8 +7,8 @@ import { BRAND } from '@/lib/utils'
 import { buildMetadata } from '@/lib/seo'
 
 export const metadata: Metadata = buildMetadata({
-  title: 'تواصل',
-  description: 'أخبرنا ما تبني. سنرد خلال يوم عمل واحد.',
+  title: 'تواصل معنا',
+  description: 'تواصل مع TechParadice لمناقشة أهدافك المتعلقة بالموقع أو المنتج أو SEO أو المحتوى أو النمو الرقمي.',
   path: '/ar/contact',
   alternatePath: '/contact',
   locale: 'ar',
@@ -18,14 +18,14 @@ export default function ArContactPage() {
   return (
     <>
       <PageHero
-        eyebrow="تواصل"
-        title={<>ابدأ <span className="text-teal">محادثة.</span></>}
-        description="أخبرنا ما تبني. سنرد خلال يوم عمل واحد."
+        eyebrow="تواصل معنا"
+        title={<>لنتحدث عن <span className="text-teal">الخطوة التالية لعملك.</span></>}
+        description="شاركنا أهدافك وقيودك والتحديات الحالية. نراجع كل رسالة ونسعى إلى الرد خلال يوم عمل واحد."
       />
 
       <Section tone="void" className="pt-0">
-        <div className="grid gap-12 lg:grid-cols-[1fr_1.5fr]">
-          <div className="space-y-8">
+        <div className="grid gap-12 lg:grid-cols-[1fr_1.3fr]">
+          <aside className="space-y-8">
             <div>
               <div className="flex items-center gap-3">
                 <Mail size={18} className="text-teal" />
@@ -39,31 +39,36 @@ export default function ArContactPage() {
               </a>
             </div>
 
-            <div>
-              <div className="flex items-center gap-3">
-                <MapPin size={18} className="text-teal" />
-                <p className="text-caption uppercase text-teal">الموقع</p>
-              </div>
-              <p className="mt-2 text-[15px] text-white/80">أنقرة، تركيا</p>
-            </div>
+            <div className="h-px w-full bg-border-dark" />
 
-            <div className="rounded-xl border border-border-dark bg-surface p-6">
-              <p className="font-display text-h4 font-semibold text-white">احجز مكالمة</p>
-              <p className="mt-2 text-[14px] text-white/60">
-                تفضل الحديث؟ احجز مكالمة اكتشاف مدتها 30 دقيقة عبر Calendly.
+            <ul className="space-y-5 text-[15px] text-white/80">
+              <li className="flex items-start gap-3">
+                <Clock size={18} className="mt-1 text-teal" />
+                <div>
+                  <p className="font-semibold text-white">مدة الرد</p>
+                  <p className="text-white/60">عادة خلال يوم عمل واحد، من الاثنين إلى الجمعة.</p>
+                </div>
+              </li>
+              <li className="flex items-start gap-3">
+                <MapPin size={18} className="mt-1 text-teal" />
+                <div>
+                  <p className="font-semibold text-white">مقرنا</p>
+                  <p className="text-white/60">أنقرة، تركيا</p>
+                </div>
+              </li>
+            </ul>
+
+            <div className="rounded-2xl border border-border-dark bg-surface p-6">
+              <p className="text-caption uppercase text-teal">تفضّل إجراء مكالمة؟</p>
+              <p className="mt-3 text-[15px] text-white/80">
+                املأ النموذج واطلب مكالمة، وسنقترح موعداً لمناقشة أولوياتك والإجابة عن الأسئلة الأولية.
               </p>
-              <a
-                href="https://calendly.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-4 inline-flex items-center gap-2 text-[14px] font-semibold text-teal hover:underline"
-              >
-                احجز عبر Calendly →
-              </a>
             </div>
-          </div>
+          </aside>
 
-          <ContactForm locale="ar" />
+          <div className="rounded-2xl border border-border-dark bg-surface p-6 sm:p-8">
+            <ContactForm locale="ar" />
+          </div>
         </div>
       </Section>
     </>

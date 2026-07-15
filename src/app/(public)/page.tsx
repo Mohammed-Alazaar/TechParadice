@@ -13,9 +13,9 @@ import { buildMetadata } from '@/lib/seo'
 import { SOCIAL_LINKS } from '@/lib/utils'
 
 export const metadata: Metadata = buildMetadata({
-  title: 'TechParadice — Your digital world, built.',
+  title: 'TechParadice | Digital Strategy, Design & Growth',
   description:
-    'Full-stack digital agency. Websites, mobile apps, UI/UX, SEO, social, content, and ads — built by one senior team.',
+    'TechParadice brings strategy, websites, mobile apps, UI/UX, SEO, content, social media, and paid campaigns into one coordinated digital plan.',
   path: '/',
 })
 
@@ -32,15 +32,12 @@ export default function HomePage() {
       address: { '@type': 'PostalAddress', addressLocality: 'Ankara', addressCountry: 'TR' },
       sameAs: SOCIAL_LINKS,
       description:
-        'Full-stack digital agency offering websites, mobile apps, UI/UX design, SEO, social media, content creation, and paid advertising.',
-      serviceArea: { '@type': 'AdministrativeArea', name: 'Worldwide' },
-      areaServed: { '@type': 'AdministrativeArea', name: 'Worldwide' },
+        'Digital agency providing strategy, websites, mobile apps, UI/UX design, SEO, content, social media, and paid campaigns.',
       knowsLanguage: ['en', 'ar'],
       contactPoint: {
         '@type': 'ContactPoint',
         email: 'hello@techparadice.com',
         contactType: 'customer service',
-        areaServed: 'Worldwide',
         availableLanguage: ['English', 'Arabic'],
       },
     },
@@ -49,11 +46,6 @@ export default function HomePage() {
       '@type': 'WebSite',
       url: 'https://techparadice.com',
       name: 'TechParadice',
-      potentialAction: {
-        '@type': 'SearchAction',
-        target: 'https://techparadice.com/blog?q={search_term_string}',
-        'query-input': 'required name=search_term_string',
-      },
     },
     {
       '@context': 'https://schema.org',
@@ -63,7 +55,7 @@ export default function HomePage() {
       email: 'hello@techparadice.com',
       address: { '@type': 'PostalAddress', addressLocality: 'Ankara', addressCountry: 'TR' },
       priceRange: '$0 – $5,000+',
-      description: 'Digital agency: web development, mobile apps, SEO, social media, and design.',
+      description: 'Digital agency providing web development, mobile apps, UI/UX design, SEO, content, social media, and paid campaigns.',
     },
   ]
 

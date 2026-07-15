@@ -8,7 +8,12 @@ import { Section } from '@/components/ui/Section'
 import { Badge } from '@/components/ui/Badge'
 import { CtaBanner } from '@/components/sections/CtaBanner'
 import { getArCaseStudy, getAllArCaseStudySlugs, getArPortfolio } from '@/lib/portfolio'
-import { SITE_URL } from '@/lib/utils'
+import {
+  localizePortfolioIndustryAr,
+  localizePortfolioServiceAr,
+  localizePortfolioTimelineAr,
+} from '@/lib/i18n/portfolio-ar'
+import { buildMetadata } from '@/lib/seo'
 
 export const dynamicParams = true
 
@@ -22,12 +27,14 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const study = await getArCaseStudy(params.slug)
   if (!study) return {}
-  return {
-    title: `${study.client} — ${study.titleAr ?? study.title} | TechParadice`,
-    description: (study.challengeAr ?? '').slice(0, 150),
-    alternates: { canonical: `${SITE_URL}/ar/work/${study.slug}` },
-    openGraph: { locale: 'ar_SA' },
-  }
+  return buildMetadata({
+    title: `${study.client} — ${study.titleAr}`,
+    description: study.challengeAr.slice(0, 150),
+    path: `/ar/work/${study.slug}`,
+    alternatePath: `/work/${study.slug}`,
+    locale: 'ar',
+    hasAlternate: Boolean(study.published),
+  })
 }
 
 export default async function ArCaseStudyPage({ params }: Params) {
@@ -43,8 +50,8 @@ export default async function ArCaseStudyPage({ params }: Params) {
   return (
     <>
       <PageHero
-        eyebrow={study.industry}
-        title={study.titleAr ?? study.title}
+        eyebrow={localizePortfolioIndustryAr(study.industry)}
+        title={study.titleAr}
         description={study.challengeAr ? study.challengeAr.split('.')[0] + '.' : ''}
       >
         <ul className="flex flex-wrap items-center gap-x-5 gap-y-2 text-[14px] text-white/70">
@@ -55,15 +62,16 @@ export default async function ArCaseStudyPage({ params }: Params) {
           <li className="text-teal">/</li>
           <li>
             <span className="text-caption text-muted">الخدمات</span>{' '}
-            {study.services.join('، ')}
+            {study.services.map(localizePortfolioServiceAr).join('، ')}
           </li>
           <li className="text-teal">/</li>
           <li>
-            <span className="text-caption text-muted">المدة</span> {study.timeline}
+            <span className="text-caption text-muted">المدة</span> {localizePortfolioTimelineAr(study.timeline)}
           </li>
           <li className="text-teal">/</li>
           <li>
-            <span className="text-caption text-muted">السنة</span> {study.year}
+            <span className="text-caption text-muted">السنة</span>{' '}
+            {study.year === 'Not publicly disclosed' ? 'غير معلن' : study.year}
           </li>
         </ul>
       </PageHero>
@@ -79,9 +87,9 @@ export default async function ArCaseStudyPage({ params }: Params) {
               </span>
             </div>
           )}
-          {(study.outcomeAr ?? study.outcome) ? (
+          {study.outcomeAr ? (
             <div className="absolute right-6 top-6">
-              <Badge tone="teal">{study.outcomeAr ?? study.outcome}</Badge>
+              <Badge tone="teal">{study.outcomeAr}</Badge>
             </div>
           ) : null}
         </div>
@@ -97,7 +105,7 @@ export default async function ArCaseStudyPage({ params }: Params) {
           ) : null}
           {study.approachAr && study.approachAr.length > 0 ? (
             <div>
-              <p className="text-caption uppercase text-teal">النهج</p>
+              <p className="text-caption uppercase text-teal">منهجية العمل</p>
               <ul className="mt-4 space-y-3">
                 {study.approachAr.map((a) => (
                   <li key={a} className="flex gap-3 text-body-lg text-white/80">
@@ -110,7 +118,7 @@ export default async function ArCaseStudyPage({ params }: Params) {
           ) : null}
           {study.solutionAr && study.solutionAr.length > 0 ? (
             <div>
-              <p className="text-caption uppercase text-teal">الحل</p>
+              <p className="text-caption uppercase text-teal">ما نفذناه</p>
               <ul className="mt-4 space-y-3">
                 {study.solutionAr.map((s) => (
                   <li key={s} className="flex gap-3 text-body-lg text-white/80">
@@ -124,9 +132,11 @@ export default async function ArCaseStudyPage({ params }: Params) {
         </div>
       </Section>
 
-      {study.resultsAr && study.resultsAr.length > 0 ? (
-        <Section tone="surface">
-          <p className="text-caption uppercase text-teal">النتائج</p>
+      <Section tone="surface">
+        <p className="text-caption uppercase text-teal">
+          {study.resultsAr && study.resultsAr.length > 0 ? 'المخرجات والنتائج' : 'المخرجات'}
+        </p>
+        {study.resultsAr && study.resultsAr.length > 0 ? (
           <ul className="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-3">
             {study.resultsAr.map((r) => (
               <li key={r.label} className="rounded-2xl border border-border-dark bg-void p-8">
@@ -137,20 +147,24 @@ export default async function ArCaseStudyPage({ params }: Params) {
               </li>
             ))}
           </ul>
+        ) : (
+          <p className="mt-4 max-w-3xl text-white/70">
+            تركز دراسة الحالة هذه على ما نُفذ. ولا ننشر بيانات أداء إضافية لهذا المشروع.
+          </p>
+        )}
 
-          {study.testimonialAr ? (
-            <figure className="mt-14 border-r-2 border-teal pr-6">
-              <blockquote className="font-display text-h3 font-medium italic text-white">
-                &ldquo;{study.testimonialAr.quote}&rdquo;
-              </blockquote>
-              <figcaption className="mt-4 text-[14px] text-muted">
-                <span className="font-semibold text-white">{study.testimonialAr.author}</span> —{' '}
-                {study.testimonialAr.role}
-              </figcaption>
-            </figure>
-          ) : null}
-        </Section>
-      ) : null}
+        {study.testimonialAr ? (
+          <figure className="mt-14 border-r-2 border-teal pr-6">
+            <blockquote className="font-display text-h3 font-medium italic text-white">
+              &ldquo;{study.testimonialAr.quote}&rdquo;
+            </blockquote>
+            <figcaption className="mt-4 text-[14px] text-muted">
+              <span className="font-semibold text-white">{study.testimonialAr.author}</span> —{' '}
+              {study.testimonialAr.role}
+            </figcaption>
+          </figure>
+        ) : null}
+      </Section>
 
       {next && next.slug !== study.slug ? (
         <Section tone="void">
@@ -159,9 +173,9 @@ export default async function ArCaseStudyPage({ params }: Params) {
             className="group flex items-center justify-between rounded-2xl border border-border-dark bg-surface p-8 transition-all hover:border-teal/40"
           >
             <div>
-              <p className="text-caption uppercase text-muted">الدراسة التالية</p>
+              <p className="text-caption uppercase text-muted">دراسة الحالة التالية</p>
               <p className="mt-2 font-display text-h3 font-semibold text-white">
-                {next.titleAr ?? next.title}
+                {next.titleAr}
               </p>
             </div>
             <ArrowLeft
@@ -173,9 +187,9 @@ export default async function ArCaseStudyPage({ params }: Params) {
       ) : null}
 
       <CtaBanner
-        heading="هل أنت مستعد للبدء؟"
-        body="أخبرنا بأهدافك. سنتكفل بالباقي."
-        ctaLabel="استشارة مجانية"
+        heading="هل لديك تحدٍ مشابه؟"
+        body="أخبرنا بما تريد تحقيقه، وسنساعدك على تحديد المسار المناسب من الفكرة إلى النتيجة."
+        ctaLabel="اطلب تدقيقك المجاني"
         ctaHref="/ar/free-audit"
       />
     </>

@@ -10,8 +10,8 @@ export const SITE_URL =
 
 export const BRAND = {
   name: 'TechParadice',
-  tagline: 'Your digital world, built.',
-  taglineShort: 'Website. App. SEO. Social. Done.',
+  tagline: 'Strategy, technology, and growth in one team.',
+  taglineShort: 'Websites. Apps. SEO. Marketing. One team.',
   owner: 'Mohammed',
   location: 'Ankara, TR',
   email: 'hello@techparadice.com',

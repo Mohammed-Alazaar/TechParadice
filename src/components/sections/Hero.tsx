@@ -17,20 +17,20 @@ export function Hero() {
       <div className="container-content pb-24 lg:pb-32">
         <p className="mb-6 flex items-center gap-3 text-caption uppercase text-teal">
           <span className="h-px w-8 bg-teal" />
-          A full-stack digital agency
+          Strategy, technology, and growth in one team
         </p>
         <h1 className="heading-display max-w-4xl text-balance text-void dark:text-white">
-          Your digital world,{' '}
+          Turn your vision into{' '}
           <span className="relative inline-block">
-            built
+            digital growth
             <span className="absolute -bottom-2 left-0 h-1 w-full rounded-full bg-teal" />
           </span>
           .
         </h1>
         <p className="mt-6 max-w-2xl text-body-lg text-void/70 dark:text-white/70">
-          One senior team. Websites, apps, SEO, social, and ads —
-          engineered to ship and designed to compound. Flexible budgets,
-          transparent scope, direct line to the founder.
+          One senior team for websites, apps, SEO, social media, and paid
+          growth. Clear strategy, transparent delivery, and direct access to
+          the founder from the first conversation through launch and ongoing improvement.
         </p>
         <div className="mt-10 flex flex-wrap items-center gap-4">
           <ButtonLink href="/free-audit" size="xl">

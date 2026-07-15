@@ -7,27 +7,27 @@ import { CtaBanner } from '@/components/sections/CtaBanner'
 import { buildMetadata } from '@/lib/seo'
 
 export const metadata: Metadata = buildMetadata({
-  title: 'الرقمي للخدمات المهنية',
+  title: 'التسويق الرقمي لشركات الخدمات المهنية',
   description:
-    'مواقع سلطة، توليد عملاء، SEO ومحتوى تسويقي للمحامين ومكاتب المحاسبة والاستشارات وسائر الخدمات المهنية.',
+    'مواقع موثوقة، وSEO، ومحتوى متخصص، وحملات، ومسارات للاستفسارات تناسب الاستشاريين والمحاسبين والمستشارين وشركات الخدمات المهنية.',
   path: '/ar/industries/professional-services',
   alternatePath: '/industries/professional-services',
   locale: 'ar',
 })
 
 const services = [
-  { title: 'تطوير مواقع السلطة', detail: 'مواقع متقنة وسريعة تعكس الخبرة وتحول الزوار المترددين إلى استفسارات.' },
-  { title: 'محتوى القيادة الفكرية وSEO', detail: 'مقالات وأدلة ودراسات حالة تتصدر نتائج البحث وتبني المصداقية.' },
-  { title: 'إعلانات Google وLinkedIn', detail: 'حملات دقيقة تستهدف صانعي القرار الباحثين عن خدماتك.' },
-  { title: 'مسارات استقطاب العملاء', detail: 'موارد مقيّدة وحجز استشارات ومتابعات تلتقط نوايا العملاء الشرائية.' },
-  { title: 'إدارة السمعة', detail: 'استراتيجية مراجعات ودراسات حالة ودعم ترشيحات الجوائز.' },
-  { title: 'استقبال مساعد بالذكاء الاصطناعي', detail: 'نماذج ذكية وشات بوت يؤهلون العملاء قبل وصولهم إلى فريقك.' },
+  { title: 'مواقع للخدمات المهنية', detail: 'مواقع سريعة ومتقنة تسهّل تقييم خبرتك وخدماتك وما يميز عرضك.' },
+  { title: 'محتوى متخصص وSEO', detail: 'مقالات وأدلة ودراسات حالة وSEO تقني، منظمة حول الأسئلة الفعلية للعملاء.' },
+  { title: 'حملات Google وLinkedIn', detail: 'حملات مركزة لصنّاع القرار والخدمات والقطاعات ونية البحث ذات الصلة.' },
+  { title: 'مسارات الاستفسارات', detail: 'موارد مفيدة وحجز للاستشارات ونماذج وتسلسلات متابعة متوافقة مع عملية المبيعات لديك.' },
+  { title: 'دعم السمعة', detail: 'آليات واضحة لإدارة التقييمات وشهادات العملاء ودراسات الحالة وتعزيز الحضور المهني.' },
+  { title: 'استفسارات بمساعدة AI', detail: 'نماذج ومساعدات محددة النطاق بعناية، تجمع السياق وتوجه الاستفسارات إلى الشخص المناسب.' },
 ]
 
 const results = [
-  { value: '+89%', label: 'زيادة الزيارات الطبيعية' },
-  { value: '–34%', label: 'انخفاض تكلفة العميل المؤهل' },
-  { value: '6 أسابيع', label: 'وقت إطلاق نموذجي' },
+  { value: 'الشرح', label: 'عرض الخدمات والخبرة والقيمة بوضوح' },
+  { value: 'الإثبات', label: 'تعزيز الموثوقية بالأدلة والمحتوى المفيد' },
+  { value: 'الاستفسار', label: 'مسار سهل للوصول إلى المتخصص المناسب' },
 ]
 
 export default function ArProfessionalServicesPage() {
@@ -37,18 +37,18 @@ export default function ArProfessionalServicesPage() {
         eyebrow="الخدمات المهنية"
         title={
           <>
-            اكسب العملاء بـ
-            <span className="text-teal">سلطة رقمية.</span>
+            اجعل خبرتك{' '}
+            <span className="text-teal">أوضح وأسهل تقييماً.</span>
           </>
         }
-        description="عملاء الخدمات المهنية يشترون الخبرة قبل الخدمة. نبني الحضور الرقمي الذي يجعل سلطتك لا يمكن تجاهلها."
+        description="ابنِ حضوراً رقمياً موثوقاً يشرح قيمتك ويدعم القرارات المبنية على معلومات واضحة، ويوفر للعملاء المحتملين مساراً مباشراً إلى فريقك."
       >
         <div className="flex flex-wrap gap-3">
           <Link
             href="/ar/free-audit"
             className="inline-flex items-center gap-2 rounded-lg bg-teal px-5 py-2.5 text-[15px] font-semibold text-void transition-colors hover:bg-teal-dark"
           >
-            احصل على تدقيق مجاني
+            اطلب تدقيقاً مجانياً
           </Link>
           <Link
             href="/ar/industries"
@@ -73,8 +73,8 @@ export default function ArProfessionalServicesPage() {
       <Section tone="surface">
         <SectionHeading
           eyebrow="ما نقدمه للخدمات المهنية"
-          title="من أول نقرة إلى عقد موقّع"
-          description="نرسم رحلة اكتساب العملاء كاملة — بحث، موقع، استقبال ومتابعة — ونحسّن كل خطوة فيها."
+          title="اربط الظهور والمصداقية والاستفسار"
+          description="نظّم نشاط البحث والمحتوى والموقع والحملات والمتابعة وفق الطريقة التي يقيّم بها عملاؤك الخبرة."
         />
         <ul className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {services.map((s) => (
@@ -92,12 +92,12 @@ export default function ArProfessionalServicesPage() {
       </Section>
 
       <CtaBanner
-        heading="مستعد لبناء مسار عملاء تلقائي؟"
-        body="شاركنا أهدافك — سنراجع حضورك الرقمي ونحدد أسرع الفرص."
+        heading="هل تريد مساراً أقوى من الخبرة إلى الاستفسار؟"
+        body="أخبرنا بأهدافك وشارك موقعك الحالي. سنحدد الفرص الأعلى أولوية لتحسين الرحلة."
         ctaHref="/ar/free-audit"
-        ctaLabel="احصل على تدقيق مجاني"
+        ctaLabel="اطلب تدقيقاً مجانياً"
         secondaryHref="/ar/work"
-        secondaryLabel="أعمالنا"
+        secondaryLabel="اطّلع على أعمالنا"
       />
     </>
   )
