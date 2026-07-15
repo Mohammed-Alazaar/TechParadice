@@ -5,6 +5,7 @@ import Script from 'next/script'
 import { BRAND, SITE_URL, SOCIAL_LINKS } from '@/lib/utils'
 import { LocaleSync } from '@/components/layout/LocaleSync'
 import { ThemeProvider } from '@/components/layout/ThemeProvider'
+import { PHProvider } from './posthog-provider'
 import './globals.css'
 
 const figtree = Figtree({
@@ -115,10 +116,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body className={`bg-white text-void antialiased dark:bg-void dark:text-white ${locale === 'ar' ? 'font-arabic' : 'font-body'}`}>
+        <PHProvider>
         <ThemeProvider>
         <LocaleSync />
         {children}
         </ThemeProvider>
+        </PHProvider>
         {gaId ? (
           <>
             <Script
