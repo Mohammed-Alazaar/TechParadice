@@ -118,6 +118,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             __html: `(function(){try{var t=localStorage.getItem('theme');if(t==='light'){document.documentElement.classList.remove('dark')}else{document.documentElement.classList.add('dark')}}catch(e){}})()`,
           }}
         />
+        {/* Ahrefs Web Analytics — kept in <head> as a plain tag so Ahrefs'
+            installation check can find it in the served HTML. */}
+        {ahrefsKey ? (
+          <script src="https://analytics.ahrefs.com/analytics.js" data-key={ahrefsKey} async />
+        ) : null}
       </head>
       <body className={`bg-white text-void antialiased dark:bg-void dark:text-white ${locale === 'ar' ? 'font-arabic' : 'font-body'}`}>
         <PHProvider>
@@ -148,14 +153,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
             })(window, document, "clarity", "script", "${clarityId}");`}
           </Script>
-        ) : null}
-        {ahrefsKey ? (
-          <Script
-            id="ahrefs-analytics"
-            src="https://analytics.ahrefs.com/analytics.js"
-            data-key={ahrefsKey}
-            strategy="afterInteractive"
-          />
         ) : null}
         <Script
           id="ld-org"
