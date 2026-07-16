@@ -95,6 +95,8 @@ export const viewport: Viewport = {
 const gaId = process.env.NEXT_PUBLIC_GA_ID
 // Microsoft Clarity project id (overridable per environment; set to '' to disable).
 const clarityId = process.env.NEXT_PUBLIC_CLARITY_ID ?? 'xmygjt4elx'
+// Ahrefs Analytics key (overridable per environment; set to '' to disable).
+const ahrefsKey = process.env.NEXT_PUBLIC_AHREFS_KEY ?? 'zr/+hwvzyRwBX6V0dJw3zg'
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const locale = headers().get('x-locale') ?? 'en'
@@ -146,6 +148,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
             })(window, document, "clarity", "script", "${clarityId}");`}
           </Script>
+        ) : null}
+        {ahrefsKey ? (
+          <Script
+            id="ahrefs-analytics"
+            src="https://analytics.ahrefs.com/analytics.js"
+            data-key={ahrefsKey}
+            strategy="afterInteractive"
+          />
         ) : null}
         <Script
           id="ld-org"
