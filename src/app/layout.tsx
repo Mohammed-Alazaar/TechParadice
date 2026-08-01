@@ -118,6 +118,21 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             __html: `(function(){try{var t=localStorage.getItem('theme');if(t==='light'){document.documentElement.classList.remove('dark')}else{document.documentElement.classList.add('dark')}}catch(e){}})()`,
           }}
         />
+        {/* Google Analytics - plain head tags let Google's installation checker
+            detect the tag in the initial HTML response. */}
+        {gaId ? (
+          <>
+            <script async src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`} />
+            <script
+              dangerouslySetInnerHTML={{
+                __html: `window.dataLayer = window.dataLayer || [];
+                  function gtag(){dataLayer.push(arguments);}
+                  gtag('js', new Date());
+                  gtag('config', '${gaId}');`,
+              }}
+            />
+          </>
+        ) : null}
         {/* Ahrefs Web Analytics — kept in <head> as a plain tag so Ahrefs'
             installation check can find it in the served HTML. */}
         {ahrefsKey ? (
@@ -131,20 +146,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {children}
         </ThemeProvider>
         </PHProvider>
-        {gaId ? (
-          <>
-            <Script
-              src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
-              strategy="afterInteractive"
-            />
-            <Script id="ga" strategy="afterInteractive">
-              {`window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', '${gaId}');`}
-            </Script>
-          </>
-        ) : null}
         {clarityId ? (
           <Script id="ms-clarity" strategy="afterInteractive">
             {`(function(c,l,a,r,i,t,y){
