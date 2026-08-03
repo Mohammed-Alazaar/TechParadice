@@ -1,5 +1,6 @@
 import { ArrowRight } from 'lucide-react'
 import { ButtonLink } from '@/components/ui/Button'
+import { BRAND } from '@/lib/utils'
 
 export function Hero() {
   return (
@@ -19,8 +20,11 @@ export function Hero() {
           <span className="h-px w-8 bg-teal" />
           Strategy, technology, and growth in one team
         </p>
+        {/* The brand name is deliberately in the H1: Google currently rewrites
+            "TechParadice" to "tech paradise", so the page's primary heading has
+            to state the exact spelling. */}
         <h1 className="heading-display max-w-4xl text-balance text-void dark:text-white">
-          Turn your vision into{' '}
+          {BRAND.name} turns your vision into{' '}
           <span className="relative inline-block">
             digital growth
             <span className="absolute -bottom-2 left-0 h-1 w-full rounded-full bg-teal" />

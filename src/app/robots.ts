@@ -31,12 +31,16 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: '*',
         allow: '/',
-        disallow: ['/admin/', '/api/'],
+        // Unslashed prefixes: robots.txt matches literal prefixes, so '/admin/'
+        // alone would not cover the bare '/admin' route.
+        disallow: ['/admin', '/api'],
       },
       ...aiUserAgents.map((userAgent) => ({
         userAgent,
         allow: '/',
-        disallow: ['/admin/', '/api/'],
+        // Unslashed prefixes: robots.txt matches literal prefixes, so '/admin/'
+        // alone would not cover the bare '/admin' route.
+        disallow: ['/admin', '/api'],
       })),
     ],
     sitemap: `${SITE_URL}/sitemap.xml`,

@@ -81,7 +81,12 @@ export async function getSitemapEntries(): Promise<SitemapEntry[]> {
     { path: '/terms', priority: 0.3, changeFrequency: 'yearly' },
   ]
   for (const { path, priority, changeFrequency } of bilingualStatic) {
-    entries.push(...pair(path || '/', `/ar${path}`, { priority, changeFrequency, lastModified: now }))
+    // The homepage uses `path === ''`, i.e. the bare origin, deliberately.
+    // Next normalises the homepage canonical and its hreflang alternates to
+    // `https://techparadice.com` with no trailing slash; emitting `/` here
+    // instead would make every sitemap entry for the homepage disagree with the
+    // canonical it points at.
+    entries.push(...pair(path, `/ar${path}`, { priority, changeFrequency, lastModified: now }))
   }
 
   // GCC city landing pages (bilingual).

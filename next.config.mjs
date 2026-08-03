@@ -29,6 +29,15 @@ const nextConfig = {
   },
   async redirects() {
     return [
+      // Single canonical host: www → apex. Only fires when the request actually
+      // arrives on the www hostname, so it is inert if www is never served.
+      // http → https is enforced by the platform (Vercel/Cloudflare), not here.
+      {
+        source: '/:path*',
+        has: [{ type: 'host', value: 'www.techparadice.com' }],
+        destination: 'https://techparadice.com/:path*',
+        permanent: true,
+      },
       // Portfolio → Work
       { source: '/portfolio', destination: '/work', permanent: true },
       { source: '/portfolio/:slug', destination: '/work/:slug', permanent: true },

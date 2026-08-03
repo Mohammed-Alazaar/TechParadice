@@ -20,6 +20,8 @@ export type BlogPost = {
   metaTitle?: string
   metaDescription?: string
   metaKeywords?: string[]
+  /** Mongoose `{ timestamps: true }` writes this; spread through by the mapper. */
+  updatedAt?: string
 }
 
 export type BlogPostAr = {
@@ -41,6 +43,8 @@ export type BlogPostAr = {
   metaTitleAr?: string
   metaDescriptionAr?: string
   metaKeywordsAr?: string[]
+  /** Mongoose `{ timestamps: true }` writes this; spread through by the mapper. */
+  updatedAt?: string
 }
 
 function toPost(doc: any): BlogPost {

@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { SITE_URL, BRAND } from './utils'
+import { SITE_URL, BRAND, X_HANDLE } from './utils'
 
 type SeoInput = {
   title: string
@@ -20,6 +20,21 @@ type SeoInput = {
   hasAlternate?: boolean
 }
 
+/**
+ * Joins the copy fields a record already carries into a meta description that
+ * uses the ~155 character budget Google actually renders, clamping at a word
+ * boundary rather than mid-word.
+ *
+ * Service records store `short` (a 56-65 char summary) and `value` (the benefit
+ * statement) separately; either alone leaves half the budget unused, so the
+ * page-level callers pass both.
+ */
+export function composeDescription(...parts: (string | undefined | null)[]) {
+  const text = parts.filter(Boolean).join(' ').replace(/\s+/g, ' ').trim()
+  if (text.length <= 160) return text
+  return `${text.slice(0, 157).replace(/\s+\S*$/, '')}…`
+}
+
 export function buildMetadata({
   title,
   description,
@@ -36,7 +51,12 @@ export function buildMetadata({
   const isAr = locale === 'ar'
 
   const enUrl = alternatePath ? `${SITE_URL}${isAr ? alternatePath : path}` : `${SITE_URL}${path}`
-  const arUrl = alternatePath ? `${SITE_URL}${isAr ? path : alternatePath}` : `${SITE_URL}/ar${path}`
+  // For the root path the derived Arabic URL must be `/ar`, not `/ar/` — the
+  // Arabic homepage canonicalises to the unslashed form, so deriving `/ar/`
+  // here would advertise an hreflang that disagrees with its own canonical.
+  const arUrl = alternatePath
+    ? `${SITE_URL}${isAr ? path : alternatePath}`
+    : `${SITE_URL}${path === '/' ? '/ar' : `/ar${path}`}`
 
   // English is the site's default language, so x-default should resolve to
   // the English version of this specific page (not always the homepage).
@@ -49,7 +69,10 @@ export function buildMetadata({
       : { 'x-default': enUrl, en: enUrl }
 
   return {
-    title: fullTitle,
+    // `absolute` bypasses the root layout's `%s | TechParadice` template.
+    // `fullTitle` has already appended the brand where it was missing, so a
+    // plain string here would resolve to "About | TechParadice | TechParadice".
+    title: { absolute: fullTitle },
     description,
     ...(keywords && keywords.length ? { keywords } : {}),
     metadataBase: new URL(SITE_URL),
@@ -68,6 +91,8 @@ export function buildMetadata({
     },
     twitter: {
       card: 'summary_large_image',
+      site: X_HANDLE,
+      creator: X_HANDLE,
       title: fullTitle,
       description,
       images: [image],
